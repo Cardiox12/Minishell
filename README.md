@@ -13,4 +13,5 @@
 [Writing a programming language - Lexer](https://www.youtube.com/watch?v=TG0qRDrUPpA) \
 [What is a Lexer](https://fr.wikipedia.org/wiki/Analyse_lexicale)
 #### - Data Structure :
-[Queue](https://fr.wikipedia.org/wiki/File_(structure_de_donn%C3%A9es))
+[Queue - Wiki](https://fr.wikipedia.org/wiki/File_(structure_de_donn%C3%A9es)) \
+[Queue - Explained](https://www.programiz.com/dsa/queue)
