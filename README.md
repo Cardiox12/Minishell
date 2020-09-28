@@ -2,7 +2,8 @@
 
 ## Ressources :
 
-
+#### - Bash :
+[Bash manual](https://www.gnu.org/software/bash/manual/bash.pdf)
 #### - Interpreter :
 [Let's build A Simple Interpreter](https://ruslanspivak.com/lsbasi-part1/) \
 [So you want to write an interpreter ?](https://www.youtube.com/watch?v=LCslqgM48D4) 
