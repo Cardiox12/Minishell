@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 09:55:54 by tony              #+#    #+#             */
-/*   Updated: 2020/09/17 08:08:08 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/09/29 16:28:13 by tlucille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	            ft_tolower(int c);
 char            *ft_substr(char const *s, unsigned int start, size_t len);
 char            *ft_strjoin(char const *s1, char const *s2);
 char            *ft_strtrim(char const *s, char const *set);
+char            *ft_join_free_left(char **s1, char *s2);
 t_string_list   *ft_split(char const *s, char c);
 
 #endif
