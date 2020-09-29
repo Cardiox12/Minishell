@@ -15,13 +15,14 @@ int		quote_finder(char *str)
 		return (1);
 }
 
-/*int			get_quote_type(char c)
+/*texte a afficher en fonction de si c'est simple ou double quote*/
+void	print_right_quote(char quote_char)
 {
-	if (c == ''')
-		return (1);
-	else
-		return (2);
-}*/
+		if (quote_char == '\"')
+			ft_printf("dquote> ");
+		else
+			ft_printf("quote> ");
+}
 
 /*gestion des quotes */
 char	*handle_quotes(char **str)
@@ -34,7 +35,6 @@ char	*handle_quotes(char **str)
 
 	i = 0;
 	in_quote = 0;
-//	quote_type = 0;
 	len = ft_strlen(*str);
 	while (i < len)
 	{
@@ -48,7 +48,7 @@ char	*handle_quotes(char **str)
 				i++;
 				if (i >= len)
 				{
-					ft_printf("quote> ");
+					print_right_quote(quote_char);
 					get_next_line(0, &next_command);
 					*str = ft_join_free_left(str, "\n");
 					*str = ft_join_free_left(str, next_command);
@@ -61,11 +61,30 @@ char	*handle_quotes(char **str)
 	return (*str);
 }
 
+/*gestion des backslash en fin de commande*/
+char	*back_slash_handle(char **command)
+{
+	char	*next_command;
+	int		len;
+
+	len = ft_strlen(*command);
+	while ((*command)[len - 1] == '\\')
+	{
+		ft_printf("> ");
+		get_next_line(0, &next_command);
+		*command = ft_join_free_left(command, next_command);
+		if (quote_finder(*command) == 1)
+			*command = handle_quotes(command);
+		len = ft_strlen(*command);
+	}
+	return (*command);
+}
 
 char	*reader()
 {
 	char	*command;
 	char	*cwd;
+	int		len;
 
 	while (1)
 	{
@@ -74,6 +93,9 @@ char	*reader()
 		get_next_line(0, &command);
 		if (quote_finder(command) == 1)
 			command = handle_quotes(&command);
+		len = ft_strlen(command);
+		if (command[len - 1] == '\\')
+			command = back_slash_handle(&command);
 
 		/* remplacer fonction ci-dessous par le lexer : */
 		mock_lexer(command);
