@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stdio.h                                         :+:      :+:    :+:   */
+/*   ft_is_negative.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/30 09:50:11 by tony              #+#    #+#             */
-/*   Updated: 2020/09/29 21:26:13 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/01/05 16:18:36 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/02/13 12:19:08 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "parser.h"
 
-#ifndef FT_STDIO_H
-# define FT_STDIO_H
+int		ft_is_negative(t_state *state)
+{
+	va_list copy;
 
-# include <unistd.h>
-
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putnbr_fd(int nb, int fd);
-void	ft_putendl_fd(char *s, int fd);
-void	ft_putchar_fd(char c, int fd);
-int     ft_printf(const char *fmt, ...);
-
-#endif
+	va_copy(copy, state->args);
+	if (va_arg(copy, int) < 0)
+	{
+		state->specs |= IS_NEGATIVE;
+		return (1);
+	}
+	return (0);
+}

@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stdio.h                                         :+:      :+:    :+:   */
+/*   init_state.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/30 09:50:11 by tony              #+#    #+#             */
-/*   Updated: 2020/09/29 21:26:13 by bbellavi         ###   ########.fr       */
+/*   Created: 2019/11/16 13:38:37 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/02/13 11:24:36 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "parser.h"
 
-#ifndef FT_STDIO_H
-# define FT_STDIO_H
-
-# include <unistd.h>
-
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putnbr_fd(int nb, int fd);
-void	ft_putendl_fd(char *s, int fd);
-void	ft_putchar_fd(char c, int fd);
-int     ft_printf(const char *fmt, ...);
-
-#endif
+void	init_state(t_state *state)
+{
+	if (state != NULL)
+	{
+		state->flags = 0;
+		state->conv = 0;
+		state->padding = 0;
+		state->precision = 0;
+		state->conv_length = 0;
+		state->specs = 0;
+	}
+}

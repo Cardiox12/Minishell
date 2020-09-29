@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stdio.h                                         :+:      :+:    :+:   */
+/*   ptoa.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/30 09:50:11 by tony              #+#    #+#             */
-/*   Updated: 2020/09/29 21:26:13 by bbellavi         ###   ########.fr       */
+/*   Created: 2019/11/24 23:22:51 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/02/13 12:12:52 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "router.h"
 
-#ifndef FT_STDIO_H
-# define FT_STDIO_H
-
-# include <unistd.h>
-
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putnbr_fd(int nb, int fd);
-void	ft_putendl_fd(char *s, int fd);
-void	ft_putchar_fd(char c, int fd);
-int     ft_printf(const char *fmt, ...);
-
-#endif
+void	ptoa(t_buffer *buffer, long long addr)
+{
+	if (addr >= HEX_BASE)
+	{
+		ptoa(buffer, addr / HEX_BASE);
+		append_to_buffer(buffer, HEX_LOWER_BASE[addr % HEX_BASE]);
+	}
+	else
+	{
+		append_string_to_buffer(buffer, POINTER_PREFIX);
+		append_to_buffer(buffer, HEX_LOWER_BASE[addr % HEX_BASE]);
+	}
+}

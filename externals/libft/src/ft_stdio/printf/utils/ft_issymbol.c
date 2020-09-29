@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stdio.h                                         :+:      :+:    :+:   */
+/*   ft_issymbol.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/30 09:50:11 by tony              #+#    #+#             */
-/*   Updated: 2020/09/29 21:26:13 by bbellavi         ###   ########.fr       */
+/*   Created: 2019/11/26 22:26:53 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/02/13 12:16:59 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "parser.h"
+#include "utils.h"
 
-#ifndef FT_STDIO_H
-# define FT_STDIO_H
-
-# include <unistd.h>
-
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putnbr_fd(int nb, int fd);
-void	ft_putendl_fd(char *s, int fd);
-void	ft_putchar_fd(char c, int fd);
-int     ft_printf(const char *fmt, ...);
-
-#endif
+int	ft_issymbol(char c)
+{
+	return (ft_strchr(CONVERSIONS, c) || ft_strchr(FLAGS, c) || ft_isdigit(c));
+}

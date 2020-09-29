@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stdio.h                                         :+:      :+:    :+:   */
+/*   utoa.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/30 09:50:11 by tony              #+#    #+#             */
-/*   Updated: 2020/09/29 21:26:13 by bbellavi         ###   ########.fr       */
+/*   Created: 2019/11/26 19:16:13 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/02/13 12:13:23 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "buffer.h"
 
-#ifndef FT_STDIO_H
-# define FT_STDIO_H
-
-# include <unistd.h>
-
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putnbr_fd(int nb, int fd);
-void	ft_putendl_fd(char *s, int fd);
-void	ft_putchar_fd(char c, int fd);
-int     ft_printf(const char *fmt, ...);
-
-#endif
+void	utoa(t_buffer *buffer, unsigned int number)
+{
+	if (number >= 10)
+		utoa(buffer, number / 10);
+	append_to_buffer(buffer, number % 10 + '0');
+}
