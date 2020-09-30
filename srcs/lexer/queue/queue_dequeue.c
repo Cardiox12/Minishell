@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   queue_dequeue.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 09:21:34 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/09/30 09:09:45 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/09/30 09:20:30 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
-#include "reader.h"
-#include "ft_stdlib.h"
-#include "ft_stdio.h"
 
-int		main(void)
+/*
+**
+** Description :
+**    The dequeue function remove first item of the queue.
+**
+*/
+
+t_queue	*dequeue(t_queue **head)
 {
-	// Here is the entrypoint
-	char *line;
+	t_queue *first;
 
-	line = NULL;
-	while (1)
-	{
-		line = reader();
-		if (line == NULL)
-			break;
-	}
-	return (0);
+	first = *head;
+	if (first == NULL)
+		return (NULL);
+	*head = (*head)->next;
+	return (first);
 }

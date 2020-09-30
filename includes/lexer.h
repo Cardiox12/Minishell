@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 06:22:12 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/09/30 09:13:44 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ typedef struct	s_interpret
 
 t_queue	*queue_init(t_token token);
 t_queue *enqueue(t_queue **head, t_token token);
+t_queue	*dequeue(t_queue **head);
 
 #endif
