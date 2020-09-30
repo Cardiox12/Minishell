@@ -129,7 +129,7 @@ SRCS	+= $(MATH_DIR)/vec3/vec3_rotate.c
 TESTS	= $(TEST_DIR)/test_StringList.c
 TESTS	+= $(TEST_DIR)/test_split.c
 
-include $(STDIO_DIR)/printf/module.mk
+include $(STDIO_DIR)/printf/module.mk $(STDIO_DIR)/get_next_line/module.mk
 
 OBJS	= $(SRCS:.c=.o)
 
