@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   reader.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 05:17:18 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/09/30 04:27:38 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/09/30 05:16:40 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "reader.h"
-#include "ft_stdlib.h"
-#include "ft_stdio.h"
+#ifndef FT_READER_H
+# define FT_READER_H
 
-int		main(void)
-{
-	// Here is the entrypoint
-	char *line;
+# include <unistd.h>
+# include <limits.h>
+# include "ft_strings.h"
+# include "ft_stdio.h"
 
-	line = NULL;
-	while (1)
-	{
-		line = reader();
-		if (line == NULL)
-			break;
-		ft_printf("%s\n", line);
-	}
-	return (0);
-}
+char *reader();
+
+#endif

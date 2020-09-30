@@ -6,7 +6,7 @@
 #    By: tony <tony@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/30 09:59:18 by tony              #+#    #+#              #
-#    Updated: 2020/04/30 09:59:18 by tony             ###   ########.fr        #
+#    Updated: 2020/09/29 16:26:01 by tlucille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ SRCS	+= $(STRING_DIR)/ft_strtrim.c
 SRCS	+= $(STRING_DIR)/ft_substr.c
 SRCS	+= $(STRING_DIR)/ft_tolower.c
 SRCS	+= $(STRING_DIR)/ft_toupper.c
+SRCS	+= $(STRING_DIR)/ft_join_free_left.c
 
 SRCS	+= $(STDLIB_DIR)/ft_realloc.c
 SRCS	+= $(STDLIB_DIR)/ft_atoi.c
