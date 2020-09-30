@@ -104,9 +104,3 @@ char	*reader()
 	}
 	return ("haha");
 }
-
-int		main(void)
-{
-	reader();
-	return (0);
-}
