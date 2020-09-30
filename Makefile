@@ -6,7 +6,7 @@
 #    By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/29 01:50:06 by tlucille          #+#    #+#              #
-#    Updated: 2020/09/30 04:53:18 by bbellavi         ###   ########.fr        #
+#    Updated: 2020/09/30 06:24:54 by bbellavi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ OUTPUT_DIR	= $(SRC_DIR)/output
 LIBFT_NAME	= libft.a
 NAME		= minishell
 
-include $(READ_DIR)/module.mk
+include $(READ_DIR)/module.mk $(LEXER_DIR)/module.mk
 
 .PHONY: all clean fclean
 
