@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/29 05:16:06 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/09/30 06:22:12 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,8 @@ typedef struct	s_interpret
 # define ENV_VARIABLE 6
 # define REDIRECTION 7
 # define RAW_STRING 8
+
+t_queue	*queue_init(t_token token);
+t_queue *enqueue(t_queue **head, t_token token);
 
 #endif
