@@ -1,4 +1,16 @@
-#include "libft/libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reader.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/30 04:28:46 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/09/30 04:49:43 by bbellavi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "reader.h"
 
 int		mock_lexer(char *command)
 {
@@ -27,21 +39,18 @@ void	print_right_quote(char quote_char)
 /*gestion des quotes */
 char	*handle_quotes(char **str)
 {
-	int		in_quote;
 	char	*next_command;
 	int		quote_char;
 	int		i;
 	int		len;
 
 	i = 0;
-	in_quote = 0;
 	len = ft_strlen(*str);
 	while (i < len)
 	{
 		if ((*str)[i] == '\"' || (*str)[i] == '\'')
 		{
 			quote_char = (*str)[i];
-			in_quote = 1;
 			i++;
 			while ((*str)[i] != quote_char)
 			{
@@ -83,12 +92,13 @@ char	*back_slash_handle(char **command)
 char	*reader()
 {
 	char	*command;
-	char	*cwd;
+	char	cwd[PATH_MAX];
 	int		len;
 
 	while (1)
 	{
-		cwd = getcwd(NULL, 1);
+		ft_bzero(cwd, PATH_MAX);
+		getcwd(cwd, PATH_MAX);
 		ft_printf("minishell@%s:", cwd);
 		get_next_line(0, &command);
 		if (quote_finder(command) == 1)
@@ -99,7 +109,6 @@ char	*reader()
 
 		/* remplacer fonction ci-dessous par le lexer : */
 		mock_lexer(command);
-		free(cwd);
 		free(command);
 	}
 	return ("haha");
