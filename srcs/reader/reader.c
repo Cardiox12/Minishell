@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 04:28:46 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 04:49:43 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/09/30 05:16:54 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,21 +95,17 @@ char	*reader()
 	char	cwd[PATH_MAX];
 	int		len;
 
-	while (1)
-	{
-		ft_bzero(cwd, PATH_MAX);
-		getcwd(cwd, PATH_MAX);
-		ft_printf("minishell@%s:", cwd);
-		get_next_line(0, &command);
-		if (quote_finder(command) == 1)
-			command = handle_quotes(&command);
-		len = ft_strlen(command);
-		if (command[len - 1] == '\\')
-			command = back_slash_handle(&command);
-
-		/* remplacer fonction ci-dessous par le lexer : */
-		mock_lexer(command);
-		free(command);
-	}
-	return ("haha");
+	command = NULL;
+	ft_bzero(cwd, PATH_MAX);
+	getcwd(cwd, PATH_MAX);
+	ft_printf("minishell@%s: ", cwd);
+	get_next_line(0, &command);
+	if (command == NULL)
+		return (NULL);
+	if (quote_finder(command) == 1)
+		command = handle_quotes(&command);
+	len = ft_strlen(command);
+	if (command[len - 1] == '\\')
+		command = back_slash_handle(&command);
+	return (command);
 }
