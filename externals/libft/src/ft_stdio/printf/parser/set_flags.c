@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   set_flags.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 04:19:30 by bbellavi         ###   ########.fr       */
+/*   Created: 2019/11/23 14:54:22 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/02/13 11:56:21 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdlib.h"
-#include "ft_stdio.h"
+#include "parser.h"
 
-int		main(void)
+void	set_flags(t_state *state, unsigned char c)
 {
-	// Here is the entrypoint
-	char *line = NULL;
-
-	get_next_line(0, &line);
-	ft_printf("line : %s\n", line);
-	free(line);
-	line = NULL;
-	return (0);
+	if (c == S_NEGATIVE)
+		state->flags |= F_NEGATIVE;
+	else if (c == S_ZERO)
+		state->flags |= F_ZERO;
+	else if (c == S_PRECISION)
+		state->flags |= F_PRECISION;
+	else if (c == S_ASTERISK)
+		state->flags |= F_ASTERISK;
 }

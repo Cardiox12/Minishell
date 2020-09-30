@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_is_negative.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 04:19:30 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/01/05 16:18:36 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/02/13 12:19:08 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdlib.h"
-#include "ft_stdio.h"
+#include "parser.h"
 
-int		main(void)
+int		ft_is_negative(t_state *state)
 {
-	// Here is the entrypoint
-	char *line = NULL;
+	va_list copy;
 
-	get_next_line(0, &line);
-	ft_printf("line : %s\n", line);
-	free(line);
-	line = NULL;
+	va_copy(copy, state->args);
+	if (va_arg(copy, int) < 0)
+	{
+		state->specs |= IS_NEGATIVE;
+		return (1);
+	}
 	return (0);
 }

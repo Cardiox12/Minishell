@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 09:51:34 by tony              #+#    #+#             */
-/*   Updated: 2020/09/17 08:11:48 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/09/30 04:20:01 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct 	s_Garbage
 	t_Ref_List	*refs;
 }				t_Garbage;
 
-static t_Garbage g_garbage = (t_Garbage){0, NULL};
+extern t_Garbage g_garbage;
 
 void		*ft_realloc(void *p, size_t new_size, size_t old_size);
 int			ft_atoi(const char *str);

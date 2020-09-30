@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 04:19:30 by bbellavi         ###   ########.fr       */
+/*   Created: 2019/11/17 19:49:22 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/09/29 21:37:54 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdlib.h"
-#include "ft_stdio.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-int		main(void)
-{
-	// Here is the entrypoint
-	char *line = NULL;
+# include <stddef.h>
+# include "ft_strings.h"
+# include "ft_stdlib.h"
+# include "parser.h"
 
-	get_next_line(0, &line);
-	ft_printf("line : %s\n", line);
-	free(line);
-	line = NULL;
-	return (0);
-}
+int		ft_isdigit(unsigned char c);
+int		ft_issymbol(char c);
+int		ft_abs(int number);
+char	*ft_strchrset(const char *s, const char *charset);
+int		ft_is_negative(t_state *state);
+int		ft_is_zero(t_state *state);
+
+#endif

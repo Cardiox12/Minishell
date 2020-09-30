@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_state.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 04:19:30 by bbellavi         ###   ########.fr       */
+/*   Created: 2019/11/16 13:38:37 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/02/13 11:24:36 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdlib.h"
-#include "ft_stdio.h"
+#include "parser.h"
 
-int		main(void)
+void	init_state(t_state *state)
 {
-	// Here is the entrypoint
-	char *line = NULL;
-
-	get_next_line(0, &line);
-	ft_printf("line : %s\n", line);
-	free(line);
-	line = NULL;
-	return (0);
+	if (state != NULL)
+	{
+		state->flags = 0;
+		state->conv = 0;
+		state->padding = 0;
+		state->precision = 0;
+		state->conv_length = 0;
+		state->specs = 0;
+	}
 }

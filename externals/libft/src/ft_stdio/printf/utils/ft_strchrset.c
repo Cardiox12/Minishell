@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchrset.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 04:19:30 by bbellavi         ###   ########.fr       */
+/*   Created: 2019/12/06 02:09:23 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/02/13 12:18:21 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdlib.h"
-#include "ft_stdio.h"
+#include "utils.h"
 
-int		main(void)
+char	*ft_strchrset(const char *s, const char *charset)
 {
-	// Here is the entrypoint
-	char *line = NULL;
+	size_t index;
 
-	get_next_line(0, &line);
-	ft_printf("line : %s\n", line);
-	free(line);
-	line = NULL;
-	return (0);
+	index = 0;
+	while (*s)
+	{
+		while (charset[index] != '\0')
+		{
+			if (charset[index] == *s)
+				return ((char*)s);
+			index++;
+		}
+		s++;
+		index = 0;
+	}
+	return (NULL);
 }
