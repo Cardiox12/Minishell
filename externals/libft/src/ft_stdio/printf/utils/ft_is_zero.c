@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_is_zero.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 04:19:30 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/01/14 12:04:54 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/02/13 17:53:07 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdlib.h"
-#include "ft_stdio.h"
+#include "parser.h"
 
-int		main(void)
+int	ft_is_zero(t_state *state)
 {
-	// Here is the entrypoint
-	char *line = NULL;
+	va_list	copy;
 
-	get_next_line(0, &line);
-	ft_printf("line : %s\n", line);
-	free(line);
-	line = NULL;
+	va_copy(copy, state->args);
+	if (state->conv & C_INTEGER || state->conv & C_UNSIGNED ||
+	state->conv & C_HEX_LOWER || state->conv & C_HEX_UPPER)
+	{
+		if (va_arg(copy, int) == 0)
+		{
+			state->specs |= IS_ZERO;
+			return (1);
+		}
+	}
 	return (0);
 }

@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   itohu.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 04:19:30 by bbellavi         ###   ########.fr       */
+/*   Created: 2019/11/25 23:14:55 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/02/13 11:57:25 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdlib.h"
-#include "ft_stdio.h"
+#include "buffer.h"
+#include "parser.h"
 
-int		main(void)
+void	itohu(t_buffer *buffer, unsigned int number)
 {
-	// Here is the entrypoint
-	char *line = NULL;
-
-	get_next_line(0, &line);
-	ft_printf("line : %s\n", line);
-	free(line);
-	line = NULL;
-	return (0);
+	if (number >= HEX_BASE)
+	{
+		itohu(buffer, number / HEX_BASE);
+		append_to_buffer(buffer, HEX_UPPER_BASE[number % HEX_BASE]);
+	}
+	else
+		append_to_buffer(buffer, HEX_UPPER_BASE[number % HEX_BASE]);
 }

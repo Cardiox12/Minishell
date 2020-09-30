@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 04:19:30 by bbellavi         ###   ########.fr       */
+/*   Created: 2019/11/17 19:50:06 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/02/13 12:15:38 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdlib.h"
-#include "ft_stdio.h"
+#include "buffer.h"
 
-int		main(void)
+void	ft_bzero(void *s, size_t n)
 {
-	// Here is the entrypoint
-	char *line = NULL;
-
-	get_next_line(0, &line);
-	ft_printf("line : %s\n", line);
-	free(line);
-	line = NULL;
-	return (0);
+	while (n-- != 0)
+		*(unsigned char*)s++ = '\0';
 }

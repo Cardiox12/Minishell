@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 04:19:30 by bbellavi         ###   ########.fr       */
+/*   Created: 2019/10/13 03:28:32 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/09/30 04:16:30 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdlib.h"
-#include "ft_stdio.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int		main(void)
-{
-	// Here is the entrypoint
-	char *line = NULL;
+# define NEWLINE '\n'
 
-	get_next_line(0, &line);
-	ft_printf("line : %s\n", line);
-	free(line);
-	line = NULL;
-	return (0);
-}
+# define BUFFER_SIZE 100
+
+# define SUCCESS 1
+# define ERROR -1
+# define END_OF_FILE 0
+# define NOT_FOUND -1
+# define CONTINUE 2
+
+#include <sys/types.h>
+#include <sys/uio.h>
+#include <unistd.h>
+#include "ft_strings.h"
+
+#endif

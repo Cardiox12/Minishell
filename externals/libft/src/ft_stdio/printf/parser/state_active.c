@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   state_active.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 04:19:30 by bbellavi         ###   ########.fr       */
+/*   Created: 2019/12/27 01:48:29 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/02/13 11:56:05 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdlib.h"
-#include "ft_stdio.h"
+#include "parser.h"
 
-int		main(void)
+int	state_has_active_flag(t_state *state)
 {
-	// Here is the entrypoint
-	char *line = NULL;
-
-	get_next_line(0, &line);
-	ft_printf("line : %s\n", line);
-	free(line);
-	line = NULL;
-	return (0);
+	return (state->flags & F_NEGATIVE ||
+			state->flags & F_ZERO ||
+			state->flags & F_PRECISION ||
+			state->flags & F_ASTERISK);
 }

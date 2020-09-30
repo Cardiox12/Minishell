@@ -36,7 +36,7 @@ MATH_DIR	= $(BASE_DIR)/ft_math
 TEST_DIR	= tests
 
 SRCS	= $(STDIO_DIR)/ft_putchar_fd.c
-SRCS	= $(STDIO_DIR)/ft_putendl_fd.c
+SRCS	+= $(STDIO_DIR)/ft_putendl_fd.c
 SRCS	+= $(STDIO_DIR)/ft_putstr_fd.c
 SRCS	+= $(STDIO_DIR)/ft_putnbr_fd.c
 
@@ -129,12 +129,17 @@ SRCS	+= $(MATH_DIR)/vec3/vec3_rotate.c
 TESTS	= $(TEST_DIR)/test_StringList.c
 TESTS	+= $(TEST_DIR)/test_split.c
 
+include $(STDIO_DIR)/printf/module.mk $(STDIO_DIR)/get_next_line/module.mk
+
 OBJS	= $(SRCS:.c=.o)
+
+
 .PHONY: all re clean fclean
 
 all: $(NAME)
 
 $(NAME): $(OBJS) $(INC_FILES)
+	@printf "$(COLOR_LIGHT_GREEN)Building library$(COLOR_NC)\n"
 	@ar -rcs $@ $?
 
 test: $(NAME) $(TESTS)
@@ -142,14 +147,17 @@ test: $(NAME) $(TESTS)
 	@./test
 
 %.o: %.c
+	@printf "%-50s $(COLOR_LIGHT_GREEN)%-50s$(COLOR_NC)\n" "$(@:.o=)" "compiled [√]"
 	@$(CC) $(CFLAGS) -o $@ -c $< -I $(INCLUDES)
 
 clean:
+	@printf "$(COLOR_LIGHT_GREEN)Removing objects files$(COLOR_NC)\n"
 	@rm -rf $(OBJS)
 	@rm -rf $(TEST_NAME)
 	@rm -rf $(TEST_NAME).dSYM
 
 fclean: clean
+	@printf "$(COLOR_LIGHT_GREEN)Removing library$(COLOR_NC)\n"
 	@rm -rf $(NAME)
 
 re: fclean all

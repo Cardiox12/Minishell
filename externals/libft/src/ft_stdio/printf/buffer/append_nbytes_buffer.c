@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   append_nbytes_buffer.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 04:19:30 by bbellavi         ###   ########.fr       */
+/*   Created: 2019/12/06 02:49:33 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/02/13 10:33:59 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdlib.h"
-#include "ft_stdio.h"
+#include "buffer.h"
 
-int		main(void)
+void	append_nchar_to_buffer(t_buffer *buffer, const char *s, size_t n)
 {
-	// Here is the entrypoint
-	char *line = NULL;
+	size_t index;
 
-	get_next_line(0, &line);
-	ft_printf("line : %s\n", line);
-	free(line);
-	line = NULL;
-	return (0);
+	index = 0;
+	while (index < n)
+		append_to_buffer(buffer, s[index++]);
 }

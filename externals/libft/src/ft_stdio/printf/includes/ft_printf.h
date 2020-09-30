@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 04:19:30 by bbellavi         ###   ########.fr       */
+/*   Created: 2019/11/16 05:02:46 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/09/29 19:00:12 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdlib.h"
-#include "ft_stdio.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int		main(void)
-{
-	// Here is the entrypoint
-	char *line = NULL;
+# define BUFFER_SIZE 64
 
-	get_next_line(0, &line);
-	ft_printf("line : %s\n", line);
-	free(line);
-	line = NULL;
-	return (0);
-}
+# include <stdio.h>
+# include <stddef.h>
+# include <stdarg.h>
+
+int		ft_printf(const char *fmt, ...);
+
+#endif
