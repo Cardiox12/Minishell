@@ -11,12 +11,7 @@
 /* ************************************************************************** */
 
 #include "reader.h"
-
-int		mock_lexer(char *command)
-{
-	ft_printf(" --> command : %s\n", command);
-	return (0);
-}
+#include <fcntl.h>
 
 /*sert a verifier si on a besoin d'utiliser la fonction de gestion des quotes*/
 int		quote_finder(char *str)
@@ -75,7 +70,7 @@ char	*back_slash_handle(char **command)
 {
 	char	*next_command;
 	int		len;
-
+	
 	len = ft_strlen(*command);
 	while ((*command)[len - 1] == '\\')
 	{
@@ -94,12 +89,15 @@ char	*reader()
 	char	*command;
 	char	cwd[PATH_MAX];
 	int		len;
+	int		gnl_return;
 
 	command = NULL;
 	ft_bzero(cwd, PATH_MAX);
 	getcwd(cwd, PATH_MAX);
 	ft_printf("minishell@%s: ", cwd);
-	get_next_line(0, &command);
+	gnl_return = get_next_line(0, &command);
+	if (gnl_return == 0)
+		exit(EXIT_SUCCESS);
 	if (command == NULL)
 		return (NULL);
 	if (quote_finder(command) == 1)
