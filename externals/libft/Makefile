@@ -83,6 +83,8 @@ SRCS	+= $(CTYPES_DIR)/ft_isalpha.c
 SRCS	+= $(CTYPES_DIR)/ft_isascii.c
 SRCS	+= $(CTYPES_DIR)/ft_isdigit.c
 SRCS	+= $(CTYPES_DIR)/ft_isprint.c
+SRCS	+= $(CTYPES_DIR)/ft_isspace.c
+SRCS	+= $(CTYPES_DIR)/ft_isquote.c
 
 SRCS	+= $(OBJECTS_DIR)/StringList_init.c
 SRCS	+= $(OBJECTS_DIR)/StringList_insert.c
@@ -140,7 +142,6 @@ OBJS	= $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS) $(INC_FILES)
-	@printf "$(COLOR_LIGHT_GREEN)Building library$(COLOR_NC)\n"
 	@ar -rcs $@ $?
 
 test: $(NAME) $(TESTS)
@@ -148,17 +149,14 @@ test: $(NAME) $(TESTS)
 	@./test
 
 %.o: %.c
-	@printf "%-50s $(COLOR_LIGHT_GREEN)%-50s$(COLOR_NC)\n" "$(@:.o=)" "compiled [√]"
 	@$(CC) $(CFLAGS) -o $@ -c $< -I $(INCLUDES)
 
 clean:
-	@printf "$(COLOR_LIGHT_GREEN)Removing objects files$(COLOR_NC)\n"
 	@rm -rf $(OBJS)
 	@rm -rf $(TEST_NAME)
 	@rm -rf $(TEST_NAME).dSYM
 
 fclean: clean
-	@printf "$(COLOR_LIGHT_GREEN)Removing library$(COLOR_NC)\n"
 	@rm -rf $(NAME)
 
 re: fclean all

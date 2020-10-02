@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/01 12:05:23 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/02 19:01:22 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,12 @@ typedef struct	s_interpret
 enum	e_states
 {
 	IN_STRING = 0x01,
-	ISNT_FIRST = 0x01 << 1U
+	IS_COMMAND = 0x01 << 1U
 };
 
 t_queue	*queue_init(t_token token);
 t_queue *enqueue(t_queue **head, t_token token);
 t_queue	*dequeue(t_queue **head);
+t_queue *lexer(const char *input);
 
 #endif
