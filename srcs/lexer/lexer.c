@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/03 05:52:21 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/03 06:02:50 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int get_string(t_queue **head, const char *input, size_t index)
     const int       quote = input[index];
     int             type;
 
-    if (quote == SIMPLE_QUOTE)
+    if (quote == SYM_SIMPLE_QUOTE)
         type = RAW_STRING;
     else
         type = STRING;
@@ -63,6 +63,16 @@ static int get_argument(t_queue **head, const char *input, size_t index)
     return (index);
 }
 
+static int get_pipe(t_queue **head, size_t index)
+{
+    enqueue(head, (t_token){
+        .type = PIPE,
+        .value = ft_strdup("|"),
+        .index = index
+    });
+    return (++index);
+}
+
 t_queue *lexer(const char *input)
 {
     const size_t    length = ft_strlen(input);
@@ -87,6 +97,11 @@ t_queue *lexer(const char *input)
         else if (input[index] == '-' || (input[index] == '-' && input[index + 1] == '-'))
         {
             index = get_argument(&head, input, index);
+        }
+        else if (input[index] == SYM_PIPE)
+        {
+            index = get_pipe(&head, index);
+            state ^= IS_COMMAND;
         }
         else
         {
