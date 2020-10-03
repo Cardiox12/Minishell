@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/03 05:36:25 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/03 05:52:21 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,20 @@ static int get_string(t_queue **head, const char *input, size_t index)
     return (index);
 }
 
+static int get_argument(t_queue **head, const char *input, size_t index)
+{
+    const size_t previous = index;
+
+    while (input[index] != '\0' && !ft_isspace(input[index]))
+        index++;
+    enqueue(head, (t_token){
+        .type = ARGUMENT,
+        .value = ft_strndup(&input[previous], index - previous),
+        .index = previous
+    });
+    return (index);
+}
+
 t_queue *lexer(const char *input)
 {
     const size_t    length = ft_strlen(input);
@@ -69,6 +83,10 @@ t_queue *lexer(const char *input)
         else if (input[index] == '"' || input[index] == '\'')
         {
             index = get_string(&head, input, index);
+        }
+        else if (input[index] == '-' || (input[index] == '-' && input[index + 1] == '-'))
+        {
+            index = get_argument(&head, input, index);
         }
         else
         {
