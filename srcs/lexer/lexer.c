@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/03 06:02:50 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/03 08:18:48 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,16 @@ static int get_pipe(t_queue **head, size_t index)
     return (++index);
 }
 
+static int get_operator(t_queue **head, size_t index)
+{
+    enqueue(head, (t_token){
+        .type = OPERATOR,
+        .value = ft_strdup(";"),
+        .index = index
+    });
+    return (++index);
+}
+
 t_queue *lexer(const char *input)
 {
     const size_t    length = ft_strlen(input);
@@ -101,6 +111,11 @@ t_queue *lexer(const char *input)
         else if (input[index] == SYM_PIPE)
         {
             index = get_pipe(&head, index);
+            state ^= IS_COMMAND;
+        }
+        else if (input[index] == SYM_OPERATOR)
+        {
+            index = get_operator(&head, index);
             state ^= IS_COMMAND;
         }
         else
