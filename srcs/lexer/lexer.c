@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/02 19:07:28 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/03 05:36:25 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,46 @@
 #include "lexer.h"
 #include "ft_stdio.h"
 
-static t_token get_command(const char *input, size_t index)
+static int get_command(t_queue **head, const char *input, size_t index)
 {
     const size_t previous = index;
 
-    while (!ft_isspace(input[index]) && input[index] != '\0')
+    while (input[index] != '\0' && !ft_isspace(input[index]))
         index++;
-    ft_printf("index - previous = %i\n", index - previous);
-    ft_printf("input : %s\n", input);
-    ft_printf("value : %s\n", ft_strndup(input, index - previous));
-    return ((t_token){COMMAND, ft_strndup(input, index - previous), previous});
+    enqueue(head, (t_token){
+        .type = COMMAND,
+        .value = ft_strndup(&input[previous], index - previous),
+        .index = previous
+    });
+    return (index);
 }
 
-static t_token get_string(const char *input, size_t index)
+static int get_string(t_queue **head, const char *input, size_t index)
 {
-    const size_t previous = index;
+    const size_t    previous = index;
+    const int       quote = input[index];
+    int             type;
 
-    while (ft_isquote(input[index]) && input[index] != '\0')
+    if (quote == SIMPLE_QUOTE)
+        type = RAW_STRING;
+    else
+        type = STRING;
+    ++index;
+    while (input[index] != '\0' && !ft_isspace(input[index]))
         index++;
-    return ((t_token){STRING, ft_strndup(input, index - previous), previous});
+    enqueue(head, (t_token){
+        .type = type,
+        .value = ft_strndup(&input[previous], index - previous),
+        .index = previous
+    });
+    return (index);
 }
 
 t_queue *lexer(const char *input)
 {
     const size_t    length = ft_strlen(input);
     t_queue         *head;
-    uint8_t         state;
+    int             state;
     size_t          index;
 
     head = NULL;
@@ -49,18 +63,17 @@ t_queue *lexer(const char *input)
     {
         if (ft_isalpha(input[index]) && state & IS_COMMAND)
         {
-            enqueue(&head, get_command(input, index));
-            while (!ft_isspace(input[index]) && index < length)
-                index++;
+            index = get_command(&head, input, index);
             state ^= IS_COMMAND;
         }
-        if (input[index] == '"' || input[index] == '\'')
+        else if (input[index] == '"' || input[index] == '\'')
         {
-            enqueue(&head, get_string(input, index));
-            while (!ft_isspace(input[index]) && index < length)
-                index++;
+            index = get_string(&head, input, index);
         }
-        index++;
+        else
+        {
+            index++;
+        }
     }
     return (head);
 }

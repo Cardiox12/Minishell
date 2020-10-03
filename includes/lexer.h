@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/02 19:01:22 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/03 05:30:08 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct	s_token
 {
 	int			type;
 	char		*value;
-	int			index;
+	size_t		index;
 }				t_token;
 
 typedef struct	s_queue
@@ -60,6 +60,9 @@ enum	e_states
 	IN_STRING = 0x01,
 	IS_COMMAND = 0x01 << 1U
 };
+
+# define QUOTE '"'
+# define SIMPLE_QUOTE '\''
 
 t_queue	*queue_init(t_token token);
 t_queue *enqueue(t_queue **head, t_token token);

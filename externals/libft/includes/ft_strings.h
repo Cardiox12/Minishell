@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 09:55:54 by tony              #+#    #+#             */
-/*   Updated: 2020/09/29 16:28:13 by tlucille         ###   ########.fr       */
+/*   Updated: 2020/10/03 05:12:02 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	        *ft_strndup(const char *s, size_t n);
 char            *ft_strnstr(const char *haystack, const char *needle, size_t len);
 size_t          ft_strlen(const char *s);
 char            *ft_strchr(const char *s, int c);
+char            *ft_strcharset(const char *s, const char *charset);
 char            *ft_strrchr(const char *s, int c);
 int	            ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t          ft_strlcat(char *dst, const char *src, size_t dstsize);
@@ -41,5 +42,7 @@ char            *ft_strjoin(char const *s1, char const *s2);
 char            *ft_strtrim(char const *s, char const *set);
 char            *ft_join_free_left(char **s1, char *s2);
 t_string_list   *ft_split(char const *s, char c);
+char            *skip_alnum(const char *s);
+char            *skip_whitespaces(const char *s);
 
 #endif

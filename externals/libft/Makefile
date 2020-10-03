@@ -49,6 +49,7 @@ SRCS	+= $(STRING_DIR)/ft_memmove.c
 SRCS	+= $(STRING_DIR)/ft_memset.c
 SRCS	+= $(STRING_DIR)/ft_split.c
 SRCS	+= $(STRING_DIR)/ft_strchr.c
+SRCS	+= $(STRING_DIR)/ft_strcharset.c
 SRCS	+= $(STRING_DIR)/ft_strdup.c
 SRCS	+= $(STRING_DIR)/ft_strndup.c
 SRCS	+= $(STRING_DIR)/ft_strjoin.c
@@ -65,6 +66,8 @@ SRCS	+= $(STRING_DIR)/ft_substr.c
 SRCS	+= $(STRING_DIR)/ft_tolower.c
 SRCS	+= $(STRING_DIR)/ft_toupper.c
 SRCS	+= $(STRING_DIR)/ft_join_free_left.c
+SRCS	+= $(STRING_DIR)/ft_skip_whitespaces.c
+SRCS	+= $(STRING_DIR)/ft_skip_alnum.c
 
 SRCS	+= $(STDLIB_DIR)/ft_realloc.c
 SRCS	+= $(STDLIB_DIR)/ft_atoi.c
