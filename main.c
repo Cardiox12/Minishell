@@ -48,6 +48,7 @@ void	print_queue(t_queue *head)
 		ft_printf("=============== TOKENS ===============\n");
 		ft_printf("Value : %s\n", head->token.value);
 		ft_printf("Type : %s\n", get_type(head->token.type));
+		ft_printf("Index : %d\n", head->token.index);
 		head = head->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/03 08:15:56 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/04 23:30:30 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ enum	e_states
 # define SYM_SIMPLE_QUOTE '\''
 # define SYM_PIPE '|'
 # define SYM_OPERATOR ';'
+# define SYM_ENV_VAR '$'
 
 t_queue	*queue_init(t_token token);
 t_queue *enqueue(t_queue **head, t_token token);
