@@ -6,12 +6,12 @@
 #    By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/29 01:50:06 by tlucille          #+#    #+#              #
-#    Updated: 2020/09/30 06:24:54 by bbellavi         ###   ########.fr        #
+#    Updated: 2020/10/03 05:01:58 by bbellavi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra -g
 
 EXT_DIR		= externals
 INC_DIR		= includes
@@ -35,7 +35,7 @@ include $(READ_DIR)/module.mk $(LEXER_DIR)/module.mk
 
 all: $(NAME)
 
-$(NAME): $(SRCS) | build_library
+$(NAME): build_library $(SRCS)
 	@$(CC) $(CFLAGS) -o $(NAME) main.c $(SRCS) $(LIBFT_NAME) -I$(INC_DIR) -I$(FT_INC_DIR)
 
 build_library:

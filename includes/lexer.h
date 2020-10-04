@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 09:13:44 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/03 08:15:56 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct	s_token
 {
 	int			type;
 	char		*value;
-	int			index;
+	size_t		index;
 }				t_token;
 
 typedef struct	s_queue
@@ -30,8 +30,8 @@ typedef struct	s_queue
 
 typedef struct	s_interpret
 {
-	int			index;
 	char		*input;
+	t_queue		tokens;
 }				t_interpret;
 
 /*
@@ -49,8 +49,26 @@ typedef struct	s_interpret
 # define REDIRECTION 7
 # define RAW_STRING 8
 
+/*
+**
+** The following macros define lexer states
+**
+*/
+
+enum	e_states
+{
+	IN_STRING = 0x01,
+	IS_COMMAND = 0x01 << 1U
+};
+
+# define SYM_QUOTE '"'
+# define SYM_SIMPLE_QUOTE '\''
+# define SYM_PIPE '|'
+# define SYM_OPERATOR ';'
+
 t_queue	*queue_init(t_token token);
 t_queue *enqueue(t_queue **head, t_token token);
 t_queue	*dequeue(t_queue **head);
+t_queue *lexer(const char *input);
 
 #endif
