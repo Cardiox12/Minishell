@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/04 23:57:55 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/05 12:13:26 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int get_env_variable(t_queue **head, const char *input, size_t index)
 {
     const size_t previous = index;
     
-    while (input[index] != '\0' && !ft_isspace(input[index]) && !ft_isquote(input[index]))
+    while (input[index] != '\0' && !ft_isspace(input[index]))
         index++;
     enqueue(head, (t_token){
         .type = ENV_VARIABLE,
@@ -54,11 +54,7 @@ static int get_string(t_queue **head, const char *input, size_t index)
         type = STRING;
     ++index;
     while (input[index] != '\0' && !ft_isquote(input[index]))
-    {
-        if (input[index] == SYM_ENV_VAR)
-            get_env_variable(head, input, index);
         index++;
-    }
     enqueue(head, (t_token){
         .type = type,
         .value = ft_strndup(&input[previous], ++index - previous),
