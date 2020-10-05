@@ -6,7 +6,7 @@
 #    By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/29 01:50:06 by tlucille          #+#    #+#              #
-#    Updated: 2020/10/03 05:01:58 by bbellavi         ###   ########.fr        #
+#    Updated: 2020/10/05 12:20:31 by bbellavi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -rf $(NAME).dSYM
 	@make -C $(LIBFT_DIR) fclean
 
 re: fclean all	
