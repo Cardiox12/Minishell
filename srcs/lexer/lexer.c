@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/05 16:44:17 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/06 01:40:20 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,20 @@ static int get_fd(t_queue **head, const char *input, size_t index)
 	return (index);
 }
 
+static int get_argument(t_queue **head, const char *input, size_t index)
+{
+    const size_t previous = index;
+
+    while (!is_sep(input[index]) && input[index] != '\0')
+        index++;
+    enqueue(head, (t_token){
+        .type = ARGUMENT,
+        .value = ft_strndup(&input[previous], index - previous),
+        .index = previous
+    });
+    return (index);
+}
+
 t_queue *lexer(const char *input)
 {
 	const size_t    length = ft_strlen(input);
@@ -176,6 +190,10 @@ t_queue *lexer(const char *input)
 			index = get_redirection(&head, input, index);
 			state |= IS_FD;
 		}
+        else if (ft_isalnum(input[index]))
+        {
+            index = get_argument(&head, input, index);
+        }
 		else if (state & IS_FD && !ft_isspace(input[index]))
 		{
 			index = get_fd(&head, input, index);

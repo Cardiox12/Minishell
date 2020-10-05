@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/05 16:45:27 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/06 01:39:43 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct	s_interpret
 # define REDIRECTION 7
 # define RAW_STRING 8
 # define FILE_DESCRIPTOR 9
+# define ARGUMENT 10
 
 /*
 **
@@ -70,6 +71,7 @@ enum	e_states
 # define SYM_ENV_VAR '$'
 # define SYM_R_REDIR '>'
 # define SYM_L_REDIR '<'
+# define SYM_EQUAL '='
 
 t_queue	*queue_init(t_token token);
 t_queue *enqueue(t_queue **head, t_token token);

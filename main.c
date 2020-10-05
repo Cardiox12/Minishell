@@ -38,6 +38,8 @@ char	*get_type(int type)
 			return ("RAW_STRING");
 		case FILE_DESCRIPTOR:
 			return ("FILE DESCRIPTOR");
+		case ARGUMENT:
+			return ("ARGUMENT");
 		default:
 			return ("");
 	}
