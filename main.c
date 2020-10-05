@@ -24,8 +24,8 @@ char	*get_type(int type)
 			return ("COMMAND");
 		case STRING:
 			return ("STRING");
-		case ARGUMENT:
-			return ("ARGUMENT");
+		case OPTION:
+			return ("OPTION");
 		case PIPE:
 			return ("PIPE");
 		case OPERATOR:

@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/05 15:26:25 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/05 16:10:29 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 #include "lexer.h"
 #include "ft_stdio.h"
 
+static int is_sep(int c)
+{
+	return (ft_isspace(c) || c == SYM_PIPE || c == SYM_OPERATOR);
+}
+
 static int get_command(t_queue **head, const char *input, size_t index)
 {
     const size_t previous = index;
 
-    while (input[index] != '\0' && !ft_isspace(input[index]))
+    while (input[index] != '\0' && !is_sep(input[index]))
         index++;
     enqueue(head, (t_token){
         .type = COMMAND,
@@ -32,7 +37,7 @@ static int get_env_variable(t_queue **head, const char *input, size_t index)
 {
     const size_t previous = index;
     
-    while (input[index] != '\0' && !ft_isspace(input[index]))
+    while (input[index] != '\0' && !is_sep(input[index]))
         index++;
     enqueue(head, (t_token){
         .type = ENV_VARIABLE,
@@ -63,14 +68,14 @@ static int get_string(t_queue **head, const char *input, size_t index)
     return (index);
 }
 
-static int get_argument(t_queue **head, const char *input, size_t index)
+static int get_option(t_queue **head, const char *input, size_t index)
 {
     const size_t previous = index;
 
-    while (input[index] != '\0' && !ft_isspace(input[index]))
+    while (input[index] != '\0' && !is_sep(input[index]))
         index++;
     enqueue(head, (t_token){
-        .type = ARGUMENT,
+        .type = OPTION,
         .value = ft_strndup(&input[previous], index - previous),
         .index = previous
     });
@@ -117,7 +122,7 @@ static int get_fd(t_queue **head, const char *input, size_t index)
 {
 	const size_t previous = index;
 
-	while (!ft_isspace(input[index]) && input[index] != '\0')
+	while (!is_sep(input[index]) && input[index] != '\0')
 		index++;
 	enqueue(head, (t_token){
 		.type = FILE_DESCRIPTOR,
@@ -150,7 +155,7 @@ t_queue *lexer(const char *input)
 		}
 		else if (input[index] == '-' || (input[index] == '-' && input[index + 1] == '-'))
 		{
-			index = get_argument(&head, input, index);
+			index = get_option(&head, input, index);
 		}
 		else if (input[index] == SYM_PIPE)
 		{

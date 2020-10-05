@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/05 15:04:26 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/05 16:09:37 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct	s_interpret
 
 # define COMMAND 1
 # define STRING 2
-# define ARGUMENT 3
+# define OPTION 3
 # define PIPE 4
 # define OPERATOR 5
 # define ENV_VARIABLE 6
