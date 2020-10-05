@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/05 16:09:37 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/05 16:45:27 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ enum	e_states
 {
 	IN_STRING = 0x01,
 	IS_COMMAND = 0x01 << 1U,
-	IS_FD = 0X01 << 1U
+	IS_FD = 0X01 << 2U
 };
 
 # define SYM_QUOTE '"'
