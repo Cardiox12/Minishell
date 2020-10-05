@@ -1,0 +1,5 @@
+#priorites:
+0,5. redirections
+1.pipelines
+2. && et || 
+3.& et ;
