@@ -24,8 +24,8 @@ char	*get_type(int type)
 			return ("COMMAND");
 		case STRING:
 			return ("STRING");
-		case ARGUMENT:
-			return ("ARGUMENT");
+		case OPTION:
+			return ("OPTION");
 		case PIPE:
 			return ("PIPE");
 		case OPERATOR:
@@ -36,6 +36,10 @@ char	*get_type(int type)
 			return ("REDIRECTION");
 		case RAW_STRING:
 			return ("RAW_STRING");
+		case FILE_DESCRIPTOR:
+			return ("FILE DESCRIPTOR");
+		case ARGUMENT:
+			return ("ARGUMENT");
 		default:
 			return ("");
 	}
@@ -43,13 +47,13 @@ char	*get_type(int type)
 
 void	print_queue(t_queue *head)
 {
+	ft_printf("=============== TOKENS ===============\n");
 	while (head != NULL)
 	{
-		ft_printf("=============== TOKENS ===============\n");
-		ft_printf("Value : %s\n", head->token.value);
-		ft_printf("Type : %s\n", get_type(head->token.type));
+		ft_printf("(.type = %s, .value = %s, .index = %d)\n", get_type(head->token.type), head->token.value, head->token.index);
 		head = head->next;
 	}
+	ft_printf("=======================================\n");
 }
 
 int		main(void)

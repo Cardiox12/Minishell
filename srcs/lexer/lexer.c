@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/03 08:18:48 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/06 13:05:21 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,33 @@
 #include "lexer.h"
 #include "ft_stdio.h"
 
+static int is_sep(int c)
+{
+	return (ft_isspace(c) || c == SYM_PIPE || c == SYM_OPERATOR);
+}
+
 static int get_command(t_queue **head, const char *input, size_t index)
 {
     const size_t previous = index;
 
-    while (input[index] != '\0' && !ft_isspace(input[index]))
+    while (input[index] != '\0' && !is_sep(input[index]))
         index++;
     enqueue(head, (t_token){
         .type = COMMAND,
+        .value = ft_strndup(&input[previous], index - previous),
+        .index = previous
+    });
+    return (index);
+}
+
+static int get_env_variable(t_queue **head, const char *input, size_t index)
+{
+    const size_t previous = index;
+    
+    while (input[index] != '\0' && !is_sep(input[index]))
+        index++;
+    enqueue(head, (t_token){
+        .type = ENV_VARIABLE,
         .value = ft_strndup(&input[previous], index - previous),
         .index = previous
     });
@@ -39,24 +58,24 @@ static int get_string(t_queue **head, const char *input, size_t index)
     else
         type = STRING;
     ++index;
-    while (input[index] != '\0' && !ft_isspace(input[index]))
+    while (input[index] != '\0' && !ft_isquote(input[index]))
         index++;
     enqueue(head, (t_token){
         .type = type,
-        .value = ft_strndup(&input[previous], index - previous),
+        .value = ft_strndup(&input[previous], ++index - previous),
         .index = previous
     });
     return (index);
 }
 
-static int get_argument(t_queue **head, const char *input, size_t index)
+static int get_option(t_queue **head, const char *input, size_t index)
 {
     const size_t previous = index;
 
-    while (input[index] != '\0' && !ft_isspace(input[index]))
+    while (input[index] != '\0' && !is_sep(input[index]))
         index++;
     enqueue(head, (t_token){
-        .type = ARGUMENT,
+        .type = OPTION,
         .value = ft_strndup(&input[previous], index - previous),
         .index = previous
     });
@@ -83,45 +102,107 @@ static int get_operator(t_queue **head, size_t index)
     return (++index);
 }
 
+static int get_redirection(t_queue **head, const char *input, size_t index)
+{
+	const size_t previous = index;
+
+	if (input[index] == SYM_R_REDIR && input[index + 1] == SYM_R_REDIR)
+		index += 2;
+	else if (input[index] == SYM_R_REDIR || input[index] == SYM_L_REDIR)
+		index++;
+	enqueue(head, (t_token){
+		.type = REDIRECTION,
+		.value = ft_strndup(&input[previous], index - previous),
+		.index = index
+	});
+	return (index);
+}
+
+static int get_fd(t_queue **head, const char *input, size_t index)
+{
+	const size_t previous = index;
+
+	while (!is_sep(input[index]) && input[index] != '\0')
+		index++;
+	enqueue(head, (t_token){
+		.type = FILE_DESCRIPTOR,
+		.value = ft_strndup(&input[previous], index - previous),
+		.index = previous
+	});
+	return (index);
+}
+
+static int get_argument(t_queue **head, const char *input, size_t index)
+{
+    const size_t previous = index;
+
+    while (!is_sep(input[index]) && input[index] != '\0')
+        index++;
+    enqueue(head, (t_token){
+        .type = ARGUMENT,
+        .value = ft_strndup(&input[previous], index - previous),
+        .index = previous
+    });
+    return (index);
+}
+
 t_queue *lexer(const char *input)
 {
-    const size_t    length = ft_strlen(input);
-    t_queue         *head;
-    int             state;
-    size_t          index;
+	const size_t    length = ft_strlen(input);
+	t_queue         *head;
+	int             state;
+	size_t          index;
 
-    head = NULL;
-    index = 0;
-    state = IS_COMMAND;
-    while (index < length)
-    {
-        if (ft_isalpha(input[index]) && state & IS_COMMAND)
-        {
-            index = get_command(&head, input, index);
-            state ^= IS_COMMAND;
-        }
-        else if (input[index] == '"' || input[index] == '\'')
-        {
-            index = get_string(&head, input, index);
-        }
-        else if (input[index] == '-' || (input[index] == '-' && input[index + 1] == '-'))
+	head = NULL;
+	index = 0;
+	state = IS_COMMAND;
+	while (index < length)
+	{
+		if (!is_sep(input[index]) && ft_isprint(input[index]) && state & IS_COMMAND)
+		{
+			index = get_command(&head, input, index);
+			state ^= IS_COMMAND;
+		}
+		else if (input[index] == '"' || input[index] == '\'')
+		{
+			index = get_string(&head, input, index);
+		}
+		else if (input[index] == '-' || (input[index] == '-' && input[index + 1] == '-'))
+		{
+			index = get_option(&head, input, index);
+		}
+		else if (input[index] == SYM_PIPE)
+		{
+			index = get_pipe(&head, index);
+			state ^= IS_COMMAND;
+		}
+		else if (input[index] == SYM_OPERATOR)
+		{
+			index = get_operator(&head, index);
+			state ^= IS_COMMAND;
+		}
+		else if (input[index] == SYM_ENV_VAR)
+		{
+			index = get_env_variable(&head, input, index);
+		}
+		else if (input[index] == SYM_R_REDIR || input[index] == SYM_L_REDIR)
+		{
+			index = get_redirection(&head, input, index);
+			state |= IS_FD;
+		}
+        else if (ft_isalnum(input[index]))
         {
             index = get_argument(&head, input, index);
         }
-        else if (input[index] == SYM_PIPE)
-        {
-            index = get_pipe(&head, index);
-            state ^= IS_COMMAND;
-        }
-        else if (input[index] == SYM_OPERATOR)
-        {
-            index = get_operator(&head, index);
-            state ^= IS_COMMAND;
-        }
-        else
-        {
-            index++;
-        }
-    }
-    return (head);
+		else if (state & IS_FD && !ft_isspace(input[index]))
+		{
+			index = get_fd(&head, input, index);
+			state ^= IS_FD;
+		}
+		else
+		{
+			index++;
+		}
+	}
+	return (head);
 }
