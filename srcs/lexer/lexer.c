@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/06 12:30:40 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/06 13:05:21 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ t_queue *lexer(const char *input)
 	state = IS_COMMAND;
 	while (index < length)
 	{
-		if (!ft_isspace(input[index]) && ft_isprint(input[index]) && state & IS_COMMAND)
+		if (!is_sep(input[index]) && ft_isprint(input[index]) && state & IS_COMMAND)
 		{
 			index = get_command(&head, input, index);
 			state ^= IS_COMMAND;
