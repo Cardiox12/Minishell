@@ -32,28 +32,36 @@ int		eval(t_queue *queue)
 	{
 		if (queue->token.type == COMMAND)
 		{
+			/* get the necessary infos about the command */
 			if (!(command.args = ft_stabmaker(6)))
 				return (-1);
 			if (!(command.value = ft_strdup(queue->token.value)))
 				return (-1);
+
+			/* command name needs to be the first of the arg array */
 			if (!(add_to_dynamic_table(&(command.args), command.value)))
 				return(-1);
 			queue = queue->next;
+
+			/* while the tokens are arguments (options, strings, etc...),
+			add them to the dedicated array */
 			while (queue && is_arg(queue))
 			{
 				if (!(add_to_dynamic_table(&(command.args), queue->token.value)))
 					return(-1);
 				queue = queue->next;
 			}
-			if (ft_strncmp("ls", command.value, 2) == 0)
-				command.path = ft_strdup("/bin/ls");
-			if (ft_strncmp("wc", command.value, 2) == 0)
-				command.path = ft_strdup("usr/bin/wc");
-//			print_s_command(&command);	
+
+			/* get the binary's full path */
+			if (!(command.path = get_path(command.value)))
+				return (-1);
+
+			/* if it's a simple command, run it */
 			if (queue == NULL)
 				fork_and_exec(command.path, command.args, &command, g_env);
 			else
 			{
+				/* to do */
 				ft_printf("not a simple command\n");
 				return (0);
 			}

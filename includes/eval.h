@@ -5,7 +5,10 @@
 # include <stdlib.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
 # include <stdio.h>
+# include <string.h>
+# include <errno.h>
 # include "ft_strings.h"
 # include "ft_stdio.h"
 # include "lexer.h"
@@ -30,5 +33,11 @@ int							ft_tablen(char **tab);
 char						**ft_tab_copy(char ***dst, char **src);
 int							eval(t_queue *queue);
 void						print_s_command(t_command *command);
+char						*ft_strextract(char const *s, char c, unsigned int index);
+char						*get_path(char *value);
+char						**ft_split_tab(char const *s, char c);
+char						*ft_strnew(size_t size);
+void						ft_strdel(char **as);
+char						*ft_allocat(char **s1, const char *s2);
 
 #endif

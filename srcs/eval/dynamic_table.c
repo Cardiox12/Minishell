@@ -1,15 +1,6 @@
 #include "libft/ft_libft.h"
 #include "eval.h"
 
-static void	ft_strdel(char **as)
-{
-	if (as != NULL && *as != NULL)
-	{
-		free(*as);
-		*as = NULL;
-	}
-}
-
 static char	**ft_tab_copy_index(char ***dst, char **src, int index)
 {
 	int		i;

@@ -60,6 +60,7 @@ void	print_queue(t_queue *head)
 	ft_printf("=======================================\n");
 }
 
+/* ajout du tableau d'env dans le main */
 int		main(int ac, char **av, char *env[])
 {
 	// Here is the entrypoint
@@ -68,14 +69,17 @@ int		main(int ac, char **av, char *env[])
 	line = NULL;
 	(void)ac;
 	(void)av;
+
+	/*copie et allocation du tableau d'env dans une variable globale
+	pour pouvoir l'utiliser et le modifier par la suite */
 	if (!(ft_tab_copy(&g_env, env)))
 		return (-1);
-//	ft_printtab(g_env);
 	while (1)
 	{
 		line = reader();
 		t_queue *tokens = lexer(line);
 		print_queue(tokens);
+		ft_printf("\n\n==== minishell's output: ====\n\n");
 		eval(tokens);
 		if (line == NULL)
 			break;

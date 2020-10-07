@@ -16,5 +16,6 @@ char	**ft_tab_copy(char ***dst, char **src)
 			return (NULL);
 		i++;
 	}
+	(*dst)[i] = 0;
 	return (*dst);
 }
