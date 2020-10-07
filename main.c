@@ -64,8 +64,8 @@ int		main(void)
 	line = NULL;
 	while (1)
 	{
-		line = reader();
-		t_queue *tokens = lexer(line);
+		// line = reader();
+		t_queue *tokens = lexer("> file");
 		print_queue(tokens);
 		if (line == NULL)
 			break;
