@@ -26,8 +26,6 @@ int		eval(t_queue *queue)
 	t_command	command;
 
 
-//	if (!(command = (t_command)malloc(sizeof(t_command))))
-//		return (-1);
 	while (queue)
 	{
 		if (queue->token.type == COMMAND)
