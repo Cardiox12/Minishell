@@ -22,4 +22,6 @@
 #include "includes/ft_stdlib.h"
 #include "includes/ft_strings.h"
 
+void     ft_printtab(char **tab);
+
 #endif
