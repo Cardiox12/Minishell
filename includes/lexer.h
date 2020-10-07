@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/06 12:22:55 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/07 16:27:31 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,6 @@ typedef struct	s_queue
 	struct s_queue	*next;
 	t_token			token;
 }				t_queue;
-
-typedef struct	s_interpret
-{
-	char		*input;
-	t_queue		tokens;
-}				t_interpret;
 
 /*
 **
@@ -74,6 +68,7 @@ enum	e_states
 # define SYM_EQUAL '='
 
 t_queue	*queue_init(t_token token);
+t_queue *queue_copy(t_queue *origin);
 t_queue *enqueue(t_queue **head, t_token token);
 t_queue	*dequeue(t_queue **head);
 t_queue *lexer(const char *input);
