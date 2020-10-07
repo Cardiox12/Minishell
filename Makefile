@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra -g
+CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address
 
 EXT_DIR		= externals
 INC_DIR		= includes
@@ -29,7 +29,7 @@ OUTPUT_DIR	= $(SRC_DIR)/output
 LIBFT_NAME	= libft.a
 NAME		= minishell
 
-include $(READ_DIR)/module.mk $(LEXER_DIR)/module.mk
+include $(READ_DIR)/module.mk $(LEXER_DIR)/module.mk $(EVAL_DIR)/module.mk
 
 .PHONY: all clean fclean
 

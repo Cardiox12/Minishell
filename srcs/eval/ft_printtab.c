@@ -4,6 +4,7 @@ void     ft_printtab(char **tab)
 {
         int i;
 
+		ft_printf("\n           -- tab: --        \n");
         i = 0;
         if (tab != NULL)
         {
@@ -13,4 +14,5 @@ void     ft_printtab(char **tab)
                         i++;
                 }
         }
+		ft_printf("\n              ----           \n");
 }

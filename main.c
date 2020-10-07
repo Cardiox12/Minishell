@@ -15,6 +15,10 @@
 #include "reader.h"
 #include "ft_stdlib.h"
 #include "ft_stdio.h"
+#include "eval.h"
+
+char		**g_env;
+
 
 char	*get_type(int type)
 {
@@ -56,17 +60,23 @@ void	print_queue(t_queue *head)
 	ft_printf("=======================================\n");
 }
 
-int		main(void)
+int		main(int ac, char **av, char *env[])
 {
 	// Here is the entrypoint
 	char *line;
 
 	line = NULL;
+	(void)ac;
+	(void)av;
+	if (!(ft_tab_copy(&g_env, env)))
+		return (-1);
+//	ft_printtab(g_env);
 	while (1)
 	{
 		line = reader();
 		t_queue *tokens = lexer(line);
 		print_queue(tokens);
+		eval(tokens);
 		if (line == NULL)
 			break;
 	}

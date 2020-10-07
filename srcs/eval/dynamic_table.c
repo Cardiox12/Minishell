@@ -1,4 +1,5 @@
 #include "libft/ft_libft.h"
+#include "eval.h"
 
 static void	ft_strdel(char **as)
 {
@@ -9,39 +10,7 @@ static void	ft_strdel(char **as)
 	}
 }
 
-static void	ft_printtab(char **tab)
-{
-	int i;
-
-	i = 0;
-	if (tab != NULL)
-	{
-		while (tab[i])
-		{
-			ft_printf("tab[%d] : %s\n", i, tab[i]);
-			i++;
-		}
-	}
-}
-
-static char			**ft_stabmaker(size_t len)
-{
-	char			**stab;
-	unsigned int	i;
-
-	i = 0;
-	if (!(stab = (char**)malloc(sizeof(char*) * (len + 1))))
-		return (NULL);
-	while (i < len)
-	{
-		stab[i] = 0;
-		i++;
-	}
-	stab[i] = 0;
-	return (stab);
-}
-
-static char	**ft_tab_copy(char ***dst, char **src, int index)
+static char	**ft_tab_copy_index(char ***dst, char **src, int index)
 {
 	int		i;
 
@@ -88,29 +57,12 @@ char    **add_to_dynamic_table(char ***table, char *str)
 		limit = limit * 2;
 		if (!(temp_table = ft_stabmaker(limit + 1)))
 			return (NULL);
-		ft_tab_copy(&temp_table, *table, i);
+		ft_tab_copy_index(&temp_table, *table, i);
 		ft_freetab_index(table, i);
 		*table = temp_table;
     }
 	/* ajout de la string supplémentaire */
 	if (!((*table)[i] = ft_strdup(str)))
 		return (NULL);
-}
-
-int		main(int ac, char **av)
-{
-	int		i;
-	char	**table;
-
-	i = 1;
-	if (!(table = ft_stabmaker(5 + 1)))
-		return (-1);
-	while (i < ac)
-	{
-		add_to_dynamic_table(&table, av[i]);
-		i++;
-	}
-	ft_printtab(table);
-	ft_freetab_index(&table, i);
-	return (0);
+	return (*table);
 }
