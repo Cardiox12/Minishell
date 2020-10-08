@@ -6,13 +6,18 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/08 15:23:05 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/08 15:46:58 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ctypes.h"
 #include "lexer.h"
 #include "ft_stdio.h"
+
+static int is_redirect(int c)
+{
+	return (c == SYM_L_REDIR || c == SYM_R_REDIR);
+}
 
 static int is_sep(int c)
 {
@@ -158,7 +163,7 @@ t_queue *lexer(const char *input)
 	state = IS_COMMAND;
 	while (index < length)
 	{
-		if (!is_sep(input[index]) && ft_isprint(input[index]) && state & IS_COMMAND)
+		if (!is_sep(input[index]) && ft_isprint(input[index]) && state & IS_COMMAND && !is_redirect(input[index]))
 		{
 			index = get_command(&head, input, index);
 			state ^= IS_COMMAND;
@@ -186,7 +191,7 @@ t_queue *lexer(const char *input)
 		{
 			index = get_env_variable(&head, input, index);
 		}
-		else if (input[index] == SYM_R_REDIR || input[index] == SYM_L_REDIR)
+		else if (is_redirect(input[index]))
 		{
 			index = get_redirection(&head, input, index);
 			state ^= IS_ARGUMENT;
