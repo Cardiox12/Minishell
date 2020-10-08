@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   queue_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/06 13:11:14 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/08 16:08:42 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/10/08 15:56:12 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/10/08 15:57:42 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PARSER_H
-# define FT_PARSER_H
+#include "lexer.h"
 
-# include "lexer.h"
-# include "error.h"
-
-typedef struct	s_interpret
+void    queue_free(t_queue *node)
 {
-	char		*input;
-	t_queue		*tokens;
-}				t_interpret;
-
-enum	e_parse_errors
-{
-	ERR_PARSE = 1
-};
-
-int parser(t_queue *head);
-
-#endif
+    free(node->token.value);
+    free(node);
+}

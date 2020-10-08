@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 13:16:15 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/07 19:26:15 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/08 16:11:02 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,22 @@
 
 int g_parse_err = 0;
 
-t_interpret *parser(t_queue *head)
+static int check_begin(t_queue *origin)
 {
-    return (NULL);
+    t_queue *copy;
+    t_queue *curr;
+
+    copy = queue_copy(origin);
+    curr = dequeue(&copy);
+    if (curr->token.type == PIPE && curr->token.index == 0)
+        return (g_parse_err = ERR_PARSE);
+    return (0);
+}
+
+int parser(t_queue *head)
+{
+    check_begin(head);
+    if (g_parse_err != 0)
+        return (g_parse_err);    
+    return (0);
 }

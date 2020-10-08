@@ -13,6 +13,7 @@
 
 #include "lexer.h"
 #include "reader.h"
+#include "parser.h"
 #include "ft_stdlib.h"
 #include "ft_stdio.h"
 
@@ -66,7 +67,8 @@ int		main(void)
 	{
 		line = reader();
 		t_queue *tokens = lexer(line);
-		print_queue(tokens);
+		if (parser(tokens) != 0)
+			ft_printf("minishell: parse error\n");
 		if (line == NULL)
 			break;
 	}
