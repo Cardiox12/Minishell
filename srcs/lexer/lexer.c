@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/06 13:05:21 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/08 15:23:05 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ t_queue *lexer(const char *input)
 		{
 			index = get_command(&head, input, index);
 			state ^= IS_COMMAND;
+			state |= IS_ARGUMENT;
 		}
 		else if (input[index] == '"' || input[index] == '\'')
 		{
@@ -188,11 +189,13 @@ t_queue *lexer(const char *input)
 		else if (input[index] == SYM_R_REDIR || input[index] == SYM_L_REDIR)
 		{
 			index = get_redirection(&head, input, index);
+			state ^= IS_ARGUMENT;
 			state |= IS_FD;
 		}
-        else if (ft_isalnum(input[index]))
+        else if (ft_isalnum(input[index]) && state & IS_ARGUMENT)
         {
             index = get_argument(&head, input, index);
+			state ^= IS_ARGUMENT;
         }
 		else if (state & IS_FD && !ft_isspace(input[index]))
 		{

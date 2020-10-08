@@ -6,7 +6,11 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/10/07 16:27:31 by bbellavi         ###   ########.fr       */
+=======
+/*   Updated: 2020/10/08 15:08:19 by bbellavi         ###   ########.fr       */
+>>>>>>> lexer
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +59,8 @@ enum	e_states
 {
 	IN_STRING = 0x01,
 	IS_COMMAND = 0x01 << 1U,
-	IS_FD = 0X01 << 2U
+	IS_FD = 0x01 << 2U,
+	IS_ARGUMENT = 0x01 << 3U
 };
 
 # define SYM_QUOTE '"'
