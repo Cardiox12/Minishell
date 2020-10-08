@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/08 15:58:09 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/09 01:04:35 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,19 @@ typedef struct	s_queue
 # define RAW_STRING 8
 # define FILE_DESCRIPTOR 9
 # define ARGUMENT 10
+
+static int g_all_tokens[9] = {
+	COMMAND,
+	STRING,
+	OPTION,
+	PIPE,
+	OPERATOR,
+	ENV_VARIABLE,
+	REDIRECTION,
+	RAW_STRING,
+	FILE_DESCRIPTOR,
+	ARGUMENT	
+};
 
 /*
 **
