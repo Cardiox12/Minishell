@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 13:11:14 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/08 17:03:57 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/09 01:21:28 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ enum	e_parse_errors
 	ERR_PARSE = 1
 };
 
-int parser(t_queue *head);
+int parser(const char *input, t_queue *head);
 
 #endif

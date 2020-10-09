@@ -6,15 +6,25 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 13:16:15 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/09 01:04:37 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/09 01:22:03 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "lexer.h"
+#include "includes/parser.h"
 
-int eat(t_interpret *inter, int *expect, int size)
+int eat(t_interpret *inter, int *types, int size)
 {
-    
+    size_t index;
+
+    index = 0;
+    while (index < size)
+    {
+        if (inter->current.type == types[index])
+        {
+            inter->current = dequeue(&inter->tokens);
+        }
+    }
     return (0);
 }
 
