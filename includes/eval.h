@@ -19,12 +19,17 @@ typedef struct	s_command
 	char	**args;
 	char	*path;
 	int		type_output;
-	int		output;
+	int		output_type;
 	int		input;
 	int		fd_in;
 	int		fd_out;
+	int		pipefd[2];
+	char	output_char;
 }				t_command;
 
+t_queue						*recursive_piper(t_queue *queue, int oldpipe[2]);
+t_queue						*init_piper(t_queue *queue, t_command *command);
+t_queue						*craft_command(t_command *command, t_queue *queue);
 int							fork_and_exec(char *exec_path, char **exec_args, t_command *command, char *env[]);
 char						**ft_stabmaker(size_t len);
 void     					ft_printtab(char **tab);
