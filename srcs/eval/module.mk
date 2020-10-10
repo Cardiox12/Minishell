@@ -12,3 +12,4 @@ SRCS += $(EVAL_DIR)/ft_strnew.c
 SRCS += $(EVAL_DIR)/ft_split_tab.c
 SRCS += $(EVAL_DIR)/ft_strdel.c
 SRCS += $(EVAL_DIR)/ft_allocat.c
+SRCS += $(EVAL_DIR)/recursive_piper.c

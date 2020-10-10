@@ -14,5 +14,5 @@ void     ft_printtab(char **tab)
                         i++;
                 }
         }
-		ft_printf("\n              ----           \n");
+		ft_printf("              ----           \n");
 }
