@@ -68,7 +68,7 @@ int		main(void)
 		line = reader();
 		t_queue *tokens = lexer(line);
 		print_queue(tokens);
-		if (parser(tokens) != 0)
+		if (parser(line, tokens) != 0)
 			ft_printf("minishell: parse error\n");
 		if (line == NULL)
 			break;

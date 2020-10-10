@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 09:46:42 by tony              #+#    #+#             */
-/*   Updated: 2020/10/06 01:33:39 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/10 20:36:01 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # define TRUE 1
 # define FALSE 0
+# define SUCCESS 1
+# define FAILURE 0
+# define NO_ERROR 0
 
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
