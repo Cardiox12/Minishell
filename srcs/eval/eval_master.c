@@ -104,7 +104,9 @@ int		eval(t_queue *queue)
 /*			if (!(command.path = get_path(command.value)))
 				return (-1);
 */
-			/* if it's a simple command, run it */ 
+			/* if it's a simple command, run it */
+			else  
+				fork_and_exec(command.path, command.args, &command, g_env);
 			if (queue == NULL)
 			{
 //				fork_and_exec(command.path, command.args, &command, g_env);

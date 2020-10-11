@@ -1,0 +1,1 @@
+make queue a global and make other functions return ints to differenciate exits caused to end of command from those related to error
