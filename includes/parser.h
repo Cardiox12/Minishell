@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 13:11:14 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/10 20:38:46 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/12 12:58:58 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct	s_interpret
 {
 	char		*input;
 	t_queue		*tokens;
-	t_token		current;
+	t_queue		*current;
 }				t_interpret;
 
 enum	e_parse_errors

@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/10 03:26:15 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/12 14:13:34 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,11 @@ typedef struct	s_queue
 # define FILE_DESCRIPTOR 9
 # define ARGUMENT 10
 
-static const int g_all_tokens[10] = {
+# define ARR_ALL_TOK_SIZE 10
+# define ARR_NON_TERM_SIZE 8
+# define ARR_TERM_SIZE 2
+
+static const int g_all_tokens[ARR_ALL_TOK_SIZE] = {
 	COMMAND,
 	STRING,
 	OPTION,
@@ -57,6 +61,19 @@ static const int g_all_tokens[10] = {
 	FILE_DESCRIPTOR,
 	ARGUMENT	
 };
+
+static const int g_non_terminal_tokens[ARR_NON_TERM_SIZE] = {
+	COMMAND,
+	STRING,
+	RAW_STRING,
+	OPTION,
+	ARGUMENT,
+	ENV_VARIABLE,
+	REDIRECTION,
+	FILE_DESCRIPTOR
+};
+
+static const int g_terminal_tokens[ARR_TERM_SIZE] = {OPERATOR, PIPE};
 
 /*
 **

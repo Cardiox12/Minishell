@@ -6,54 +6,109 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 13:16:15 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/10 20:41:59 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/12 14:41:38 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_ctypes.h"
 #include "lexer.h"
 #include "parser.h"
 
-int eat(t_interpret *inter, int *types, size_t size)
+int is_type(int cur_type, const int *types, size_t size)
 {
-    size_t  index;
-    t_queue *current;
+    size_t index;
 
     index = 0;
     while (index < size)
     {
-        if (inter->current.type == types[index])
+        if (cur_type == types[index])
+            return (TRUE);
+        index++;
+    }
+    return (FALSE);
+}
+
+int eat(t_interpret *inter, const int *types, size_t size)
+{
+    size_t  index;
+
+    index = 0;
+    while (index < size)
+    {
+        if (inter->current == NULL)
+            return (_EOF_);
+        if (inter->current->token.type == types[index])
         {
-            current = dequeue(&inter->tokens);
-            if (current == NULL)
+            inter->current = dequeue(&inter->tokens);
+            if (inter->current == NULL)
                 return (_EOF_);
-            inter->current = current->token;
-            return (NO_ERROR);
+            return (SUCCESS);
         }
         index++;
     }
     return (ERR_PARSE);
 }
 
+int commands(t_interpret *inter)
+{
+    int out;
+
+    // We should verify that the bash grammar is composed of
+    // the following grammar :
+    // pipeline: command (STRING|ARG|OPT|)
+
+    // Check if it begin by any token
+    out = eat(inter, g_non_terminal_tokens, ARR_NON_TERM_SIZE);
+    if (out != 0)
+        return (out);
+    
+    // Check if there are 
+    while (is_type(inter->current->token.type, g_non_terminal_tokens, ARR_NON_TERM_SIZE))
+    {
+        out = eat(inter, g_non_terminal_tokens, ARR_NON_TERM_SIZE);
+        if (out != 0)
+            return (out);
+    }
+    return (0);
+}
+
+int terminals(t_interpret *inter)
+{
+    int out;
+    
+    if (is_type(inter->current->token.type, g_terminal_tokens, ARR_TERM_SIZE))
+    {
+        out = eat(inter, g_terminal_tokens, ARR_TERM_SIZE);
+        if (out != 0)
+            return ((out < 0) ? SUCCESS : out);
+    }
+    return (SUCCESS);
+}
+
 int parser(const char *input, t_queue *head)
 {
     t_interpret inter;
-    t_queue     *current;
+    int         out;
 
     // Initialization of interpreter
     inter = (t_interpret){.input = (char*)input, .tokens = queue_copy(head)};
 
     // Dequeue tokens queue to compare to the first item
-    current = dequeue(&inter.tokens);
+    inter.current = dequeue(&inter.tokens);
 
-    // Affecting the token to the current token to compare
-    inter.current = current->token;
+    out = commands(&inter);
+    if (out != 0)
+        return ((out < 0) ? SUCCESS : out);
 
-    // Freeing the current queue item
-    free(current);
+    while (1)
+    {
+        out = terminals(&inter);
+        if (out != 0)
+            return ((out < 0) ? SUCCESS : out);
 
-    if (eat(&inter, (int*)g_all_tokens, 10) > 0)
-        return (ERR_PARSE);
-    if (eat(&inter, (int[3]){STRING, RAW_STRING, ARGUMENT}, 3) > 0)
-        return (ERR_PARSE);
-    return (0);
+        out = commands(&inter);
+        if (out != 0)
+            return ((out < 0) ? SUCCESS : out);
+    }
+    return (SUCCESS);
 }
