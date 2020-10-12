@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/07 16:27:31 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/12 14:13:34 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,36 @@ typedef struct	s_queue
 # define FILE_DESCRIPTOR 9
 # define ARGUMENT 10
 
+# define ARR_ALL_TOK_SIZE 10
+# define ARR_NON_TERM_SIZE 8
+# define ARR_TERM_SIZE 2
+
+static const int g_all_tokens[ARR_ALL_TOK_SIZE] = {
+	COMMAND,
+	STRING,
+	OPTION,
+	PIPE,
+	OPERATOR,
+	ENV_VARIABLE,
+	REDIRECTION,
+	RAW_STRING,
+	FILE_DESCRIPTOR,
+	ARGUMENT	
+};
+
+static const int g_non_terminal_tokens[ARR_NON_TERM_SIZE] = {
+	COMMAND,
+	STRING,
+	RAW_STRING,
+	OPTION,
+	ARGUMENT,
+	ENV_VARIABLE,
+	REDIRECTION,
+	FILE_DESCRIPTOR
+};
+
+static const int g_terminal_tokens[ARR_TERM_SIZE] = {OPERATOR, PIPE};
+
 /*
 **
 ** The following macros define lexer states
@@ -55,7 +85,8 @@ enum	e_states
 {
 	IN_STRING = 0x01,
 	IS_COMMAND = 0x01 << 1U,
-	IS_FD = 0X01 << 2U
+	IS_FD = 0x01 << 2U,
+	IS_ARGUMENT = 0x01 << 3U
 };
 
 # define SYM_QUOTE '"'
@@ -71,6 +102,7 @@ t_queue	*queue_init(t_token token);
 t_queue *queue_copy(t_queue *origin);
 t_queue *enqueue(t_queue **head, t_token token);
 t_queue	*dequeue(t_queue **head);
+void    queue_free(t_queue *node);
 t_queue *lexer(const char *input);
 
 #endif

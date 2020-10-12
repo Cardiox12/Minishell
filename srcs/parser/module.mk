@@ -1,0 +1,1 @@
+SRCS += $(PARSE_DIR)/parser.c

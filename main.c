@@ -11,8 +11,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_ctypes.h"
 #include "lexer.h"
 #include "reader.h"
+#include "parser.h"
 #include "ft_stdlib.h"
 #include "ft_stdio.h"
 #include "eval.h"
@@ -74,12 +76,15 @@ int		main(int ac, char **av, char *env[])
 	pour pouvoir l'utiliser et le modifier par la suite */
 	if (!(ft_tab_copy(&g_env, env)))
 		return (-1);
-	while (1)
+	while (TRUE)
 	{
 		line = reader();
 		t_queue *tokens = lexer(line);
-		print_queue(tokens);
-		ft_printf("\n\n==== minishell's output: ====\n\n");
+		if (parser(line, tokens) != 0)
+		{
+			ft_printf("minishell: parse error\n");
+			return (EXIT_FAILURE);
+		}
 		eval(tokens);
 		if (line == NULL)
 			break;

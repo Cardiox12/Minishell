@@ -6,13 +6,18 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/06 13:05:21 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/12 14:06:18 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ctypes.h"
 #include "lexer.h"
 #include "ft_stdio.h"
+
+static int is_redirect(int c)
+{
+	return (c == SYM_L_REDIR || c == SYM_R_REDIR);
+}
 
 static int is_sep(int c)
 {
@@ -158,10 +163,11 @@ t_queue *lexer(const char *input)
 	state = IS_COMMAND;
 	while (index < length)
 	{
-		if (!is_sep(input[index]) && ft_isprint(input[index]) && state & IS_COMMAND)
+		if (!is_sep(input[index]) && ft_isprint(input[index]) && state & IS_COMMAND && !is_redirect(input[index]))
 		{
 			index = get_command(&head, input, index);
 			state ^= IS_COMMAND;
+			state |= IS_ARGUMENT;
 		}
 		else if (input[index] == '"' || input[index] == '\'')
 		{
@@ -185,14 +191,16 @@ t_queue *lexer(const char *input)
 		{
 			index = get_env_variable(&head, input, index);
 		}
-		else if (input[index] == SYM_R_REDIR || input[index] == SYM_L_REDIR)
+		else if (is_redirect(input[index]))
 		{
 			index = get_redirection(&head, input, index);
+			state ^= IS_ARGUMENT;
 			state |= IS_FD;
 		}
-        else if (ft_isalnum(input[index]))
+        else if (ft_isalnum(input[index]) && state & IS_ARGUMENT)
         {
             index = get_argument(&head, input, index);
+			state ^= IS_ARGUMENT;
         }
 		else if (state & IS_FD && !ft_isspace(input[index]))
 		{
