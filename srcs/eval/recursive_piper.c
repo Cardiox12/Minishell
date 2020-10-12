@@ -1,11 +1,13 @@
 #include "../../includes/eval.h"
 
 extern char		**g_env;
+extern t_queue	*g_queue;
 
-t_queue		*init_piper(t_queue *queue, t_command *command)
+int		init_piper(t_command *command)
 {
 	int				newpipe[2];
 	int				status;
+	int				piper_return;
 	pid_t			pid;
 
 //	print_s_command(command);
@@ -14,36 +16,40 @@ t_queue		*init_piper(t_queue *queue, t_command *command)
 	if ((pid = fork()) == -1)
 	{
 		perror("fork");
-		return (NULL);
+		return (-1);
 	}
 	if (pid == 0)
 	{
 		close(newpipe[0]);
 		dup2(newpipe[1], 1);
 		execve(command->path, command->args, g_env);
-		return (NULL);
+		return (0);
 	}
 	else
 	{	
-		if (!(recursive_piper(queue, newpipe)))
-			return (NULL);
 		wait(&status);
-		ft_printf("pid: %d\n", pid);
+		if ((piper_return = recursive_piper(newpipe)) == -1)
+			return (-1);
+//		else
+//			return (0);
+//		wait(&status);
+//		ft_printf("pid: %d\n", pid);
 		// free_stuff
 	}
-	return (NULL);
+	return (0);
 }
 
-t_queue		*recursive_piper(t_queue *queue, int oldpipe[2])
+int		recursive_piper(int oldpipe[2])
 {
 	int				newpipe[2];
 	int				status;
 	t_command		new_command;
 	pid_t			pid;
+	int				piper_return;
 
-	if (queue == NULL)
-		return (NULL);
-	queue = craft_command(&new_command, queue);
+	if (g_queue == NULL)
+		return (0);
+	g_queue = craft_command(&new_command, g_queue);
 //	print_s_command(&new_command);
 	if (new_command.output_type == PIPE)
 	{
@@ -53,7 +59,7 @@ t_queue		*recursive_piper(t_queue *queue, int oldpipe[2])
 	if ((pid = fork()) == -1)
 	{
 		perror("fork");
-		return (NULL);
+		return (-1);
 	}
 	if (pid == 0)
 	{
@@ -66,26 +72,34 @@ t_queue		*recursive_piper(t_queue *queue, int oldpipe[2])
 			dup2(newpipe[1], 1);
 		}
 		execve(new_command.path, new_command.args, g_env);
-		return (NULL);
+		return (0);
 	}
 	else
 	{
 		close(oldpipe[0]);
 		close(oldpipe[1]);
 		if (wait(&status) == -1)
+		{
+			ft_printf("first wait is useless\n");
 			perror("wait");
+		}
 //		ft_printf("status pre recursion %d\n", status);
 		if (new_command.output_type == PIPE)
 		{
 			// free_stuff
-			if (!(recursive_piper(queue, newpipe)))
-				return (NULL);
+			if ((piper_return = recursive_piper(newpipe)) == -1)
+				return (-1);
+//			else
+//				return (0);
 		}
-		if (wait(&status) == -1)
-			perror("wait");
+//		if (wait(&status) == -1)
+//		{
+//			ft_printf("second wait is useless\n");
+//			perror("wait");
+//		}
 //		ft_printf("status post recursion %d\n", status);
 //		ft_printf("pid: %d\n", pid);
 		// free_stuff
 	}
-	return (NULL);
+	return (0);
 }
