@@ -45,6 +45,8 @@ t_queue		*craft_command(t_command *command, t_queue *queue)
 		return (NULL);
 	if (!(add_to_dynamic_table(&(command->args), command->value)))
 		return(NULL);
+	if (!(command->path = get_path(command->value)))
+		return (NULL);
 	queue = queue->next;
 	while (queue && is_arg(queue))
 	{
@@ -52,8 +54,6 @@ t_queue		*craft_command(t_command *command, t_queue *queue)
 			return(NULL);
 		queue = queue->next;
 	}
-	if (!(command->path = get_path(command->value)))
-		return (NULL);
 	if (is_output(queue))
 	{
 		command->output_type = queue->token.type;

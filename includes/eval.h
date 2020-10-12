@@ -17,6 +17,7 @@ typedef struct	s_command
 {
 	char	*value;
 	char	**args;
+	int		**redirect_files;
 	char	*path;
 	int		type_output;
 	int		output_type;
@@ -27,6 +28,7 @@ typedef struct	s_command
 	char	output_char;
 }				t_command;
 
+char						*read_until_eof(int fd);
 int							recursive_piper(int oldpipe[2]);
 int							init_piper(t_command *command);
 t_queue						*craft_command(t_command *command, t_queue *queue);

@@ -1,1 +1,5 @@
-make queue a global and make other functions return ints to differenciate exits caused to end of command from those related to error
+ajouter un parametres "char **output_redirections" a t_command qui contiendrait fichiers dans lesquels output doit etre redirigée
+
+en fait direct tableau de int ouvert selon le type de redirect
+
+
