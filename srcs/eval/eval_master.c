@@ -39,6 +39,9 @@ int		is_output(t_queue *queue)
 
 t_queue		*craft_command(t_command *command, t_queue *queue)
 {
+	int	count; // those ints are used to see if some symbols are incorrectly assmilated
+	int	diff;
+
 	command->has_output_redirect = 0; // a intégrer dans une future fonction d'initialisation
 	if (!(command->args = ft_stabmaker(6)))
 		return (NULL);
@@ -49,28 +52,42 @@ t_queue		*craft_command(t_command *command, t_queue *queue)
 	if (!(command->path = get_path(command->value)))
 		return (NULL);
 	queue = queue->next;
+	count = 0;
 	while (queue != NULL && queue->token.type != PIPE)
 	{
+		diff = count;
 		while (queue && is_arg(queue))
 		{
 			if (!(add_to_dynamic_table(&(command->args), queue->token.value)))
 				return(NULL);
 			queue = queue->next;
+			count++;
 		}
-		if (queue->token.type == REDIRECTION && (queue->token.value)[0] == '>')
+		while (queue && queue->token.type == REDIRECTION && (queue->token.value)[0] == '>')
 		{
 			if (get_redirections(command, queue) == -1)
 				return (NULL);
+			queue = queue->next->next;
+			count++;
 		}
-		if (queue->token.type == PIPE)
+		if (queue && queue->token.type == PIPE)
 		{
 			command->output_type = queue->token.type;
 			queue = queue->next;
+			break;
+//			count++;
 		}
 		else
 			command->output_type = -1;
-		queue = queue->next;
+		if (queue && (diff == count))
+		{
+			ft_printf("untracked value: %s\n", queue->token.value);
+			ft_printf("symbols not tracked in craft_command\n");
+			queue = queue->next;
+		}
 	}
+//	if (command->output_type != PIPE)
+//		command->output_type = -1;
 	return (queue);
 }
 
@@ -93,7 +110,7 @@ int		eval(t_queue *queue)
 					return (-1);
 			}
 			else  
-				fork_and_exec(command.path, command.args, &command, g_env);
+				fork_and_exec(&command);
 			if (g_queue == NULL)
 				return (0);
 		}

@@ -30,6 +30,7 @@ typedef struct	s_command
 	char	output_char;
 }				t_command;
 
+void						write_redirections(t_command *command, char *buffer);
 int     					get_redirections(t_command *command, t_queue *queue);
 void     					ft_print_int_tab(int *tab);
 int    						*add_to_dynamic_int_array(int **table, int nbr);
@@ -38,7 +39,7 @@ char						*read_until_eof(int fd);
 int							recursive_piper(int oldpipe[2]);
 int							init_piper(t_command *command);
 t_queue						*craft_command(t_command *command, t_queue *queue);
-int							fork_and_exec(char *exec_path, char **exec_args, t_command *command, char *env[]);
+int							fork_and_exec(t_command *command);
 char						**ft_stabmaker(size_t len);
 void     					ft_printtab(char **tab);
 char						**add_to_dynamic_table(char ***table, char *str);

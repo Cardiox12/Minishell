@@ -27,9 +27,9 @@ int     get_redirections(t_command *command, t_queue *queue)
 				return (-1);
 		}
         if (is_simple_redirect(queue))
-			fd = open(queue->next->token.value, O_WRONLY | O_CREAT | O_TRUNC);
+			fd = open(queue->next->token.value, O_RDWR | O_CREAT | O_TRUNC, 0666);
 		else	
-			fd = open(queue->next->token.value, O_WRONLY | O_CREAT | O_APPEND);
+			fd = open(queue->next->token.value, O_RDWR | O_CREAT | O_APPEND, 0666);
 		if (fd == -1)
 		{
 			perror("open");

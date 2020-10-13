@@ -9,6 +9,7 @@ int		init_piper(t_command *command)
 	int				status;
 	int				piper_return;
 	pid_t			pid;
+	char			*output_buffer;
 
 	print_s_command(command);
 	if (pipe(newpipe) == -1)
@@ -28,13 +29,23 @@ int		init_piper(t_command *command)
 	else
 	{	
 		wait(&status);
+	
+		if (command->has_output_redirect == 1)
+		{
+			close(newpipe[1]);
+			if (!(output_buffer = read_until_eof(newpipe[0])))
+				return (-1);
+			close(newpipe[0]);
+			ft_printf("\n\noutput_buffer: %s\n\n\n", output_buffer);
+		//write to redirection files
+			write_redirections(command, output_buffer);
+			if (pipe(newpipe) == -1)
+				perror("pipe");
+			if (write(newpipe[1], output_buffer, ft_strlen(output_buffer)) == -1)
+				perror("write");
+		}
 		if ((piper_return = recursive_piper(newpipe)) == -1)
 			return (-1);
-//		else
-//			return (0);
-//		wait(&status);
-//		ft_printf("pid: %d\n", pid);
-		// free_stuff
 	}
 	return (0);
 }
@@ -67,7 +78,7 @@ int		recursive_piper(int oldpipe[2])
 		close(oldpipe[1]);
 		dup2(oldpipe[0], 0);
 
-		if (new_command.output_type == PIPE) // or redirect
+		if (new_command.output_type == PIPE || new_command.has_output_redirect == 1) // or redirect
 		{
 			close(newpipe[0]);
 			dup2(newpipe[1], 1);
@@ -85,46 +96,28 @@ int		recursive_piper(int oldpipe[2])
 			perror("wait");
 		}
 		// IF REDIRECTIONS: JE RECUPERE OUTPUT ET JE LE REPIPE
-		if (new_command.output_type == PIPE)
+		if (new_command.has_output_redirect == 1)
 		{
-		close(newpipe[1]);
-		if (!(output_buffer = read_until_eof(newpipe[0])))
-		{
-//			ft_printf("cant read\n");
-			return (-1);
-		}
+			close(newpipe[1]);
+			if (!(output_buffer = read_until_eof(newpipe[0])))
+				return (-1);
 		//write to redirection files
-		ft_printf("output_buffer: %s\n", output_buffer);
-		close(newpipe[0]);
-		// IF REDIRECTIONS + PIPE
-		if (pipe(newpipe) == -1)
-			perror("pipe");
-//		ft_printf("post_pipe\n");
-//		close(newpipe[0]);
-		if (write(newpipe[1], output_buffer, ft_strlen(output_buffer)) == -1)
-			perror("write");
-//		ft_printf("post_write\n");
-//		dup2(newpipe[1], 1);
-//		write()
-//		ft_printf("status pre recursion %d\n", status);
+			write_redirections(&new_command, output_buffer);
+//			ft_printf("\n\noutput_buffer: %s\n", output_buffer);
+			close(newpipe[0]);
+			if (new_command.output_type == PIPE)
+			{
+				if (pipe(newpipe) == -1)
+					perror("pipe");
+				if (write(newpipe[1], output_buffer, ft_strlen(output_buffer)) == -1)
+					perror("write");
+			}
 		}
 		if (new_command.output_type == PIPE)
 		{
-//			ft_printf("pre_launch\n");
-			// free_stuff
 			if ((piper_return = recursive_piper(newpipe)) == -1)
 				return (-1);
-//			else
-//				return (0);
 		}
-//		if (wait(&status) == -1)
-//		{
-//			ft_printf("second wait is useless\n");
-//			perror("wait");
-//		}
-//		ft_printf("status post recursion %d\n", status);
-//		ft_printf("pid: %d\n", pid);
-		// free_stuff
 	}
 	return (0);
 }
