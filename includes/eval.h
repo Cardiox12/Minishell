@@ -7,6 +7,7 @@
 # include <sys/wait.h>
 # include <sys/stat.h>
 # include <stdio.h>
+# include <fcntl.h>
 # include <string.h>
 # include <errno.h>
 # include "ft_strings.h"
@@ -17,8 +18,9 @@ typedef struct	s_command
 {
 	char	*value;
 	char	**args;
-	int		**redirect_files;
+	int		*output_redirection_files;
 	char	*path;
+	int		has_output_redirect;
 	int		type_output;
 	int		output_type;
 	int		input;
@@ -28,6 +30,10 @@ typedef struct	s_command
 	char	output_char;
 }				t_command;
 
+int     					get_redirections(t_command *command, t_queue *queue);
+void     					ft_print_int_tab(int *tab);
+int    						*add_to_dynamic_int_array(int **table, int nbr);
+int                     	*ft_int_tab_maker(size_t len);
 char						*read_until_eof(int fd);
 int							recursive_piper(int oldpipe[2]);
 int							init_piper(t_command *command);

@@ -1,0 +1,7 @@
+total 0
+drwxr-xr-x   5 macbook  staff   160  2 oct 17:12 builtins
+drwxr-xr-x  32 macbook  staff  1024 13 oct 12:39 eval
+drwxr-xr-x   5 macbook  staff   160 13 oct 10:28 lexer
+drwxr-xr-x   3 macbook  staff    96 30 sep 18:04 output
+drwxr-xr-x   4 macbook  staff   128 13 oct 10:28 parser
+drwxr-xr-x   4 macbook  staff   128  2 oct 12:21 reader

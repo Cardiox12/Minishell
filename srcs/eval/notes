@@ -6,3 +6,12 @@
 
 ne pas oublier de pré-traiter les arguments selon leur type
 améliorer gestion d'erreur
+
+ajouter un parametres "char **output_redirections" a t_command qui contiendrait fichiers dans lesquels output doit etre redirigée
+
+en fait direct tableau de int ouvert selon le type de redirectd
+
+cannot create two files
+
+permission problem when file already exists:
+https://stackoverflow.com/questions/38162724/open-returns-1-with-o-creat-when-file-already-exists

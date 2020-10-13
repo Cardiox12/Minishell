@@ -10,7 +10,7 @@ int		init_piper(t_command *command)
 	int				piper_return;
 	pid_t			pid;
 
-//	print_s_command(command);
+	print_s_command(command);
 	if (pipe(newpipe) == -1)
 		perror("pipe");
 	if ((pid = fork()) == -1)
@@ -51,7 +51,7 @@ int		recursive_piper(int oldpipe[2])
 	if (g_queue == NULL)
 		return (0);
 	g_queue = craft_command(&new_command, g_queue);
-//	print_s_command(&new_command);
+	print_s_command(&new_command);
 	if (new_command.output_type == PIPE)
 	{
 		if (pipe(newpipe) == -1)

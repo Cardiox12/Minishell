@@ -39,6 +39,7 @@ int		is_output(t_queue *queue)
 
 t_queue		*craft_command(t_command *command, t_queue *queue)
 {
+	command->has_output_redirect = 0; // a intégrer dans une future fonction d'initialisation
 	if (!(command->args = ft_stabmaker(6)))
 		return (NULL);
 	if (!(command->value = ft_strdup(queue->token.value)))
@@ -48,19 +49,28 @@ t_queue		*craft_command(t_command *command, t_queue *queue)
 	if (!(command->path = get_path(command->value)))
 		return (NULL);
 	queue = queue->next;
-	while (queue && is_arg(queue))
+	while (queue != NULL && queue->token.type != PIPE)
 	{
-		if (!(add_to_dynamic_table(&(command->args), queue->token.value)))
-			return(NULL);
+		while (queue && is_arg(queue))
+		{
+			if (!(add_to_dynamic_table(&(command->args), queue->token.value)))
+				return(NULL);
+			queue = queue->next;
+		}
+		if (queue->token.type == REDIRECTION && (queue->token.value)[0] == '>')
+		{
+			if (get_redirections(command, queue) == -1)
+				return (NULL);
+		}
+		if (queue->token.type == PIPE)
+		{
+			command->output_type = queue->token.type;
+			queue = queue->next;
+		}
+		else
+			command->output_type = -1;
 		queue = queue->next;
 	}
-	if (is_output(queue))
-	{
-		command->output_type = queue->token.type;
-		queue = queue->next;
-	}
-	else
-		command->output_type = -1;
 	return (queue);
 }
 
@@ -76,7 +86,7 @@ int		eval(t_queue *queue)
 		if (g_queue->token.type == COMMAND)
 		{
 			g_queue = craft_command(&command, g_queue);
-//			print_s_command(&command);
+			print_s_command(&command);
 			if (command.output_type == PIPE)
 			{
 				if ((piper_return = init_piper(&command)) == -1)

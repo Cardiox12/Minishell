@@ -6,6 +6,11 @@ void	print_s_command(t_command *command)
 	ft_printf("value: %s\n", command->value);
 	ft_printtab(command->args);
 	ft_printf("path: %s\n", command->path);
+	if (command->has_output_redirect == 1)
+	{
+		ft_printf("redirection fds : \n");
+		ft_print_int_tab(command->output_redirection_files);
+	}
 	if (command->output_type == PIPE)
 		ft_printf("output: %s\n", "PIPE");
 	if (command->output_type == REDIRECTION)

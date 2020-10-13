@@ -14,3 +14,6 @@ SRCS += $(EVAL_DIR)/ft_strdel.c
 SRCS += $(EVAL_DIR)/ft_allocat.c
 SRCS += $(EVAL_DIR)/recursive_piper.c
 SRCS += $(EVAL_DIR)/read_until_eof.c
+SRCS += $(EVAL_DIR)/dynamic_int_array.c
+SRCS += $(EVAL_DIR)/ft_int_tab_maker.c
+SRCS += $(EVAL_DIR)/get_redirection.c
