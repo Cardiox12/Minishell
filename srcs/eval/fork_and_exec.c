@@ -17,8 +17,8 @@ int		fork_and_exec(t_command *command)
 		if (pipe(pipefd) == -1)
 			perror("pipe");
 	}
-	if (command->has_input_redirect == 1)
-		pipe(inputpipe);
+//	if (command->has_input_redirect == 1)
+//		pipe(inputpipe);
 	if ((pid = fork()) == -1)
 	{
 		perror("fork");
@@ -37,7 +37,11 @@ int		fork_and_exec(t_command *command)
 			pipe(inputpipe);
 			read_redirections_nopipe(command, inputpipe);
 			dup2(inputpipe[0], 0);
+			close(inputpipe[1]);
 		}
+//		ft_printf("im here\n");
+//		close(inputpipe[1]);
+//		close(inputpipe[1]);
 		if (execve(command->path, command->args, g_env) == -1)
 			perror("execve");
 		return (1);
@@ -45,6 +49,7 @@ int		fork_and_exec(t_command *command)
 	else
 	{
 		wait(&status);
+//		ft_printf("status %d\n", status);
 		if (command->has_output_redirect == 1)
 		{
 			close(pipefd[1]);
@@ -55,9 +60,10 @@ int		fork_and_exec(t_command *command)
 		}
 		if (command->has_input_redirect == 1)
 		{
-			close(inputpipe[0]);
-			close(inputpipe[1]);
+//			close(inputpipe[0]);
+//			close(inputpipe[1]);
 		}
+//		ft_printf("out of fork and exec\n");
 		return (0);
 	}	
 }

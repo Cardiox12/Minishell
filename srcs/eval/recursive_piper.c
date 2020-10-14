@@ -6,6 +6,7 @@ extern t_queue	*g_queue;
 int		init_piper(t_command *command)
 {
 	int				newpipe[2];
+	int				inputpipe[2];
 	int				status;
 	int				piper_return;
 	pid_t			pid;
@@ -14,6 +15,8 @@ int		init_piper(t_command *command)
 	print_s_command(command);
 	if (pipe(newpipe) == -1)
 		perror("pipe");
+//	if (command->has_input_redirect == 1)
+//		pipe(inputpipe);
 	if ((pid = fork()) == -1)
 	{
 		perror("fork");
@@ -21,7 +24,15 @@ int		init_piper(t_command *command)
 	}
 	if (pid == 0)
 	{
+		// rediriger input ici
 		close(newpipe[0]);
+		if (command->has_input_redirect == 1)
+		{
+			pipe(inputpipe);
+			read_redirections_nopipe(command, inputpipe);
+			dup2(inputpipe[0], 0);
+			close(inputpipe[1]);
+		}
 		dup2(newpipe[1], 1);
 		execve(command->path, command->args, g_env);
 		return (0);
@@ -44,6 +55,11 @@ int		init_piper(t_command *command)
 			if (write(newpipe[1], output_buffer, ft_strlen(output_buffer)) == -1)
 				perror("write");
 		}
+//		if (command->has_input_redirect == 1)
+//		{
+//			close(inputpipe[0]);
+//			close(inputpipe[1]);
+//		}
 		if ((piper_return = recursive_piper(newpipe)) == -1)
 			return (-1);
 	}
@@ -76,8 +92,10 @@ int		recursive_piper(int oldpipe[2])
 	if (pid == 0)
 	{
 		close(oldpipe[1]);
+		if (new_command.has_input_redirect)
+			read_redirections_pipe(&new_command, &oldpipe);
 		dup2(oldpipe[0], 0);
-
+		close(oldpipe[1]);
 		if (new_command.output_type == PIPE || new_command.has_output_redirect == 1) // or redirect
 		{
 			close(newpipe[0]);

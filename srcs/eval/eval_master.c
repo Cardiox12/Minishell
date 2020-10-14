@@ -123,7 +123,13 @@ int		eval(t_queue *queue)
 				fork_and_exec(&command);
 			if (g_queue == NULL)
 				return (0);
+			else
+			{
+				ft_printf("untracked symbol in eval %s\n", queue->token.value);
+			}
+			
 		}
 	}
+//	ft_printf("out of eval\n");
 	return (0);
 }

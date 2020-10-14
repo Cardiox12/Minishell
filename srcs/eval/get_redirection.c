@@ -47,7 +47,7 @@ int     get_input_redirections(t_command *command, t_queue *queue)
 
 		if (command->has_input_redirect == 0)
 		{
-			ft_printf("je suis la\n");
+//			ft_printf("je suis la\n");
 			command->has_input_redirect = 1;
 			if (!(command->input_redirection_files = ft_int_tab_maker(6)))
 				return (-1);
