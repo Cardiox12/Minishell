@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/17 08:04:32 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/02 18:47:40 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/10/06 13:11:14 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/10/12 12:58:58 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_strings.h"
+#ifndef FT_PARSER_H
+# define FT_PARSER_H
 
-char	*ft_strndup(const char *s, size_t n)
+# include "lexer.h"
+# include "error.h"
+
+typedef struct	s_interpret
 {
-	const size_t	len = ft_strlen(s);
-	char			*dup;
+	char		*input;
+	t_queue		*tokens;
+	t_queue		*current;
+}				t_interpret;
 
-	if (n >= len)
-		n = len;
-	dup = malloc(sizeof(char) * (n + 1));
-	if (dup == NULL)
-		return (NULL);
-	ft_strncpy(dup, s, n);
-	dup[n] = '\0';
-	return (dup);
-}
+enum	e_parse_errors
+{
+	ERR_PARSE	= 1,
+	EOF_		= 2
+};
+
+# define _EOF_ -1
+
+int parser(const char *input, t_queue *head);
+
+#endif

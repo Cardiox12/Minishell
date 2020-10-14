@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/17 08:04:32 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/02 18:47:40 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/10/14 16:57:24 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/10/14 18:56:54 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_strings.h"
+#ifndef FT_BUILTINS_H
+# define FT_BUILTINS_H
 
-char	*ft_strndup(const char *s, size_t n)
-{
-	const size_t	len = ft_strlen(s);
-	char			*dup;
+# include <stddef.h>
+# include "ft_ctypes.h"
+# include "ft_stdio.h"
+# include "ft_strings.h"
 
-	if (n >= len)
-		n = len;
-	dup = malloc(sizeof(char) * (n + 1));
-	if (dup == NULL)
-		return (NULL);
-	ft_strncpy(dup, s, n);
-	dup[n] = '\0';
-	return (dup);
-}
+
+int echo(char **args, char **env);
+
+# define __unused __attribute__((unused))
+# define RAW_ARGUMENT "-n"
+
+#endif

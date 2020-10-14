@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   queue_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/17 08:04:32 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/02 18:47:40 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/10/08 15:56:12 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/10/08 15:57:42 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_strings.h"
+#include "lexer.h"
 
-char	*ft_strndup(const char *s, size_t n)
+void    queue_free(t_queue *node)
 {
-	const size_t	len = ft_strlen(s);
-	char			*dup;
-
-	if (n >= len)
-		n = len;
-	dup = malloc(sizeof(char) * (n + 1));
-	if (dup == NULL)
-		return (NULL);
-	ft_strncpy(dup, s, n);
-	dup[n] = '\0';
-	return (dup);
+    free(node->token.value);
+    free(node);
 }

@@ -6,17 +6,25 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 09:46:42 by tony              #+#    #+#             */
-/*   Updated: 2020/06/09 03:29:45 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/12 12:04:09 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_CTYPES_H
 # define FT_CTYPES_H
 
+# define TRUE 1
+# define FALSE 0
+# define SUCCESS 0
+# define FAILURE 1
+# define NO_ERROR 0
+
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
+int		ft_isspace(int c);
+int		ft_isquote(int c);
 
 #endif

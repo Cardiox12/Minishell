@@ -6,12 +6,12 @@
 #    By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/29 01:50:06 by tlucille          #+#    #+#              #
-#    Updated: 2020/09/30 06:24:54 by bbellavi         ###   ########.fr        #
+#    Updated: 2020/10/14 17:44:20 by bbellavi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra -g
 
 EXT_DIR		= externals
 INC_DIR		= includes
@@ -25,17 +25,18 @@ PARSE_DIR	= $(SRC_DIR)/parser
 EVAL_DIR	= $(SRC_DIR)/eval
 READ_DIR	= $(SRC_DIR)/reader
 OUTPUT_DIR	= $(SRC_DIR)/output
+BUILTIN_DIR	= $(SRC_DIR)/builtins
 
 LIBFT_NAME	= libft.a
 NAME		= minishell
 
-include $(READ_DIR)/module.mk $(LEXER_DIR)/module.mk
+include $(READ_DIR)/module.mk $(LEXER_DIR)/module.mk $(PARSE_DIR)/module.mk $(BUILTIN_DIR)/module.mk
 
 .PHONY: all clean fclean
 
 all: $(NAME)
 
-$(NAME): $(SRCS) | build_library
+$(NAME): build_library $(SRCS)
 	@$(CC) $(CFLAGS) -o $(NAME) main.c $(SRCS) $(LIBFT_NAME) -I$(INC_DIR) -I$(FT_INC_DIR)
 
 build_library:
@@ -48,6 +49,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -rf $(NAME).dSYM
 	@make -C $(LIBFT_DIR) fclean
 
 re: fclean all	

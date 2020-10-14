@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_skip_alnum.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/17 08:04:32 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/02 18:47:40 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/10/03 05:09:46 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/10/03 05:23:13 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_ctypes.h"
 #include "ft_strings.h"
 
-char	*ft_strndup(const char *s, size_t n)
+char    *skip_alnum(const char *s)
 {
-	const size_t	len = ft_strlen(s);
-	char			*dup;
-
-	if (n >= len)
-		n = len;
-	dup = malloc(sizeof(char) * (n + 1));
-	if (dup == NULL)
-		return (NULL);
-	ft_strncpy(dup, s, n);
-	dup[n] = '\0';
-	return (dup);
+    while (*s != '\0' && ft_isalnum(*s))
+        s++;
+    return ((char*)s);
 }

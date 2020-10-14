@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/17 08:04:32 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/02 18:47:40 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/10/06 13:12:28 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/10/06 13:13:35 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_strings.h"
+#ifndef FT_ERROR_H
+# define FT_ERROR_H
 
-char	*ft_strndup(const char *s, size_t n)
-{
-	const size_t	len = ft_strlen(s);
-	char			*dup;
+extern int g_parse_err;
+extern int g_eval_err;
 
-	if (n >= len)
-		n = len;
-	dup = malloc(sizeof(char) * (n + 1));
-	if (dup == NULL)
-		return (NULL);
-	ft_strncpy(dup, s, n);
-	dup[n] = '\0';
-	return (dup);
-}
+#endif
