@@ -57,21 +57,27 @@ void	print_queue(t_queue *head)
 	ft_printf("=======================================\n");
 }
 
-int		main(void)
+# include "builtins.h"
+
+int		main(int argc, char *argv[], char *env[])
 {
 	// Here is the entrypoint
-	char *line;
+	// char *line;
 
-	line = NULL;
-	while (1)
+	// line = NULL;
+	// while (1)
+	// {
+	// 	line = reader();
+	// 	t_queue *tokens = lexer(line);
+	// 	print_queue(tokens);
+	// 	if (parser(line, tokens) != 0)
+	// 		ft_printf("minishell: parse error\n");
+	// 	if (line == NULL)
+	// 		break;
+	// }
+	if (argc > 1)
 	{
-		line = reader();
-		t_queue *tokens = lexer(line);
-		print_queue(tokens);
-		if (parser(line, tokens) != 0)
-			ft_printf("minishell: parse error\n");
-		if (line == NULL)
-			break;
+		echo(argv, env);
 	}
 	return (0);
 }
