@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 17:11:29 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/14 19:13:19 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/14 19:15:58 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ int     echo(char **args, __unused char **env)
         ft_putendl_fd(string, 1);
     else
         ft_putstr_fd(string, 1);
+    free(string);
     return (SUCCESS);
 }
