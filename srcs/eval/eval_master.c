@@ -43,6 +43,7 @@ t_queue		*craft_command(t_command *command, t_queue *queue)
 	int	diff;
 
 	command->has_output_redirect = 0; // a intégrer dans une future fonction d'initialisation
+	command->has_input_redirect = 0; // a intégrer dans une future fonction d'initialisation
 	if (!(command->args = ft_stabmaker(6)))
 		return (NULL);
 	if (!(command->value = ft_strdup(queue->token.value)))
@@ -65,7 +66,14 @@ t_queue		*craft_command(t_command *command, t_queue *queue)
 		}
 		while (queue && queue->token.type == REDIRECTION && (queue->token.value)[0] == '>')
 		{
-			if (get_redirections(command, queue) == -1)
+			if (get_output_redirections(command, queue) == -1)
+				return (NULL);
+			queue = queue->next->next;
+			count++;
+		}
+		while (queue && queue->token.type == REDIRECTION && (queue->token.value)[0] == '<')
+		{
+			if (get_input_redirections(command, queue) == -1)
 				return (NULL);
 			queue = queue->next->next;
 			count++;
@@ -85,6 +93,8 @@ t_queue		*craft_command(t_command *command, t_queue *queue)
 			ft_printf("symbols not tracked in craft_command\n");
 			queue = queue->next;
 		}
+		if (queue)
+			ft_printf("value %s\n", queue->token.value);
 	}
 //	if (command->output_type != PIPE)
 //		command->output_type = -1;

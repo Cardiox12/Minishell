@@ -17,4 +17,4 @@ SRCS += $(EVAL_DIR)/read_until_eof.c
 SRCS += $(EVAL_DIR)/dynamic_int_array.c
 SRCS += $(EVAL_DIR)/ft_int_tab_maker.c
 SRCS += $(EVAL_DIR)/get_redirection.c
-SRCS += $(EVAL_DIR)/write_redirections.c
+SRCS += $(EVAL_DIR)/write_read_redirections.c

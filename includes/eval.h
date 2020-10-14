@@ -14,13 +14,19 @@
 # include "ft_stdio.h"
 # include "lexer.h"
 
+/* useful for read_redirections function */
+# define READ_FROM_PIPE 1
+# define IGNORE_PIPE 0
+
 typedef struct	s_command
 {
 	char	*value;
 	char	**args;
 	int		*output_redirection_files;
+	int		*input_redirection_files;
 	char	*path;
 	int		has_output_redirect;
+	int		has_input_redirect;
 	int		type_output;
 	int		output_type;
 	int		input;
@@ -30,8 +36,11 @@ typedef struct	s_command
 	char	output_char;
 }				t_command;
 
+int							*read_redirections_pipe(t_command *command, int *oldpipe[2]);
+int							*read_redirections_nopipe(t_command *command, int pipe[2]);
+int							get_input_redirections(t_command *command, t_queue *queue);
 void						write_redirections(t_command *command, char *buffer);
-int     					get_redirections(t_command *command, t_queue *queue);
+int     					get_output_redirections(t_command *command, t_queue *queue);
 void     					ft_print_int_tab(int *tab);
 int    						*add_to_dynamic_int_array(int **table, int nbr);
 int                     	*ft_int_tab_maker(size_t len);
