@@ -58,8 +58,9 @@ void	print_queue(t_queue *head)
 }
 
 # include "builtins.h"
+# include <limits.h>
 
-int		main(int argc, char *argv[], char *env[])
+int		main(__unused int argc, char *argv[], char *env[])
 {
 	// Here is the entrypoint
 	// char *line;
@@ -75,9 +76,16 @@ int		main(int argc, char *argv[], char *env[])
 	// 	if (line == NULL)
 	// 		break;
 	// }
-	if (argc > 1)
+	char path[PATH_MAX];
+
+	getcwd(path, PATH_MAX);
+	ft_printf("%s\n", path);
+	int err;
+	if ( ( err = cd(argv, env) ) )
 	{
-		echo(argv, env);
+		exit(err);
 	}
+	getcwd(path, PATH_MAX);
+	ft_printf("%s\n", path);
 	return (0);
 }
