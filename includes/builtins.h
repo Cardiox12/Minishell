@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 16:57:24 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/15 11:56:26 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/15 12:36:43 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 int echo(char **args, char **env);
 int cd(char **args, char **env);
+int pwd(char **args, char **env);
 
 # define __unused __attribute__((unused))
 # define RAW_ARGUMENT "-n"

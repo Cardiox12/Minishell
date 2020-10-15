@@ -76,16 +76,6 @@ int		main(__unused int argc, char *argv[], char *env[])
 	// 	if (line == NULL)
 	// 		break;
 	// }
-	char path[PATH_MAX];
-
-	getcwd(path, PATH_MAX);
-	ft_printf("%s\n", path);
-	int err;
-	if ( ( err = cd(argv, env) ) )
-	{
-		exit(err);
-	}
-	getcwd(path, PATH_MAX);
-	ft_printf("%s\n", path);
+	pwd(argv, env);
 	return (0);
 }
