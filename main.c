@@ -59,8 +59,9 @@ void	print_queue(t_queue *head)
 
 # include "builtins.h"
 # include <limits.h>
+# include <string.h>
 
-int		main(__unused int argc, char *argv[], char *envp[])
+int		main(__unused int argc, __unused char *argv[], char *envp[])
 {
 	// Here is the entrypoint
 	// char *line;
@@ -76,6 +77,6 @@ int		main(__unused int argc, char *argv[], char *envp[])
 	// 	if (line == NULL)
 	// 		break;
 	// }
-	env(argv, envp);
+	export(argv, envp);
 	return (0);
 }

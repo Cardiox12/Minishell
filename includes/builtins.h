@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 16:57:24 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/16 13:47:08 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/16 15:53:25 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,19 @@
 # include "ft_ctypes.h"
 # include "ft_stdio.h"
 # include "ft_strings.h"
+# include "ft_objects.h"
 
+typedef struct  s_spair
+{
+    char *key;
+    char *value;
+}               t_spair;
 
-int echo(char **args, char **env);
-int cd(char **args, char **env);
-int pwd(char **args, char **env);
-int env(char **args, char **env);
+int echo(char **args, char **envp);
+int cd(char **args, char **envp);
+int pwd(char **args, char **envp);
+int env(char **args, char **envp);
+int export(char **args, char **envp);
 
 # define __unused __attribute__((unused))
 # define RAW_ARGUMENT "-n"
