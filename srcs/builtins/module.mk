@@ -6,3 +6,4 @@ SRCS += $(UTILS_DIR)/cd_perror.c
 SRCS += $(BUILTIN_DIR)/echo.c
 SRCS += $(BUILTIN_DIR)/cd.c
 SRCS += $(BUILTIN_DIR)/pwd.c
+SRCS += $(BUILTIN_DIR)/env.c

@@ -60,7 +60,7 @@ void	print_queue(t_queue *head)
 # include "builtins.h"
 # include <limits.h>
 
-int		main(__unused int argc, char *argv[], char *env[])
+int		main(__unused int argc, char *argv[], char *envp[])
 {
 	// Here is the entrypoint
 	// char *line;
@@ -76,6 +76,6 @@ int		main(__unused int argc, char *argv[], char *env[])
 	// 	if (line == NULL)
 	// 		break;
 	// }
-	pwd(argv, env);
+	env(argv, envp);
 	return (0);
 }
