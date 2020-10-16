@@ -6,14 +6,14 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 10:57:51 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/16 15:39:08 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/17 00:32:20 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "internals.h"
 #include "builtins.h"
 
-int		cd(char **args, __unused char **env)
+int		cd(char **args)
 {
 	const size_t 	size = string_arr_len(args);
 	char			cwd[PATH_MAX];

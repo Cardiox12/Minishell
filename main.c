@@ -21,7 +21,6 @@
 
 char		**g_env = NULL;
 
-
 char	*get_type(int type)
 {
 	switch (type)
@@ -105,9 +104,9 @@ int		main(__unused int argc, __unused char *argv[], char *envp[])
 	if (ft_tab_copy(&g_env, envp) == NULL)
 		return (FAILURE);
 		
-	env(NULL, envp);
-	export(argv, envp);
-	env(NULL, envp);
+	env(NULL);
+	export(argv);
+	env(NULL);
 	return (0);
 }
 #endif

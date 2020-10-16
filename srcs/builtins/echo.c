@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 17:11:29 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/14 19:15:58 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/17 00:32:27 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int is_endl(const char *argument)
     return (FALSE);
 }
 
-int     echo(char **args, __unused char **env)
+int     echo(char **args)
 {
     size_t  index;
     int     endl;

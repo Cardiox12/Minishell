@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 13:54:55 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/16 17:18:21 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/17 00:37:54 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static t_spair get_item(const char *item)
     });
 }
 
-int export(char **args, char **envp)
+int export(char **args)
 {
     t_spair         item;
     t_string_list   *list;
@@ -58,7 +58,7 @@ int export(char **args, char **envp)
     item = get_item(args[1]);
 
     // Init a dynamic list with based on envp
-    string_list_create_from(&list, envp, string_arr_len(envp));
+    string_list_create_from(&list, g_env, string_arr_len(g_env));
 
     index = find_key(list, item.key);
     if (index != NOT_FOUND)
