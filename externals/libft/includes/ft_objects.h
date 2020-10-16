@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 08:01:05 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/16 16:05:57 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/16 17:03:48 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 typedef struct	s_string_list
 {
-	int			length;
+	size_t		length;
 	char		**items;
 }				t_string_list;
 
@@ -43,7 +43,7 @@ int		string_list_pop(t_string_list *items, int index);
 int		string_list_pop_last(t_string_list *list);
 void	string_list_iter(t_string_list *list, int (*f)(const char*));
 void	string_list_delete(t_string_list *list);
-void    *string_list_create_from_array(t_string_list **lst, char **arr,
+void    *string_list_create_from(t_string_list **lst, char **arr,
 size_t size);
 
 #endif

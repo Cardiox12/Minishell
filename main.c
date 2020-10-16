@@ -77,6 +77,9 @@ int		main(__unused int argc, __unused char *argv[], char *envp[])
 	// 	if (line == NULL)
 	// 		break;
 	// }
+
+	env(NULL, envp);
 	export(argv, envp);
+	env(NULL, envp);
 	return (0);
 }

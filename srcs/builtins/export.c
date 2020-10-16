@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 13:54:55 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/16 16:06:52 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/16 17:18:21 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,26 @@
 
 static int find_key(t_string_list *list, const char *key)
 {
+    const size_t key_size = ft_strlen(key);
     size_t index;
 
     index = 0;
     while (index < list->length)
     {
-        if (ft_strcmp(list->items[index], key) == 0)
+        if (ft_strncmp(list->items[index], key, key_size) == 0)
             return (index);
         index++;
     }
     return (NOT_FOUND);
 }
 
-static t_spair get_item(char *item)
+static t_spair get_item(const char *item)
 {
-    t_spair pair;
     char    *sep;
     int     index;
 
     // We consider the item separate key / value by an equal sign.
-    sep = ft_strchr(sep, '=');
+    sep = ft_strchr(item, '=');
     if (sep == NULL)
         return ((t_spair){NULL, NULL});
 
@@ -49,6 +49,7 @@ int export(char **args, char **envp)
 {
     t_spair         item;
     t_string_list   *list;
+    int             index;
 
     if (args[1] == NULL)
         return (0);
@@ -59,10 +60,18 @@ int export(char **args, char **envp)
     // Init a dynamic list with based on envp
     string_list_create_from(&list, envp, string_arr_len(envp));
 
-    // If env variable already exists
-    
-    // If it does not already exists
-    
-
-    return (0);
+    index = find_key(list, item.key);
+    if (index != NOT_FOUND)
+    {
+        // If env variable already exists
+        // Replace the value by new value
+        list->items[index] = args[1];
+    }
+    else
+    {
+        // If it does not already exists
+        // Then add it to the end
+        string_list_append(list, args[1]);
+    }
+    return (SUCCESS);
 }
