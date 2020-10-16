@@ -1,0 +1,8 @@
+#priorites:
+0,5. redirections
+1.pipelines
+2. && et || 
+3.& et ;
+
+ne pas oublier de pré-traiter les arguments selon leur type
+améliorer gestion d'erreur

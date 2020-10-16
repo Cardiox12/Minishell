@@ -11,11 +11,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_ctypes.h"
 #include "lexer.h"
 #include "reader.h"
 #include "parser.h"
 #include "ft_stdlib.h"
 #include "ft_stdio.h"
+#include "eval.h"
+
+char		**g_env = NULL;
+
 
 char	*get_type(int type)
 {
@@ -58,19 +63,30 @@ void	print_queue(t_queue *head)
 }
 
 #ifdef MASTER
-int		main(int argc,char *argv[], char *envp[])
+/* ajout du tableau d'env dans le main */
+int		main(int ac, char **av, char *env[])
 {
 	// Here is the entrypoint
 	char *line;
 
 	line = NULL;
-	while (1)
+	(void)ac;
+	(void)av;
+
+	/*copie et allocation du tableau d'env dans une variable globale
+	pour pouvoir l'utiliser et le modifier par la suite */
+	if (!(ft_tab_copy(&g_env, env)))
+		return (-1);
+	while (TRUE)
 	{
 		line = reader();
 		t_queue *tokens = lexer(line);
-		print_queue(tokens);
 		if (parser(line, tokens) != 0)
+		{
 			ft_printf("minishell: parse error\n");
+			return (EXIT_FAILURE);
+		}
+		eval(tokens);
 		if (line == NULL)
 			break;
 	}
@@ -86,6 +102,9 @@ int		main(int argc,char *argv[], char *envp[])
 
 int		main(__unused int argc, __unused char *argv[], char *envp[])
 {
+	if (ft_tab_copy(&g_env, envp) == NULL)
+		return (FAILURE);
+		
 	env(NULL, envp);
 	export(argv, envp);
 	env(NULL, envp);

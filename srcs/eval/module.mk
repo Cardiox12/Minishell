@@ -1,0 +1,16 @@
+SRCS += $(EVAL_DIR)/ft_printtab.c
+SRCS += $(EVAL_DIR)/dynamic_table.c
+SRCS += $(EVAL_DIR)/eval_master.c
+SRCS += $(EVAL_DIR)/ft_stabmaker.c
+SRCS += $(EVAL_DIR)/ft_tab_copy.c
+SRCS += $(EVAL_DIR)/ft_tablen.c
+SRCS += $(EVAL_DIR)/fork_and_exec.c
+SRCS += $(EVAL_DIR)/print_s_command.c
+SRCS += $(EVAL_DIR)/ft_strextract.c
+SRCS += $(EVAL_DIR)/path_finder.c
+SRCS += $(EVAL_DIR)/ft_strnew.c
+SRCS += $(EVAL_DIR)/ft_split_tab.c
+SRCS += $(EVAL_DIR)/ft_strdel.c
+SRCS += $(EVAL_DIR)/ft_allocat.c
+SRCS += $(EVAL_DIR)/recursive_piper.c
+SRCS += $(EVAL_DIR)/read_until_eof.c
