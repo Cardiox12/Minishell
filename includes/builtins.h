@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 16:57:24 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/17 00:36:59 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/19 21:16:32 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,18 @@ typedef struct  s_spair
     char *value;
 }               t_spair;
 
+typedef struct  s_indices
+{
+    int *indices;
+    int length;
+}               t_indices;
+
 int echo(char **args);
 int cd(char **args);
 int pwd(char **args);
 int env(char **args);
 int export(char **args);
+int unset(char **args);
 
 # define __unused __attribute__((unused))
 # define RAW_ARGUMENT "-n"

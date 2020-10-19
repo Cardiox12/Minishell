@@ -105,7 +105,7 @@ int		main(__unused int argc, __unused char *argv[], char *envp[])
 		return (FAILURE);
 	env(NULL);
 	ft_printf("=========================================================\n");
-	export(argv);
+	unset(argv);
 	env(NULL);
 	return (0);
 }
