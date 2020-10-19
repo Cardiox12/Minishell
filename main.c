@@ -103,8 +103,8 @@ int		main(__unused int argc, __unused char *argv[], char *envp[])
 {
 	if (ft_tab_copy(&g_env, envp) == NULL)
 		return (FAILURE);
-		
 	env(NULL);
+	ft_printf("=========================================================\n");
 	export(argv);
 	env(NULL);
 	return (0);
