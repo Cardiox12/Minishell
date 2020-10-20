@@ -1,0 +1,15 @@
+INC_DIR		= includes
+FT_INC_DIR	= $(LIBFT_DIR)/includes
+include $(READ_DIR)/module.mk $(LEXER_DIR)/module.mk $(EVAL_DIR)/module.mk $(PARSE_DIR)/module.mk
+# include <unistd.h>
+# include <stdlib.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <sys/stat.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include <string.h>
+# include <errno.h>
+# include "ft_strings.h"
+# include "ft_stdio.h"
+# include "lexer.h"

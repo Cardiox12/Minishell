@@ -1,11 +1,36 @@
 ===============
+result test for :     cat makefile
+minishell exits with success
+success
+===============
+
+===============
+result test for :     cat makefile | wc -l
+minishell exits with success
+success
+===============
+
+===============
+result test for :     cat makefile < main.c | grep include
+minishell exits with success
+success
+===============
+
+===============
 result test for :     cat makefile < main.c | grep include | grep inc < includes/eval.h
 minishell exits with success
-failed
+success
+===============
 
-minishell's output:
+===============
+result test for :     cat makefile < main.c | grep include | grep inc < includes/eval.h | wc -l
+minishell exits with success
+success
+===============
 
-eval's output:
-
+===============
+result test for :     cat makefile < main.c | grep include | grep inc < includes/eval.h
+minishell exits with success
+success
 ===============
 
