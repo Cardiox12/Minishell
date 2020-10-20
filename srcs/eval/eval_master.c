@@ -108,8 +108,8 @@ int		eval(t_queue *queue)
 
 
 	g_queue = queue;
-	while (g_queue)
-	{
+//	while (g_queue)
+//	{
 		if (g_queue->token.type == COMMAND)
 		{
 			g_queue = craft_command(&command, g_queue);
@@ -125,11 +125,11 @@ int		eval(t_queue *queue)
 				return (0);
 			else
 			{
-				ft_printf("untracked symbol in eval %s\n", queue->token.value);
+				ft_printf("untracked symbol in eval %s\n", g_queue->token.value);
 			}
 			
 		}
-	}
+//	}
 //	ft_printf("out of eval\n");
 	return (0);
 }

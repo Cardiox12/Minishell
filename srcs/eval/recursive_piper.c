@@ -12,7 +12,7 @@ int		init_piper(t_command *command)
 	pid_t			pid;
 	char			*output_buffer;
 
-	print_s_command(command);
+//	print_s_command(command);
 	if (pipe(newpipe) == -1)
 		perror("pipe");
 //	if (command->has_input_redirect == 1)
@@ -95,7 +95,7 @@ int		recursive_piper(int oldpipe[2])
 		return (0);
 	g_queue = craft_command(&new_command, g_queue);
 	print_s_command(&new_command);
-	if (new_command.output_type == PIPE)
+	if (new_command.output_type == PIPE || new_command.has_output_redirect == 1)
 	{
 		if (pipe(newpipe) == -1)
 			perror("pipe");
@@ -136,9 +136,9 @@ int		recursive_piper(int oldpipe[2])
 			close(newpipe[1]);
 			if (!(output_buffer = read_until_eof(newpipe[0])))
 				return (-1);
+//			ft_printf("\n\noutput_buffer: %s\n", output_buffer);
 		//write to redirection files
 			write_redirections(&new_command, output_buffer);
-//			ft_printf("\n\noutput_buffer: %s\n", output_buffer);
 			close(newpipe[0]);
 			if (new_command.output_type == PIPE)
 			{

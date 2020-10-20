@@ -1,0 +1,11 @@
+===============
+result test for :     cat makefile < main.c | grep include | grep inc < includes/eval.h
+minishell exits with success
+failed
+
+minishell's output:
+
+eval's output:
+
+===============
+
