@@ -66,6 +66,22 @@ int		init_piper(t_command *command)
 	return (0);
 }
 
+int		child_exec(t_command *command, int *oldpipe[2], int newpipe[])
+{
+	close((*oldpipe)[1]);
+	if (command->has_input_redirect)
+		read_redirections_pipe(command, oldpipe);
+	dup2((*oldpipe)[0], 0);
+	close((*oldpipe)[1]);
+	if (command->output_type == PIPE || command->has_output_redirect == 1) // or redirect
+	{
+		close(newpipe[0]);
+		dup2(newpipe[1], 1);
+	}
+	execve(command->path, command->args, g_env);
+	return (0);
+}
+
 int		recursive_piper(int oldpipe[2])
 {
 	int				newpipe[2];
@@ -91,7 +107,8 @@ int		recursive_piper(int oldpipe[2])
 	}
 	if (pid == 0)
 	{
-		close(oldpipe[1]);
+		return (child_exec(&new_command, &oldpipe, newpipe));
+/*		close(oldpipe[1]);
 		if (new_command.has_input_redirect)
 			read_redirections_pipe(&new_command, &oldpipe);
 		dup2(oldpipe[0], 0);
@@ -102,7 +119,7 @@ int		recursive_piper(int oldpipe[2])
 			dup2(newpipe[1], 1);
 		}
 		execve(new_command.path, new_command.args, g_env);
-		return (0);
+		return (0);*/
 	}
 	else
 	{
