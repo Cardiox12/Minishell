@@ -61,21 +61,15 @@ void	print_queue(t_queue *head)
 	ft_printf("=======================================\n");
 }
 
-#ifdef MASTER
 /* ajout du tableau d'env dans le main */
 int		main(int ac, char **av, char *env[])
 {
-	// Here is the entrypoint
+	if (!(ft_tab_copy(&g_env, env)))
+		return (FAILURE);
+#ifdef MASTER
 	char *line;
 
 	line = NULL;
-	(void)ac;
-	(void)av;
-
-	/*copie et allocation du tableau d'env dans une variable globale
-	pour pouvoir l'utiliser et le modifier par la suite */
-	if (!(ft_tab_copy(&g_env, env)))
-		return (-1);
 	while (TRUE)
 	{
 		line = reader();
@@ -89,8 +83,6 @@ int		main(int ac, char **av, char *env[])
 		if (line == NULL)
 			break;
 	}
-	return (0);
-}
 #endif
 
 #ifdef BUILTINS
@@ -108,5 +100,8 @@ int		main(__unused int argc, __unused char *argv[], char *envp[])
 		ft_printf("Error\n");
 	return (0);
 }
-
 #endif
+
+
+	return (0);
+}
