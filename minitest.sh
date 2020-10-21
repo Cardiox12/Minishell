@@ -4,7 +4,11 @@
 printf "Welcome to minihell's minitest\n"
 
 printf "compilation:\n"
-make
+if ! make
+then
+	printf "\e[38;5;160mcompilation failed\e[0m\n"
+	exit 1
+fi
 printf "==========================:\n"
 printf "basic tests:\n"
 
@@ -75,7 +79,9 @@ function test_command_output_redirects {
 		printf "bash exits correctly\n" 
 	else
 		printf "bash returns an error\n"
-	fi	
+	fi
+	cat miniout2	
+	cat realout2	
 	if diff miniout1 realout1 >> test_trace && diff miniout2 realout2 >> test_trace && diff miniout3 realout3 >> test_trace
 	then
 		printf "\e[38;5;40msuccess\e[0m\n" | tee -a test_trace
@@ -124,6 +130,12 @@ output_commands=("cat makefile > output2 > output3" \
 "cat makefile > output2 < main.c | grep include | grep inc < main.c > output3" \
 "cat makefile < main.c | grep include > output2 | grep inc < main.c > output3" \
 "cat makefile < main.c | grep include | grep inc < main.c > output3 > output2" \
+"cat test_files/aaa | grep a | grep b < test_files/ccc > output3 > output2" \
+"cat test_files/aaa | grep a > output3 | grep b < test_files/ccc | grep a < test_files/aaa > output2" \
+"cat test_files/aaa | grep a > output3 | grep b < test_files/ccc > output2 | grep a < test_files/aaa < test_files/bbb > output2" \
+"grep b < test_files/ccc > output2 | grep a < test_files/aaa < test_files/bbb > output2 > output3" \
+"echo hello > output2 | grep a < test_files/aaa > output2 > output3" \
+"echo hello > output2 > output3" \
 )
 #printf "%s\n" "cat makefile < main.c | grep include | grep inc < includes/eval.h > miniout1" | ./minishell
 
