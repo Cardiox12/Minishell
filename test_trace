@@ -1,36 +1,78 @@
 ===============
 result test for :     cat makefile
 minishell exits with success
-success
+[38;5;40msuccess[0m
 ===============
 
 ===============
 result test for :     cat makefile | wc -l
 minishell exits with success
-success
+[38;5;40msuccess[0m
 ===============
 
 ===============
 result test for :     cat makefile < main.c | grep include
 minishell exits with success
-success
+[38;5;40msuccess[0m
 ===============
 
 ===============
 result test for :     cat makefile < main.c | grep include | grep inc < includes/eval.h
 minishell exits with success
-success
+[38;5;40msuccess[0m
 ===============
 
 ===============
 result test for :     cat makefile < main.c | grep include | grep inc < includes/eval.h | wc -l
 minishell exits with success
-success
+[38;5;40msuccess[0m
 ===============
 
 ===============
-result test for :     cat makefile < main.c | grep include | grep inc < includes/eval.h
+result test for :     cat makefile > output2 > output3
 minishell exits with success
-success
+[38;5;40msuccess[0m
+===============
+
+===============
+result test for :     cat makefile > output2 > output3 | grep include
+minishell exits with success
+[38;5;40msuccess[0m
+===============
+
+===============
+result test for :     cat makefile > output2 > output3 < main.c | grep include
+minishell exits with success
+[38;5;40msuccess[0m
+===============
+
+===============
+result test for :     cat makefile > output2 > output3 < main.c | grep include < main.c
+minishell exits with success
+[38;5;40msuccess[0m
+===============
+
+===============
+result test for :     cat makefile > output2 < main.c | grep include > output3
+minishell exits with success
+[38;5;40msuccess[0m
+===============
+
+===============
+result test for :     cat makefile > output2 < main.c | grep include | grep inc < main.c > output3
+minishell exits with success
+[38;5;40msuccess[0m
+===============
+
+===============
+result test for :     cat makefile < main.c | grep include > output2 | grep inc < main.c > output3
+minishell exits with success
+[38;5;40msuccess[0m
+===============
+
+===============
+result test for :     cat makefile < main.c | grep include | grep inc < main.c > output3 > output2
+minishell exits with success
+[38;5;40msuccess[0m
 ===============
 

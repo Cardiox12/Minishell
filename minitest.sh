@@ -36,9 +36,9 @@ function test_command {
 	fi	
 	if diff miniout1 realout1 >> test_trace
 	then
-		printf "success\n" | tee -a test_trace
+		printf "\e[38;5;40msuccess\e[0m\n" | tee -a test_trace
 	else
-		printf "failed\n" | tee -a test_trace
+		printf "\e[38;5;160mfailure\e[0m\n" | tee -a test_trace
 		printf "\nminishell's output:\n" >> test_trace
 		cat miniout1 >> test_trace
 		printf "\neval's output:\n\n" >> test_trace
@@ -78,9 +78,9 @@ function test_command_output_redirects {
 	fi	
 	if diff miniout1 realout1 >> test_trace && diff miniout2 realout2 >> test_trace && diff miniout3 realout3 >> test_trace
 	then
-		printf "success\n" | tee -a test_trace
+		printf "\e[38;5;40msuccess\e[0m\n" | tee -a test_trace
 	else
-		printf "failed\n" | tee -a test_trace
+		printf "\e[38;5;160mfailure\e[0m\n" | tee -a test_trace
 		if ! diff miniout1 realout1 &> /dev/null
 		then
 			printf "\nminishell's output1:\n" >> test_trace
