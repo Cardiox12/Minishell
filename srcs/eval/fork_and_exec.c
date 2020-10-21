@@ -55,14 +55,15 @@ int		fork_and_exec(t_command *command)
 			close(pipefd[1]);
 			if (!(output_buffer = read_until_eof(pipefd[0])))
 				return (-1);
+//			ft_printf("output buffer %s\n", output_buffer);
 			write_redirections(command, output_buffer);
 			close(pipefd[0]);
 		}
-		if (command->has_input_redirect == 1)
-		{
+//		if (command->has_input_redirect == 1)
+//		{
 //			close(inputpipe[0]);
 //			close(inputpipe[1]);
-		}
+//		}
 //		ft_printf("out of fork and exec\n");
 		return (0);
 	}	

@@ -113,7 +113,7 @@ int		eval(t_queue *queue)
 		if (g_queue->token.type == COMMAND)
 		{
 			g_queue = craft_command(&command, g_queue);
-			print_s_command(&command);
+//			print_s_command(&command);
 			if (command.output_type == PIPE)
 			{
 				if ((piper_return = init_piper(&command)) == -1)

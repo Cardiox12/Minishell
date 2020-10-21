@@ -47,13 +47,14 @@ int		init_piper(t_command *command)
 			if (!(output_buffer = read_until_eof(newpipe[0])))
 				return (-1);
 			close(newpipe[0]);
-			ft_printf("\n\noutput_buffer: %s\n\n\n", output_buffer);
+//			ft_printf("\n\noutput_buffer: %s\n\n\n", output_buffer);
 		//write to redirection files
 			write_redirections(command, output_buffer);
 			if (pipe(newpipe) == -1)
 				perror("pipe");
-			if (write(newpipe[1], output_buffer, ft_strlen(output_buffer)) == -1)
-				perror("write");
+/*			if (write(newpipe[1], output_buffer, ft_strlen(output_buffer)) == -1)
+				perror("write");*/
+//			close(newpipe[1]);
 		}
 //		if (command->has_input_redirect == 1)
 //		{
@@ -94,7 +95,7 @@ int		recursive_piper(int oldpipe[2])
 	if (g_queue == NULL)
 		return (0);
 	g_queue = craft_command(&new_command, g_queue);
-	print_s_command(&new_command);
+//	print_s_command(&new_command);
 	if (new_command.output_type == PIPE || new_command.has_output_redirect == 1)
 	{
 		if (pipe(newpipe) == -1)
@@ -144,8 +145,9 @@ int		recursive_piper(int oldpipe[2])
 			{
 				if (pipe(newpipe) == -1)
 					perror("pipe");
-				if (write(newpipe[1], output_buffer, ft_strlen(output_buffer)) == -1)
-					perror("write");
+/*				if (write(newpipe[1], output_buffer, ft_strlen(output_buffer)) == -1)
+					perror("write");*/
+//				close(newpipe[1]);
 			}
 		}
 		if (new_command.output_type == PIPE)
