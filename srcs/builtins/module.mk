@@ -9,3 +9,4 @@ SRCS += $(BUILTIN_DIR)/pwd.c
 SRCS += $(BUILTIN_DIR)/env.c
 SRCS += $(BUILTIN_DIR)/export.c
 SRCS += $(BUILTIN_DIR)/unset.c
+SRCS += $(BUILTIN_DIR)/builtins.c

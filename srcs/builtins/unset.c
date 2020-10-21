@@ -6,11 +6,10 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 16:29:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/21 14:58:54 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/21 15:39:59 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_math.h"
 #include "internals.h"
 #include "builtins.h"
 

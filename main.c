@@ -103,10 +103,9 @@ int		main(__unused int argc, __unused char *argv[], char *envp[])
 {
 	if (ft_tab_copy(&g_env, envp) == NULL)
 		return (FAILURE);
-	// env(NULL);
-	// ft_printf("=========================================================\n");
-	unset(argv);
-	env(NULL);
+	int ret = builtins_call(++argv);
+	if (ret != 0)
+		ft_printf("Error\n");
 	return (0);
 }
 
