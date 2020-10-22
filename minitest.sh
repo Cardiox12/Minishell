@@ -80,8 +80,8 @@ function test_command_output_redirects {
 	else
 		printf "bash returns an error\n"
 	fi
-	cat miniout2	
-	cat realout2	
+#	cat miniout2	
+#	cat realout2	
 	if diff miniout1 realout1 >> test_trace && diff miniout2 realout2 >> test_trace && diff miniout3 realout3 >> test_trace
 	then
 		printf "\e[38;5;40msuccess\e[0m\n" | tee -a test_trace
