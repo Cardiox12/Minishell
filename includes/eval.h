@@ -36,6 +36,8 @@ typedef struct	s_command
 	char	output_char;
 }				t_command;
 
+extern char **g_env;
+
 int							*read_redirections_pipe(t_command *command, int *oldpipe[2]);
 int							*read_redirections_nopipe(t_command *command, int pipe[2]);
 int							get_input_redirections(t_command *command, t_queue *queue);

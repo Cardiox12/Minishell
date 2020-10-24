@@ -103,14 +103,7 @@ minishell exits with success
 ===============
 result test for :     echo hello > output2 | grep a < test_files/aaa > output2 > output3
 minishell exits with success
-1d0
-< hello
-[38;5;160mfailure[0m
-
-minishell's output2:
-hello
-
-bash's output2:
+[38;5;40msuccess[0m
 ===============
 
 ===============
