@@ -18,9 +18,9 @@
 #include "ft_stdlib.h"
 #include "ft_stdio.h"
 #include "eval.h"
+#include "builtins.h"
 
-char		**g_env;
-
+char		**g_env = NULL;
 
 char	*get_type(int type)
 {
@@ -63,32 +63,46 @@ void	print_queue(t_queue *head)
 }
 
 /* ajout du tableau d'env dans le main */
-int		main(int ac, char **av, char *env[])
+int		main(__unused int argc, __unused char *argv[], char *envp[])
 {
-	// Here is the entrypoint
-	char *line;
+	if (ft_tab_copy(&g_env, envp) == NULL)
+		return (FAILURE);
 
-	line = NULL;
-	(void)ac;
-	(void)av;
+	char *line = NULL;
 
-	/*copie et allocation du tableau d'env dans une variable globale
-	pour pouvoir l'utiliser et le modifier par la suite */
-	if (!(ft_tab_copy(&g_env, env)))
-		return (-1);
 	while (TRUE)
 	{
 		line = reader();
 		t_queue *tokens = lexer(line);
-		print_queue(tokens);
+
+		if (line == NULL || tokens == NULL)
+			break;
+
+#ifdef MASTER
 		if (parser(line, tokens) != 0)
 		{
 			ft_printf("minishell: parse error\n");
 			return (EXIT_FAILURE);
 		}
 		eval(tokens);
-		if (line == NULL)
-			break;
+#endif
+
+#ifdef LEXER
+		print_queue(tokens);
+#endif
 	}
+
+#ifdef BUILTINS
+
+# include <limits.h>
+# include <string.h>
+
+	int ret = builtins_call(++argv);
+	if (ret != 0)
+		ft_printf("Error\n");
+	return (0);
+#endif
+
+
 	return (0);
 }

@@ -6,13 +6,14 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/12 14:13:34 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/22 22:13:19 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LEXER_H
 # define FT_LEXER_H
 
+# include "ft_math.h"
 # include "ft_strings.h"
 
 typedef struct	s_token

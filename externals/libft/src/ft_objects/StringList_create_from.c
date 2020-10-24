@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   StringList_create_from.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/15 10:57:51 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/17 00:32:20 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/10/16 15:27:45 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/10/20 11:07:34 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "internals.h"
-#include "builtins.h"
+#include "ft_objects.h"
 
-int		cd(char **args)
+void    string_list_create_from(t_string_list **lst, char **arr, size_t size)
 {
-	const size_t 	size = string_arr_len(args);
-	char			cwd[PATH_MAX];
-	char			*path;
+    t_string_list *new;
 
-	if (size == 2)
-		path = args[1];
-	else
-	{
-		getcwd(cwd, PATH_MAX);
-		cd_perror(cwd, ENOENT);
-		return (ENOENT);
-	}
-	if (chdir(path) == -1)
-	{
-		ft_printf("cd: %s: %s\n", strerror(errno), path);
-		return (errno);
-	}
-	return (SUCCESS);
+    new = NULL;
+    string_list_create(&new);
+    if (new == NULL)
+        *lst = NULL;
+    else
+    {
+        new->items = arr;
+        new->length = size;
+        *lst = new;   
+    }
 }

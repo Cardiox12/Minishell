@@ -1,6 +1,4 @@
-#include "../../includes/eval.h"
-
-extern char		**g_env;
+#include "eval.h"
 
 void	error_quit(char *quit_message, char **to_free)
 {

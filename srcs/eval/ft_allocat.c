@@ -1,5 +1,4 @@
-#include "../../includes/eval.h"
-#include "libft/ft_libft.h"
+#include "eval.h"
 
 char	*ft_allocat(char **s1, const char *s2)
 {
