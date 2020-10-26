@@ -1,4 +1,7 @@
 STR_DIR = string
+VAR_DIR = variables
+
+SRCS += $(EVAL_DIR)/$(VAR_DIR)/expand.c
 
 SRCS += $(EVAL_DIR)/dynamic_table.c
 SRCS += $(EVAL_DIR)/eval_master.c

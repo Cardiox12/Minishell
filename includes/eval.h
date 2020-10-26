@@ -65,4 +65,12 @@ char						*ft_strnew(size_t size);
 void						ft_strdel(char **as);
 char						*ft_allocat(char **s1, const char *s2);
 
+/*					EXPAND					*/
+char						*expand(const char *src);
+
+typedef struct {
+	size_t begin;
+	size_t end;
+}		t_slice;
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 13:54:55 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/19 16:17:10 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/25 01:13:38 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,7 @@ int export(char **args)
     }
     g_env = list->items;
     free(list);
+    free(item.key);
+    free(item.value);
     return (SUCCESS);
 }
