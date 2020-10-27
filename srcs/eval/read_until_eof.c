@@ -1,7 +1,7 @@
 #include "../../includes/eval.h"
 extern int test_file;
 
-# define BUF_SIZE 4
+# define BUF_SIZE 100
 
 char	*read_until_eof(int fd)
 {
@@ -11,7 +11,7 @@ char	*read_until_eof(int fd)
 
 //	ft_bzero(buffer, 512);
 	ret = read(fd, buffer, BUF_SIZE);
-	buffer[BUF_SIZE] = '\0';
+	buffer[ret] = '\0';
 	if (!(total_data = ft_strdup(buffer)))
 		return (NULL);
 //	ft_bzero(buffer, BUF_SIZE);
