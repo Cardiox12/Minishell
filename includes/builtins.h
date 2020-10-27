@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 16:57:24 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/21 15:58:22 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/27 07:27:03 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stddef.h>
 # include <errno.h>
 # include <limits.h>
+# include "types.h"
 # include "ft_ctypes.h"
 # include "ft_stdio.h"
 # include "ft_strings.h"
@@ -27,12 +28,6 @@ enum e_builtin_error
 {
     ERR_BUILTIN_NOT_FOUND = 1
 };
-
-typedef struct  s_spair
-{
-    char *key;
-    char *value;
-}               t_spair;
 
 typedef int (*t_builtin_callback)(char**);
 

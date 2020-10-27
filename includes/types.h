@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.c                                         :+:      :+:    :+:   */
+/*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/21 15:40:20 by bbellavi          #+#    #+#             */
+/*   Created: 2020/10/27 07:24:46 by bbellavi          #+#    #+#             */
 /*   Updated: 2020/10/27 08:12:39 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#ifndef FT_TYPES_H
+# define FT_TYPES_H
 
-int builtins_call(char **args)
+# include <stddef.h>
+
+typedef struct  s_spair
 {
-    size_t size;
-    size_t index;
+    char *key;
+    char *value;
+}               t_spair;
 
-    index = 0;
-    if (*args == NULL)
-        return (ERR_BUILTIN_NOT_FOUND);
-    size = ft_strlen(*args);
-    while (index < BUILTINS_SIZE)
-    {
-        if (ft_strncmp(g_builtins[index].func_name, *args, size) == 0)
-            return (g_builtins[index].callback(args));
-        index++;
-    }
-    return (ERR_BUILTIN_NOT_FOUND);
-}
+typedef struct {
+	size_t begin;
+	size_t end;
+}		t_slice;
+
+#endif

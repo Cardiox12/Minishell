@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_variable.c                                    :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/25 21:02:08 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/27 08:08:26 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/10/27 07:16:20 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/10/27 08:46:34 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "eval.h"
+#include "ft_strings.h"
 
-/* 
-**
-** Find variable into env array and returns key/value string.
-**
-*/
-
-char    *find_variable(const char *key)
+char    *ft_strcpy(char *dst, const char *src)
 {
-    const size_t k_size = ft_strlen(key);
-    size_t index;
+    int index;
 
     index = 0;
-    while (g_env[index] != NULL)
+    while (src[index] != '\0')
     {
-        if (ft_strncmp(g_env[index], key, k_size) == 0)
-        {
-            if (g_env[index][k_size] == SYM_EQUAL)
-                return (g_env[index]);
-        }
+        dst[index] = src[index];
         index++;
     }
-    return (NULL);
+    dst[index] = '\0';
+    return (dst);
 }

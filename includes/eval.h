@@ -10,6 +10,8 @@
 # include <fcntl.h>
 # include <string.h>
 # include <errno.h>
+# include "types.h"
+# include "builtins.h"
 # include "ft_strings.h"
 # include "ft_stdio.h"
 # include "lexer.h"
@@ -66,11 +68,8 @@ void						ft_strdel(char **as);
 char						*ft_allocat(char **s1, const char *s2);
 
 /*					EXPAND					*/
-char						*expand(const char *src);
-
-typedef struct {
-	size_t begin;
-	size_t end;
-}		t_slice;
+char	*expand(const char *src);
+char	*find_variable(const char *key);
+t_spair	get_items(const char *e_var);
 
 #endif

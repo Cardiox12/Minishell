@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 09:55:54 by tony              #+#    #+#             */
-/*   Updated: 2020/10/03 05:12:02 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/27 07:18:27 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ char            *ft_join_free_left(char **s1, char *s2);
 t_string_list   *ft_split(char const *s, char c);
 char            *skip_alnum(const char *s);
 char            *skip_whitespaces(const char *s);
+char            *ft_strcpy(char *dst, const char *src);
 
 #endif
