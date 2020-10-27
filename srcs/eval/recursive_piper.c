@@ -14,6 +14,8 @@ int		init_piper(t_command *command)
 
 	if (pipe(newpipe) == -1)
 		perror("pipe");
+	if (ft_strncmp(command->value, "echo", 4) == 0)
+		return (recursive_builtin(newpipe, command));
 	if ((pid = fork()) == -1)
 	{
 		perror("fork");
