@@ -66,8 +66,8 @@ function test_command_output_redirects {
 	real_command=$1
 	real_command=${real_command//output/realout}
 	real_command+=" > realout1"
-	printf "minishell's command: %s\n" "$minicommand"
-	printf "bash's command: %s\n" "$real_command"
+	printf "minishell's command: %s\n" "$minicommand" | tee -a test_trace
+	printf "bash's command: %s\n" "$real_command" | tee -a test_trace
 	if printf "%s\n" "$minicommand" | ./minishell &> /dev/null
 	then
 		printf "minishell exits with success\n" | tee -a test_trace
@@ -111,6 +111,7 @@ function test_command_output_redirects {
 	fi
 	printf "===============\n\n" >> test_trace
 	printf "%s\n" '-----------------'
+#	cat realout3
 	rm miniout1 realout1 miniout2 miniout3 realout2 realout3
 }
 
@@ -118,6 +119,7 @@ commands=("cat makefile" \
 "cat makefile | wc -l" \
 "cat makefile < main.c | grep include" \
 "cat makefile < main.c | grep include | grep inc < includes/eval.h" \
+"grep a < test_files/aaa < test_files/bbb" \
 "cat makefile < main.c | grep include | grep inc < includes/eval.h | wc -l"\
 )
 
@@ -136,6 +138,9 @@ output_commands=("cat makefile > output2 > output3" \
 "grep b < test_files/ccc > output2 | grep a < test_files/aaa < test_files/bbb > output2 > output3" \
 "echo hello > output2 | grep a < test_files/aaa > output2 > output3" \
 "echo hello > output2 > output3" \
+"grep a < test_files/aaa < test_files/bbb > output2 > output3" \
+"grep a < output2 < output3" \
+"echo hello > output2 > output3 | echo bonjour > output3" \
 )
 #printf "%s\n" "cat makefile < main.c | grep include | grep inc < includes/eval.h > miniout1" | ./minishell
 

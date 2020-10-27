@@ -23,6 +23,12 @@ minishell exits with success
 ===============
 
 ===============
+result test for :     grep a < test_files/aaa < test_files/bbb
+minishell exits with success
+[38;5;40msuccess[0m
+===============
+
+===============
 result test for :     cat makefile < main.c | grep include | grep inc < includes/eval.h | wc -l
 minishell exits with success
 [38;5;40msuccess[0m
@@ -30,91 +36,162 @@ minishell exits with success
 
 ===============
 result test for :     cat makefile > output2 > output3
+minishell's command: cat makefile > miniout2 > miniout3 > miniout1
+bash's command: cat makefile > realout2 > realout3 > realout1
 minishell exits with success
 [38;5;40msuccess[0m
 ===============
 
 ===============
 result test for :     cat makefile > output2 > output3 | grep include
+minishell's command: cat makefile > miniout2 > miniout3 | grep include > miniout1
+bash's command: cat makefile > realout2 > realout3 | grep include > realout1
 minishell exits with success
 [38;5;40msuccess[0m
 ===============
 
 ===============
 result test for :     cat makefile > output2 > output3 < main.c | grep include
+minishell's command: cat makefile > miniout2 > miniout3 < main.c | grep include > miniout1
+bash's command: cat makefile > realout2 > realout3 < main.c | grep include > realout1
 minishell exits with success
 [38;5;40msuccess[0m
 ===============
 
 ===============
 result test for :     cat makefile > output2 > output3 < main.c | grep include < main.c
+minishell's command: cat makefile > miniout2 > miniout3 < main.c | grep include < main.c > miniout1
+bash's command: cat makefile > realout2 > realout3 < main.c | grep include < main.c > realout1
 minishell exits with success
 [38;5;40msuccess[0m
 ===============
 
 ===============
 result test for :     cat makefile > output2 < main.c | grep include > output3
+minishell's command: cat makefile > miniout2 < main.c | grep include > miniout3 > miniout1
+bash's command: cat makefile > realout2 < main.c | grep include > realout3 > realout1
 minishell exits with success
 [38;5;40msuccess[0m
 ===============
 
 ===============
 result test for :     cat makefile > output2 < main.c | grep include | grep inc < main.c > output3
+minishell's command: cat makefile > miniout2 < main.c | grep include | grep inc < main.c > miniout3 > miniout1
+bash's command: cat makefile > realout2 < main.c | grep include | grep inc < main.c > realout3 > realout1
 minishell exits with success
 [38;5;40msuccess[0m
 ===============
 
 ===============
 result test for :     cat makefile < main.c | grep include > output2 | grep inc < main.c > output3
+minishell's command: cat makefile < main.c | grep include > miniout2 | grep inc < main.c > miniout3 > miniout1
+bash's command: cat makefile < main.c | grep include > realout2 | grep inc < main.c > realout3 > realout1
 minishell exits with success
 [38;5;40msuccess[0m
 ===============
 
 ===============
 result test for :     cat makefile < main.c | grep include | grep inc < main.c > output3 > output2
+minishell's command: cat makefile < main.c | grep include | grep inc < main.c > miniout3 > miniout2 > miniout1
+bash's command: cat makefile < main.c | grep include | grep inc < main.c > realout3 > realout2 > realout1
 minishell exits with success
 [38;5;40msuccess[0m
 ===============
 
 ===============
 result test for :     cat test_files/aaa | grep a | grep b < test_files/ccc > output3 > output2
+minishell's command: cat test_files/aaa | grep a | grep b < test_files/ccc > miniout3 > miniout2 > miniout1
+bash's command: cat test_files/aaa | grep a | grep b < test_files/ccc > realout3 > realout2 > realout1
 minishell exits with success
 [38;5;40msuccess[0m
 ===============
 
 ===============
 result test for :     cat test_files/aaa | grep a > output3 | grep b < test_files/ccc | grep a < test_files/aaa > output2
+minishell's command: cat test_files/aaa | grep a > miniout3 | grep b < test_files/ccc | grep a < test_files/aaa > miniout2 > miniout1
+bash's command: cat test_files/aaa | grep a > realout3 | grep b < test_files/ccc | grep a < test_files/aaa > realout2 > realout1
 minishell exits with success
 [38;5;40msuccess[0m
 ===============
 
 ===============
 result test for :     cat test_files/aaa | grep a > output3 | grep b < test_files/ccc > output2 | grep a < test_files/aaa < test_files/bbb > output2
+minishell's command: cat test_files/aaa | grep a > miniout3 | grep b < test_files/ccc > miniout2 | grep a < test_files/aaa < test_files/bbb > miniout2 > miniout1
+bash's command: cat test_files/aaa | grep a > realout3 | grep b < test_files/ccc > realout2 | grep a < test_files/aaa < test_files/bbb > realout2 > realout1
 minishell exits with success
-[38;5;40msuccess[0m
+0a1
+> cbcccccccccccccc
+[38;5;160mfailure[0m
+
+minishell's output2:
+
+bash's output2:
+cbcccccccccccccc
 ===============
 
 ===============
 result test for :     grep b < test_files/ccc > output2 | grep a < test_files/aaa < test_files/bbb > output2 > output3
+minishell's command: grep b < test_files/ccc > miniout2 | grep a < test_files/aaa < test_files/bbb > miniout2 > miniout3 > miniout1
+bash's command: grep b < test_files/ccc > realout2 | grep a < test_files/aaa < test_files/bbb > realout2 > realout3 > realout1
+minishell exits with success
+0a1
+> cbcccccccccccccc
+[38;5;160mfailure[0m
+
+minishell's output2:
+
+bash's output2:
+cbcccccccccccccc
+===============
+
+===============
+result test for :     echo hello > output2 | grep a < test_files/aaa > output2 > output3
+minishell's command: echo hello > miniout2 | grep a < test_files/aaa > miniout2 > miniout3 > miniout1
+bash's command: echo hello > realout2 | grep a < test_files/aaa > realout2 > realout3 > realout1
 minishell exits with success
 [38;5;40msuccess[0m
 ===============
 
 ===============
-result test for :     echo hello > output2 | grep a < test_files/aaa > output2 > output3
+result test for :     echo hello > output2 > output3
+minishell's command: echo hello > miniout2 > miniout3 > miniout1
+bash's command: echo hello > realout2 > realout3 > realout1
 minishell exits with success
-1d0
-< hello
+[38;5;40msuccess[0m
+===============
+
+===============
+result test for :     grep a < test_files/aaa < test_files/bbb > output2 > output3
+minishell's command: grep a < test_files/aaa < test_files/bbb > miniout2 > miniout3 > miniout1
+bash's command: grep a < test_files/aaa < test_files/bbb > realout2 > realout3 > realout1
+minishell exits with success
+[38;5;40msuccess[0m
+===============
+
+===============
+result test for :     grep a < output2 < output3
+minishell's command: grep a < miniout2 < miniout3 > miniout1
+bash's command: grep a < realout2 < realout3 > realout1
+minishell exits with success
 [38;5;160mfailure[0m
 
+minishell's output1:
+
+bash's output1:
+
 minishell's output2:
-hello
 
 bash's output2:
+
+minishell's output3:
+
+bash's output3:
 ===============
 
 ===============
-result test for :     echo hello > output2 > output3
+result test for :     echo hello > output2 > output3 | echo bonjour > output3
+minishell's command: echo hello > miniout2 > miniout3 | echo bonjour > miniout3 > miniout1
+bash's command: echo hello > realout2 > realout3 | echo bonjour > realout3 > realout1
 minishell exits with success
 [38;5;40msuccess[0m
 ===============

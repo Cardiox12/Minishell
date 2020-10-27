@@ -1,15 +1,1 @@
-total 1136
--rw-r--r--  1 tlucille  2018_paris    1759 Oct 20 11:36 Makefile
--rw-r--r--  1 tlucille  2018_paris     892 Oct 20 11:36 README.md
--rw-r--r--  1 tlucille  2018_paris      90 Oct 20 11:36 command
-drwxr-xr-x  3 tlucille  2018_paris     102 Oct  5 11:29 externals
-drwxr-xr-x  7 tlucille  2018_paris     238 Oct 20 11:36 includes
--rw-r--r--  1 tlucille  2018_paris  420488 Oct 20 12:06 libft.a
--rw-r--r--  1 tlucille  2018_paris      18 Oct 20 11:36 lldb_inread
--rw-r--r--  1 tlucille  2018_paris    2480 Oct 20 11:36 main.c
--rwxr-xr-x  1 tlucille  2018_paris  136648 Oct 20 12:06 minishell
-drwxr-xr-x  3 tlucille  2018_paris     102 Oct 20 11:45 minishell.dSYM
--rw-r--r--  1 tlucille  2018_paris       0 Oct 20 12:08 output1
--rw-r--r--  1 tlucille  2018_paris       0 Oct 20 12:08 output2
--rw-r--r--  1 tlucille  2018_paris       0 Oct 20 12:08 output3
-drwxr-xr-x  8 tlucille  2018_paris     272 Oct  5 11:33 srcs
+bonjour

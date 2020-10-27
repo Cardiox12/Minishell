@@ -35,7 +35,7 @@ int		init_piper(t_command *command)
 	}
 	else
 	{	
-		wait(&status);
+//		wait(&status);
 	
 		if (command->has_output_redirect == 1)
 		{
@@ -50,6 +50,7 @@ int		init_piper(t_command *command)
 		if ((piper_return = recursive_piper(newpipe)) == -1)
 			return (-1);
 	}
+	wait(&status);
 	return (0);
 }
 
@@ -72,13 +73,13 @@ int		child_exec(t_command *command, int *oldpipe[2], int newpipe[2])
 
 int		parent_exec(int oldpipe[2], int newpipe[2], t_command *command)
 {
-	int		status;
+//	int		status;
 	char	*output_buffer;
 	
 	close(oldpipe[0]);
 	close(oldpipe[1]);
-	if (wait(&status) == -1)
-		perror("wait");
+//	if (wait(&status) == -1)
+//		perror("wait");
 	if (command->has_output_redirect == 1)
 	{
 //		ft_printf("here\n");
@@ -102,7 +103,7 @@ int		parent_exec(int oldpipe[2], int newpipe[2], t_command *command)
 int		recursive_piper(int oldpipe[2])
 {
 	int				newpipe[2];
-//	int				status;
+	int				status;
 	t_command		new_command;
 	pid_t			pid;
 	int				piper_return;
@@ -112,6 +113,8 @@ int		recursive_piper(int oldpipe[2])
 		return (0);
 	g_queue = craft_command(&new_command, g_queue);
 //	print_s_command(&new_command);
+	if (ft_strncmp(new_command.value, "echo", 4) == 0)
+		return (recursive_builtin(oldpipe, &new_command));
 	if (new_command.output_type == PIPE || new_command.has_output_redirect == 1)
 	{
 		if (pipe(newpipe) == -1)
@@ -150,6 +153,8 @@ int		recursive_piper(int oldpipe[2])
 			if ((piper_return = recursive_piper(newpipe)) == -1)
 				return (-1);
 		}
+		if (wait(&status) == -1)
+			perror("wait");
 	}
 	return (0);
 }

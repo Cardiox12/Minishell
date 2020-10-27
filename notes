@@ -1,1 +1,3 @@
 seule la derniere redrection compte
+
+si je veux vraiment imiter le comportement de bash, il faut peut-être eviter les manips inutiles genre lire pipe[0] quand la commande précédente n'a pas eu de redirections. ça pourrait permettre de rendre la partie droite du pipeline plus rapide que la partie gauche dans certains cas, conformément à ce que bash fait. ca vaut surement pas le coup
