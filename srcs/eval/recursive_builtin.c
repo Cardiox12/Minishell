@@ -63,16 +63,16 @@ int		builtin_exec(t_command *command, int *oldpipe[2], int newpipe[2])
 	oldpipe[0]++;
 	oldpipe[0]--;
 	temp_stdout = dup(1);
-	ft_printf("temp stdout : %d\n", temp_stdout);
-	test_file = open("test_output", O_RDWR | O_CREAT | O_TRUNC, 0666);
+//	ft_printf("temp stdout : %d\n", temp_stdout);
+//	test_file = open("test_output", O_RDWR | O_CREAT | O_TRUNC, 0666);
 //	write(test_file, "something", 9);
-	ft_printf("test_file: %d\n", test_file);
+//	ft_printf("test_file: %d\n", test_file);
 //	close((*oldpipe)[1]);
 //	if (command->has_input_redirect)
 //		read_redirections_pipe(command, oldpipe);
 //	dup2((*oldpipe)[0], 0);
 //	close((*oldpipe)[1]);
-	ft_printf("in builtin pre pipe\n");
+//	ft_printf("in builtin pre pipe\n");
 	if (command->output_type == PIPE || command->has_output_redirect == 1) // or redirect
 	{
 //		close(newpipe[0]);
@@ -84,7 +84,7 @@ int		builtin_exec(t_command *command, int *oldpipe[2], int newpipe[2])
 		perror("close");
 //	dup2(1, temp_stdout);
 	dup2(temp_stdout, 1);
-	ft_printf("in builtin post pipe\n");
+//	ft_printf("in builtin post pipe\n");
 	return (0);
 }
 
@@ -108,13 +108,13 @@ int		redirect_handler(int oldpipe[2], int newpipe[2], t_command *command)
 //		write(test_file, "in redirect2", 12);
 		if (!(output_buffer = read_until_eof(newpipe[0])))
 		{
-			write(test_file, "nothing", 7);
-			ft_printf("nothing to read\n");
+//			write(test_file, "nothing", 7);
+//			ft_printf("nothing to read\n");
 			close(test_file);
 			return (-1);
 		}
-		write(test_file, "something", 9);
-		close(test_file);
+//		write(test_file, "something", 9);
+//		close(test_file);
 		write_redirections(command, output_buffer);
 		close(newpipe[0]);
 	}
