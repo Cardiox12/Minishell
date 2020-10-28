@@ -69,7 +69,8 @@ char	*get_path(char *value)
 	if (!(*path_tab))
 	{
 		/* if the binary is not found, craft an error message and return NULL */
-		ft_printf("minishell: command not found: %s\n", value);
+		if (!is_builtin(&value))
+			ft_printf("minishell: command not found: %s\n", value);
 		return (NULL);
 	//	error_quit(value, &value);
 	}

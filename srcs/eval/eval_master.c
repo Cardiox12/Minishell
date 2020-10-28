@@ -50,7 +50,7 @@ t_queue		*craft_command(t_command *command, t_queue *queue)
 		return (NULL);
 	if (!(add_to_dynamic_table(&(command->args), command->value)))
 		return(NULL);
-	if (!(command->path = get_path(command->value)))
+	if (!(command->path = get_path(command->value)) && !(is_builtin(command->args)))
 		return (NULL);
 	queue = queue->next;
 	if (queue == NULL)
