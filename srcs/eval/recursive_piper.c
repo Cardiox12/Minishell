@@ -1,6 +1,5 @@
-#include "../../includes/eval.h"
+#include "eval.h"
 
-extern char		**g_env;
 extern t_queue	*g_queue;
 
 int		init_piper(t_command *command)

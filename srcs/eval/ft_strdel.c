@@ -1,5 +1,4 @@
-#include "../../includes/eval.h"
-#include "libft/ft_libft.h"
+#include "ft_stdlib.h"
 
 void	ft_strdel(char **as)
 {

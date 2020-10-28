@@ -1,11 +1,9 @@
-#include "libft/ft_libft.h"
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <stdio.h>
 #include "eval.h"
 #include "lexer.h"
 
-extern char	**g_env;
 t_queue		*g_queue;
 
 // idee pour gerer pipes recursivement: systématiquement rentrer et utiliser les paramêtres input et output

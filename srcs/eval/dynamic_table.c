@@ -1,5 +1,6 @@
-#include "libft/ft_libft.h"
 #include "eval.h"
+#include "ft_strings.h"
+#include "ft_stdlib.h"
 
 static char	**ft_tab_copy_index(char ***dst, char **src, int index)
 {

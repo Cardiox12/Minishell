@@ -1,4 +1,4 @@
-#include "libft/ft_libft.h"
+#include "ft_stdio.h"
 
 void     ft_printtab(char **tab)
 {

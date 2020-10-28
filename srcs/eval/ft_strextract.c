@@ -1,5 +1,5 @@
-#include "../../includes/eval.h"
-#include "libft/ft_libft.h"
+#include "ft_stdlib.h"
+#include "ft_strings.h"
 
 char		*ft_strextract(char const *s, char c, unsigned int index)
 {

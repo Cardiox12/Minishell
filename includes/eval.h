@@ -36,6 +36,7 @@ typedef struct	s_command
 	char	output_char;
 }				t_command;
 
+<<<<<<< HEAD
 int							recursive_builtin(int oldpipe[2], t_command *command);
 int							*read_redirections_pipe(t_command *command, int *oldpipe[2]);
 int							*read_redirections_nopipe(t_command *command, int pipe[2]);
@@ -63,5 +64,27 @@ char						**ft_split_tab(char const *s, char c);
 char						*ft_strnew(size_t size);
 void						ft_strdel(char **as);
 char						*ft_allocat(char **s1, const char *s2);
+=======
+extern char **g_env;
+
+char	*read_until_eof(int fd);
+int		recursive_piper(int oldpipe[2]);
+int		init_piper(t_command *command);
+t_queue	*craft_command(t_command *command, t_queue *queue);
+int		fork_and_exec(char *exec_path, char **exec_args, t_command *command, char *env[]);
+char	**ft_stabmaker(size_t len);
+void    ft_printtab(char **tab);
+char	**add_to_dynamic_table(char ***table, char *str);
+int		ft_tablen(char **tab);
+char	**ft_tab_copy(char ***dst, char **src);
+int		eval(t_queue *queue);
+void	print_s_command(t_command *command);
+char	*ft_strextract(char const *s, char c, unsigned int index);
+char	*get_path(char *value);
+char	**ft_split_tab(char const *s, char c);
+char	*ft_strnew(size_t size);
+void	ft_strdel(char **as);
+char	*ft_allocat(char **s1, const char *s2);
+>>>>>>> b9816b99eb8e995848c5288eebe0ae9dc35897ae
 
 #endif
