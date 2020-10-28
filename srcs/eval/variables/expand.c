@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 01:10:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/27 08:47:26 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/28 16:48:13 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ char    *replace(const char *src, t_slice slice)
         return (NULL);
 
     ret = glue(src, items.value, slice);
-    ft_printf("%s\n", ret);
     return (ret);
 }
 
@@ -69,17 +68,19 @@ char    *expand(const char *src)
 
     index.x = 0;
     expanded = (char*)src;
-    while (src[index.x] != '\0')
+    while (expanded[index.x] != '\0')
     {
-        if (src[index.x] == SYM_ENV_VAR)
+        if (expanded[index.x] == SYM_ENV_VAR)
         {
             index.y = index.x;
-            while (!ft_isspace(src[index.y]) && src[index.y] != '\0')
+            while (!ft_isspace(expanded[index.y]) && expanded[index.y] != '\0')
                 index.y++;
             expanded = replace(expanded, (t_slice){index.x, index.y});            
+            if (expanded == NULL)
+                return (NULL);
             index.x = index.y;
         }
         index.x++;
     }
-    return (NULL);
+    return (expanded);
 }

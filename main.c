@@ -68,6 +68,8 @@ int		main(__unused int argc, __unused char *argv[], char *envp[])
 	if (ft_tab_copy(&g_env, envp) == NULL)
 		return (FAILURE);
 
-	expand("Hello $USER how are you $LESS");
+	char *s = expand("Hello $USER how are you $LESS");
+
+	ft_printf("%s\n", s);
 	return (0);
 }
