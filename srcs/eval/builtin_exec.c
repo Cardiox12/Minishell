@@ -56,12 +56,10 @@ int test_file;
 	return (0);
 }*/
 
-int		builtin_exec(t_command *command, int *oldpipe[2], int newpipe[2])
+int		simple_builtin_exec(t_command *command, int newpipe[2])
 {
 	int temp_stdout;
 
-	oldpipe[0]++;
-	oldpipe[0]--;
 	temp_stdout = dup(1);
 //	ft_printf("temp stdout : %d\n", temp_stdout);
 //	test_file = open("test_output", O_RDWR | O_CREAT | O_TRUNC, 0666);
@@ -73,15 +71,18 @@ int		builtin_exec(t_command *command, int *oldpipe[2], int newpipe[2])
 //	dup2((*oldpipe)[0], 0);
 //	close((*oldpipe)[1]);
 //	ft_printf("in builtin pre pipe\n");
-	if (command->output_type == PIPE || command->has_output_redirect == 1) // or redirect
+	if (command->has_output_redirect == 1) // or redirect
 	{
 //		close(newpipe[0]);
 		dup2(newpipe[1], 1);
 	}
 //	ft_printf("in builtin post pipe\n");
 	builtins_call(command->args);
-	if (close(newpipe[1]) == -1)
-		perror("close");
+	if (command->has_output_redirect == 1)
+	{
+		if (close(newpipe[1]) == -1)
+			perror("close");
+	}
 //	dup2(1, temp_stdout);
 	dup2(temp_stdout, 1);
 //	ft_printf("in builtin post pipe\n");
@@ -89,7 +90,7 @@ int		builtin_exec(t_command *command, int *oldpipe[2], int newpipe[2])
 }
 
 
-int		redirect_handler(int oldpipe[2], int newpipe[2], t_command *command)
+int		simple_redirect_handler(int newpipe[2], t_command *command)
 {
 //	int		status;
 //	int		test_file;
@@ -97,8 +98,6 @@ int		redirect_handler(int oldpipe[2], int newpipe[2], t_command *command)
 	
 //	test_file = open("test_output", O_RDWR | O_CREAT | O_TRUNC, 0666);
 //	ft_printf("test_file: %d\n", test_file);
-	close(oldpipe[0]);
-	close(oldpipe[1]);
 //	ft_printf("in redirect\n");
 //	write(test_file, "in redirect", 11);
 	if (command->has_output_redirect == 1)
@@ -110,24 +109,22 @@ int		redirect_handler(int oldpipe[2], int newpipe[2], t_command *command)
 		{
 //			write(test_file, "nothing", 7);
 //			ft_printf("nothing to read\n");
-			close(test_file);
+			close(newpipe[0]);
 			return (-1);
 		}
 //		write(test_file, "something", 9);
 //		close(test_file);
 		write_redirections(command, output_buffer);
-		close(newpipe[0]);
 	}
 	return (0);
 }
 
-int		recursive_builtin(int oldpipe[2], t_command *command)
+int		simple_builtin(t_command *command)
 {
 	int				newpipe[2];
 //	int				status;
 //	t_command		new_command;
 //	pid_t			pid;
-	int				piper_return;
 //	int				temp_stdout;
 //	char			*output_buffer;
 
@@ -135,15 +132,15 @@ int		recursive_builtin(int oldpipe[2], t_command *command)
 //		return (0);
 //	g_queue = craft_command(&new_command, g_queue);
 //	print_s_command(&new_command);
-	if (command->output_type == PIPE || command->has_output_redirect == 1)
+	if (command->has_output_redirect == 1)
 	{
 		if (pipe(newpipe) == -1)
 			perror("pipe");
 	}
-	builtin_exec(command, (int**)&oldpipe, newpipe);
-	if (redirect_handler(oldpipe, newpipe, command) == -1)
+	simple_builtin_exec(command, newpipe);
+	if (simple_redirect_handler(newpipe, command) == -1)
 		return (-1);
-	if (command->has_output_redirect && command->output_type == PIPE)
+/*	if (command->has_output_redirect && command->output_type == PIPE)
 	{
 		if (pipe(newpipe) == -1)
 			perror("pipe");
@@ -153,5 +150,6 @@ int		recursive_builtin(int oldpipe[2], t_command *command)
 		if ((piper_return = recursive_piper(newpipe)) == -1)
 			return (-1);
 	}
+	return (0);*/
 	return (0);
 }

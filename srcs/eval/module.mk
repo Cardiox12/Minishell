@@ -19,3 +19,5 @@ SRCS += $(EVAL_DIR)/ft_int_tab_maker.c
 SRCS += $(EVAL_DIR)/get_redirection.c
 SRCS += $(EVAL_DIR)/write_read_redirections.c
 SRCS += $(EVAL_DIR)/recursive_builtin.c
+SRCS += $(EVAL_DIR)/is_builtin.c
+SRCS += $(EVAL_DIR)/builtin_exec.c

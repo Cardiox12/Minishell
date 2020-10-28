@@ -36,6 +36,8 @@ typedef struct	s_command
 	char	output_char;
 }				t_command;
 
+int							simple_builtin(t_command *command);
+int							is_builtin(char **args);
 int							recursive_builtin(int oldpipe[2], t_command *command);
 int							*read_redirections_pipe(t_command *command, int *oldpipe[2]);
 int							*read_redirections_nopipe(t_command *command, int pipe[2]);

@@ -120,7 +120,10 @@ commands=("cat makefile" \
 "cat makefile < main.c | grep include" \
 "cat makefile < main.c | grep include | grep inc < includes/eval.h" \
 "grep a < test_files/aaa < test_files/bbb" \
-"cat makefile < main.c | grep include | grep inc < includes/eval.h | wc -l"\
+"cat makefile < main.c | grep include | grep inc < includes/eval.h | wc -l" \
+"env | grep E | wc -l" \
+"env" \
+"pwd" \
 )
 
 #the commands must include 2 and only 2 output redirections, and they must be named output2 and output3

@@ -35,6 +35,107 @@ minishell exits with success
 ===============
 
 ===============
+result test for :     env | grep E | wc -l
+minishell exits with success
+[38;5;40msuccess[0m
+===============
+
+===============
+result test for :     env
+minishell exits with success
+2d1
+< TERM=xterm-256color
+3a3
+> TERM=xterm-256color
+14a15
+> _=/usr/bin/env
+20,21d20
+< SHLVL=2
+< HOME=/Users/macbook
+22a22,23
+> HOME=/Users/macbook
+> SHLVL=3
+25d25
+< LESS=-FRX
+26a27
+> LESS=-FRX
+30d30
+< _=./minishell
+[38;5;160mfailure[0m
+
+minishell's output:
+TERM_PROGRAM=iTerm.app
+TERM=xterm-256color
+SHELL=/bin/zsh
+TMPDIR=/var/folders/hb/b1_5sq910njgntc2ftjq6np00000gn/T/
+Apple_PubSub_Socket_Render=/private/tmp/com.apple.launchd.VecZh0McHi/Render
+TERM_PROGRAM_VERSION=3.3.9
+TERM_SESSION_ID=w0t0p0:AF735226-966A-47F7-A3F2-1EC6BB676EC6
+ZSH=/Users/macbook/.oh-my-zsh
+USER=macbook
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.w3qzVz1vp4/Listeners
+__CF_USER_TEXT_ENCODING=0x0:0:1
+PAGER=less
+LSCOLORS=Gxfxcxdxbxegedabagacad
+PATH=/usr/local/opt/ruby/bin:/usr/local/mysql/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Applications/Wireshark.app/Contents/MacOS
+PWD=/Users/macbook/42/42cursus/minishell/Minishell
+LANG=fr_FR.UTF-8
+ITERM_PROFILE=Default
+XPC_FLAGS=0x0
+XPC_SERVICE_NAME=0
+SHLVL=2
+HOME=/Users/macbook
+COLORFGBG=7;0
+LC_TERMINAL_VERSION=3.3.9
+ITERM_SESSION_ID=w0t0p0:AF735226-966A-47F7-A3F2-1EC6BB676EC6
+LESS=-FRX
+LOGNAME=macbook
+LC_CTYPE=fr_FR.UTF-8
+LC_TERMINAL=iTerm2
+COLORTERM=truecolor
+_=./minishell
+
+eval's output:
+
+TERM_PROGRAM=iTerm.app
+SHELL=/bin/zsh
+TERM=xterm-256color
+TMPDIR=/var/folders/hb/b1_5sq910njgntc2ftjq6np00000gn/T/
+Apple_PubSub_Socket_Render=/private/tmp/com.apple.launchd.VecZh0McHi/Render
+TERM_PROGRAM_VERSION=3.3.9
+TERM_SESSION_ID=w0t0p0:AF735226-966A-47F7-A3F2-1EC6BB676EC6
+ZSH=/Users/macbook/.oh-my-zsh
+USER=macbook
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.w3qzVz1vp4/Listeners
+__CF_USER_TEXT_ENCODING=0x0:0:1
+PAGER=less
+LSCOLORS=Gxfxcxdxbxegedabagacad
+PATH=/usr/local/opt/ruby/bin:/usr/local/mysql/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Applications/Wireshark.app/Contents/MacOS
+_=/usr/bin/env
+PWD=/Users/macbook/42/42cursus/minishell/Minishell
+LANG=fr_FR.UTF-8
+ITERM_PROFILE=Default
+XPC_FLAGS=0x0
+XPC_SERVICE_NAME=0
+COLORFGBG=7;0
+HOME=/Users/macbook
+SHLVL=3
+LC_TERMINAL_VERSION=3.3.9
+ITERM_SESSION_ID=w0t0p0:AF735226-966A-47F7-A3F2-1EC6BB676EC6
+LOGNAME=macbook
+LESS=-FRX
+LC_CTYPE=fr_FR.UTF-8
+LC_TERMINAL=iTerm2
+COLORTERM=truecolor
+===============
+
+===============
+result test for :     pwd
+minishell exits with success
+[38;5;40msuccess[0m
+===============
+
+===============
 result test for :     cat makefile > output2 > output3
 minishell's command: cat makefile > miniout2 > miniout3 > miniout1
 bash's command: cat makefile > realout2 > realout3 > realout1
@@ -149,14 +250,7 @@ result test for :     echo hello > output2 | grep a < test_files/aaa > output2 >
 minishell's command: echo hello > miniout2 | grep a < test_files/aaa > miniout2 > miniout3 > miniout1
 bash's command: echo hello > realout2 | grep a < test_files/aaa > realout2 > realout3 > realout1
 minishell exits with success
-0a1
-> hello
-[38;5;160mfailure[0m
-
-minishell's output2:
-
-bash's output2:
-hello
+[38;5;40msuccess[0m
 ===============
 
 ===============

@@ -14,7 +14,7 @@ int		init_piper(t_command *command)
 
 	if (pipe(newpipe) == -1)
 		perror("pipe");
-	if (ft_strncmp(command->value, "echo", 4) == 0)
+	if (is_builtin(command->args))
 		return (recursive_builtin(newpipe, command));
 	if ((pid = fork()) == -1)
 	{
@@ -115,7 +115,7 @@ int		recursive_piper(int oldpipe[2])
 		return (0);
 	g_queue = craft_command(&new_command, g_queue);
 //	print_s_command(&new_command);
-	if (ft_strncmp(new_command.value, "echo", 4) == 0)
+	if (is_builtin(new_command.args))
 		return (recursive_builtin(oldpipe, &new_command));
 	if (new_command.output_type == PIPE || new_command.has_output_redirect == 1)
 	{
