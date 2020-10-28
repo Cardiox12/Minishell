@@ -1,4 +1,5 @@
 #include "eval.h"
+#include "builtins.h"
 
 extern t_queue	*g_queue;
 

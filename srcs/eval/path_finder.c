@@ -1,4 +1,5 @@
 #include "eval.h"
+#include "builtins.h"
 
 void	error_quit(char *quit_message, char **to_free)
 {

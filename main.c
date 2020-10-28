@@ -18,8 +18,9 @@
 #include "ft_stdlib.h"
 #include "ft_stdio.h"
 #include "eval.h"
+#include "builtins.h"
 
-char		**g_env = NULL;
+//char		**g_env = NULL;
 
 char	*get_type(int type)
 {
@@ -61,7 +62,6 @@ void	print_queue(t_queue *head)
 	ft_printf("=======================================\n");
 }
 
-#ifdef MASTER
 /* ajout du tableau d'env dans le main */
 int		main(int ac, char **av, char *env[])
 {
@@ -92,22 +92,3 @@ int		main(int ac, char **av, char *env[])
 	}
 	return (0);
 }
-#endif
-
-#ifdef BUILTINS
-
-# include "builtins.h"
-# include <limits.h>
-# include <string.h>
-
-int		main(__unused int argc, __unused char *argv[], char *envp[])
-{
-	if (ft_tab_copy(&g_env, envp) == NULL)
-		return (FAILURE);
-	int ret = builtins_call(++argv);
-	if (ret != 0)
-		ft_printf("Error\n");
-	return (0);
-}
-
-#endif

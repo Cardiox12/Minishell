@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #ifndef FT_INTERNALS_H
-# define FT_INTERNALS_h
+# define FT_INTERNALS_H
 
 # include <stddef.h>
 # include <errno.h>

@@ -23,6 +23,8 @@
 # include "ft_objects.h"
 # include "eval.h"
 
+char **g_env;
+
 enum e_builtin_error
 {
     ERR_BUILTIN_NOT_FOUND = 1
