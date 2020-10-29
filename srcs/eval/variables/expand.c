@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 01:10:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/28 16:48:13 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/29 16:41:41 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,19 @@ static char *glue(const char *src, const char *value, t_slice slice)
 
 char    *replace(const char *src, t_slice slice)
 {
-    char *key;
-    char *ret;
+    char    *value;
+    char    *key;
+    char    *ret;
+    char    *e_var;
 
-    // Find the variable to expand
     if (slice.begin > slice.end)
         return (NULL);
     key = ft_strndup(&src[slice.begin + 1], slice.end - (slice.begin + 1));
     if (key == NULL)
         return (NULL);
-    
-    char *e_var = find_variable(key);
-    t_spair items = get_items(e_var);
-
-    if (items.key == NULL || items.value == NULL)
-        return (NULL);
-
-    ret = glue(src, items.value, slice);
+    e_var = find_variable(key);
+    value = get_value(e_var);
+    ret = glue(src, value, slice);
     return (ret);
 }
 

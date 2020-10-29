@@ -6,11 +6,19 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 06:57:07 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/27 07:20:22 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/29 16:30:29 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "eval.h"
+
+/*
+**
+** Get_items :
+**  Retrieve items from env variable.
+**  It returns NULL for both items if fail to alloc.
+**
+*/
 
 t_spair get_items(const char *e_var)
 {
