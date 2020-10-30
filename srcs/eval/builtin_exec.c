@@ -1,9 +1,7 @@
 #include "../../includes/eval.h"
 #include "builtins.h"
 
-extern char		**g_env;
 extern t_queue	*g_queue;
-int test_file;
 
 /*int		init_piper(t_command *command)
 {

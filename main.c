@@ -20,7 +20,7 @@
 #include "eval.h"
 #include "builtins.h"
 
-//char		**g_env = NULL;
+char		**g_env = NULL;
 
 char	*get_type(int type)
 {
@@ -80,7 +80,6 @@ int		main(int ac, char **av, char *env[])
 	{
 		line = reader();
 		t_queue *tokens = lexer(line);
-		print_queue(tokens);
 		if (parser(line, tokens) != 0)
 		{
 			ft_printf("minishell: parse error\n");
