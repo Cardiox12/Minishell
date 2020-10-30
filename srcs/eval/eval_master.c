@@ -43,6 +43,7 @@ t_queue		*craft_command(t_command *command, t_queue *queue)
 {
 	int	count; // those ints are used to see if some symbols are incorrectly assmilated
 	int	diff;
+	char *expanded;
 
 	command->has_output_redirect = 0; // a intégrer dans une future fonction d'initialisation
 	command->has_input_redirect = 0; // a intégrer dans une future fonction d'initialisation
@@ -70,8 +71,18 @@ t_queue		*craft_command(t_command *command, t_queue *queue)
 		{
 			/* ICI tu peux ajouter ta fonction expand qui agira sur queue->token.value et après intégrer le résultat dans 
 			le tableau dynamique avec la fonction ci-dessous: */
-			if (!(add_to_dynamic_table(&(command->args), queue->token.value))) // du coup ici il faut remplacer queue->toke.value par le résultat d'expand
-				return(NULL);
+			if (queue->token.type == STRING || queue->token.type == ARGUMENT)
+			{
+				if (!(expanded = expand(queue->token.value)))
+					return (NULL);
+				if (!(add_to_dynamic_table(&(command->args), expanded))) // du coup ici il faut remplacer queue->toke.value par le résultat d'expand
+					return(NULL);
+			}
+			else
+			{
+				if (!(add_to_dynamic_table(&(command->args), queue->token.value))) // du coup ici il faut remplacer queue->toke.value par le résultat d'expand
+					return(NULL);
+			}
 			queue = queue->next;
 			count++;
 		}

@@ -126,6 +126,27 @@ commands=("cat makefile" \
 "pwd" \
 )
 
+expand_commands=('echo "$USER"' \
+'echo "$I_DO_NOT_EXISTS"' \
+'echo "$foo"' \
+'echo "Hello $USER"' \
+'echo "Im in $HOME"' \
+'echo "Hello $USER !"' \
+'echo "Im in $HOME !"' \
+'echo "Hello $USER long string after"' \
+'echo "Im in $HOME long string after"' \
+'echo "This variable does not exists $I_DO_NOT_EXISTS"' \
+'echo "This variable does not exists $foo"' \
+'echo "This variable does not exists $I_DO_NOT_EXISTS long string after"' \
+'echo "This variable does not exists $foo long string after"' \
+'echo "$USER, $HOME"' \
+'echo "Hello $USER, you are in $HOME"' \
+'echo "Hello $USER, you are in $HOME long string after"' \
+'echo "$foo, $HOME"' \
+'echo "$HOME, $foo"' \
+'echo "Hello $USER, this variable does not exists $foo"'\
+)
+
 #the commands must include 2 and only 2 output redirections, and they must be named output2 and output3
 output_commands=("cat makefile > output2 > output3" \
 "cat makefile > output2 > output3 | grep include" \
@@ -157,4 +178,8 @@ done
 
 for command in "${output_commands[@]}"
 	do test_command_output_redirects "${command}"
+done
+
+for command in "${expand_commands[@]}"
+	do test_command "${command}"
 done

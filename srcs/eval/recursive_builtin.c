@@ -103,8 +103,8 @@ int		redirect_handler(int oldpipe[2], int newpipe[2], t_command *command)
 //	write(test_file, "in redirect", 11);
 	if (command->has_output_redirect == 1)
 	{
-		if (close(newpipe[1]) == -1)
-			perror("close");
+//		if (close(newpipe[1]) == -1)
+//			perror("close");
 //		write(test_file, "in redirect2", 12);
 		if (!(output_buffer = read_until_eof(newpipe[0])))
 		{
