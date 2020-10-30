@@ -52,7 +52,7 @@ int export(char **args);
 int unset(char **args);
 int builtins_call(char **args);
 
-# define __unused __attribute__((unused))
+/*# define __unused __attribute__((unused))*/
 # define RAW_ARGUMENT "-n"
 # define HOME "~"
 

@@ -110,7 +110,7 @@ int		redirect_handler(int oldpipe[2], int newpipe[2], t_command *command)
 		{
 //			write(test_file, "nothing", 7);
 //			ft_printf("nothing to read\n");
-			close(test_file);
+//			close(test_file);
 			return (-1);
 		}
 //		write(test_file, "something", 9);

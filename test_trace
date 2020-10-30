@@ -47,19 +47,19 @@ minishell exits with success
 < TERM=xterm-256color
 3a3
 > TERM=xterm-256color
-14a15
+13a14
 > _=/usr/bin/env
-20,21d20
+19,20d19
 < SHLVL=2
-< HOME=/Users/macbook
-22a22,23
-> HOME=/Users/macbook
+< HOME=/Users/theophile
+21a21,22
+> HOME=/Users/theophile
 > SHLVL=3
-25d25
-< LESS=-FRX
-26a27
-> LESS=-FRX
-30d30
+24d24
+< LESS=-R
+25a26
+> LESS=-R
+28d28
 < _=./minishell
 [38;5;160mfailure[0m
 
@@ -67,30 +67,28 @@ minishell's output:
 TERM_PROGRAM=iTerm.app
 TERM=xterm-256color
 SHELL=/bin/zsh
-TMPDIR=/var/folders/hb/b1_5sq910njgntc2ftjq6np00000gn/T/
-Apple_PubSub_Socket_Render=/private/tmp/com.apple.launchd.VecZh0McHi/Render
-TERM_PROGRAM_VERSION=3.3.9
-TERM_SESSION_ID=w0t0p0:AF735226-966A-47F7-A3F2-1EC6BB676EC6
-ZSH=/Users/macbook/.oh-my-zsh
-USER=macbook
-SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.w3qzVz1vp4/Listeners
+TMPDIR=/var/folders/ts/zd8fpfm54q9bgw4f09r5tf780000gn/T/
+TERM_PROGRAM_VERSION=3.3.12
+TERM_SESSION_ID=w1t0p0:85EEC790-C734-4FC9-84B1-1A8FC96A5AC1
+ZSH=/Users/theophile/.oh-my-zsh
+USER=theophile
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.SKNQDJlb5I/Listeners
 __CF_USER_TEXT_ENCODING=0x0:0:1
 PAGER=less
 LSCOLORS=Gxfxcxdxbxegedabagacad
-PATH=/usr/local/opt/ruby/bin:/usr/local/mysql/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Applications/Wireshark.app/Contents/MacOS
-PWD=/Users/macbook/42/42cursus/minishell/Minishell
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
+PWD=/Users/theophile/42/minishell/Minishell
 LANG=fr_FR.UTF-8
 ITERM_PROFILE=Default
 XPC_FLAGS=0x0
 XPC_SERVICE_NAME=0
 SHLVL=2
-HOME=/Users/macbook
+HOME=/Users/theophile
 COLORFGBG=7;0
-LC_TERMINAL_VERSION=3.3.9
-ITERM_SESSION_ID=w0t0p0:AF735226-966A-47F7-A3F2-1EC6BB676EC6
-LESS=-FRX
-LOGNAME=macbook
-LC_CTYPE=fr_FR.UTF-8
+LC_TERMINAL_VERSION=3.3.12
+ITERM_SESSION_ID=w1t0p0:85EEC790-C734-4FC9-84B1-1A8FC96A5AC1
+LESS=-R
+LOGNAME=theophile
 LC_TERMINAL=iTerm2
 COLORTERM=truecolor
 _=./minishell
@@ -100,31 +98,29 @@ eval's output:
 TERM_PROGRAM=iTerm.app
 SHELL=/bin/zsh
 TERM=xterm-256color
-TMPDIR=/var/folders/hb/b1_5sq910njgntc2ftjq6np00000gn/T/
-Apple_PubSub_Socket_Render=/private/tmp/com.apple.launchd.VecZh0McHi/Render
-TERM_PROGRAM_VERSION=3.3.9
-TERM_SESSION_ID=w0t0p0:AF735226-966A-47F7-A3F2-1EC6BB676EC6
-ZSH=/Users/macbook/.oh-my-zsh
-USER=macbook
-SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.w3qzVz1vp4/Listeners
+TMPDIR=/var/folders/ts/zd8fpfm54q9bgw4f09r5tf780000gn/T/
+TERM_PROGRAM_VERSION=3.3.12
+TERM_SESSION_ID=w1t0p0:85EEC790-C734-4FC9-84B1-1A8FC96A5AC1
+ZSH=/Users/theophile/.oh-my-zsh
+USER=theophile
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.SKNQDJlb5I/Listeners
 __CF_USER_TEXT_ENCODING=0x0:0:1
 PAGER=less
 LSCOLORS=Gxfxcxdxbxegedabagacad
-PATH=/usr/local/opt/ruby/bin:/usr/local/mysql/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Applications/Wireshark.app/Contents/MacOS
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
 _=/usr/bin/env
-PWD=/Users/macbook/42/42cursus/minishell/Minishell
+PWD=/Users/theophile/42/minishell/Minishell
 LANG=fr_FR.UTF-8
 ITERM_PROFILE=Default
 XPC_FLAGS=0x0
 XPC_SERVICE_NAME=0
 COLORFGBG=7;0
-HOME=/Users/macbook
+HOME=/Users/theophile
 SHLVL=3
-LC_TERMINAL_VERSION=3.3.9
-ITERM_SESSION_ID=w0t0p0:AF735226-966A-47F7-A3F2-1EC6BB676EC6
-LOGNAME=macbook
-LESS=-FRX
-LC_CTYPE=fr_FR.UTF-8
+LC_TERMINAL_VERSION=3.3.12
+ITERM_SESSION_ID=w1t0p0:85EEC790-C734-4FC9-84B1-1A8FC96A5AC1
+LOGNAME=theophile
+LESS=-R
 LC_TERMINAL=iTerm2
 COLORTERM=truecolor
 ===============
