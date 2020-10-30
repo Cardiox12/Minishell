@@ -18,9 +18,9 @@
 #include "ft_stdlib.h"
 #include "ft_stdio.h"
 #include "eval.h"
+#include "builtins.h"
 
-char		**g_env;
-
+//char		**g_env = NULL;
 
 char	*get_type(int type)
 {

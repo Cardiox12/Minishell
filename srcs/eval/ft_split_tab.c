@@ -1,5 +1,4 @@
-#include "../../includes/eval.h"
-#include "libft/ft_libft.h"
+#include "eval.h"
 
 static unsigned int	word_counter(char const *str, char c)
 {

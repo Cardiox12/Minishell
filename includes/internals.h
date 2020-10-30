@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   internals.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/15 10:57:51 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/17 00:32:20 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/10/15 12:22:07 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/10/16 15:38:19 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "internals.h"
-#include "builtins.h"
+#ifndef FT_INTERNALS_H
+# define FT_INTERNALS_H
 
-int		cd(char **args)
-{
-	const size_t 	size = string_arr_len(args);
-	char			cwd[PATH_MAX];
-	char			*path;
+# include <stddef.h>
+# include <errno.h>
+# include <string.h>
+# include "ft_stdio.h"
 
-	if (size == 2)
-		path = args[1];
-	else
-	{
-		getcwd(cwd, PATH_MAX);
-		cd_perror(cwd, ENOENT);
-		return (ENOENT);
-	}
-	if (chdir(path) == -1)
-	{
-		ft_printf("cd: %s: %s\n", strerror(errno), path);
-		return (errno);
-	}
-	return (SUCCESS);
-}
+size_t  string_arr_len(char **array);
+void    cd_perror(char *path, int error);
+
+#endif

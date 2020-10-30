@@ -1,5 +1,4 @@
-#include "../../includes/eval.h"
-#include "libft/ft_libft.h"
+#include "ft_stdlib.h"
 
 char	*ft_strnew(size_t size)
 {

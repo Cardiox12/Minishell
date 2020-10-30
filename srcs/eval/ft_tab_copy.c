@@ -1,5 +1,5 @@
-#include "../../includes/eval.h"
-#include "libft/ft_libft.h"
+#include <stddef.h>
+#include "eval.h"
 
 char	**ft_tab_copy(char ***dst, char **src)
 {

@@ -1,11 +1,9 @@
-#include "libft/ft_libft.h"
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <stdio.h>
 #include "eval.h"
 #include "lexer.h"
 
-extern char	**g_env;
 t_queue		*g_queue;
 
 // idee pour gerer pipes recursivement: systématiquement rentrer et utiliser les paramêtres input et output
@@ -37,6 +35,8 @@ int		is_output(t_queue *queue)
 		return (0);
 }
 
+// idee opti: rajouter is_builtin directement dans craft command
+
 t_queue		*craft_command(t_command *command, t_queue *queue)
 {
 	int	count; // those ints are used to see if some symbols are incorrectly assmilated
@@ -50,9 +50,16 @@ t_queue		*craft_command(t_command *command, t_queue *queue)
 		return (NULL);
 	if (!(add_to_dynamic_table(&(command->args), command->value)))
 		return(NULL);
-	if (!(command->path = get_path(command->value)))
+	if (!(command->path = get_path(command->value)) && !(is_builtin(command->args)))
 		return (NULL);
 	queue = queue->next;
+	if (queue == NULL)
+		return (queue);
+	if (queue->token.type == PIPE)
+	{
+		command->output_type = PIPE;
+		return(queue->next);
+	}
 	count = 0;
 	while (queue != NULL && queue->token.type != PIPE)
 	{
@@ -113,14 +120,19 @@ int		eval(t_queue *queue)
 		if (g_queue->token.type == COMMAND)
 		{
 			g_queue = craft_command(&command, g_queue);
-//			print_s_command(&command);
+			print_s_command(&command);
 			if (command.output_type == PIPE)
 			{
 				if ((piper_return = init_piper(&command)) == -1)
 					return (-1);
 			}
-			else  
-				fork_and_exec(&command);
+			else
+			{
+				if (is_builtin(command.args))
+					simple_builtin(&command);
+				else
+					fork_and_exec(&command);
+			}
 			if (g_queue == NULL)
 				return (0);
 			else
