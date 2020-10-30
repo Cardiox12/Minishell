@@ -37,6 +37,8 @@ int		is_output(t_queue *queue)
 
 // idee opti: rajouter is_builtin directement dans craft command
 
+
+/* POUR TONY: dans cette commande, tu peux ajouter une ta fonction expand*/
 t_queue		*craft_command(t_command *command, t_queue *queue)
 {
 	int	count; // those ints are used to see if some symbols are incorrectly assmilated
@@ -66,7 +68,9 @@ t_queue		*craft_command(t_command *command, t_queue *queue)
 		diff = count;
 		while (queue && is_arg(queue))
 		{
-			if (!(add_to_dynamic_table(&(command->args), queue->token.value)))
+			/* ICI tu peux ajouter ta fonction expand qui agira sur queue->token.value et après intégrer le résultat dans 
+			le tableau dynamique avec la fonction ci-dessous: */
+			if (!(add_to_dynamic_table(&(command->args), queue->token.value))) // du coup ici il faut remplacer queue->toke.value par le résultat d'expand
 				return(NULL);
 			queue = queue->next;
 			count++;
