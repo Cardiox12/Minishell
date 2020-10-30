@@ -6,14 +6,14 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 16:29:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/21 15:39:59 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/27 06:39:15 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "internals.h"
 #include "builtins.h"
 
-static int find_variable(const char *name, t_string_list *sl_env)
+static int find_variable_by_name(const char *name, t_string_list *sl_env)
 {
     size_t index;
     size_t size;
@@ -47,7 +47,7 @@ int unset(char **args)
     index = 1;
     while (args[index] != NULL)
     {
-        found = find_variable(args[index], copy);
+        found = find_variable_by_name(args[index], copy);
         if (found != NOT_FOUND)
         {
             string_list_iter(copy, putstr);

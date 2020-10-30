@@ -246,7 +246,14 @@ result test for :     echo hello > output2 | grep a < test_files/aaa > output2 >
 minishell's command: echo hello > miniout2 | grep a < test_files/aaa > miniout2 > miniout3 > miniout1
 bash's command: echo hello > realout2 | grep a < test_files/aaa > realout2 > realout3 > realout1
 minishell exits with success
-[38;5;40msuccess[0m
+0a1
+> hello
+[38;5;160mfailure[0m
+
+minishell's output2:
+
+bash's output2:
+hello
 ===============
 
 ===============

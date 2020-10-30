@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/20 11:42:47 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/22 22:15:02 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,38 @@ static int get_env_variable(t_queue **head, const char *input, size_t index)
 
 static int get_string(t_queue **head, const char *input, size_t index)
 {
-    const size_t    previous = index;
     const int       quote = input[index];
+	t_vec			quote_n;
+    size_t			previous;
     int             type;
 
     if (quote == SYM_SIMPLE_QUOTE)
+	{
         type = RAW_STRING;
+	}
     else
+	{
         type = STRING;
-    ++index;
-    while (input[index] != '\0' && !ft_isquote(input[index]))
+	}
+	quote_n = (t_vec){0, 0};
+    while (input[index] != '\0' && input[index] == quote)
+	{
         index++;
+		quote_n.x++;
+	}
+	previous = index;
+	while (input[index] != '\0' && input[index] != quote)
+		index++;
     enqueue(head, (t_token){
         .type = type,
-        .value = ft_strndup(&input[previous], ++index - previous),
+        .value = ft_strndup(&input[previous], index - previous),
         .index = previous
     });
+	while (input[index] != '\0' && input[index] == quote && quote_n.y < quote_n.x)
+	{
+		index++;
+		quote_n.y++;
+	}
     return (index);
 }
 

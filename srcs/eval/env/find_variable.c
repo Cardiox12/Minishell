@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.c                                         :+:      :+:    :+:   */
+/*   find_variable.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/21 15:40:20 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/27 08:12:39 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/10/25 21:02:08 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/10/27 08:08:26 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "eval.h"
 
-int builtins_call(char **args)
+/* 
+**
+** Find variable into env array and returns key/value string.
+**
+*/
+
+char    *find_variable(const char *key)
 {
-    size_t size;
+    const size_t k_size = ft_strlen(key);
     size_t index;
 
     index = 0;
-    if (*args == NULL)
-        return (ERR_BUILTIN_NOT_FOUND);
-    size = ft_strlen(*args);
-    while (index < BUILTINS_SIZE)
+    while (g_env[index] != NULL)
     {
-        if (ft_strncmp(g_builtins[index].func_name, *args, size) == 0)
-            return (g_builtins[index].callback(args));
+        if (ft_strncmp(g_env[index], key, k_size) == 0)
+        {
+            if (g_env[index][k_size] == SYM_EQUAL)
+                return (g_env[index]);
+        }
         index++;
     }
-    return (ERR_BUILTIN_NOT_FOUND);
+    return (NULL);
 }

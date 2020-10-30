@@ -6,12 +6,12 @@
 #    By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/29 01:50:06 by tlucille          #+#    #+#              #
-#    Updated: 2020/10/17 00:44:09 by bbellavi         ###   ########.fr        #
+#    Updated: 2020/10/25 01:21:40 by bbellavi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra -g -D BUILTINS
+CFLAGS		= -Wall -Werror -Wextra -g -D LEXER
 
 EXT_DIR		= externals
 INC_DIR		= includes

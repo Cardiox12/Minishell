@@ -10,6 +10,8 @@
 # include <fcntl.h>
 # include <string.h>
 # include <errno.h>
+# include "types.h"
+# include "builtins.h"
 # include "ft_strings.h"
 # include "ft_stdio.h"
 # include "lexer.h"
@@ -35,6 +37,9 @@ typedef struct	s_command
 	int		pipefd[2];
 	char	output_char;
 }				t_command;
+
+extern char **g_env;
+
 
 int							simple_builtin(t_command *command);
 int							is_builtin(char **args);
@@ -65,5 +70,11 @@ char						**ft_split_tab(char const *s, char c);
 char						*ft_strnew(size_t size);
 void						ft_strdel(char **as);
 char						*ft_allocat(char **s1, const char *s2);
+
+/*					EXPAND					*/
+char	*expand(const char *src);
+char	*find_variable(const char *key);
+t_spair	get_items(const char *e_var);
+char    *get_value(const char *key);
 
 #endif

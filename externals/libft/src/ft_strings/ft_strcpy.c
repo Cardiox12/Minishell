@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.c                                         :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/21 15:40:20 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/27 08:12:39 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/10/27 07:16:20 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/10/27 08:46:34 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "ft_strings.h"
 
-int builtins_call(char **args)
+char    *ft_strcpy(char *dst, const char *src)
 {
-    size_t size;
-    size_t index;
+    int index;
 
     index = 0;
-    if (*args == NULL)
-        return (ERR_BUILTIN_NOT_FOUND);
-    size = ft_strlen(*args);
-    while (index < BUILTINS_SIZE)
+    while (src[index] != '\0')
     {
-        if (ft_strncmp(g_builtins[index].func_name, *args, size) == 0)
-            return (g_builtins[index].callback(args));
+        dst[index] = src[index];
         index++;
     }
-    return (ERR_BUILTIN_NOT_FOUND);
+    dst[index] = '\0';
+    return (dst);
 }
