@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 01:10:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/29 16:41:41 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/30 18:40:24 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 /*
 ** Expand variables into src.
 */
+
+static int  is_valid_var_sep(int c)
+{
+    return (ft_isalnum(c) || c == '_');
+}
 
 static char *glue(const char *src, const char *value, t_slice slice)
 {
@@ -68,8 +73,8 @@ char    *expand(const char *src)
     {
         if (expanded[index.x] == SYM_ENV_VAR)
         {
-            index.y = index.x;
-            while (!ft_isspace(expanded[index.y]) && expanded[index.y] != '\0')
+            index.y = index.x + 1;
+            while (is_valid_var_sep(expanded[index.y]) && expanded[index.y] != '\0')
                 index.y++;
             expanded = replace(expanded, (t_slice){index.x, index.y});            
             if (expanded == NULL)
