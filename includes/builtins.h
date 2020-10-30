@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 16:57:24 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/30 17:57:26 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/30 18:32:22 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int export(char **args);
 int unset(char **args);
 int builtins_call(char **args);
 
-# define __unused __attribute__((unused))
 # define RAW_ARGUMENT "-n"
 # define HOME "~"
 

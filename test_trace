@@ -43,86 +43,156 @@ minishell exits with success
 ===============
 result test for :     env
 minishell exits with success
-2d1
-< TERM=xterm-256color
-3a3
-> TERM=xterm-256color
-13a14
+17d16
+< XDG_SESSION_DESKTOP=gnome
+18a18
+> XDG_SESSION_DESKTOP=gnome
+20a21
 > _=/usr/bin/env
-18d18
-< SHLVL=2
-19a20
-> SHLVL=3
-21d21
-< LESS=-R
-22a23
-> LESS=-R
-24d24
-< VSCODE_GIT_ASKPASS_NODE=/Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Renderer).app/Contents/MacOS/Code Helper (Renderer)
-25a26
-> VSCODE_GIT_ASKPASS_NODE=/Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Renderer).app/Contents/MacOS/Code Helper (Renderer)
-27d27
+28d28
+< LANG=en_US.UTF-8
+29a30
+> LANG=en_US.UTF-8
+37d37
+< TERM=xterm-256color
+38a39
+> TERM=xterm-256color
+42c43
+< SHLVL=3
+---
+> SHLVL=4
+62d62
 < _=./minishell
 [38;5;160mfailure[0m
 
 minishell's output:
-TERM_PROGRAM=vscode
-TERM=xterm-256color
-SHELL=/bin/zsh
-TMPDIR=/var/folders/ts/zd8fpfm54q9bgw4f09r5tf780000gn/T/
-TERM_PROGRAM_VERSION=1.50.1
-ORIGINAL_XDG_CURRENT_DESKTOP=undefined
-ZSH=/Users/theophile/.oh-my-zsh
-USER=theophile
-SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.SKNQDJlb5I/Listeners
-__CF_USER_TEXT_ENCODING=0x1F5:0x0:0x1
-PAGER=less
+SHELL=/usr/bin/zsh
 LSCOLORS=Gxfxcxdxbxegedabagacad
-PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
-PWD=/Users/theophile/42/minishell/Minishell
-LANG=fr_FR.UTF-8
-XPC_FLAGS=0x0
-XPC_SERVICE_NAME=0
-SHLVL=2
-HOME=/Users/theophile
-VSCODE_GIT_ASKPASS_MAIN=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js
-LESS=-R
-LOGNAME=theophile
-VSCODE_GIT_IPC_HANDLE=/var/folders/ts/zd8fpfm54q9bgw4f09r5tf780000gn/T/vscode-git-4fdb8f36b1.sock
-VSCODE_GIT_ASKPASS_NODE=/Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Renderer).app/Contents/MacOS/Code Helper (Renderer)
-GIT_ASKPASS=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh
+SESSION_MANAGER=local/kyoto:@/tmp/.ICE-unix/1845,unix/kyoto:/tmp/.ICE-unix/1845
 COLORTERM=truecolor
+LESS=-R
+XDG_MENU_PREFIX=gnome-
+TERMINATOR_DBUS_PATH=/net/tenshu/Terminator2
+LC_ADDRESS=fr_FR.UTF-8
+LC_NAME=fr_FR.UTF-8
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+TERMINATOR_UUID=urn:uuid:44c3e064-cdf0-4a09-9579-18fdb3c34554
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+LC_MONETARY=fr_FR.UTF-8
+EDITOR=/usr/bin/vim
+PWD=/home/tony/Projects/school/branche_4/Minishell
+XDG_SESSION_DESKTOP=gnome
+LOGNAME=tony
+QT_QPA_PLATFORMTHEME=qt5ct
+XDG_SESSION_TYPE=x11
+XAUTHORITY=/run/user/1000/gdm/Xauthority
+QT_STYLE_OVERRIDE=kvantum
+WINDOWPATH=2
+MOTD_SHOWN=pam
+GDM_LANG=en_US.UTF-8
+HOME=/home/tony
+USERNAME=tony
+LANG=en_US.UTF-8
+LC_PAPER=fr_FR.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.pdf=00;32:*.ps=00;32:*.txt=00;32:*.patch=00;32:*.diff=00;32:*.log=00;32:*.tex=00;32:*.doc=00;32:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=6200
+INVOCATION_ID=af8a9ee844f846288731e0741678defa
+TERMINATOR_DBUS_NAME=net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f
+MANAGERPID=1730
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+LC_IDENTIFICATION=fr_FR.UTF-8
+ZSH=/home/tony/.oh-my-zsh
+USER=tony
+DISPLAY=:1
+SHLVL=3
+PAGER=less
+LC_TELEPHONE=fr_FR.UTF-8
+QT_IM_MODULE=ibus
+LC_MEASUREMENT=fr_FR.UTF-8
+DESKTOP_AUTOSTART_ID=10b9f86ef8da7f93f160407496981737600000018450018
+XDG_RUNTIME_DIR=/run/user/1000
+LC_TIME=fr_FR.UTF-8
+QT_AUTO_SCREEN_SCALE_FACTOR=1
+JOURNAL_STREAM=8:33533
+XDG_DATA_DIRS=/home/tony/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+GDK_BACKEND=x11
+PATH=/home/tony/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin
+GDMSESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+MAIL=/var/spool/mail/tony
+GIO_LAUNCHED_DESKTOP_FILE_PID=2304
+GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/terminator.desktop
+LC_NUMERIC=fr_FR.UTF-8
+OLDPWD=/home/tony
 _=./minishell
 
 eval's output:
 
-TERM_PROGRAM=vscode
-SHELL=/bin/zsh
-TERM=xterm-256color
-TMPDIR=/var/folders/ts/zd8fpfm54q9bgw4f09r5tf780000gn/T/
-TERM_PROGRAM_VERSION=1.50.1
-ORIGINAL_XDG_CURRENT_DESKTOP=undefined
-ZSH=/Users/theophile/.oh-my-zsh
-USER=theophile
-SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.SKNQDJlb5I/Listeners
-__CF_USER_TEXT_ENCODING=0x1F5:0x0:0x1
-PAGER=less
+SHELL=/usr/bin/zsh
 LSCOLORS=Gxfxcxdxbxegedabagacad
-PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
-_=/usr/bin/env
-PWD=/Users/theophile/42/minishell/Minishell
-LANG=fr_FR.UTF-8
-XPC_FLAGS=0x0
-XPC_SERVICE_NAME=0
-HOME=/Users/theophile
-SHLVL=3
-VSCODE_GIT_ASKPASS_MAIN=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js
-LOGNAME=theophile
-LESS=-R
-VSCODE_GIT_IPC_HANDLE=/var/folders/ts/zd8fpfm54q9bgw4f09r5tf780000gn/T/vscode-git-4fdb8f36b1.sock
-GIT_ASKPASS=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh
-VSCODE_GIT_ASKPASS_NODE=/Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Renderer).app/Contents/MacOS/Code Helper (Renderer)
+SESSION_MANAGER=local/kyoto:@/tmp/.ICE-unix/1845,unix/kyoto:/tmp/.ICE-unix/1845
 COLORTERM=truecolor
+LESS=-R
+XDG_MENU_PREFIX=gnome-
+TERMINATOR_DBUS_PATH=/net/tenshu/Terminator2
+LC_ADDRESS=fr_FR.UTF-8
+LC_NAME=fr_FR.UTF-8
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+TERMINATOR_UUID=urn:uuid:44c3e064-cdf0-4a09-9579-18fdb3c34554
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+LC_MONETARY=fr_FR.UTF-8
+EDITOR=/usr/bin/vim
+PWD=/home/tony/Projects/school/branche_4/Minishell
+LOGNAME=tony
+XDG_SESSION_DESKTOP=gnome
+QT_QPA_PLATFORMTHEME=qt5ct
+XDG_SESSION_TYPE=x11
+_=/usr/bin/env
+XAUTHORITY=/run/user/1000/gdm/Xauthority
+QT_STYLE_OVERRIDE=kvantum
+WINDOWPATH=2
+MOTD_SHOWN=pam
+GDM_LANG=en_US.UTF-8
+HOME=/home/tony
+USERNAME=tony
+LC_PAPER=fr_FR.UTF-8
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.pdf=00;32:*.ps=00;32:*.txt=00;32:*.patch=00;32:*.diff=00;32:*.log=00;32:*.tex=00;32:*.doc=00;32:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=6200
+INVOCATION_ID=af8a9ee844f846288731e0741678defa
+TERMINATOR_DBUS_NAME=net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f
+MANAGERPID=1730
+XDG_SESSION_CLASS=user
+LC_IDENTIFICATION=fr_FR.UTF-8
+TERM=xterm-256color
+ZSH=/home/tony/.oh-my-zsh
+USER=tony
+DISPLAY=:1
+SHLVL=4
+PAGER=less
+LC_TELEPHONE=fr_FR.UTF-8
+QT_IM_MODULE=ibus
+LC_MEASUREMENT=fr_FR.UTF-8
+DESKTOP_AUTOSTART_ID=10b9f86ef8da7f93f160407496981737600000018450018
+XDG_RUNTIME_DIR=/run/user/1000
+LC_TIME=fr_FR.UTF-8
+QT_AUTO_SCREEN_SCALE_FACTOR=1
+JOURNAL_STREAM=8:33533
+XDG_DATA_DIRS=/home/tony/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+GDK_BACKEND=x11
+PATH=/home/tony/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin
+GDMSESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+MAIL=/var/spool/mail/tony
+GIO_LAUNCHED_DESKTOP_FILE_PID=2304
+GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/terminator.desktop
+LC_NUMERIC=fr_FR.UTF-8
+OLDPWD=/home/tony
 ===============
 
 ===============
@@ -290,14 +360,7 @@ result test for :     echo hello > output2 > output3 | echo bonjour > output3
 minishell's command: echo hello > miniout2 > miniout3 | echo bonjour > miniout3 > miniout1
 bash's command: echo hello > realout2 > realout3 | echo bonjour > realout3 > realout1
 minishell exits with success
-0a1
-> hello
-[38;5;160mfailure[0m
-
-minishell's output3:
-
-bash's output3:
-hello
+[38;5;40msuccess[0m
 ===============
 
 ===============
@@ -384,7 +447,7 @@ minishell exits with success
 1c1
 <  $HOME
 ---
-> theophile, /Users/theophile
+> tony, /home/tony
 [38;5;160mfailure[0m
 
 minishell's output:
@@ -392,41 +455,41 @@ minishell's output:
 
 eval's output:
 
-theophile, /Users/theophile
+tony, /home/tony
 ===============
 
 ===============
 result test for :     echo "Hello $USER, you are in $HOME"
 minishell exits with success
 1c1
-< Hello  you are in /Users/theophile
+< Hello  you are in /home/tony
 ---
-> Hello theophile, you are in /Users/theophile
+> Hello tony, you are in /home/tony
 [38;5;160mfailure[0m
 
 minishell's output:
-Hello  you are in /Users/theophile
+Hello  you are in /home/tony
 
 eval's output:
 
-Hello theophile, you are in /Users/theophile
+Hello tony, you are in /home/tony
 ===============
 
 ===============
 result test for :     echo "Hello $USER, you are in $HOME long string after"
 minishell exits with success
 1c1
-< Hello  you are in /Users/theophile long string after
+< Hello  you are in /home/tony long string after
 ---
-> Hello theophile, you are in /Users/theophile long string after
+> Hello tony, you are in /home/tony long string after
 [38;5;160mfailure[0m
 
 minishell's output:
-Hello  you are in /Users/theophile long string after
+Hello  you are in /home/tony long string after
 
 eval's output:
 
-Hello theophile, you are in /Users/theophile long string after
+Hello tony, you are in /home/tony long string after
 ===============
 
 ===============
@@ -435,7 +498,7 @@ minishell exits with success
 1c1
 <  $HOME
 ---
-> , /Users/theophile
+> , /home/tony
 [38;5;160mfailure[0m
 
 minishell's output:
@@ -443,7 +506,7 @@ minishell's output:
 
 eval's output:
 
-, /Users/theophile
+, /home/tony
 ===============
 
 ===============
@@ -452,7 +515,7 @@ minishell exits with success
 1c1
 <  $foo
 ---
-> /Users/theophile, 
+> /home/tony, 
 [38;5;160mfailure[0m
 
 minishell's output:
@@ -460,7 +523,7 @@ minishell's output:
 
 eval's output:
 
-/Users/theophile, 
+/home/tony, 
 ===============
 
 ===============
@@ -469,7 +532,7 @@ minishell exits with success
 1c1
 < Hello  this variable does not exists 
 ---
-> Hello theophile, this variable does not exists 
+> Hello tony, this variable does not exists 
 [38;5;160mfailure[0m
 
 minishell's output:
@@ -477,6 +540,6 @@ Hello  this variable does not exists
 
 eval's output:
 
-Hello theophile, this variable does not exists 
+Hello tony, this variable does not exists 
 ===============
 
