@@ -16,7 +16,7 @@ int		is_arg(t_queue *queue)
 		return (0);
 	type = queue->token.type;
 	if (type == STRING || type == ARGUMENT 
-		|| type == OPTION || type == RAW_STRING)
+		|| type == OPTION || type == RAW_STRING || type == ENV_VARIABLE)
 		return (1);
 	else
 		return (0);
@@ -69,18 +69,16 @@ t_queue		*craft_command(t_command *command, t_queue *queue)
 		diff = count;
 		while (queue && is_arg(queue))
 		{
-			/* ICI tu peux ajouter ta fonction expand qui agira sur queue->token.value et après intégrer le résultat dans 
-			le tableau dynamique avec la fonction ci-dessous: */
-			if (queue->token.type == STRING || queue->token.type == ARGUMENT)
+			if (queue->token.type == STRING || queue->token.type == ARGUMENT || queue->token.type == ENV_VARIABLE)
 			{
 				if (!(expanded = expand(queue->token.value)))
 					return (NULL);
-				if (!(add_to_dynamic_table(&(command->args), expanded))) // du coup ici il faut remplacer queue->toke.value par le résultat d'expand
+				if (!(add_to_dynamic_table(&(command->args), expanded)))
 					return(NULL);
 			}
 			else
 			{
-				if (!(add_to_dynamic_table(&(command->args), queue->token.value))) // du coup ici il faut remplacer queue->toke.value par le résultat d'expand
+				if (!(add_to_dynamic_table(&(command->args), queue->token.value)))
 					return(NULL);
 			}
 			queue = queue->next;
@@ -109,6 +107,11 @@ t_queue		*craft_command(t_command *command, t_queue *queue)
 		}
 		else
 			command->output_type = -1;
+		if (queue && queue->token.type == OPERATOR)
+		{
+			queue = queue->next;
+			break;
+		}
 		if (queue && (diff == count))
 		{
 			ft_printf("untracked value: %s\n", queue->token.value);
@@ -130,12 +133,13 @@ int		eval(t_queue *queue)
 
 
 	g_queue = queue;
-//	while (g_queue)
-//	{
+	while (g_queue)
+	{
+//		ft_printf("value beginning of eval iter: %s\n", g_queue->token.value);
 		if (g_queue->token.type == COMMAND)
 		{
 			g_queue = craft_command(&command, g_queue);
-			print_s_command(&command);
+//			print_s_command(&command);
 			if (command.output_type == PIPE)
 			{
 				if ((piper_return = init_piper(&command)) == -1)
@@ -150,13 +154,14 @@ int		eval(t_queue *queue)
 			}
 			if (g_queue == NULL)
 				return (0);
-			else
-			{
-				ft_printf("untracked symbol in eval %s\n", g_queue->token.value);
-			}
-			
+			if (g_queue->token.type == OPERATOR)
+				g_queue = g_queue->next;
+//			else
+//			{
+//				ft_printf("untracked symbol in eval %s\n", g_queue->token.value);
+//			}			
 		}
-//	}
+	}
 //	ft_printf("out of eval\n");
 	return (0);
 }

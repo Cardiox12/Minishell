@@ -43,7 +43,10 @@ int		fork_and_exec(t_command *command)
 //		close(inputpipe[1]);
 //		close(inputpipe[1]);
 		if (execve(command->path, command->args, g_env) == -1)
-			perror("execve");
+		{
+			ft_printf("minishell: %s: No such file or directory\n", command->value);
+			return (-1);
+		}
 		return (1);
 	}
 	else

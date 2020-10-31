@@ -22,6 +22,8 @@ char	*arraychr(char ***tab)
 	return (NULL);
 }
 
+
+
 char	*check_path(char *path, char *slashed_value)
 {
 	char		full_path[ft_strlen(path) + ft_strlen(slashed_value) + 1];
@@ -48,6 +50,8 @@ char	*get_path(char *value)
 
 	/* first, we add a '/' in front of the command in order to concatenate 
 	faster with path options afterwards */
+	if (value[0] == '/')
+		return (ft_strdup(value));
 	ft_bzero(slashed_value, ft_strlen(value) + 2);
 	slashed_value[0] = '/';
 	casted_value = (char*)slashed_value;

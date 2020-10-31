@@ -32,7 +32,11 @@ int		init_piper(t_command *command)
 			close(inputpipe[1]);
 		}
 		dup2(newpipe[1], 1);
-		execve(command->path, command->args, g_env);
+		if (execve(command->path, command->args, g_env) == -1)
+		{
+			ft_printf("minishell: %s: No such file or directory\n", command->value);
+			return (-1);
+		}
 		return (0);
 	}
 	else
@@ -68,7 +72,11 @@ int		child_exec(t_command *command, int *oldpipe[2], int newpipe[2])
 		close(newpipe[0]);
 		dup2(newpipe[1], 1);
 	}
-	execve(command->path, command->args, g_env);
+	if (execve(command->path, command->args, g_env) == -1)
+	{
+			ft_printf("minishell: %s: No such file or directory\n", command->value);
+			return (-1);
+	}
 	return (0);
 }
 

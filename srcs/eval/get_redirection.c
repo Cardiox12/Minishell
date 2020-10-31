@@ -37,7 +37,7 @@ int     get_output_redirections(t_command *command, t_queue *queue)
 		}
 		else
 			add_to_dynamic_int_array(&(command->output_redirection_files), fd);
-		ft_printf("file: %s, fd: %d\n", queue->next->token.value, fd);
+//		ft_printf("file: %s, fd: %d\n", queue->next->token.value, fd);
 		return (0);
 }
 

@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra -g -D LEXER
+CFLAGS		= -Wall -Werror -Wextra -g -D LEXER -fsanitize=address
 
 EXT_DIR		= externals
 INC_DIR		= includes

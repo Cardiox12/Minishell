@@ -144,7 +144,7 @@ expand_commands=('echo "$USER"' \
 'echo "Hello $USER, you are in $HOME long string after"' \
 'echo "$foo, $HOME"' \
 'echo "$HOME, $foo"' \
-'echo "Hello $USER, this variable does not exists $foo"'\
+'echo "Hello $USER, this variable does not exists $foo"' \
 )
 
 #the commands must include 2 and only 2 output redirections, and they must be named output2 and output3
@@ -165,6 +165,7 @@ output_commands=("cat makefile > output2 > output3" \
 "grep a < test_files/aaa < test_files/bbb > output2 > output3" \
 "grep a < output2 < output3" \
 "echo hello > output2 > output3 | echo bonjour > output3" \
+'env ; echo hello; export TEST="test"; echo $TEST | grep t | wc -l > output2 > output3 ; cat output2' \
 )
 #printf "%s\n" "cat makefile < main.c | grep include | grep inc < includes/eval.h > miniout1" | ./minishell
 

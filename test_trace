@@ -49,19 +49,19 @@ minishell exits with success
 > TERM=xterm-256color
 13a14
 > _=/usr/bin/env
-18d18
+19d19
 < SHLVL=2
-19a20
+20a21
 > SHLVL=3
-21d21
+22d22
 < LESS=-R
-22a23
+23a24
 > LESS=-R
-24d24
+25d25
 < VSCODE_GIT_ASKPASS_NODE=/Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Renderer).app/Contents/MacOS/Code Helper (Renderer)
-25a26
+26a27
 > VSCODE_GIT_ASKPASS_NODE=/Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Renderer).app/Contents/MacOS/Code Helper (Renderer)
-27d27
+28d28
 < _=./minishell
 [38;5;160mfailure[0m
 
@@ -74,7 +74,7 @@ TERM_PROGRAM_VERSION=1.50.1
 ORIGINAL_XDG_CURRENT_DESKTOP=undefined
 ZSH=/Users/theophile/.oh-my-zsh
 USER=theophile
-SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.SKNQDJlb5I/Listeners
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.wQqehhBgX0/Listeners
 __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x1
 PAGER=less
 LSCOLORS=Gxfxcxdxbxegedabagacad
@@ -83,6 +83,7 @@ PWD=/Users/theophile/42/minishell/Minishell
 LANG=fr_FR.UTF-8
 XPC_FLAGS=0x0
 XPC_SERVICE_NAME=0
+TEST=test
 SHLVL=2
 HOME=/Users/theophile
 VSCODE_GIT_ASKPASS_MAIN=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js
@@ -104,7 +105,7 @@ TERM_PROGRAM_VERSION=1.50.1
 ORIGINAL_XDG_CURRENT_DESKTOP=undefined
 ZSH=/Users/theophile/.oh-my-zsh
 USER=theophile
-SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.SKNQDJlb5I/Listeners
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.wQqehhBgX0/Listeners
 __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x1
 PAGER=less
 LSCOLORS=Gxfxcxdxbxegedabagacad
@@ -114,6 +115,7 @@ PWD=/Users/theophile/42/minishell/Minishell
 LANG=fr_FR.UTF-8
 XPC_FLAGS=0x0
 XPC_SERVICE_NAME=0
+TEST=test
 HOME=/Users/theophile
 SHLVL=3
 VSCODE_GIT_ASKPASS_MAIN=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js
@@ -301,6 +303,14 @@ hello
 ===============
 
 ===============
+result test for :     env ; echo hello; export TEST="test"; echo $TEST | grep t | wc -l > output2 > output3 ; cat output2
+minishell's command: env ; echo hello; export TEST="test"; echo $TEST | grep t | wc -l > miniout2 > miniout3 ; cat miniout2 > miniout1
+bash's command: env ; echo hello; export TEST="test"; echo $TEST | grep t | wc -l > realout2 > realout3 ; cat realout2 > realout1
+minishell exits with success
+[38;5;40msuccess[0m
+===============
+
+===============
 result test for :     echo "$USER"
 minishell exits with success
 [38;5;40msuccess[0m
@@ -308,14 +318,26 @@ minishell exits with success
 
 ===============
 result test for :     echo "$I_DO_NOT_EXISTS"
-minishell exits with success
-[38;5;40msuccess[0m
+minishell crashes
+[38;5;160mfailure[0m
+
+minishell's output:
+
+eval's output:
+
+
 ===============
 
 ===============
 result test for :     echo "$foo"
-minishell exits with success
-[38;5;40msuccess[0m
+minishell crashes
+[38;5;160mfailure[0m
+
+minishell's output:
+
+eval's output:
+
+
 ===============
 
 ===============
@@ -356,14 +378,26 @@ minishell exits with success
 
 ===============
 result test for :     echo "This variable does not exists $I_DO_NOT_EXISTS"
-minishell exits with success
-[38;5;40msuccess[0m
+minishell crashes
+[38;5;160mfailure[0m
+
+minishell's output:
+
+eval's output:
+
+This variable does not exists 
 ===============
 
 ===============
 result test for :     echo "This variable does not exists $foo"
-minishell exits with success
-[38;5;40msuccess[0m
+minishell crashes
+[38;5;160mfailure[0m
+
+minishell's output:
+
+eval's output:
+
+This variable does not exists 
 ===============
 
 ===============
@@ -380,15 +414,10 @@ minishell exits with success
 
 ===============
 result test for :     echo "$USER, $HOME"
-minishell exits with success
-1c1
-<  $HOME
----
-> theophile, /Users/theophile
+minishell crashes
 [38;5;160mfailure[0m
 
 minishell's output:
- $HOME
 
 eval's output:
 
@@ -448,15 +477,10 @@ eval's output:
 
 ===============
 result test for :     echo "$HOME, $foo"
-minishell exits with success
-1c1
-<  $foo
----
-> /Users/theophile, 
+minishell crashes
 [38;5;160mfailure[0m
 
 minishell's output:
- $foo
 
 eval's output:
 
@@ -465,15 +489,10 @@ eval's output:
 
 ===============
 result test for :     echo "Hello $USER, this variable does not exists $foo"
-minishell exits with success
-1c1
-< Hello  this variable does not exists 
----
-> Hello theophile, this variable does not exists 
+minishell crashes
 [38;5;160mfailure[0m
 
 minishell's output:
-Hello  this variable does not exists 
 
 eval's output:
 
