@@ -62,13 +62,11 @@ void	print_queue(t_queue *head)
 	ft_printf("=======================================\n");
 }
 
-/* ajout du tableau d'env dans le main */
 int		main(int ac, char **av, char *env[])
 {
-	// Here is the entrypoint
-	char *line;
+	// char *line;
 
-	line = NULL;
+	// line = NULL;
 	(void)ac;
 	(void)av;
 
@@ -76,18 +74,19 @@ int		main(int ac, char **av, char *env[])
 	pour pouvoir l'utiliser et le modifier par la suite */
 	if (!(ft_tab_copy(&g_env, env)))
 		return (-1);
-	while (TRUE)
-	{
-		line = reader();
-		t_queue *tokens = lexer(line);
-		if (parser(line, tokens) != 0)
-		{
-			ft_printf("minishell: parse error\n");
-			return (EXIT_FAILURE);
-		}
-		eval(tokens);
-		if (line == NULL)
-			break;
-	}
+	ft_printf("%s\n", expand("$foo, $HOME"));
+	// while (TRUE)
+	// {
+	// 	line = reader();
+	// 	t_queue *tokens = lexer(line);
+	// 	if (parser(line, tokens) != 0)
+	// 	{
+	// 		ft_printf("minishell: parse error\n");
+	// 		return (EXIT_FAILURE);
+	// 	}
+	// 	eval(tokens);
+	// 	if (line == NULL)
+	// 		break;
+	// }
 	return (0);
 }
