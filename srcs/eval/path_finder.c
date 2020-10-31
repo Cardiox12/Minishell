@@ -48,8 +48,6 @@ char	*get_path(char *value)
 	char	*full_path;
 	char	*casted_value;
 
-	/* first, we add a '/' in front of the command in order to concatenate 
-	faster with path options afterwards */
 	if (value[0] == '/')
 		return (ft_strdup(value));
 	ft_bzero(slashed_value, ft_strlen(value) + 2);
@@ -57,26 +55,19 @@ char	*get_path(char *value)
 	casted_value = (char*)slashed_value;
 	ft_allocat(&casted_value, value);
 
-	/* search for the path variable in the env tab and 
-	go to the beginning of its value */
 	path_string = arraychr(&g_env);
 	path_string += 5;
 
-	/* split the path to have a tab with the different options */
 	if (!(path_tab = ft_split_tab(path_string, ':')))
 		return (NULL);
 
-	/* check successively for the presence of the given binary in 
-	each one of the possible directories*/
 	while (*path_tab && !(full_path = check_path(*path_tab, casted_value)))
 		path_tab++;
 	if (!(*path_tab))
 	{
-		/* if the binary is not found, craft an error message and return NULL */
 		if (!is_builtin(&value))
 			ft_printf("minishell: command not found: %s\n", value);
 		return (NULL);
-	//	error_quit(value, &value);
 	}
 	return(full_path);	
 }

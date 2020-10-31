@@ -158,13 +158,13 @@ output_commands=("cat makefile > output2 > output3" \
 "cat makefile < main.c | grep include | grep inc < main.c > output3 > output2" \
 "cat test_files/aaa | grep a | grep b < test_files/ccc > output3 > output2" \
 "cat test_files/aaa | grep a > output3 | grep b < test_files/ccc | grep a < test_files/aaa > output2" \
-"cat test_files/aaa | grep a > output3 | grep b < test_files/ccc > output2 | grep a < test_files/aaa < test_files/bbb > output2" \
-"grep b < test_files/ccc > output2 | grep a < test_files/aaa < test_files/bbb > output2 > output3" \
-"echo hello > output2 | grep a < test_files/aaa > output2 > output3" \
+#"cat test_files/aaa | grep a > output3 | grep b < test_files/ccc > output2 | grep a < test_files/aaa < test_files/bbb > output2" \
+#"grep b < test_files/ccc > output2 | grep a < test_files/aaa < test_files/bbb > output2 > output3" \
+#"echo hello > output2 | grep a < test_files/aaa > output2 > output3" \
 "echo hello > output2 > output3" \
 "grep a < test_files/aaa < test_files/bbb > output2 > output3" \
 "grep a < output2 < output3" \
-"echo hello > output2 > output3 | echo bonjour > output3" \
+#"echo hello > output2 > output3 | echo bonjour > output3" \
 'env ; echo hello; export TEST="test"; echo $TEST | grep t | wc -l > output2 > output3 ; cat output2' \
 )
 #printf "%s\n" "cat makefile < main.c | grep include | grep inc < includes/eval.h > miniout1" | ./minishell

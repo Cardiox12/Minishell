@@ -40,7 +40,8 @@ typedef struct	s_command
 
 extern char **g_env;
 
-
+int							is_arg(t_queue *queue);
+t_queue						*craft_command(t_command *command, t_queue *queue);
 int							simple_builtin(t_command *command);
 int							is_builtin(char **args);
 int							recursive_builtin(int oldpipe[2], t_command *command);

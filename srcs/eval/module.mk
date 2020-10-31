@@ -33,3 +33,4 @@ SRCS += $(EVAL_DIR)/write_read_redirections.c
 SRCS += $(EVAL_DIR)/recursive_builtin.c
 SRCS += $(EVAL_DIR)/is_builtin.c
 SRCS += $(EVAL_DIR)/builtin_exec.c
+SRCS += $(EVAL_DIR)/craft_command.c
