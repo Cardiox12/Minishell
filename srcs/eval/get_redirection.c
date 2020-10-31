@@ -56,7 +56,7 @@ int     get_input_redirections(t_command *command, t_queue *queue)
 		fd = open(queue->next->token.value, O_RDONLY, 0666);
 		if (fd == -1)
 		{
-			perror("open");
+			ft_printf("bash: %s: No such file or directory\n", queue->next->token.value);
 			return (-1);
 		}
 		else

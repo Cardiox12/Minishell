@@ -121,7 +121,8 @@ int		recursive_piper(int oldpipe[2])
 
 	if (g_queue == NULL)
 		return (0);
-	g_queue = craft_command(&new_command, g_queue);
+	if (craft_command(&new_command, g_queue) == -1)
+		return (-1);
 //	print_s_command(&new_command);
 	if (is_builtin(new_command.args))
 		return (recursive_builtin(oldpipe, &new_command));

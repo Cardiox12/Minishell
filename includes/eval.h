@@ -41,7 +41,7 @@ typedef struct	s_command
 extern char **g_env;
 
 int							is_arg(t_queue *queue);
-t_queue						*craft_command(t_command *command, t_queue *queue);
+int							craft_command(t_command *command, t_queue *queue);
 int							simple_builtin(t_command *command);
 int							is_builtin(char **args);
 int							recursive_builtin(int oldpipe[2], t_command *command);
@@ -56,7 +56,7 @@ int                     	*ft_int_tab_maker(size_t len);
 char						*read_until_eof(int fd);
 int							recursive_piper(int oldpipe[2]);
 int							init_piper(t_command *command);
-t_queue						*craft_command(t_command *command, t_queue *queue);
+//t_queue						*craft_command(t_command *command, t_queue *queue);
 int							fork_and_exec(t_command *command);
 char						**ft_stabmaker(size_t len);
 void     					ft_printtab(char **tab);
