@@ -122,8 +122,10 @@ commands=("cat makefile" \
 "grep a < test_files/aaa < test_files/bbb" \
 "cat makefile < main.c | grep include | grep inc < includes/eval.h | wc -l" \
 "env | grep E | wc -l" \
-"env" \
+#"env" \
 "pwd" \
+"env | grep PATH | grep usr | grep bin | wc -l; echo hello; grep b < test_files/bbb | wc -l" \
+"env | grep PATH | grep usr | grep bin; echo hello; grep b < test_files/bbb | wc -l" \
 )
 
 expand_commands=('echo "$USER"' \
@@ -159,8 +161,9 @@ output_commands=("cat makefile > output2 > output3" \
 "cat test_files/aaa | grep a | grep b < test_files/ccc > output3 > output2" \
 "cat test_files/aaa | grep a > output3 | grep b < test_files/ccc | grep a < test_files/aaa > output2" \
 #"cat test_files/aaa | grep a > output3 | grep b < test_files/ccc > output2 | grep a < test_files/aaa < test_files/bbb > output2" \
-#"grep b < test_files/ccc > output2 | grep a < test_files/aaa < test_files/bbb > output2 > output3" \
-#"echo hello > output2 | grep a < test_files/aaa > output2 > output3" \
+"cat test_files/aaa | grep a > output3 | grep b < test_files/ccc > output2 | grep a < test_files/aaa < test_files/bbb" \
+"grep b < test_files/ccc| grep a < test_files/aaa < test_files/bbb > output2 > output3" \
+"echo hello > output2 | grep a < test_files/aaa > output3" \
 "echo hello > output2 > output3" \
 "grep a < test_files/aaa < test_files/bbb > output2 > output3" \
 #"grep a < output2 < output3" \
@@ -181,6 +184,6 @@ for command in "${output_commands[@]}"
 	do test_command_output_redirects "${command}"
 done
 
-for command in "${expand_commands[@]}"
-	do test_command "${command}"
-done
+#for command in "${expand_commands[@]}"
+#	do test_command "${command}"
+#done
