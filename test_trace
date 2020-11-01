@@ -60,7 +60,7 @@ minishell exits with success
 minishell's output:
 SHELL=/bin/zsh
 LSCOLORS=Gxfxcxdxbxegedabagacad
-SESSION_MANAGER=local/kyoto:@/tmp/.ICE-unix/2212,unix/kyoto:/tmp/.ICE-unix/2212
+SESSION_MANAGER=local/kyoto:@/tmp/.ICE-unix/1834,unix/kyoto:/tmp/.ICE-unix/1834
 COLORTERM=truecolor
 LESS=-R
 XDG_MENU_PREFIX=gnome-
@@ -68,7 +68,7 @@ TERM_PROGRAM_VERSION=1.49.1
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL=true
 TERMINATOR_DBUS_PATH=/net/tenshu/Terminator2
 SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
-TERMINATOR_UUID=urn:uuid:e338022a-9c12-442c-9f4c-8eeee3411c2c
+TERMINATOR_UUID=urn:uuid:560dbdb4-b2b5-489c-80fb-d46067a6dc76
 XMODIFIERS=@im=ibus
 DESKTOP_SESSION=gnome
 NO_AT_BRIDGE=1
@@ -79,7 +79,7 @@ LOGNAME=toto
 QT_QPA_PLATFORMTHEME=qt5ct
 XDG_SESSION_TYPE=x11
 XAUTHORITY=/run/user/1000/gdm/Xauthority
-VSCODE_GIT_ASKPASS_NODE=/usr/lib/electron7/electron
+VSCODE_GIT_ASKPASS_NODE=/usr/lib/electron/electron
 QT_STYLE_OVERRIDE=kvantum
 WINDOWPATH=2
 MOTD_SHOWN=pam
@@ -91,9 +91,9 @@ LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd
 XDG_CURRENT_DESKTOP=GNOME
 VTE_VERSION=6200
 GIT_ASKPASS=/usr/lib/code/extensions/git/dist/askpass.sh
-INVOCATION_ID=521d9282dd6640ea8ae1530c7e161596
+INVOCATION_ID=3d286c4eee4e45bca72c05108ea23d02
 TERMINATOR_DBUS_NAME=net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f
-MANAGERPID=2071
+MANAGERPID=1656
 CHROME_DESKTOP=code-oss.desktop
 XDG_SESSION_CLASS=user
 TERM=xterm-256color
@@ -104,11 +104,11 @@ DISPLAY=:1
 SHLVL=2
 PAGER=less
 QT_IM_MODULE=ibus
-DESKTOP_AUTOSTART_ID=10c08ea3ec2f80e416160406198044916500000022120017
+DESKTOP_AUTOSTART_ID=1035cafa0ccd9df6fc160418839013667100000018340017
 XDG_RUNTIME_DIR=/run/user/1000
 VSCODE_GIT_ASKPASS_MAIN=/usr/lib/code/extensions/git/dist/askpass-main.js
 QT_AUTO_SCREEN_SCALE_FACTOR=1
-JOURNAL_STREAM=8:32555
+JOURNAL_STREAM=8:44369
 XDG_DATA_DIRS=/home/toto/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 GDK_BACKEND=x11
 PATH=/home/toto/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin:/home/toto/Desktop/Discord:/home/toto/Desktop/Discord
@@ -116,7 +116,7 @@ GDMSESSION=gnome
 ORIGINAL_XDG_CURRENT_DESKTOP=GNOME
 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 MAIL=/var/spool/mail/toto
-GIO_LAUNCHED_DESKTOP_FILE_PID=13846
+GIO_LAUNCHED_DESKTOP_FILE_PID=4132
 GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/terminator.desktop
 OLDPWD=/home/toto/Projects/school/cercle_4/Minishell
 TERM_PROGRAM=vscode
@@ -126,7 +126,7 @@ eval's output:
 
 SHELL=/bin/zsh
 LSCOLORS=Gxfxcxdxbxegedabagacad
-SESSION_MANAGER=local/kyoto:@/tmp/.ICE-unix/2212,unix/kyoto:/tmp/.ICE-unix/2212
+SESSION_MANAGER=local/kyoto:@/tmp/.ICE-unix/1834,unix/kyoto:/tmp/.ICE-unix/1834
 COLORTERM=truecolor
 LESS=-R
 XDG_MENU_PREFIX=gnome-
@@ -134,7 +134,7 @@ TERM_PROGRAM_VERSION=1.49.1
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL=true
 TERMINATOR_DBUS_PATH=/net/tenshu/Terminator2
 SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
-TERMINATOR_UUID=urn:uuid:e338022a-9c12-442c-9f4c-8eeee3411c2c
+TERMINATOR_UUID=urn:uuid:560dbdb4-b2b5-489c-80fb-d46067a6dc76
 XMODIFIERS=@im=ibus
 DESKTOP_SESSION=gnome
 NO_AT_BRIDGE=1
@@ -146,7 +146,7 @@ QT_QPA_PLATFORMTHEME=qt5ct
 XDG_SESSION_TYPE=x11
 _=/usr/bin/env
 XAUTHORITY=/run/user/1000/gdm/Xauthority
-VSCODE_GIT_ASKPASS_NODE=/usr/lib/electron7/electron
+VSCODE_GIT_ASKPASS_NODE=/usr/lib/electron/electron
 QT_STYLE_OVERRIDE=kvantum
 WINDOWPATH=2
 MOTD_SHOWN=pam
@@ -158,9 +158,9 @@ LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd
 XDG_CURRENT_DESKTOP=GNOME
 VTE_VERSION=6200
 GIT_ASKPASS=/usr/lib/code/extensions/git/dist/askpass.sh
-INVOCATION_ID=521d9282dd6640ea8ae1530c7e161596
+INVOCATION_ID=3d286c4eee4e45bca72c05108ea23d02
 TERMINATOR_DBUS_NAME=net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f
-MANAGERPID=2071
+MANAGERPID=1656
 CHROME_DESKTOP=code-oss.desktop
 XDG_SESSION_CLASS=user
 TERM=xterm-256color
@@ -171,11 +171,11 @@ DISPLAY=:1
 SHLVL=3
 PAGER=less
 QT_IM_MODULE=ibus
-DESKTOP_AUTOSTART_ID=10c08ea3ec2f80e416160406198044916500000022120017
+DESKTOP_AUTOSTART_ID=1035cafa0ccd9df6fc160418839013667100000018340017
 XDG_RUNTIME_DIR=/run/user/1000
 VSCODE_GIT_ASKPASS_MAIN=/usr/lib/code/extensions/git/dist/askpass-main.js
 QT_AUTO_SCREEN_SCALE_FACTOR=1
-JOURNAL_STREAM=8:32555
+JOURNAL_STREAM=8:44369
 XDG_DATA_DIRS=/home/toto/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 GDK_BACKEND=x11
 PATH=/home/toto/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin:/home/toto/Desktop/Discord:/home/toto/Desktop/Discord
@@ -183,7 +183,7 @@ GDMSESSION=gnome
 ORIGINAL_XDG_CURRENT_DESKTOP=GNOME
 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 MAIL=/var/spool/mail/toto
-GIO_LAUNCHED_DESKTOP_FILE_PID=13846
+GIO_LAUNCHED_DESKTOP_FILE_PID=4132
 GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/terminator.desktop
 OLDPWD=/home/toto/Projects/school/cercle_4/Minishell
 TERM_PROGRAM=vscode
@@ -354,14 +354,7 @@ result test for :     echo hello > output2 > output3 | echo bonjour > output3
 minishell's command: echo hello > miniout2 > miniout3 | echo bonjour > miniout3 > miniout1
 bash's command: echo hello > realout2 > realout3 | echo bonjour > realout3 > realout1
 minishell exits with success
-0a1
-> hello
-[38;5;160mfailure[0m
-
-minishell's output3:
-
-bash's output3:
-hello
+[38;5;40msuccess[0m
 ===============
 
 ===============
@@ -463,18 +456,7 @@ minishell exits with success
 ===============
 result test for :     echo "$foo, $HOME"
 minishell exits with success
-1c1
-< , $HOME
----
-> , /home/toto
-[38;5;160mfailure[0m
-
-minishell's output:
-, $HOME
-
-eval's output:
-
-, /home/toto
+[38;5;40msuccess[0m
 ===============
 
 ===============

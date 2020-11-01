@@ -62,31 +62,30 @@ void	print_queue(t_queue *head)
 	ft_printf("=======================================\n");
 }
 
-int		main(int ac, char **av, char *env[])
+int		main(int argc, char **argv, char *envp[])
 {
-	// char *line;
+	(void)argc;
+	(void)argv;
 
-	// line = NULL;
-	(void)ac;
-	(void)av;
+	char *line;
 
-	/*copie et allocation du tableau d'env dans une variable globale
-	pour pouvoir l'utiliser et le modifier par la suite */
-	if (!(ft_tab_copy(&g_env, env)))
+	line = NULL;
+
+	if (!(ft_tab_copy(&g_env, envp)))
 		return (-1);
-	ft_printf("%s\n", expand("$foo, $HOME"));
-	// while (TRUE)
-	// {
-	// 	line = reader();
-	// 	t_queue *tokens = lexer(line);
-	// 	if (parser(line, tokens) != 0)
-	// 	{
-	// 		ft_printf("minishell: parse error\n");
-	// 		return (EXIT_FAILURE);
-	// 	}
-	// 	eval(tokens);
-	// 	if (line == NULL)
-	// 		break;
-	// }
+
+	while (TRUE)
+	{
+		line = reader();
+		t_queue *tokens = lexer(line);
+		if (parser(line, tokens) != 0)
+		{
+			ft_printf("minishell: parse error\n");
+			return (EXIT_FAILURE);
+		}
+		eval(tokens);
+		if (line == NULL)
+			break;
+	}
 	return (0);
 }
