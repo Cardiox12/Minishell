@@ -37,7 +37,7 @@ int		fork_and_exec(t_command *command)
 		if (execve(command->path, command->args, g_env) == -1)
 		{
 			ft_printf("minishell: %s: No such file or directory\n", command->value);
-			return (-1);
+			return (free_command_ret_fail(command));
 		}
 		return (1);
 	}
@@ -48,10 +48,12 @@ int		fork_and_exec(t_command *command)
 		{
 			close(pipefd[1]);
 			if (!(output_buffer = read_until_eof(pipefd[0])))
-				return (-1);
+				return (free_command_ret_fail(command));
 			write_redirections(command, output_buffer);
+			ft_strdel(&output_buffer);
 			close(pipefd[0]);
 		}
+		free_command(command);
 		return (0);
 	}	
 }

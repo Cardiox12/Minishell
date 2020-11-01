@@ -34,9 +34,7 @@ int		redirect_handler(int oldpipe[2], int newpipe[2], t_command *command)
 	if (command->has_output_redirect == 1)
 	{
 		if (!(output_buffer = read_until_eof(newpipe[0])))
-		{
-			return (-1);
-		}
+			return (free_command_ret_fail(command));
 		write_redirections(command, output_buffer);
 		close(newpipe[0]);
 	}
@@ -66,5 +64,6 @@ int		recursive_builtin(int oldpipe[2], t_command *command)
 		if ((piper_return = recursive_piper(newpipe)) == -1)
 			return (-1);
 	}
+	free_command(command);
 	return (0);
 }

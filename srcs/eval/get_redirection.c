@@ -24,7 +24,10 @@ int     get_output_redirections(t_command *command, t_queue *queue)
 		{
 			command->has_output_redirect = 1;
 			if (!(command->output_redirection_files = ft_int_tab_maker(6)))
-				return (-1);
+			{
+				command->has_output_redirect = 0;
+				return (free_command_ret_fail(command));
+			}
 		}
         if (is_simple_redirect(queue))
 			fd = open(queue->next->token.value, O_RDWR | O_CREAT | O_TRUNC, 0666);
@@ -33,10 +36,14 @@ int     get_output_redirections(t_command *command, t_queue *queue)
 		if (fd == -1)
 		{
 			perror("open");
-			return (-1);
+			return (free_command_ret_fail(command));
 		}
 		else
-			add_to_dynamic_int_array(&(command->output_redirection_files), fd);
+		{
+			if (!(add_to_dynamic_int_array(&(command->output_redirection_files), fd)))
+				return (free_command_ret_fail(command));
+		}
+			
 //		ft_printf("file: %s, fd: %d\n", queue->next->token.value, fd);
 		return (0);
 }
@@ -51,7 +58,10 @@ int     get_input_redirections(t_command *command, t_queue *queue)
 //			ft_printf("je suis la\n");
 			command->has_input_redirect = 1;
 			if (!(command->input_redirection_files = ft_int_tab_maker(6)))
-				return (-1);
+			{
+				command->has_output_redirect = 0;
+				return (free_command_ret_fail(command));
+			}
 		}
 		fd = open(queue->next->token.value, O_RDONLY, 0666);
 		if (fd == -1)
@@ -60,6 +70,9 @@ int     get_input_redirections(t_command *command, t_queue *queue)
 			return (-1);
 		}
 		else
-			add_to_dynamic_int_array(&(command->input_redirection_files), fd);
+		{
+			if (!(add_to_dynamic_int_array(&(command->input_redirection_files), fd)))
+				return (free_command_ret_fail(command));
+		}
 		return (0);
 }

@@ -24,7 +24,6 @@ int		pre_initialize_command(t_command *command)
 	if (g_queue->token.type == PIPE)
 	{
 		command->output_type = PIPE;
-//		return(queue->next);
 		return (0);
 	}
 	return (0);
@@ -78,14 +77,15 @@ int		get_args(int *count, t_command *command)
 		if (g_queue->token.type == STRING || g_queue->token.type == ARGUMENT || g_queue->token.type == ENV_VARIABLE)
 		{
 			if (!(expanded = expand(g_queue->token.value)))
-				return (-1);
+				return (free_command_ret_fail(command));
 			if (!(add_to_dynamic_table(&(command->args), expanded)))
-				return (-1);
+				return (free_command_ret_fail(command));
+			ft_strdel(&expanded);
 		}
 		else
 		{
 			if (!(add_to_dynamic_table(&(command->args), g_queue->token.value)))
-				return (-1);
+				return (free_command_ret_fail(command));
 		}
 		g_queue = g_queue->next;
 		(*count)++;
@@ -93,7 +93,7 @@ int		get_args(int *count, t_command *command)
 	return (0);
 }
 
-int		craft_command(t_command *command, t_queue *queue)
+int		craft_command(t_command *command)
 {
 	int	count;
 	int	diff;
@@ -113,14 +113,14 @@ int		craft_command(t_command *command, t_queue *queue)
 //			g_queue = queue->next;
 			break;
 		}
-		if (g_queue && (diff == count))
+/*		if (g_queue && (diff == count))
 		{
 			ft_printf("untracked value: %s\n", queue->token.value);
 			ft_printf("symbols not tracked in craft_command\n");
 			g_queue = g_queue->next;
 		}
 		if (g_queue)
-			ft_printf("value %s\n", g_queue->token.value);
+			ft_printf("value %s\n", g_queue->token.value);*/
 	}
 	if (g_queue && g_queue->token.type == PIPE)
 		g_queue = g_queue->next;

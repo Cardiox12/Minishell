@@ -51,6 +51,6 @@ int		simple_builtin(t_command *command)
 	}
 	simple_builtin_exec(command, newpipe);
 	if (simple_redirect_handler(newpipe, command) == -1)
-		return (-1);
+		return (free_command_ret_fail(command));
 	return (0);
 }

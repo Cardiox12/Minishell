@@ -46,7 +46,7 @@ int							free_command_ret_fail(t_command *command);
 void						free_command(t_command *command);
 void						ft_freetab(char ***tab);
 int							is_arg(t_queue *queue);
-int							craft_command(t_command *command, t_queue *queue);
+int							craft_command(t_command *command);
 int							simple_builtin(t_command *command);
 int							is_builtin(char **args);
 int							recursive_builtin(int oldpipe[2], t_command *command);

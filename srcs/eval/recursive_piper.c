@@ -19,7 +19,7 @@ int		init_piper(t_command *command)
 	if ((pid = fork()) == -1)
 	{
 		perror("fork");
-		return (-1);
+		return (free_command_ret_fail(command));
 	}
 	if (pid == 0)
 	{
@@ -52,6 +52,7 @@ int		init_piper(t_command *command)
 			write_redirections(command, output_buffer);
 			if (pipe(newpipe) == -1)
 				perror("pipe");
+			ft_strdel(&output_buffer);
 		}
 		if ((piper_return = recursive_piper(newpipe)) == -1)
 			return (free_command_ret_fail(command));
@@ -95,6 +96,7 @@ int		parent_exec(int oldpipe[2], int newpipe[2], t_command *command)
 			return (free_command_ret_fail(command));
 		write_redirections(command, output_buffer);
 		close(newpipe[0]);
+		ft_strdel(&output_buffer);
 	}
 	return (0);
 }
@@ -109,7 +111,7 @@ int		recursive_piper(int oldpipe[2])
 
 	if (g_queue == NULL)
 		return (0);
-	if (craft_command(&new_command, g_queue) == -1)
+	if (craft_command(&new_command) == -1)
 		return (-1);
 	if (is_builtin(new_command.args))
 		return (recursive_builtin(oldpipe, &new_command));
@@ -121,7 +123,7 @@ int		recursive_piper(int oldpipe[2])
 	if ((pid = fork()) == -1)
 	{
 		perror("fork");
-		return (-1);
+		return (free_command_ret_fail(&new_command));
 	}
 	else if (pid == 0)
 		return (child_exec(&new_command, (int**)&oldpipe, newpipe));

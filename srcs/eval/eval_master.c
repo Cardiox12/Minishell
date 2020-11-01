@@ -45,7 +45,7 @@ int		eval(t_queue *queue)
 		if (g_queue->token.type == COMMAND)
 		{
 //			ft_printf("new eval round\n");
-			if (craft_command(&command, g_queue) == -1)
+			if (craft_command(&command) == -1)
 				return (-1);
 			print_s_command(&command);
 			if (command.output_type == PIPE)
@@ -56,9 +56,15 @@ int		eval(t_queue *queue)
 			else
 			{
 				if (is_builtin(command.args))
-					simple_builtin(&command);
+				{
+					if (simple_builtin(&command) == -1)
+						return (-1);
+				}
 				else
-					fork_and_exec(&command);
+				{
+					if (fork_and_exec(&command) == -1)
+						return (-1);
+				}
 			}
 			if (g_queue == NULL)
 				return (0);
