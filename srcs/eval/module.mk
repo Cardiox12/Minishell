@@ -34,3 +34,6 @@ SRCS += $(EVAL_DIR)/recursive_builtin.c
 SRCS += $(EVAL_DIR)/is_builtin.c
 SRCS += $(EVAL_DIR)/builtin_exec.c
 SRCS += $(EVAL_DIR)/craft_command.c
+SRCS += $(EVAL_DIR)/ft_freetab.c
+SRCS += $(EVAL_DIR)/free_first.c
+SRCS += $(EVAL_DIR)/free_ret.c

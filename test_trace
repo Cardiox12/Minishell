@@ -47,81 +47,87 @@ minishell exits with success
 < TERM=xterm-256color
 3a3
 > TERM=xterm-256color
-13a14
+14a15
 > _=/usr/bin/env
-19,20d19
+20d20
 < SHLVL=2
-< HOME=/Users/theophile
-21a21,22
-> HOME=/Users/theophile
+21a22
 > SHLVL=3
-24d24
+23d23
 < LESS=-R
-25a26
+24a25
 > LESS=-R
-28d28
+26d26
+< VSCODE_GIT_ASKPASS_NODE=/Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Renderer).app/Contents/MacOS/Code Helper (Renderer)
+27a28
+> VSCODE_GIT_ASKPASS_NODE=/Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Renderer).app/Contents/MacOS/Code Helper (Renderer)
+30d30
 < _=./minishell
 [38;5;160mfailure[0m
 
 minishell's output:
-TERM_PROGRAM=iTerm.app
+TERM_PROGRAM=vscode
 TERM=xterm-256color
 SHELL=/bin/zsh
 TMPDIR=/var/folders/ts/zd8fpfm54q9bgw4f09r5tf780000gn/T/
-TERM_PROGRAM_VERSION=3.3.12
-TERM_SESSION_ID=w0t0p0:D087703D-D61F-4AA2-9877-5ADA63F9D4AB
+TERM_PROGRAM_VERSION=1.50.1
+ORIGINAL_XDG_CURRENT_DESKTOP=undefined
 ZSH=/Users/theophile/.oh-my-zsh
 USER=theophile
-SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.wQqehhBgX0/Listeners
-__CF_USER_TEXT_ENCODING=0x0:0:1
+COMMAND_MODE=unix2003
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.saM3n847kl/Listeners
+__CF_USER_TEXT_ENCODING=0x1F5:0x0:0x1
 PAGER=less
 LSCOLORS=Gxfxcxdxbxegedabagacad
 PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
+LaunchInstanceID=66585311-BCE5-4150-B4A2-BD5BF40D8555
 PWD=/Users/theophile/42/minishell/Minishell
 LANG=fr_FR.UTF-8
-ITERM_PROFILE=Default
 XPC_FLAGS=0x0
 XPC_SERVICE_NAME=0
 SHLVL=2
 HOME=/Users/theophile
-COLORFGBG=7;0
-LC_TERMINAL_VERSION=3.3.12
-ITERM_SESSION_ID=w0t0p0:D087703D-D61F-4AA2-9877-5ADA63F9D4AB
+VSCODE_GIT_ASKPASS_MAIN=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js
 LESS=-R
 LOGNAME=theophile
-LC_TERMINAL=iTerm2
+VSCODE_GIT_IPC_HANDLE=/var/folders/ts/zd8fpfm54q9bgw4f09r5tf780000gn/T/vscode-git-4fdb8f36b1.sock
+VSCODE_GIT_ASKPASS_NODE=/Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Renderer).app/Contents/MacOS/Code Helper (Renderer)
+GIT_ASKPASS=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh
+SECURITYSESSIONID=186a6
 COLORTERM=truecolor
 _=./minishell
 
 eval's output:
 
-TERM_PROGRAM=iTerm.app
+TERM_PROGRAM=vscode
 SHELL=/bin/zsh
 TERM=xterm-256color
 TMPDIR=/var/folders/ts/zd8fpfm54q9bgw4f09r5tf780000gn/T/
-TERM_PROGRAM_VERSION=3.3.12
-TERM_SESSION_ID=w0t0p0:D087703D-D61F-4AA2-9877-5ADA63F9D4AB
+TERM_PROGRAM_VERSION=1.50.1
+ORIGINAL_XDG_CURRENT_DESKTOP=undefined
 ZSH=/Users/theophile/.oh-my-zsh
 USER=theophile
-SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.wQqehhBgX0/Listeners
-__CF_USER_TEXT_ENCODING=0x0:0:1
+COMMAND_MODE=unix2003
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.saM3n847kl/Listeners
+__CF_USER_TEXT_ENCODING=0x1F5:0x0:0x1
 PAGER=less
 LSCOLORS=Gxfxcxdxbxegedabagacad
 PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
 _=/usr/bin/env
+LaunchInstanceID=66585311-BCE5-4150-B4A2-BD5BF40D8555
 PWD=/Users/theophile/42/minishell/Minishell
 LANG=fr_FR.UTF-8
-ITERM_PROFILE=Default
 XPC_FLAGS=0x0
 XPC_SERVICE_NAME=0
-COLORFGBG=7;0
 HOME=/Users/theophile
 SHLVL=3
-LC_TERMINAL_VERSION=3.3.12
-ITERM_SESSION_ID=w0t0p0:D087703D-D61F-4AA2-9877-5ADA63F9D4AB
+VSCODE_GIT_ASKPASS_MAIN=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js
 LOGNAME=theophile
 LESS=-R
-LC_TERMINAL=iTerm2
+VSCODE_GIT_IPC_HANDLE=/var/folders/ts/zd8fpfm54q9bgw4f09r5tf780000gn/T/vscode-git-4fdb8f36b1.sock
+GIT_ASKPASS=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh
+VSCODE_GIT_ASKPASS_NODE=/Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Renderer).app/Contents/MacOS/Code Helper (Renderer)
+SECURITYSESSIONID=186a6
 COLORTERM=truecolor
 ===============
 

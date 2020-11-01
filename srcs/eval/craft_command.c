@@ -13,11 +13,11 @@ int		pre_initialize_command(t_command *command)
 	if (!(command->args = ft_stabmaker(6)))
 		return (-1);
 	if (!(command->value = ft_strdup(g_queue->token.value)))
-		return (-1);
+		return (free_tab_ret_fail(&(command->args)));
 	if (!(add_to_dynamic_table(&(command->args), command->value)))
-		return (-1);
+		return (free_tab_string_ret_fail(&(command->value), &(command->args)));
 	if (!(command->path = get_path(command->value)) && !(is_builtin(command->args)))
-		return (-1);
+		return (free_tab_string_ret_fail(&(command->value), &(command->args)));
 	g_queue = g_queue->next;
 	if (g_queue == NULL)
 		return (0);
