@@ -82,14 +82,6 @@ int		main(int argc, char **argv, char *envp[])
 		line = reader();
 		t_queue *tokens = lexer(line);
 		print_queue(tokens);
-		if (parser(line, tokens) != 0)
-		{
-			ft_printf("minishell: parse error\n");
-			return (EXIT_FAILURE);
-		}
-		eval(tokens);
-		if (line == NULL)
-			break;
 	}
 	return (0);
 }
