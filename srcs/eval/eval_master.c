@@ -4,8 +4,6 @@
 #include "eval.h"
 #include "lexer.h"
 
-t_queue		*g_queue;
-
 int		is_arg(t_queue *queue)
 {
 	int		type;
@@ -44,8 +42,10 @@ int		eval(t_queue *queue)
 	{
 		if (g_queue->token.type == COMMAND)
 		{
-			g_queue = craft_command(&command);
-			// print_s_command(&command);
+//			ft_printf("new eval round\n");
+			if (craft_command(&command) == -1)
+				return (-1);
+			print_s_command(&command);
 			if (command.output_type == PIPE)
 			{
 				if ((piper_return = init_piper(&command)) == -1)

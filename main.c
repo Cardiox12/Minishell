@@ -21,6 +21,8 @@
 #include "builtins.h"
 
 char		**g_env = NULL;
+int			g_exitstatus = 0;
+t_queue		*g_queue = NULL;
 
 char	*get_type(int type)
 {
@@ -79,6 +81,7 @@ int		main(int argc, char **argv, char *envp[])
 		errno = 0;
 		line = reader();
 		t_queue *tokens = lexer(line);
+		print_queue(tokens);
 		if (parser(line, tokens) != 0)
 		{
 			ft_printf("minishell: parse error\n");

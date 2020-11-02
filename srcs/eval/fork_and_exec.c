@@ -1,6 +1,4 @@
-#include "../../includes/eval.h"
-
-extern char		**g_env;
+#include "eval.h"
 
 int		fork_child_exec(int pipefd[2], t_command *command)
 {

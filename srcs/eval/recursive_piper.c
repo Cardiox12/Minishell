@@ -1,8 +1,6 @@
 #include "eval.h"
 #include "builtins.h"
 
-extern t_queue	*g_queue;
-
 int		child_exec(t_command *command, int *oldpipe[2], int newpipe[2])
 {
 	close((*oldpipe)[1]);

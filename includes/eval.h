@@ -39,7 +39,8 @@ typedef struct	s_command
 }				t_command;
 
 extern char **g_env;
-int			g_exitstatus;
+extern int			g_exitstatus;
+extern t_queue	*g_queue;
 
 int							recursive_piper(int oldpipe[2]);
 int							init_piper(t_command *command);
