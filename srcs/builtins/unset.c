@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 16:29:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/27 06:39:15 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/10/30 18:15:43 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int find_variable_by_name(const char *name, t_string_list *sl_env)
     return (NOT_FOUND);
 }
 
-int putstr(const char *s)
+static int putstr(const char *s)
 {
     return (ft_printf("%s\n", s));
 }
