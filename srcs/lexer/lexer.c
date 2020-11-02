@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/22 22:15:02 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/02 21:10:27 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,7 @@ t_queue *lexer(const char *input)
 		{
 			index = get_operator(&head, index);
 			state ^= IS_COMMAND;
+			state ^= IS_ARGUMENT;
 		}
 		else if (input[index] == SYM_ENV_VAR)
 		{
@@ -216,7 +217,7 @@ t_queue *lexer(const char *input)
         else if (ft_isalnum(input[index]) && state & IS_ARGUMENT)
         {
             index = get_argument(&head, input, index);
-			state ^= IS_ARGUMENT;
+			// state ^= IS_ARGUMENT;
         }
 		else if (state & IS_FD && !ft_isspace(input[index]))
 		{
