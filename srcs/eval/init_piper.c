@@ -24,7 +24,7 @@ int		init_return_parent(int newpipe[2], t_command *command, pid_t pid)
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		g_exitstatus = WEXITSTATUS(status);
-	ft_printf("exit code init_pipe: %d\n", g_exitstatus);
+//	ft_printf("exit code init_pipe: %d\n", g_exitstatus);
 	if ((recursive_piper(newpipe)) == -1)
 		return (free_command_ret_fail(command));
 //	wait(&status);

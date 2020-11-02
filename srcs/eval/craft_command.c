@@ -36,7 +36,7 @@ int			finish_command(t_command *command)
 	{
 		command->output_type = g_queue->token.type;
 		g_queue = g_queue->next;
-		ft_printf("fish returns NULL\n");
+//		ft_printf("fish returns NULL\n");
 		return (1);
 	}
 	else

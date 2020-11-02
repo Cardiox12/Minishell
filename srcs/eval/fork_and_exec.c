@@ -47,7 +47,7 @@ int		fork_and_exec(t_command *command)
 		waitpid(pid, &status, 0);
 		if (WIFEXITED(status))
 			g_exitstatus = WEXITSTATUS(status);
-		ft_printf("exit code fork and exec: %d\n", g_exitstatus);
+//		ft_printf("exit code fork and exec: %d\n", g_exitstatus);
 //		ft_printf("status: %d\n", status);
 		if (command->has_output_redirect == 1)
 		{

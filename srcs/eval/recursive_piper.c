@@ -53,7 +53,7 @@ int		recur_parent_exec(int oldpipe[2], int newpipe[2], t_command *new_command, p
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		g_exitstatus = WEXITSTATUS(status);
-	ft_printf("exit code recurpipe: %d\n", g_exitstatus);
+//	ft_printf("exit code recurpipe: %d\n", g_exitstatus);
 	if (new_command->has_output_redirect && new_command->output_type == PIPE)
 	{
 		if (pipe(newpipe) == -1)
