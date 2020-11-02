@@ -20,7 +20,9 @@
 #include "eval.h"
 #include "builtins.h"
 
-//char		**g_env = NULL;
+char		**g_env = NULL;
+int			g_exitstatus = 0;
+t_queue		*g_queue = NULL;
 
 char	*get_type(int type)
 {
@@ -62,21 +64,18 @@ void	print_queue(t_queue *head)
 	ft_printf("=======================================\n");
 }
 
-/* ajout du tableau d'env dans le main */
-int		main(int ac, char **av, char *env[])
+int		main(int argc, char **argv, char *envp[])
 {
-	// Here is the entrypoint
+	(void)argc;
+	(void)argv;
+
 	char *line;
 
 	line = NULL;
-	(void)ac;
-	(void)av;
 
-	errno = 0;
-	/*copie et allocation du tableau d'env dans une variable globale
-	pour pouvoir l'utiliser et le modifier par la suite */
-	if (!(ft_tab_copy(&g_env, env)))
+	if (!(ft_tab_copy(&g_env, envp)))
 		return (-1);
+
 	while (TRUE)
 	{
 		errno = 0;

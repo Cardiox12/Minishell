@@ -6,77 +6,76 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 01:10:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/29 16:41:41 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/02 17:18:18 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ctypes.h"
 #include "eval.h"
 
-/*
-** Expand variables into src.
-*/
-
-static char *glue(const char *src, const char *value, t_slice slice)
+static int  is_var_charset(int c)
 {
-    size_t v_size;
-    size_t end_size;
-    size_t total_size;
-    char *string;
-
-    v_size = ft_strlen(value);
-    end_size = ft_strlen(src) - slice.end;
-    total_size = slice.begin + v_size + end_size;
-
-    string = malloc(sizeof(char) * (total_size + 1));
-    if (string == NULL)
-        return (NULL);
-
-    ft_strncpy(string, src, slice.begin);
-    ft_strncpy(&string[slice.begin], value, v_size);
-    ft_strcpy(&string[slice.begin + v_size], &src[slice.end]);
-    string[total_size] = '\0';
-    return (string);
+    return (ft_isalnum(c) || c == '_');
 }
 
-char    *replace(const char *src, t_slice slice)
+static char *extract_and_replace(char *src, const char *value, t_slice slice)
 {
-    char    *value;
-    char    *key;
-    char    *ret;
-    char    *e_var;
+    const size_t    slength = ft_strlen(src);
+    const size_t    vlength = ft_strlen(value);
+    size_t          total;
+    char            *new;
+    
+    total = slice.begin + vlength + (slength - slice.end);
+    
+    new = malloc(sizeof(char) * (total + 1));
+    
+    if (new == NULL)
+        return (NULL);
 
-    if (slice.begin > slice.end)
+    ft_bzero(new, total);
+    ft_strncpy(new, src, slice.begin);
+    ft_strcpy(&new[slice.begin], value);
+    ft_strcpy(&new[slice.begin + vlength], &src[slice.end]);
+    return (new);
+}
+
+static char *replace(char **src, t_slice slice)
+{
+    char    *previous;
+    t_spair items;
+
+    items.key = ft_substr(*src, slice.begin + 1, slice.end - (slice.begin + 1));
+    if (items.key == NULL)
         return (NULL);
-    key = ft_strndup(&src[slice.begin + 1], slice.end - (slice.begin + 1));
-    if (key == NULL)
-        return (NULL);
-    e_var = find_variable(key);
-    value = get_value(e_var);
-    ret = glue(src, value, slice);
-    return (ret);
+    items.value = get_value(find_variable(items.key));
+    if (items.value == NULL)
+        items.value = ft_strdup("");
+    previous = *src;
+    *src = extract_and_replace(*src, items.value, slice);
+    free(previous);
+    return (*src);
 }
 
 char    *expand(const char *src)
 {
-    t_vec   index;
-    char    *expanded;
+    char    *new;
+    t_slice slice;
 
-    index.x = 0;
-    expanded = (char*)src;
-    while (expanded[index.x] != '\0')
+    slice.begin = 0;
+    if ((new = ft_strdup(src)) == NULL)
+        return (NULL);
+    while (new[slice.begin] != '\0')
     {
-        if (expanded[index.x] == SYM_ENV_VAR)
+        if (new[slice.begin] == SYM_ENV_VAR && is_var_charset(new[slice.begin + 1]))
         {
-            index.y = index.x;
-            while (!ft_isspace(expanded[index.y]) && expanded[index.y] != '\0')
-                index.y++;
-            expanded = replace(expanded, (t_slice){index.x, index.y});            
-            if (expanded == NULL)
-                return (NULL);
-            index.x = index.y;
+            slice.end = slice.begin + 1;
+            while (is_var_charset(new[slice.end]) && new[slice.end] != '\0')
+                slice.end++;       
+            replace(&new, slice);
+            slice.begin = 0;
         }
-        index.x++;
+        else
+            slice.begin++;
     }
-    return (expanded);
+    return (new);
 }

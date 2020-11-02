@@ -1,8 +1,6 @@
 #include "eval.h"
 #include "builtins.h"
 
-extern t_queue	*g_queue;
-
 int		init_return_parent(int newpipe[2], t_command *command, pid_t pid)
 {
 	int		status;

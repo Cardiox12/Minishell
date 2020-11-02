@@ -39,8 +39,8 @@ typedef struct	s_command
 }				t_command;
 
 extern char **g_env;
-int			g_exitstatus;
-extern		t_queue  *g_queue;
+extern int			g_exitstatus;
+extern t_queue	*g_queue;
 
 void						write_error_nofile(char *command_value);
 void						write_error_invalid_command(char *command_value);

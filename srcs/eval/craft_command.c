@@ -4,8 +4,6 @@
 #include "eval.h"
 #include "lexer.h"
 
-//extern t_queue  *g_queue;
-
 int		pre_initialize_command(t_command *command)
 {
 	command->has_output_redirect = 0; // a intégrer dans une future fonction d'initialisation
@@ -96,14 +94,14 @@ int		get_args(int *count, t_command *command)
 int		craft_command(t_command *command)
 {
 	int	count;
-	int	diff;
+	// int	diff;
 
 	if ((pre_initialize_command(command)) == -1)
 		return (-1);
 	count = 0;
 	while (g_queue != NULL && g_queue->token.type != PIPE)
 	{
-		diff = count;
+		// diff = count;
 		if ((get_args(&count, command)) == -1)
 			return (-1);
 		if ((get_redirects(&count, command)) == -1)

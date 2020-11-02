@@ -4,8 +4,6 @@
 #include "eval.h"
 #include "lexer.h"
 
-t_queue		*g_queue;
-
 int		is_arg(t_queue *queue)
 {
 	int		type;
