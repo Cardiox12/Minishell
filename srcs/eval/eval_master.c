@@ -66,6 +66,7 @@ int		eval(t_queue *queue)
 						return (-1);
 				}
 			}
+//			ft_printf("errno : %d\n", errno);
 			if (g_queue == NULL)
 				return (0);
 			if (g_queue->token.type == OPERATOR)

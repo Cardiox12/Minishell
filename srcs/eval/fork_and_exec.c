@@ -2,26 +2,11 @@
 
 extern char		**g_env;
 
-int		fork_and_exec(t_command *command)
+int		fork_child_exec(int pipefd[2], t_command *command)
 {
-	pid_t	pid;
-	int		pipefd[2];
-	int		status;
-	char	*output_buffer;
-	int		inputpipe[2];
+		int inputpipe[2];
 
-	if (command->has_output_redirect == 1)
-	{
-		if (pipe(pipefd) == -1)
-			perror("pipe");
-	}
-	if ((pid = fork()) == -1)
-	{
-		perror("fork");
-		return (1);
-	}
-	else if (pid == 0)
-	{
+
 		if (command->has_output_redirect == 1)
 		{
 			close(pipefd[0]);
@@ -38,15 +23,32 @@ int		fork_and_exec(t_command *command)
 		{
 			ft_printf("minishell: %s: No such file or directory\n", command->value);
 			free_command(command);
-			exit(1);
+			exit(127);
 //			return (free_command_ret_fail(command));
 		}
 		return (1);
-	}
+}
+
+int		fork_and_exec(t_command *command)
+{
+	pid_t	pid;
+	int		pipefd[2];
+	int		status;
+	char	*output_buffer;
+
+	if (command->has_output_redirect == 1)
+		pipe(pipefd);
+	if ((pid = fork()) == -1)
+		return (free_command_ret_fail(command));
+	else if (pid == 0)
+		return (fork_child_exec(pipefd, command));
 	else
 	{
-		if (wait(&status) == -1)
-			perror("wait");
+		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+			g_exitstatus = WEXITSTATUS(status);
+		ft_printf("exit code fork and exec: %d\n", g_exitstatus);
+//		ft_printf("status: %d\n", status);
 		if (command->has_output_redirect == 1)
 		{
 			close(pipefd[1]);
@@ -56,6 +58,10 @@ int		fork_and_exec(t_command *command)
 			ft_strdel(&output_buffer);
 			close(pipefd[0]);
 		}
+/*		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+			g_exitstatus = WEXITSTATUS(status);
+		ft_printf("exit code fork and exec: %d\n", g_exitstatus);*/
 		free_command(command);
 		return (0);
 	}	

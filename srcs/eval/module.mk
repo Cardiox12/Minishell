@@ -26,6 +26,7 @@ SRCS += $(EVAL_DIR)/fork_and_exec.c
 SRCS += $(EVAL_DIR)/print_s_command.c
 SRCS += $(EVAL_DIR)/path_finder.c
 SRCS += $(EVAL_DIR)/recursive_piper.c
+SRCS += $(EVAL_DIR)/init_piper.c
 SRCS += $(EVAL_DIR)/read_until_eof.c
 SRCS += $(EVAL_DIR)/dynamic_int_array.c
 SRCS += $(EVAL_DIR)/get_redirection.c

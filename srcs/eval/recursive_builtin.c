@@ -3,7 +3,6 @@
 
 extern char		**g_env;
 extern t_queue	*g_queue;
-int test_file;
 
 
 int		builtin_exec(t_command *command, int *oldpipe[2], int newpipe[2])

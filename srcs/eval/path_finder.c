@@ -27,6 +27,7 @@ char	*check_path(char *path, char *slashed_value)
 	char		full_path[ft_strlen(path) + ft_strlen(slashed_value) + 1];
 	struct stat	s_stat;
 	char		*casted_path;
+//	int			temp_errno;
 
 	casted_path = (char*)full_path;
 	ft_bzero(casted_path, ft_strlen(path) + ft_strlen(slashed_value) + 1);
@@ -45,6 +46,7 @@ char	*get_path(char *value)
 	char	*full_path;
 	char	*casted_value;
 	char	**tab_temp;
+//	int		temp_errno;
 
 	if (value[0] == '/')
 		return (ft_strdup(value));

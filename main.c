@@ -72,12 +72,14 @@ int		main(int ac, char **av, char *env[])
 	(void)ac;
 	(void)av;
 
+	errno = 0;
 	/*copie et allocation du tableau d'env dans une variable globale
 	pour pouvoir l'utiliser et le modifier par la suite */
 	if (!(ft_tab_copy(&g_env, env)))
 		return (-1);
 	while (TRUE)
 	{
+		errno = 0;
 		line = reader();
 		t_queue *tokens = lexer(line);
 		print_queue(tokens);
