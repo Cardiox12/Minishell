@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_first.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/02 19:55:11 by tlucille          #+#    #+#             */
+/*   Updated: 2020/11/02 19:55:13 by tlucille         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "eval.h"
 
 void	free_command(t_command *command)
@@ -10,4 +22,3 @@ void	free_command(t_command *command)
 		free(command->output_redirection_files);
 	ft_strdel(&(command->path));
 }
-

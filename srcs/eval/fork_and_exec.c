@@ -1,28 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fork_and_exec.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/02 19:54:02 by tlucille          #+#    #+#             */
+/*   Updated: 2020/11/02 19:54:03 by tlucille         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "eval.h"
 
 int		fork_child_exec(int pipefd[2], t_command *command)
 {
-		int inputpipe[2];
+	int inputpipe[2];
 
-		if (command->has_output_redirect == 1)
-		{
-			close(pipefd[0]);
-			dup2(pipefd[1], 1);
-		}
-		if (command->has_input_redirect == 1)
-		{
-			pipe(inputpipe);
-			read_redirections_nopipe(command, inputpipe);
-			dup2(inputpipe[0], 0);
-			close(inputpipe[1]);
-		}
-		if (execve(command->path, command->args, g_env) == -1)
-		{
-			write_error_nofile(command->value);
-			free_command(command);
-			exit(127);
-		}
-		return (1);
+	if (command->has_output_redirect == 1)
+	{
+		close(pipefd[0]);
+		dup2(pipefd[1], 1);
+	}
+	if (command->has_input_redirect == 1)
+	{
+		pipe(inputpipe);
+		read_redirections_nopipe(command, inputpipe);
+		dup2(inputpipe[0], 0);
+		close(inputpipe[1]);
+	}
+	if (execve(command->path, command->args, g_env) == -1)
+	{
+		write_error_nofile(command->value);
+		free_command(command);
+		exit(127);
+	}
+	return (1);
 }
 
 int		return_fork_parent(t_command *command, int pipefd[2], pid_t pid)

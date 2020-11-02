@@ -42,6 +42,7 @@ extern char **g_env;
 extern int			g_exitstatus;
 extern t_queue	*g_queue;
 
+int							write_error_free_ret(t_command *command);
 void						write_error_nofile(char *command_value);
 void						write_error_invalid_command(char *command_value);
 int							recursive_piper(int oldpipe[2]);
