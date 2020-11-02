@@ -82,6 +82,13 @@ int		main(int argc, char **argv, char *envp[])
 		line = reader();
 		t_queue *tokens = lexer(line);
 		print_queue(tokens);
+
+		if (parser(line, tokens) != SUCCESS)
+		{
+			ft_printf("Error while parsing\n");
+			exit(0);
+		}
+		eval(tokens);
 	}
 	return (0);
 }
