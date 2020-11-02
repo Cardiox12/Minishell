@@ -27,7 +27,6 @@ char	*check_path(char *path, char *slashed_value)
 	char		full_path[ft_strlen(path) + ft_strlen(slashed_value) + 1];
 	struct stat	s_stat;
 	char		*casted_path;
-//	int			temp_errno;
 
 	casted_path = (char*)full_path;
 	ft_bzero(casted_path, ft_strlen(path) + ft_strlen(slashed_value) + 1);
@@ -39,14 +38,33 @@ char	*check_path(char *path, char *slashed_value)
 		return (ft_strdup(full_path));
 }
 
-char	*get_path(char *value)
+char	*get_path_finalize(char *full_path, char *casted_value, char *value)
 {
 	char	**path_tab;
+	char	**tab_temp;
+	char	*absolute_path;
+
+	if (!(path_tab = ft_split_tab(full_path, ':')))
+		return (NULL);
+	tab_temp = path_tab;
+	while (*path_tab && !(absolute_path = check_path(*path_tab, casted_value)))
+		path_tab++;
+	if (!(*path_tab))
+	{
+		if (!is_builtin(&value))
+			write_error_invalid_command(value);
+		ft_freetab(&tab_temp);
+		return (NULL);
+	}
+	ft_freetab(&tab_temp);
+	return(absolute_path);
+}
+
+char	*get_path(char *value)
+{
 	char	slashed_value[ft_strlen(value) + 2];
 	char	*full_path;
 	char	*casted_value;
-	char	**tab_temp;
-//	int		temp_errno;
 
 	if (value[0] == '/')
 		return (ft_strdup(value));
@@ -55,22 +73,12 @@ char	*get_path(char *value)
 	casted_value = (char*)slashed_value;
 	ft_allocat(&casted_value, value);
 
-	full_path = arraychr(&g_env);
-	full_path += 5;
-
-	if (!(path_tab = ft_split_tab(full_path, ':')))
-		return (NULL);
-	tab_temp = path_tab;
-	full_path = NULL;
-	while (*path_tab && !(full_path = check_path(*path_tab, casted_value)))
-		path_tab++;
-	if (!(*path_tab))
+	if (!(full_path = arraychr(&g_env)))
 	{
-		if (!is_builtin(&value))
-			ft_printf("minishell: command not found: %s\n", value);
-		ft_freetab(&tab_temp);
+		write_error_invalid_command(value);
 		return (NULL);
 	}
-	ft_freetab(&tab_temp);
-	return(full_path);	
+	full_path += 5;
+
+	return (get_path_finalize(full_path, casted_value, value));
 }

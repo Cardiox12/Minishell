@@ -184,6 +184,6 @@ for command in "${output_commands[@]}"
 	do test_command_output_redirects "${command}"
 done
 
-#for command in "${expand_commands[@]}"
-#	do test_command "${command}"
-#done
+for command in "${expand_commands[@]}"
+	do test_command "${command}"
+done

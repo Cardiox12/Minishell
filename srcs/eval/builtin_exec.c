@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin_exec.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/02 19:15:35 by tlucille          #+#    #+#             */
+/*   Updated: 2020/11/02 19:15:38 by tlucille         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/eval.h"
 #include "builtins.h"
 
@@ -8,7 +20,7 @@ int		simple_builtin_exec(t_command *command, int newpipe[2])
 	int temp_stdout;
 
 	temp_stdout = dup(1);
-	if (command->has_output_redirect == 1) // or redirect
+	if (command->has_output_redirect == 1)
 		dup2(newpipe[1], 1);
 	builtins_call(command->args);
 	if (command->has_output_redirect == 1)
@@ -20,11 +32,10 @@ int		simple_builtin_exec(t_command *command, int newpipe[2])
 	return (0);
 }
 
-
 int		simple_redirect_handler(int newpipe[2], t_command *command)
 {
 	char	*output_buffer;
-	
+
 	if (command->has_output_redirect == 1)
 	{
 		if (close(newpipe[1]) == -1)
@@ -42,6 +53,7 @@ int		simple_redirect_handler(int newpipe[2], t_command *command)
 int		simple_builtin(t_command *command)
 {
 	int				newpipe[2];
+
 	if (command->has_output_redirect == 1)
 	{
 		if (pipe(newpipe) == -1)

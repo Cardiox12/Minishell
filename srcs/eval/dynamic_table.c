@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dynamic_table.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/02 19:37:15 by tlucille          #+#    #+#             */
+/*   Updated: 2020/11/02 19:37:18 by tlucille         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "eval.h"
 #include "ft_strings.h"
 #include "ft_stdlib.h"
 
-static char	**ft_tab_copy_index(char ***dst, char **src, int index)
+static char		**ft_tab_copy_index(char ***dst, char **src, int index)
 {
 	int		i;
 
@@ -16,7 +28,7 @@ static char	**ft_tab_copy_index(char ***dst, char **src, int index)
 	return (*dst);
 }
 
-void	ft_freetab_index(char ***tab, int index)
+void			ft_freetab_index(char ***tab, int index)
 {
 	int i;
 
@@ -27,33 +39,29 @@ void	ft_freetab_index(char ***tab, int index)
 	tab = NULL;
 }
 
-char    **add_to_dynamic_table(char ***table, char *str)
+char			**add_to_dynamic_table(char ***table, char *str)
 {
-    int     limit;
-    int     i;
-    char    **temp_table;
+	int		limit;
+	int		i;
+	char	**temp_table;
 
-	/*the table argument needs to be already allocated with a minimum size of 5*/
 	i = 0;
-    limit = 5;
-    while ((*table)[i])
-    {
-		/* index and limit incrementation whhile we're still inside the already written part*/
-        if (i == limit)
-            limit = limit * 2;
-        i++;
-    }
-    if (i == limit)
-    {
-		/* creation of the new bigger tab and copy of the contents of the previous tab */
+	limit = 5;
+	while ((*table)[i])
+	{
+		if (i == limit)
+			limit = limit * 2;
+		i++;
+	}
+	if (i == limit)
+	{
 		limit = limit * 2;
 		if (!(temp_table = ft_stabmaker(limit + 1)))
 			return (NULL);
 		ft_tab_copy_index(&temp_table, *table, i);
 		ft_freetab_index(table, i);
 		*table = temp_table;
-    }
-	/* ajout de la string supplémentaire */
+	}
 	if (!((*table)[i] = ft_strdup(str)))
 		return (NULL);
 	return (*table);
