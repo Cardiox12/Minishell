@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/02 21:10:27 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/02 21:31:20 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,7 +217,6 @@ t_queue *lexer(const char *input)
         else if (ft_isalnum(input[index]) && state & IS_ARGUMENT)
         {
             index = get_argument(&head, input, index);
-			// state ^= IS_ARGUMENT;
         }
 		else if (state & IS_FD && !ft_isspace(input[index]))
 		{
