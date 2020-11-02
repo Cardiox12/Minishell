@@ -17,7 +17,7 @@ int		child_exec(t_command *command, int *oldpipe[2], int newpipe[2])
 	}
 	if (execve(command->path, command->args, g_env) == -1)
 	{
-		ft_printf("minishell: %s: No such file or directory\n", command->value);
+		write_error_nofile(command->value);
 		free_command(command);
 		exit(127);
 //			return (free_command_ret_fail(command));

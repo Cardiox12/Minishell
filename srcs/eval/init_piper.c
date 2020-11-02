@@ -19,15 +19,11 @@ int		init_return_parent(int newpipe[2], t_command *command, pid_t pid)
 			perror("pipe");
 		ft_strdel(&output_buffer);
 	}
-	pid++;
-	pid--;
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		g_exitstatus = WEXITSTATUS(status);
-//	ft_printf("exit code init_pipe: %d\n", g_exitstatus);
 	if ((recursive_piper(newpipe)) == -1)
 		return (free_command_ret_fail(command));
-//	wait(&status);
 	free_command(command);
 	return (0);
 }
@@ -43,10 +39,9 @@ int 	init_child_exec(int inputpipe[2], int newpipe[2], t_command *command)
 	dup2(newpipe[1], 1);
 	if (execve(command->path, command->args, g_env) == -1)
 	{
-		ft_printf("minishell: %s: No such file or directory\n", command->value);
+		write_error_nofile(command->value);
 		free_command(command);
 		exit(127);
-//		return (free_command_ret_fail(command));
 	}
 	return (0);
 }
@@ -55,10 +50,7 @@ int		init_piper(t_command *command)
 {
 	int				newpipe[2];
 	int				inputpipe[2];
-//	int				status;
-//	int				piper_return;
 	pid_t			pid;
-//	char			*output_buffer;
 
 	ft_bzero(inputpipe, 2);
 	if (pipe(newpipe) == -1)
@@ -80,6 +72,6 @@ int		init_piper(t_command *command)
 	}
 	else
 		return(init_return_parent(newpipe, command, pid));
-	ft_printf("should not appear\n");
+//	ft_printf("should not appear\n");
 	return (0);
 }

@@ -40,7 +40,10 @@ typedef struct	s_command
 
 extern char **g_env;
 int			g_exitstatus;
+extern		t_queue  *g_queue;
 
+void						write_error_nofile(char *command_value);
+void						write_error_invalid_command(char *command_value);
 int							recursive_piper(int oldpipe[2]);
 int							init_piper(t_command *command);
 int							free_tab_string_ret_fail(char **string, char ***tab);

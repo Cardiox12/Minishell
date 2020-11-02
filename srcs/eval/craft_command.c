@@ -4,7 +4,7 @@
 #include "eval.h"
 #include "lexer.h"
 
-extern t_queue  *g_queue;
+//extern t_queue  *g_queue;
 
 int		pre_initialize_command(t_command *command)
 {

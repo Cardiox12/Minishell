@@ -33,10 +33,32 @@ int		is_output(t_queue *queue)
 		return (0);
 }
 
+int		launch_adequate_execution(t_command *command)
+{
+	if (command->output_type == PIPE)
+	{
+		if (init_piper(command) == -1)
+			return (-1);
+	}
+	else
+	{
+		if (is_builtin(command->args))
+		{
+			if (simple_builtin(command) == -1)
+				return (-1);
+		}
+		else
+		{
+			if (fork_and_exec(command) == -1)
+				return (-1);
+		}
+	}
+	return (0);
+}
+
 int		eval(t_queue *queue)
 {
 	t_command	command;
-	int			piper_return;
 
 
 	g_queue = queue;
@@ -48,25 +70,8 @@ int		eval(t_queue *queue)
 			if (craft_command(&command) == -1)
 				return (-1);
 			print_s_command(&command);
-			if (command.output_type == PIPE)
-			{
-				if ((piper_return = init_piper(&command)) == -1)
-					return (-1);
-			}
-			else
-			{
-				if (is_builtin(command.args))
-				{
-					if (simple_builtin(&command) == -1)
-						return (-1);
-				}
-				else
-				{
-					if (fork_and_exec(&command) == -1)
-						return (-1);
-				}
-			}
-//			ft_printf("errno : %d\n", errno);
+			if (launch_adequate_execution(&command) == -1)
+				return (-1);
 			if (g_queue == NULL)
 				return (0);
 			if (g_queue->token.type == OPERATOR)
