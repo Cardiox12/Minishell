@@ -53,7 +53,6 @@ char	*get_path_finalize(char *full_path, char *casted_value, char *value)
 	{
 		if (!is_builtin(&value))
 			write_error_invalid_command(value);
-//			ft_printf("minishell: command not found: %s\n", value);
 		ft_freetab(&tab_temp);
 		return (NULL);
 	}
@@ -74,7 +73,11 @@ char	*get_path(char *value)
 	casted_value = (char*)slashed_value;
 	ft_allocat(&casted_value, value);
 
-	full_path = arraychr(&g_env);
+	if (!(full_path = arraychr(&g_env)))
+	{
+		write_error_invalid_command(value);
+		return (NULL);
+	}
 	full_path += 5;
 
 	return (get_path_finalize(full_path, casted_value, value));
