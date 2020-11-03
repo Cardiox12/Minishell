@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 16:57:24 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/30 18:32:22 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/03 22:05:40 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,20 @@ int pwd(char **args);
 int env(char **args);
 int export(char **args);
 int unset(char **args);
+int internal_exit(char **args);
 int builtins_call(char **args);
 
 # define RAW_ARGUMENT "-n"
 # define HOME "~"
 
-# define BUILTINS_SIZE      6
+# define BUILTINS_SIZE      7
 # define BUILTINS_ECHO      "echo"
 # define BUILTINS_CD        "cd"
 # define BUILTINS_PWD       "pwd"
 # define BUILTINS_ENV       "env"
 # define BUILTINS_EXPORT    "export"
 # define BUILTINS_UNSET     "unset"
+# define BUILTINS_EXIT      "exit"
 
 static const t_builtin g_builtins[BUILTINS_SIZE] = {
     {BUILTINS_ECHO, echo},
@@ -62,7 +64,8 @@ static const t_builtin g_builtins[BUILTINS_SIZE] = {
     {BUILTINS_PWD, pwd},
     {BUILTINS_ENV, env},
     {BUILTINS_EXPORT, export},
-    {BUILTINS_UNSET, unset}
+    {BUILTINS_UNSET, unset},
+    {BUILTINS_EXIT, internal_exit}
 };
 
 #endif

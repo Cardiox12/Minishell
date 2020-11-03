@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.h                                            :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/27 07:24:46 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/03 22:16:58 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/03 21:57:17 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/03 22:35:32 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TYPES_H
-# define FT_TYPES_H
+#include "internal_errors.h"
+#include "ft_stdlib.h"
+#include "builtins.h"
 
-# include <stddef.h>
-
-# define EXE_NAME "minishell"
-typedef struct  s_spair
+int internal_exit(char **args)
 {
-    char *key;
-    char *value;
-}               t_spair;
-
-typedef struct {
-	size_t begin;
-	size_t end;
-}		t_slice;
-
-#endif
+    (void)args;
+    
+    ft_printf("exit\n");
+    if (args[1] == NULL)
+        exit(0);
+    if (!ft_isnumeric(args[1]))
+    {
+        ft_printf("%s: exit: %s: numeric argument required\n", EXE_NAME ,args[1]);
+        exit(EXIT_ERR_NON_NUMERIC_ARG);
+    }
+    exit(ft_atoi(args[1]));
+}

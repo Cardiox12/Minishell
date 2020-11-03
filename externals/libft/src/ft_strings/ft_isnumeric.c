@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   ft_isnumeric.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/06 13:12:28 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/06 13:13:35 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/03 22:23:52 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/03 22:25:33 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_ERROR_H
-# define FT_ERROR_H
+#include "ft_ctypes.h"
+#include "ft_strings.h"
 
-extern int g_parse_err;
-extern int g_eval_err;
+int ft_isnumeric(const char *s)
+{
+    size_t index;
 
-#endif
+    index = 0;
+    while (s[index] != '\0')
+    {
+        if (!ft_isdigit(s[index]))
+            return (FALSE);
+        index++;
+    }
+    return (TRUE);
+}

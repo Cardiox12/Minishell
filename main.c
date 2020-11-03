@@ -79,7 +79,6 @@ int		main(int argc, char **argv, char *envp[])
 	{
 		line = reader();
 		t_queue *tokens = lexer(line);
-		print_queue(tokens);
 
 		if (parser(line, tokens) != SUCCESS)
 		{
