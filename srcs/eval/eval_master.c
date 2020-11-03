@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eval_master.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 19:39:17 by tlucille          #+#    #+#             */
-/*   Updated: 2020/11/02 19:39:19 by tlucille         ###   ########.fr       */
+/*   Updated: 2020/11/03 03:10:24 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		eval(t_queue *queue)
 		{
 			if (craft_command(&command) == -1)
 				return (-1);
-			print_s_command(&command);
+			// print_s_command(&command);
 			if (launch_adequate_execution(&command) == -1)
 				return (-1);
 			if (g_queue == NULL)
