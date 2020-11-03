@@ -75,16 +75,6 @@ int		main(int argc, char **argv, char *envp[])
 	if (!(ft_tab_copy(&g_env, envp)))
 		return (-1);
 
-	t_string_list *list;
-
-	string_list_create(&list);
-	string_list_append(list, "Hello");
-	string_list_append(list, "World");
-	string_list_iter(list, puts);
-	char **items = string_list_to_string_array(list);
-
-	for (int index = 0 ; items[index] != NULL ; index++)
-		puts(items[index]);
 	// while (TRUE)
 	// {
 	// 	line = reader();
