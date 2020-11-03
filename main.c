@@ -63,29 +63,25 @@ void	print_queue(t_queue *head)
 	}
 }
 
-int		main(int argc, char **argv, char *envp[])
+int		main(int argc, char *argv[], char *envp[])
 {
+	t_queue	*tokens;
+	char	*line;
+
 	(void)argc;
 	(void)argv;
-
-	char *line;
-
-	line = NULL;
-
 	if (!(ft_tab_copy(&g_env, envp)))
 		return (-1);
-	
-	while (1)
+	line = NULL;
+	while (TRUE)
 	{
 		line = reader();
-		t_queue *tokens = lexer(line);
+		tokens = lexer(line);
 
 		if (parser(line, tokens) != SUCCESS)
-		{
 			ft_printf("Error while parsing\n");
-			exit(0);
-		}
-		eval(tokens);
+		else
+			eval(tokens);
 	}
 	return (0);
 }
