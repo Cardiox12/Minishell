@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   path_finder.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/03 12:22:45 by tlucille          #+#    #+#             */
+/*   Updated: 2020/11/03 12:22:47 by tlucille         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "eval.h"
 #include "builtins.h"
 
@@ -57,7 +69,7 @@ char	*get_path_finalize(char *full_path, char *casted_value, char *value)
 		return (NULL);
 	}
 	ft_freetab(&tab_temp);
-	return(absolute_path);
+	return (absolute_path);
 }
 
 char	*get_path(char *value)
@@ -72,13 +84,11 @@ char	*get_path(char *value)
 	slashed_value[0] = '/';
 	casted_value = (char*)slashed_value;
 	ft_allocat(&casted_value, value);
-
 	if (!(full_path = arraychr(&g_env)))
 	{
 		write_error_invalid_command(value);
 		return (NULL);
 	}
 	full_path += 5;
-
 	return (get_path_finalize(full_path, casted_value, value));
 }

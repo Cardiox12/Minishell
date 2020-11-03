@@ -1,4 +1,16 @@
-#include "../../includes/eval.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   write_read_redirections.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/03 12:33:53 by tlucille          #+#    #+#             */
+/*   Updated: 2020/11/03 12:33:56 by tlucille         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "eval.h"
 
 void	write_redirections(t_command *command, char *buffer)
 {

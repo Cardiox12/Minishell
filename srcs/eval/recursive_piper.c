@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   recursive_piper.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/03 12:30:17 by tlucille          #+#    #+#             */
+/*   Updated: 2020/11/03 12:30:18 by tlucille         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "eval.h"
 #include "builtins.h"
 
@@ -8,7 +20,7 @@ int		child_exec(t_command *command, int *oldpipe[2], int newpipe[2])
 		read_redirections_pipe(command, oldpipe);
 	dup2((*oldpipe)[0], 0);
 	close((*oldpipe)[1]);
-	if (command->output_type == PIPE || command->has_output_redirect == 1) // or redirect
+	if (command->output_type == PIPE || command->has_output_redirect == 1)
 	{
 		close(newpipe[0]);
 		dup2(newpipe[1], 1);
@@ -18,16 +30,14 @@ int		child_exec(t_command *command, int *oldpipe[2], int newpipe[2])
 		write_error_nofile(command->value);
 		free_command(command);
 		exit(127);
-//			return (free_command_ret_fail(command));
 	}
 	return (0);
 }
 
-
 int		parent_exec(int oldpipe[2], int newpipe[2], t_command *command)
 {
 	char	*output_buffer;
-	
+
 	close(oldpipe[0]);
 	close(oldpipe[1]);
 	if (command->has_output_redirect == 1)
@@ -42,7 +52,8 @@ int		parent_exec(int oldpipe[2], int newpipe[2], t_command *command)
 	return (0);
 }
 
-int		recur_parent_exec(int oldpipe[2], int newpipe[2], t_command *new_command, pid_t pid)
+int		recur_parent_exec(int oldpipe[2], int newpipe[2],
+			t_command *new_command, pid_t pid)
 {
 	int		status;
 
@@ -51,7 +62,6 @@ int		recur_parent_exec(int oldpipe[2], int newpipe[2], t_command *new_command, p
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		g_exitstatus = WEXITSTATUS(status);
-//	ft_printf("exit code recurpipe: %d\n", g_exitstatus);
 	if (new_command->has_output_redirect && new_command->output_type == PIPE)
 	{
 		if (pipe(newpipe) == -1)
@@ -63,16 +73,14 @@ int		recur_parent_exec(int oldpipe[2], int newpipe[2], t_command *new_command, p
 			return (free_command_ret_fail(new_command));
 	}
 	free_command(new_command);
-	return (0);	
+	return (0);
 }
 
 int		recursive_piper(int oldpipe[2])
 {
 	int				newpipe[2];
-//	int				status;
 	t_command		new_command;
 	pid_t			pid;
-//	int				piper_return;
 
 	if (g_queue == NULL)
 		return (0);

@@ -1,7 +1,18 @@
-#include "../../includes/eval.h"
-extern int test_file;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_until_eof.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/03 12:25:08 by tlucille          #+#    #+#             */
+/*   Updated: 2020/11/03 12:25:09 by tlucille         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-# define BUF_SIZE 100
+#include "eval.h"
+
+#define BUF_SIZE 100
 
 char	*read_until_eof(int fd)
 {

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_piper.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/03 12:21:54 by tlucille          #+#    #+#             */
+/*   Updated: 2020/11/03 12:21:55 by tlucille         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "eval.h"
 #include "builtins.h"
 
@@ -26,7 +38,7 @@ int		init_return_parent(int newpipe[2], t_command *command, pid_t pid)
 	return (0);
 }
 
-int 	init_child_exec(int inputpipe[2], int newpipe[2], t_command *command)
+int		init_child_exec(int inputpipe[2], int newpipe[2], t_command *command)
 {
 	if (command->has_input_redirect == 1)
 	{
@@ -69,7 +81,6 @@ int		init_piper(t_command *command)
 			return (-1);
 	}
 	else
-		return(init_return_parent(newpipe, command, pid));
-//	ft_printf("should not appear\n");
+		return (init_return_parent(newpipe, command, pid));
 	return (0);
 }
