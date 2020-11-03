@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/02 21:31:20 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/03 02:51:37 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,11 @@ static int get_argument(t_queue **head, const char *input, size_t index)
     return (index);
 }
 
+static int is_bash_charset(int c)
+{
+	return (ft_isprint(c) && !is_sep(c));
+}
+
 t_queue *lexer(const char *input)
 {
 	const size_t    length = ft_strlen(input);
@@ -214,7 +219,7 @@ t_queue *lexer(const char *input)
 			state ^= IS_ARGUMENT;
 			state |= IS_FD;
 		}
-        else if (ft_isalnum(input[index]) && state & IS_ARGUMENT)
+        else if (is_bash_charset(input[index]) && state & IS_ARGUMENT)
         {
             index = get_argument(&head, input, index);
         }

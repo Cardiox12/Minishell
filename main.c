@@ -55,13 +55,12 @@ char	*get_type(int type)
 
 void	print_queue(t_queue *head)
 {
-	ft_printf("=============== TOKENS ===============\n");
+	ft_printf("%-30s| %-30s| %-30s\n", "TYPE", "VALUE", "INDEX");
 	while (head != NULL)
 	{
-		ft_printf("(.type = %s, .value = %s, .index = %d)\n", get_type(head->token.type), head->token.value, head->token.index);
+		ft_printf("%-30s| %-30s| %-30d\n", get_type(head->token.type), head->token.value, head->token.index);
 		head = head->next;
 	}
-	ft_printf("=======================================\n");
 }
 
 int		main(int argc, char **argv, char *envp[])
