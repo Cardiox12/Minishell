@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 20:35:24 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/03 20:38:31 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/03 21:08:46 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,16 @@
 
 char    **string_list_to_string_array(t_string_list *list)
 {
-    char **strings;
+    t_string_list   *copy;
+    char            **items;
+    size_t          last;
 
-    
+    string_list_copy(&copy, list);
+    string_list_append(copy, "");
+    items = copy->items;
+    last = (copy->length == 0) ? 0 : copy->length - 1;
+    free(copy);
+    free(items[last]);
+    items[last] = NULL;
+    return (items);
 }

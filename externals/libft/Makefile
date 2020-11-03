@@ -98,6 +98,7 @@ SRCS	+= $(OBJECTS_DIR)/StringList_pop_last.c
 SRCS	+= $(OBJECTS_DIR)/StringList_iter.c
 SRCS	+= $(OBJECTS_DIR)/StringList_copy.c
 SRCS	+= $(OBJECTS_DIR)/StringList_create_from.c
+SRCS	+= $(OBJECTS_DIR)/StringList_to_string_array.c
 
 SRCS	+= $(MATH_DIR)/vec/vec_add.c
 SRCS	+= $(MATH_DIR)/vec/vec_cast.c
