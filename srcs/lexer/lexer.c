@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/03 02:51:37 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/03 04:49:30 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,42 @@ static int is_sep(int c)
 	return (ft_isspace(c) || c == SYM_PIPE || c == SYM_OPERATOR);
 }
 
+static char *quote_extract(const char *input, size_t *index)
+{
+	const int	quote = input[*index];
+	size_t		previous;
+	char		*content;
+
+	while (input[*index] == quote)
+		(*index)++;
+	previous = *index;
+	while (input[*index] != quote)
+		(*index)++;
+	content = ft_strndup(&input[previous], *index - previous);
+	while (input[*index] == quote)
+		(*index)++;
+	return (content);	
+
+}
+
 static int get_command(t_queue **head, const char *input, size_t index)
 {
-    const size_t previous = index;
+    const size_t	previous = index;
+	char			*content;
 
-    while (input[index] != '\0' && !is_sep(input[index]))
-        index++;
+	if (ft_isquote(input[index]))
+	{
+		content = quote_extract(input, &index);
+	}
+	else
+	{
+		while (input[index] != '\0' && !is_sep(input[index]))
+			index++;
+		content = ft_strndup(&input[previous], index - previous);
+	}
     enqueue(head, (t_token){
         .type = COMMAND,
-        .value = ft_strndup(&input[previous], index - previous),
+        .value = content,
         .index = previous
     });
     return (index);
@@ -53,13 +80,13 @@ static int get_env_variable(t_queue **head, const char *input, size_t index)
 }
 
 static int get_string(t_queue **head, const char *input, size_t index)
-{
-    const int       quote = input[index];
-	t_vec			quote_n;
-    size_t			previous;
-    int             type;
+{	
+	size_t	previous;
+    int		type;
+	char	*content;
 
-    if (quote == SYM_SIMPLE_QUOTE)
+	previous = index;
+    if (input[index] == SYM_SIMPLE_QUOTE)
 	{
         type = RAW_STRING;
 	}
@@ -67,25 +94,12 @@ static int get_string(t_queue **head, const char *input, size_t index)
 	{
         type = STRING;
 	}
-	quote_n = (t_vec){0, 0};
-    while (input[index] != '\0' && input[index] == quote)
-	{
-        index++;
-		quote_n.x++;
-	}
-	previous = index;
-	while (input[index] != '\0' && input[index] != quote)
-		index++;
+	content = quote_extract(input, &index);
     enqueue(head, (t_token){
         .type = type,
-        .value = ft_strndup(&input[previous], index - previous),
+        .value = content,
         .index = previous
     });
-	while (input[index] != '\0' && input[index] == quote && quote_n.y < quote_n.x)
-	{
-		index++;
-		quote_n.y++;
-	}
     return (index);
 }
 
