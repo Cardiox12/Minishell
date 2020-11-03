@@ -21,6 +21,8 @@ SRCS += $(EVAL_DIR)/$(STR_DIR)/ft_split_tab.c
 SRCS += $(EVAL_DIR)/$(STR_DIR)/ft_strdel.c
 SRCS += $(EVAL_DIR)/$(STR_DIR)/ft_allocat.c
 SRCS += $(EVAL_DIR)/$(STR_DIR)/ft_int_tab_maker.c
+SRCS += $(EVAL_DIR)/$(STR_DIR)/ft_strreplace.c
+SRCS += $(EVAL_DIR)/$(STR_DIR)/ft_strreplace_all.c
 
 SRCS += $(EVAL_DIR)/fork_and_exec.c
 SRCS += $(EVAL_DIR)/print_s_command.c

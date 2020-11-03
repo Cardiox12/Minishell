@@ -78,7 +78,6 @@ int		main(int argc, char **argv, char *envp[])
 
 	while (TRUE)
 	{
-		errno = 0;
 		line = reader();
 		t_queue *tokens = lexer(line);
 		print_queue(tokens);

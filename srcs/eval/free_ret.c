@@ -33,6 +33,6 @@ int		free_tab_string_ret_fail(char **string, char ***tab)
 
 int		write_error_free_ret(t_command *command)
 {
-	perror("open");
+	perror("minishell");
 	return (free_command_ret_fail(command));
 }
