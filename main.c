@@ -68,25 +68,25 @@ int		main(int argc, char **argv, char *envp[])
 	(void)argc;
 	(void)argv;
 
-	// char *line;
+	char *line;
 
-	// line = NULL;
+	line = NULL;
 
 	if (!(ft_tab_copy(&g_env, envp)))
 		return (-1);
+	
+	while (1)
+	{
+		line = reader();
+		t_queue *tokens = lexer(line);
+		print_queue(tokens);
 
-	// while (TRUE)
-	// {
-	// 	line = reader();
-	// 	t_queue *tokens = lexer(line);
-	// 	print_queue(tokens);
-
-	// 	if (parser(line, tokens) != SUCCESS)
-	// 	{
-	// 		ft_printf("Error while parsing\n");
-	// 		exit(0);
-	// 	}
-	// 	eval(tokens);
-	// }
+		if (parser(line, tokens) != SUCCESS)
+		{
+			ft_printf("Error while parsing\n");
+			exit(0);
+		}
+		eval(tokens);
+	}
 	return (0);
 }

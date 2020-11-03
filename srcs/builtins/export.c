@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 13:54:55 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/03 21:13:23 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/03 21:34:23 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,15 @@ int export(char **args)
 
     if (args[1] == NULL)
         return (0);
-
     item = get_item(args[1]);
-
     string_list_create_from(&list, g_env, string_arr_len(g_env));
-
     index = find_key(list, item.key);
     if (index != NOT_FOUND)
-    {
         list->items[index] = args[1];
-    }
     else
-    {
         string_list_append(list, args[1]);
-
-    }
-    g_env = list->items;
-    free(list);
+    g_env = string_list_to_string_array(list);
+    string_list_delete(&list);
     free(item.key);
     free(item.value);
     return (SUCCESS);
