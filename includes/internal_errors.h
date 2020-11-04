@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.h                                            :+:      :+:    :+:   */
+/*   internal_errors.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/27 07:24:46 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/03 22:16:58 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/10/06 13:12:28 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/03 22:27:18 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TYPES_H
-# define FT_TYPES_H
+#ifndef FT_INTERNAL_ERROR_H
+# define FT_INTERNAL_ERROR_H
 
-# include <stddef.h>
-
-# define EXE_NAME "minishell"
-typedef struct  s_spair
-{
-    char *key;
-    char *value;
-}               t_spair;
-
-typedef struct {
-	size_t begin;
-	size_t end;
-}		t_slice;
+# define EXIT_ERR_NON_NUMERIC_ARG 2
 
 #endif

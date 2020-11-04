@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 13:54:55 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/25 01:13:38 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/03 21:34:23 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,34 +53,15 @@ int export(char **args)
 
     if (args[1] == NULL)
         return (0);
-
-    // Get key / value from argument
     item = get_item(args[1]);
-
-    // Init a dynamic list with based on envp
     string_list_create_from(&list, g_env, string_arr_len(g_env));
-
     index = find_key(list, item.key);
     if (index != NOT_FOUND)
-    {
-        // If env variable already exists
-        // Replace the value by new value
         list->items[index] = args[1];
-    }
     else
-    {
-        // If it does not already exists
-        // Then add it to the end
         string_list_append(list, args[1]);
-
-        // Adding empty string and free it to NULL-terminate
-        // the array
-        string_list_append(list, "");
-        free(list->items[list->length - 1]);
-        list->items[list->length - 1] = NULL;
-    }
-    g_env = list->items;
-    free(list);
+    g_env = string_list_to_string_array(list);
+    string_list_delete(&list);
     free(item.key);
     free(item.value);
     return (SUCCESS);

@@ -69,6 +69,7 @@ SRCS	+= $(STRING_DIR)/ft_join_free_left.c
 SRCS	+= $(STRING_DIR)/ft_skip_whitespaces.c
 SRCS	+= $(STRING_DIR)/ft_skip_alnum.c
 SRCS	+= $(STRING_DIR)/ft_strcpy.c
+SRCS	+= $(STRING_DIR)/ft_isnumeric.c
 
 SRCS	+= $(STDLIB_DIR)/ft_realloc.c
 SRCS	+= $(STDLIB_DIR)/ft_atoi.c
@@ -96,8 +97,10 @@ SRCS	+= $(OBJECTS_DIR)/StringList_append.c
 SRCS	+= $(OBJECTS_DIR)/StringList_pop.c
 SRCS	+= $(OBJECTS_DIR)/StringList_pop_last.c
 SRCS	+= $(OBJECTS_DIR)/StringList_iter.c
+SRCS	+= $(OBJECTS_DIR)/StringList_copy.c
 SRCS	+= $(OBJECTS_DIR)/StringList_delete.c
 SRCS	+= $(OBJECTS_DIR)/StringList_create_from.c
+SRCS	+= $(OBJECTS_DIR)/StringList_to_string_array.c
 
 SRCS	+= $(MATH_DIR)/vec/vec_add.c
 SRCS	+= $(MATH_DIR)/vec/vec_cast.c

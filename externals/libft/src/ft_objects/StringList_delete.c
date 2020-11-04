@@ -5,16 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/18 10:34:15 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/18 12:13:10 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/03 21:14:30 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/03 21:18:23 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_strings.h"
+#include "ft_objects.h"
 
-void	string_list_delete(t_string_list *list)
+void    string_list_delete(t_string_list **list)
 {
-	string_list_iter(list, free);
-	free(list->items);
-	free(list);
+    t_string_list   *ptr;
+    size_t          index;
+    char            *item;
+
+    index = 0;
+    ptr = *list;
+    while (index < ptr->length)
+    {
+        item = ptr->items[index];
+        free(item);
+        index++;
+    }
+    free(ptr->items);
+    free(ptr);
+    *list = NULL;
 }

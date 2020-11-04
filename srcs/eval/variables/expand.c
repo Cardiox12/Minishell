@@ -6,16 +6,17 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 01:10:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/02 17:18:18 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/04 01:39:04 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_stdlib.h"
 #include "ft_ctypes.h"
 #include "eval.h"
 
 static int  is_var_charset(int c)
 {
-    return (ft_isalnum(c) || c == '_');
+    return (ft_isalnum(c) || c == '_' || c == '?');
 }
 
 static char *extract_and_replace(char *src, const char *value, t_slice slice)
@@ -26,12 +27,9 @@ static char *extract_and_replace(char *src, const char *value, t_slice slice)
     char            *new;
     
     total = slice.begin + vlength + (slength - slice.end);
-    
     new = malloc(sizeof(char) * (total + 1));
-    
     if (new == NULL)
         return (NULL);
-
     ft_bzero(new, total);
     ft_strncpy(new, src, slice.begin);
     ft_strcpy(&new[slice.begin], value);
@@ -47,7 +45,10 @@ static char *replace(char **src, t_slice slice)
     items.key = ft_substr(*src, slice.begin + 1, slice.end - (slice.begin + 1));
     if (items.key == NULL)
         return (NULL);
-    items.value = get_value(find_variable(items.key));
+    if (ft_strncmp(items.key, EXIT_CODE_SYM, 1) == 0)
+        items.value = ft_itoa(g_exitstatus);
+    else
+        items.value = get_value(find_variable(items.key));
     if (items.value == NULL)
         items.value = ft_strdup("");
     previous = *src;

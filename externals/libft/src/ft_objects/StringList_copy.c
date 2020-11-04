@@ -1,19 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   StringList_copy.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/06 13:12:28 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/06 13:13:35 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/03 20:40:17 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/03 20:48:11 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_ERROR_H
-# define FT_ERROR_H
+#include "ft_objects.h"
 
-extern int g_parse_err;
-extern int g_eval_err;
+/*
+**
+** Make a copy the string list passed in parameter
+**
+*/
 
-#endif
+void    string_list_copy(t_string_list **dst, t_string_list *src)
+{
+    size_t index;
+    string_list_create(dst);
+    
+    if (*dst == NULL)
+        return ;
+    index = 0;
+    while (index < src->length)
+    {
+        string_list_append(*dst, src->items[index]);
+        index++;
+    }
+}

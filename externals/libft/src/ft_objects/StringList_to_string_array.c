@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.h                                            :+:      :+:    :+:   */
+/*   StringList_to_string_array.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/27 07:24:46 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/03 22:16:58 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/03 20:35:24 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/03 21:08:46 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TYPES_H
-# define FT_TYPES_H
+#include "ft_objects.h"
 
-# include <stddef.h>
-
-# define EXE_NAME "minishell"
-typedef struct  s_spair
+char    **string_list_to_string_array(t_string_list *list)
 {
-    char *key;
-    char *value;
-}               t_spair;
+    t_string_list   *copy;
+    char            **items;
+    size_t          last;
 
-typedef struct {
-	size_t begin;
-	size_t end;
-}		t_slice;
-
-#endif
+    string_list_copy(&copy, list);
+    string_list_append(copy, "");
+    items = copy->items;
+    last = (copy->length == 0) ? 0 : copy->length - 1;
+    free(copy);
+    free(items[last]);
+    items[last] = NULL;
+    return (items);
+}

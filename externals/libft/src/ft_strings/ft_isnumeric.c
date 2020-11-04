@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.h                                            :+:      :+:    :+:   */
+/*   ft_isnumeric.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/27 07:24:46 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/03 22:16:58 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/03 22:23:52 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/03 22:25:33 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TYPES_H
-# define FT_TYPES_H
+#include "ft_ctypes.h"
+#include "ft_strings.h"
 
-# include <stddef.h>
-
-# define EXE_NAME "minishell"
-typedef struct  s_spair
+int ft_isnumeric(const char *s)
 {
-    char *key;
-    char *value;
-}               t_spair;
+    size_t index;
 
-typedef struct {
-	size_t begin;
-	size_t end;
-}		t_slice;
-
-#endif
+    index = 0;
+    while (s[index] != '\0')
+    {
+        if (!ft_isdigit(s[index]))
+            return (FALSE);
+        index++;
+    }
+    return (TRUE);
+}
