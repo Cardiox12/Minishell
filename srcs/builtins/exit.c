@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 21:57:17 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/03 22:35:32 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/04 19:51:33 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int internal_exit(char **args)
         exit(0);
     if (!ft_isnumeric(args[1]))
     {
-        ft_printf("%s: exit: %s: numeric argument required\n", EXE_NAME ,args[1]);
+        print_internal_error(BUILTINS_EXIT, args[1],
+        ERROR_NUMERIC_ARG_REQUIRED, FALSE);
         exit(EXIT_ERR_NON_NUMERIC_ARG);
     }
     exit(ft_atoi(args[1]));

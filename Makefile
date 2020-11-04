@@ -6,7 +6,7 @@
 #    By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/29 01:50:06 by tlucille          #+#    #+#              #
-#    Updated: 2020/11/03 22:28:05 by bbellavi         ###   ########.fr        #
+#    Updated: 2020/11/04 19:32:20 by bbellavi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ BUILTIN_DIR	= $(SRC_DIR)/builtins
 LIBFT_NAME	= libft.a
 NAME		= minishell
 
-include $(READ_DIR)/module.mk $(LEXER_DIR)/module.mk $(PARSE_DIR)/module.mk $(BUILTIN_DIR)/module.mk $(EVAL_DIR)/module.mk
+include $(READ_DIR)/module.mk $(LEXER_DIR)/module.mk $(PARSE_DIR)/module.mk $(BUILTIN_DIR)/module.mk $(EVAL_DIR)/module.mk $(OUTPUT_DIR)/module.mk
 
 .PHONY: all clean fclean
 
