@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 01:10:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/02 17:18:18 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/03 22:53:29 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,9 @@ static char *extract_and_replace(char *src, const char *value, t_slice slice)
     char            *new;
     
     total = slice.begin + vlength + (slength - slice.end);
-    
     new = malloc(sizeof(char) * (total + 1));
-    
     if (new == NULL)
         return (NULL);
-
     ft_bzero(new, total);
     ft_strncpy(new, src, slice.begin);
     ft_strcpy(&new[slice.begin], value);
