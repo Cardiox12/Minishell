@@ -84,29 +84,29 @@ char	*back_slash_handle(char **command)
 	return (*command);
 }
 
-char	*reader()
+char	*reader(char **command)
 {
-	char	*command;
+//	char	*command;
 	char	cwd[PATH_MAX];
 	int		len;
 	int		gnl_return;
 
-	command = NULL;
+	*command = NULL;
 	ft_bzero(cwd, PATH_MAX);
 	getcwd(cwd, PATH_MAX);
 	ft_printf("minishell@%s: ", cwd);
-	gnl_return = get_next_line(0, &command);
+	gnl_return = get_next_line(0, command);
 	if (gnl_return == 0)
 	{
 		write(1, "exit", 4);
 		exit(EXIT_SUCCESS);
 	}
-	if (command == NULL)
+	if (*command == NULL)
 		return (NULL);
-	if (quote_finder(command) == 1)
-		command = handle_quotes(&command);
-	len = ft_strlen(command);
-	if (command[len - 1] == '\\')
-		command = back_slash_handle(&command);
-	return (command);
+	if (quote_finder(*command) == 1)
+		*command = handle_quotes(command);
+	len = ft_strlen(*command);
+	if ((*command)[len - 1] == '\\')
+		(*command) = back_slash_handle(command);
+	return (*command);
 }

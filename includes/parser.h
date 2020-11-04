@@ -14,7 +14,7 @@
 # define FT_PARSER_H
 
 # include "lexer.h"
-# include "error.h"
+# include "internal_errors.h"
 
 typedef struct	s_interpret
 {

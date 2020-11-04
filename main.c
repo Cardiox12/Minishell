@@ -19,6 +19,7 @@
 #include "ft_stdio.h"
 #include "eval.h"
 #include "builtins.h"
+#include <signal.h>
 
 char		**g_env = NULL;
 int			g_exitstatus = 0;
@@ -63,6 +64,26 @@ void	print_queue(t_queue *head)
 	}
 }
 
+void		run_shell(int sig)
+{
+	char	*line;
+	t_queue *tokens;
+
+//	(void)sig;
+	write(1, "\n", 1);
+	signal(sig, run_shell);
+	while (TRUE)
+	{
+		reader(&line);
+		tokens = lexer(line);
+
+		if (parser(line, tokens) != SUCCESS)
+			ft_printf("Error while parsing\n");
+		else
+			eval(tokens);
+	}
+}
+
 int		main(int argc, char *argv[], char *envp[])
 {
 	t_queue	*tokens;
@@ -70,12 +91,13 @@ int		main(int argc, char *argv[], char *envp[])
 
 	(void)argc;
 	(void)argv;
+	signal(SIGINT, run_shell);
 	if (!(ft_tab_copy(&g_env, envp)))
 		return (-1);
 	line = NULL;
 	while (TRUE)
 	{
-		line = reader();
+		reader(&line);
 		tokens = lexer(line);
 
 		if (parser(line, tokens) != SUCCESS)
