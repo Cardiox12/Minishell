@@ -24,6 +24,7 @@
 char		**g_env = NULL;
 int			g_exitstatus = 0;
 t_queue		*g_queue = NULL;
+int			g_pid_to_kill;
 
 char	*get_type(int type)
 {
@@ -64,14 +65,11 @@ void	print_queue(t_queue *head)
 	}
 }
 
-void		run_shell(int sig)
+void		run_shell()
 {
 	char	*line;
 	t_queue *tokens;
 
-//	(void)sig;
-	write(1, "\n", 1);
-	signal(sig, run_shell);
 	while (TRUE)
 	{
 		reader(&line);
@@ -84,26 +82,38 @@ void		run_shell(int sig)
 	}
 }
 
+void		signal_handler(int sig)
+{
+	int status;
+
+	sig = sig + 1 - 1;
+	kill(g_pid_to_kill, SIGKILL);
+	g_pid_to_kill = fork();
+	if (g_pid_to_kill == 0)
+	{
+		write(1, "\n", 1);
+		run_shell();
+		exit(1);
+	}
+	else
+		signal(SIGINT, signal_handler);
+	wait(&status);
+}
+
+// need to kill the child
 int		main(int argc, char *argv[], char *envp[])
 {
-	t_queue	*tokens;
-	char	*line;
+	int status;
 
 	(void)argc;
 	(void)argv;
-	signal(SIGINT, run_shell);
 	if (!(ft_tab_copy(&g_env, envp)))
 		return (-1);
-	line = NULL;
-	while (TRUE)
-	{
-		reader(&line);
-		tokens = lexer(line);
-
-		if (parser(line, tokens) != SUCCESS)
-			ft_printf("Error while parsing\n");
-		else
-			eval(tokens);
-	}
+	g_pid_to_kill = fork();
+	if (g_pid_to_kill == 0)
+		run_shell();
+	else
+		signal(SIGINT, signal_handler);
+	wait(&status);
 	return (0);
 }
