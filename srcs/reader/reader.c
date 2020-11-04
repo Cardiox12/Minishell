@@ -97,7 +97,10 @@ char	*reader()
 	ft_printf("minishell@%s: ", cwd);
 	gnl_return = get_next_line(0, &command);
 	if (gnl_return == 0)
+	{
+		write(1, "exit", 4);
 		exit(EXIT_SUCCESS);
+	}
 	if (command == NULL)
 		return (NULL);
 	if (quote_finder(command) == 1)
