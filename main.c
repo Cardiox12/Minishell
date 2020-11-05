@@ -74,6 +74,7 @@ void		run_shell()
 	{
 		reader(&line);
 		tokens = lexer(line);
+		print_queue(tokens);
 
 		if (parser(line, tokens) != SUCCESS)
 			ft_printf("Error while parsing\n");
@@ -109,6 +110,7 @@ int		main(int argc, char *argv[], char *envp[])
 	(void)argv;
 	if (!(ft_tab_copy(&g_env, envp)))
 		return (-1);
+//	run_shell();
 	g_pid_to_kill = fork();
 	if (g_pid_to_kill == 0)
 		run_shell();

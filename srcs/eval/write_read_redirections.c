@@ -28,14 +28,12 @@ void	write_redirections(t_command *command, char *buffer)
 	close(command->output_redirection_files[i]);
 }
 
-int		*read_redirections_pipe(t_command *command, int *oldpipe[2])
+int		*read_redirections_pipe(t_command *command, int redirectpipe[2])
 {
 	int		i;
 	char	*buffer;
 
 	i = 0;
-	close((*oldpipe)[0]);
-	pipe(*oldpipe);
 	while (command->input_redirection_files[i + 1] != -1)
 	{
 		close(command->input_redirection_files[i]);
@@ -43,7 +41,8 @@ int		*read_redirections_pipe(t_command *command, int *oldpipe[2])
 	}
 	if (!(buffer = read_until_eof(command->input_redirection_files[i])))
 		return ((void*)0);
-	write((*oldpipe)[1], buffer, ft_strlen(buffer));
+	write(redirectpipe[1], buffer, ft_strlen(buffer));
+	close(redirectpipe[1]);
 	close(command->input_redirection_files[i]);
 	return ((void*)0);
 }

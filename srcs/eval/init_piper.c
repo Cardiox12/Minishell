@@ -62,11 +62,11 @@ int		init_piper(t_command *command)
 	int				inputpipe[2];
 	pid_t			pid;
 
+	if (is_builtin(command->args))
+		return (recursive_builtin(command));
 	ft_bzero(inputpipe, 2);
 	if (pipe(newpipe) == -1)
 		perror("pipe");
-	if (is_builtin(command->args))
-		return (recursive_builtin(newpipe, command));
 	if ((pid = fork()) == -1)
 	{
 		perror("fork");

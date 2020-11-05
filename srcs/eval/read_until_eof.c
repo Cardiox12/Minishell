@@ -12,7 +12,7 @@
 
 #include "eval.h"
 
-#define BUF_SIZE 100
+#define BUF_SIZE 4
 
 char	*read_until_eof(int fd)
 {
@@ -20,7 +20,10 @@ char	*read_until_eof(int fd)
 	char	buffer[BUF_SIZE + 1];
 	int		ret;
 
-	ret = read(fd, buffer, BUF_SIZE);
+	if ((ret = read(fd, buffer, BUF_SIZE)) == -1)
+		perror("read");
+//	ft_printf("ret read: %d\n", ret);
+//	write(1, buffer, 4);
 	buffer[ret] = '\0';
 	if (!(total_data = ft_strdup(buffer)))
 		return (NULL);

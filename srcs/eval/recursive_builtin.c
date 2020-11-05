@@ -13,32 +13,47 @@
 #include "../../includes/eval.h"
 #include "builtins.h"
 
-int		builtin_exec(t_command *command, int *oldpipe[2], int newpipe[2])
+int		builtin_fork_exec(t_command *command, int newpipe[2])
 {
-	int temp_stdout;
+	int pid;
+	int status;
 
-	oldpipe[0]++;
-	oldpipe[0]--;
-	temp_stdout = dup(1);
-	if (command->output_type == PIPE || command->has_output_redirect == 1)
+	if (ft_strncmp(command->value, "env", 3) == 0
+		|| ft_strncmp(command->value, "echo", 4) == 0
+		|| ft_strncmp(command->value, "pwd", 3) == 0)
 	{
-		dup2(newpipe[1], 1);
+		pid = fork();
+		if (pid == 0)
+		{
+			if (command->output_type == PIPE || command->has_output_redirect == 1)
+			{
+				close(newpipe[0]);
+				dup2(newpipe[1], 1);
+				if (close(newpipe[1]) == -1)
+					perror("close");
+			}
+			g_exitstatus = 0;
+			builtins_call(command->args);
+			exit(g_exitstatus);		
+		}
+		else
+		{
+			waitpid(pid, &status, 0);
+			if (WIFEXITED(status))
+				g_exitstatus = WEXITSTATUS(status);
+		}
+		
 	}
-	builtins_call(command->args);
-	if (close(newpipe[1]) == -1)
-		perror("close");
-	dup2(temp_stdout, 1);
 	return (0);
 }
 
-int		redirect_handler(int oldpipe[2], int newpipe[2], t_command *command)
+int		redirect_handler(int newpipe[2], t_command *command)
 {
 	char	*output_buffer;
 
-	close(oldpipe[0]);
-	close(oldpipe[1]);
 	if (command->has_output_redirect == 1)
 	{
+		close(newpipe[1]);
 		if (!(output_buffer = read_until_eof(newpipe[0])))
 			return (free_command_ret_fail(command));
 		write_redirections(command, output_buffer);
@@ -47,7 +62,7 @@ int		redirect_handler(int oldpipe[2], int newpipe[2], t_command *command)
 	return (0);
 }
 
-int		recursive_builtin(int oldpipe[2], t_command *command)
+int		recursive_builtin(t_command *command)
 {
 	int				newpipe[2];
 	int				piper_return;
@@ -57,13 +72,19 @@ int		recursive_builtin(int oldpipe[2], t_command *command)
 		if (pipe(newpipe) == -1)
 			perror("pipe");
 	}
-	builtin_exec(command, (int**)&oldpipe, newpipe);
-	if (redirect_handler(oldpipe, newpipe, command) == -1)
+	builtin_fork_exec(command, newpipe);
+	if (redirect_handler(newpipe, command) == -1)
 		return (-1);
 	if (command->has_output_redirect && command->output_type == PIPE)
 	{
-		if (pipe(newpipe) == -1)
+		if (close(newpipe[1]) == -1)
+			perror("close recurbuilt");
+		if (close(newpipe[0]) == -1)
+			perror("close recurbuilt");
+		if (pipe(newpipe) == -1) // pipe inutile non?
 			perror("pipe");
+		close(newpipe[0]);
+		close(newpipe[1]);
 	}
 	if (command->output_type == PIPE)
 	{

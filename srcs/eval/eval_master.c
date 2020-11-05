@@ -77,6 +77,7 @@ int		eval(t_queue *queue)
 		{
 			if (craft_command(&command) == -1)
 				return (-1);
+//			print_s_command(&command);
 			if (launch_adequate_execution(&command) == -1)
 				return (-1);
 			if (g_queue == NULL)
