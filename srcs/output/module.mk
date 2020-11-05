@@ -1,0 +1,1 @@
+SRCS	+= $(OUTPUT_DIR)/errors.c

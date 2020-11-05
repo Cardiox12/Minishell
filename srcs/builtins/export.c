@@ -6,12 +6,13 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 13:54:55 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/03 21:34:23 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/04 19:51:52 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "internals.h"
+#include "internal_errors.h"
 
 static int find_key(t_string_list *list, const char *key)
 {
@@ -53,6 +54,11 @@ int export(char **args)
 
     if (args[1] == NULL)
         return (0);
+    if (ft_isdigit(*args[1]))
+    {
+        print_internal_error("export", args[1], ERROR_NOT_VALID_IDENTIFIER, TRUE);
+        return (0);
+    }
     item = get_item(args[1]);
     string_list_create_from(&list, g_env, string_arr_len(g_env));
     index = find_key(list, item.key);

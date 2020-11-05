@@ -30,7 +30,7 @@ BUILTIN_DIR	= $(SRC_DIR)/builtins
 LIBFT_NAME	= libft.a
 NAME		= minishell
 
-include $(READ_DIR)/module.mk $(LEXER_DIR)/module.mk $(PARSE_DIR)/module.mk $(BUILTIN_DIR)/module.mk $(EVAL_DIR)/module.mk
+include $(READ_DIR)/module.mk $(LEXER_DIR)/module.mk $(PARSE_DIR)/module.mk $(BUILTIN_DIR)/module.mk $(EVAL_DIR)/module.mk $(OUTPUT_DIR)/module.mk
 
 .PHONY: all clean fclean
 
