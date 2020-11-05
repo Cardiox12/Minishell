@@ -24,8 +24,8 @@ int		simple_builtin_exec(t_command *command, int newpipe[2])
 //	temp_stdout = dup(1);
 	if (command->has_output_redirect == 1
 		&& (ft_strncmp(command->value, "env", 3) == 0 
-		|| ft_strncmp(command->value, "echo", 4)
-		|| ft_strncmp(command->value, "pwd", 3)))
+		|| ft_strncmp(command->value, "echo", 4) == 0
+		|| ft_strncmp(command->value, "pwd", 3) == 0))
 	{
 		pid = fork();
 		if (pid == 0)
