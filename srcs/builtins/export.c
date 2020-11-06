@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 13:54:55 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/04 19:51:52 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/06 20:55:21 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int export(char **args)
     if (ft_isdigit(*args[1]))
     {
         print_internal_error("export", args[1], ERROR_NOT_VALID_IDENTIFIER, TRUE);
-        return (0);
+        return (1);
     }
     item = get_item(args[1]);
     string_list_create_from(&list, g_env, string_arr_len(g_env));

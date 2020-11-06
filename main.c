@@ -74,7 +74,7 @@ void		run_shell()
 	{
 		reader(&line);
 		tokens = lexer(line);
-		print_queue(tokens);
+		// print_queue(tokens);
 
 		if (parser(line, tokens) != SUCCESS)
 			ft_printf("Error while parsing\n");
