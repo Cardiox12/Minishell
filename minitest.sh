@@ -166,6 +166,11 @@ output_commands=("cat makefile > output2 > output3" \
 "echo hello > output2 | grep a < test_files/aaa > output3" \
 "echo hello > output2 > output3" \
 "grep a < test_files/aaa < test_files/bbb > output2 > output3" \
+"pwd > output2 > output3" \
+"pwd > output2 | echo gno > output3" \
+"env | grep PATH > output2 | echo bababa > output3" \
+'echo "berniesanders" | grep aaa < test_files/aaa > output2 | echo bababa > output3' \
+'echo "berniesanders" | grep aaa < test_files/aaa > output2 | echo hello > output3' \
 #"grep a < output2 < output3" \
 #"echo hello > output2 > output3 | echo bonjour > output3" \
 'env ; echo hello; export TEST="test"; echo $TEST | grep t | wc -l > output2 > output3 ; cat output2' \

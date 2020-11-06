@@ -179,6 +179,46 @@ minishell exits with success
 ===============
 
 ===============
+result test for :     pwd > output2 > output3
+minishell's command: pwd > miniout2 > miniout3 > miniout1
+bash's command: pwd > realout2 > realout3 > realout1
+minishell exits with success
+[38;5;40msuccess[0m
+===============
+
+===============
+result test for :     pwd > output2 | echo gno > output3
+minishell's command: pwd > miniout2 | echo gno > miniout3 > miniout1
+bash's command: pwd > realout2 | echo gno > realout3 > realout1
+minishell exits with success
+[38;5;40msuccess[0m
+===============
+
+===============
+result test for :     env | grep PATH > output2 | echo bababa > output3
+minishell's command: env | grep PATH > miniout2 | echo bababa > miniout3 > miniout1
+bash's command: env | grep PATH > realout2 | echo bababa > realout3 > realout1
+minishell exits with success
+[38;5;40msuccess[0m
+===============
+
+===============
+result test for :     echo "berniesanders" | grep aaa < test_files/aaa > output2 | echo bababa > output3
+minishell's command: echo "berniesanders" | grep aaa < test_files/aaa > miniout2 | echo bababa > miniout3 > miniout1
+bash's command: echo "berniesanders" | grep aaa < test_files/aaa > realout2 | echo bababa > realout3 > realout1
+minishell exits with success
+[38;5;40msuccess[0m
+===============
+
+===============
+result test for :     echo "berniesanders" | grep aaa < test_files/aaa > output2 | echo hello > output3
+minishell's command: echo "berniesanders" | grep aaa < test_files/aaa > miniout2 | echo hello > miniout3 > miniout1
+bash's command: echo "berniesanders" | grep aaa < test_files/aaa > realout2 | echo hello > realout3 > realout1
+minishell exits with success
+[38;5;40msuccess[0m
+===============
+
+===============
 result test for :     env ; echo hello; export TEST="test"; echo $TEST | grep t | wc -l > output2 > output3 ; cat output2
 minishell's command: env ; echo hello; export TEST="test"; echo $TEST | grep t | wc -l > miniout2 > miniout3 ; cat miniout2 > miniout1
 bash's command: env ; echo hello; export TEST="test"; echo $TEST | grep t | wc -l > realout2 > realout3 ; cat realout2 > realout1
