@@ -41,7 +41,7 @@ typedef struct	s_command
 extern char **g_env;
 extern int			g_exitstatus;
 extern t_queue	*g_queue;
-int				g_in_eval;
+extern int		g_in_eval;
 
 void						signal_handler(int sig);
 void						run_shell(void);
