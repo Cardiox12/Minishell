@@ -25,7 +25,8 @@ int		simple_builtin_exec(t_command *command, int newpipe[2])
 	if (command->has_output_redirect == 1
 		&& (ft_strncmp(command->value, "env", 3) == 0 
 		|| ft_strncmp(command->value, "echo", 4) == 0
-		|| ft_strncmp(command->value, "pwd", 3) == 0))
+		|| ft_strncmp(command->value, "pwd", 3) == 0
+		|| (ft_strncmp(command->value, "export", 6) == 0 && ft_tablen(command->args) == 1)))
 	{
 		pid = fork();
 		if (pid == 0)

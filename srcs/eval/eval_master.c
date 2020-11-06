@@ -71,6 +71,8 @@ int		eval(t_queue *queue)
 	t_command	command;
 
 	g_queue = queue;
+//	signal(SIGQUIT, )
+	g_in_eval = 1;
 	while (g_queue)
 	{
 		if (g_queue->token.type == COMMAND)
@@ -81,13 +83,17 @@ int		eval(t_queue *queue)
 			if (launch_adequate_execution(&command) == -1)
 				return (-1);
 			if (g_queue == NULL)
+			{
+				g_in_eval = 0;
 				return (0);
+			}
 			if (g_queue->token.type == OPERATOR)
 				g_queue = g_queue->next;
-			else
-				ft_printf("untracked symbol in eval %s\n",
-					g_queue->token.value);
+//			else
+//				ft_printf("untracked symbol in eval %s\n",
+//					g_queue->token.value);
 		}
 	}
+	g_in_eval = 0;
 	return (0);
 }

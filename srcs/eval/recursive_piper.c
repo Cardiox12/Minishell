@@ -31,7 +31,10 @@ int		child_exec(t_command *command, int oldpipe[2], int newpipe[2])
 		close(redirectpipe[0]);
 	}
 	else
+	{
 		dup2(oldpipe[0], 0);
+		close(oldpipe[0]);
+	}
 	if (command->output_type == PIPE || command->has_output_redirect == 1)
 	{
 		close(newpipe[0]);
