@@ -69,10 +69,8 @@ void	print_queue(t_queue *head)
 void		sigquit_handle(void)
 {
 	static int i;
-	char c;
 
 	i++;
-	c = 127;
 	if (g_in_eval)
 	{
 		if (i == 1)

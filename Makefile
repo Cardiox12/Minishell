@@ -6,7 +6,7 @@
 #    By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/29 01:50:06 by tlucille          #+#    #+#              #
-#    Updated: 2020/11/07 10:48:39 by tlucille         ###   ########.fr        #
+#    Updated: 2020/11/07 20:57:36 by bbellavi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ $(NAME): build_library $(SRCS)
 build_library:
 	@make -C $(LIBFT_DIR)
 	@mv $(LIBFT_DIR)/$(LIBFT_NAME) .
-
+	
 clean:
 	@rm -f $(LIBFT_NAME)
 	@make -C $(LIBFT_DIR) clean 
