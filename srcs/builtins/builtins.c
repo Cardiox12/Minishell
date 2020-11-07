@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 15:40:20 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/27 08:12:39 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/06 20:48:01 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int builtins_call(char **args)
     while (index < BUILTINS_SIZE)
     {
         if (ft_strncmp(g_builtins[index].func_name, *args, size) == 0)
-            return (g_builtins[index].callback(args));
+        {
+            g_exitstatus = g_builtins[index].callback(args);
+            return (g_exitstatus);
+        }
         index++;
     }
     return (ERR_BUILTIN_NOT_FOUND);
