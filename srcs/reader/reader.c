@@ -96,8 +96,10 @@ char	*reader(char **command)
 	getcwd(cwd, PATH_MAX);
 	ft_printf("minishell@%s: ", cwd);
 	gnl_return = get_next_line(0, command);
+//	ft_printf("gnl_return: %d\n", gnl_return);
 	if (gnl_return == 0)
 	{
+//		ft_printf("command: %s\n", command);
 		write(1, "exit", 4);
 		exit(EXIT_SUCCESS);
 	}

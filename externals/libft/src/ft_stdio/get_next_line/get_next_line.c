@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 static int	locate(char *haystack, char needle)
 {
@@ -84,15 +85,25 @@ int			get_next_line(int fd, char **line)
 	static char		*dynamic = NULL;
 	int				bytes;
 	int				key_code;
+	int				nl_watch;
 
 	if (read(fd, buffer, 0) == ERROR || fd == ERROR || line == NULL)
 		return (ERROR);
-	while ((bytes = read(fd, buffer, BUFFER_SIZE)) > 0)
+	nl_watch = 0;
+	while (((bytes = read(fd, buffer, BUFFER_SIZE)) > 0) || nl_watch == 0)
 	{
+		nl_watch = 1;
 		buffer[bytes] = '\0';
 		if ((key_code = get_line(buffer, &dynamic, line)) == ERROR
 				|| key_code == SUCCESS)
 			return (key_code);
+		if (dynamic && ft_strlen(dynamic) != 0 && locate(dynamic, '\n') == NOT_FOUND)
+			nl_watch = 0;
+		else
+			nl_watch = 1;
+		if (bytes == 0 && nl_watch == 1)
+			break;
+		
 	}
 	buffer[bytes] = '\0';
 	if ((key_code = get_line(buffer, &dynamic, line)) == SUCCESS

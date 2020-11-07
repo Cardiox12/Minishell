@@ -68,8 +68,10 @@ void	print_queue(t_queue *head)
 void		sigquit_handle(void)
 {
 	static int i;
+	char c;
 
 	i++;
+	c = 127;
 	if (g_in_eval)
 	{
 		if (i == 1)
@@ -79,7 +81,7 @@ void		sigquit_handle(void)
 		g_exitstatus = 131;
 	}
 	else
-		write(1, "\b \b", 3);
+		write(1, "\b  \b", 4);
 }
 
 void		signal_handler(int sig)
