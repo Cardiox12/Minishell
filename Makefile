@@ -42,7 +42,7 @@ $(NAME): build_library $(SRCS)
 build_library:
 	@make -C $(LIBFT_DIR)
 	@mv $(LIBFT_DIR)/$(LIBFT_NAME) .
-
+	
 clean:
 	@rm -f $(LIBFT_NAME)
 	@make -C $(LIBFT_DIR) clean 

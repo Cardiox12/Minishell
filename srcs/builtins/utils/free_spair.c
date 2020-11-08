@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.h                                            :+:      :+:    :+:   */
+/*   free_spair.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/27 07:24:46 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/07 20:36:37 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/07 20:29:29 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/07 20:31:20 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TYPES_H
-# define FT_TYPES_H
+#include "types.h"
 
-# include <stdlib.h>
-# include <stddef.h>
-
-typedef struct  s_spair
+void    free_spair(t_spair pair)
 {
-    char *key;
-    char *value;
-}               t_spair;
-
-typedef struct {
-	size_t begin;
-	size_t end;
-}		t_slice;
-
-void    free_spair(t_spair pair);
-
-#endif
+    if (pair.key != NULL)
+        free(pair.key);
+    if (pair.value != NULL)
+        free(pair.value);
+}
