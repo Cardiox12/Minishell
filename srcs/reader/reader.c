@@ -84,7 +84,7 @@ char	*back_slash_handle(char **command)
 	return (*command);
 }
 
-char	*reader(char **command)
+int		reader(char **command)
 {
 //	char	*command;
 	char	cwd[PATH_MAX];
@@ -95,7 +95,11 @@ char	*reader(char **command)
 	ft_bzero(cwd, PATH_MAX);
 	getcwd(cwd, PATH_MAX);
 	ft_printf("minishell@%s: ", cwd);
-	gnl_return = get_next_line(0, command);
+	if ((gnl_return = get_next_line(0, command)) == -1)
+	{
+//		ft_printf("gnl_return: %d\n", gnl_return);
+			return (-1);
+	}
 //	ft_printf("gnl_return: %d\n", gnl_return);
 	if (gnl_return == 0)
 	{
@@ -104,11 +108,11 @@ char	*reader(char **command)
 		exit(EXIT_SUCCESS);
 	}
 	if (*command == NULL)
-		return (NULL);
+		return (0);
 	if (quote_finder(*command) == 1)
 		*command = handle_quotes(command);
 	len = ft_strlen(*command);
 	if ((*command)[len - 1] == '\\')
 		(*command) = back_slash_handle(command);
-	return (*command);
+	return (1);
 }

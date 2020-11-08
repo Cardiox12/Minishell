@@ -66,90 +66,33 @@ void	print_queue(t_queue *head)
 	}
 }
 
-void		sigquit_handle(void)
-{
-	static int i;
-	char c;
-
-	i++;
-	c = 127;
-	if (g_in_eval)
-	{
-		if (i == 1)
-			write(1, "Quit: 3\n", 8);
-		else
-			write(1, "\\Quit: 3\n", 9);
-		g_exitstatus = 131;
-	}
-	else
-		write(1, "\b  \b", 4);
-}
-
-void		signal_handler(int sig)
-{
-	int status;
-
-	if (sig == SIGQUIT)
-		sigquit_handle();
-	else
-	{	
-		kill(g_pid_to_kill, SIGKILL);
-		g_pid_to_kill = fork();
-		if (g_pid_to_kill == 0)
-		{
-			if (g_in_eval)
-				write(1, "\n", 1);
-			else
-				write(1, "\b\b  \n", 5);
-			g_exitstatus = 1;
-			run_shell();
-			exit(1);
-		}
-		else
-		{
-			signal(SIGINT, signal_handler);
-			wait(&status);
-		}
-	}
-}
-
-void		run_shell()
+int			run_shell()
 {
 	char	*line;
 	t_queue *tokens;
 
 	while (TRUE)
 	{
-		reader(&line);
+		if (reader(&line) == -1)
+			return (-1);
 		tokens = lexer(line);
-		// print_queue(tokens);~~
 
 		if (parser(line, tokens) != SUCCESS)
 			ft_printf("Error while parsing\n");
 		else
+		{
+			g_in_eval = 1;
 			eval(tokens);
+/*			if (eval(tokens) == -1)
+			{
+				ft_printf("eval exit");
+				return (-1);
+			}*/
+			g_in_eval = 0;
+		}
 	}
 }
 
-/*void		signal_handler(int sig)
-{
-	int status;
-
-	sig = sig + 1 - 1;
-	kill(g_pid_to_kill, SIGKILL);
-	g_pid_to_kill = fork();
-	if (g_pid_to_kill == 0)
-	{
-		write(1, "\n", 1);
-		run_shell();
-		exit(1);
-	}
-	else
-		signal(SIGINT, signal_handler);
-	wait(&status);
-}*/
-
-// need to kill the child
 int		main(int argc, char *argv[], char *envp[])
 {
 	int status;
@@ -159,9 +102,16 @@ int		main(int argc, char *argv[], char *envp[])
 	if (!(ft_tab_copy(&g_env, envp)))
 		return (-1);
 //	run_shell();
+	signal(SIGQUIT, signal_handler);
 	g_pid_to_kill = fork();
 	if (g_pid_to_kill == 0)
-		run_shell();
+	{
+		if (run_shell() == -1)
+		{
+			ft_freetab(&g_env);
+			exit(EXIT_FAILURE);
+		}
+	}
 	else
 		signal(SIGINT, signal_handler);
 	wait(&status);

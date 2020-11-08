@@ -42,9 +42,10 @@ extern char **g_env;
 extern int			g_exitstatus;
 extern t_queue	*g_queue;
 extern int		g_in_eval;
+extern int		g_pid_to_kill;
 
 void						signal_handler(int sig);
-void						run_shell(void);
+int							run_shell(void);
 char						*ft_str_replace_all(char *string, char *to_find, char *replacement);
 char						*ft_str_replace(char *string, char *to_find, char *replacement);
 char						*ft_alloncat(char **s1, const char *s2, int len);

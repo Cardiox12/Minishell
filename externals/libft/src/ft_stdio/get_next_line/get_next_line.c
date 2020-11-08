@@ -79,6 +79,17 @@ static int	get_line(char *buffer, char **dynamic, char **line)
 	return (END_OF_FILE);
 }
 
+int			set_nl_watch(char *dynamic, int *nl_watch, int bytes)
+{
+	if (dynamic && ft_strlen(dynamic) != 0 && locate(dynamic, '\n') == NOT_FOUND)
+		*nl_watch = 0;
+	else
+		*nl_watch = 1;
+	if (bytes == 0 && *nl_watch == 1)
+		return (-1);
+	return (0);
+}
+
 int			get_next_line(int fd, char **line)
 {
 	char			buffer[BUFFER_SIZE + 1];
@@ -97,11 +108,7 @@ int			get_next_line(int fd, char **line)
 		if ((key_code = get_line(buffer, &dynamic, line)) == ERROR
 				|| key_code == SUCCESS)
 			return (key_code);
-		if (dynamic && ft_strlen(dynamic) != 0 && locate(dynamic, '\n') == NOT_FOUND)
-			nl_watch = 0;
-		else
-			nl_watch = 1;
-		if (bytes == 0 && nl_watch == 1)
+		if (set_nl_watch(dynamic, &nl_watch, bytes) == -1)
 			break;
 		
 	}

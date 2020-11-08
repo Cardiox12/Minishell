@@ -18,6 +18,6 @@
 # include "ft_strings.h"
 # include "ft_stdio.h"
 
-char *reader(char **comand);
+int		reader(char **comand);
 
 #endif

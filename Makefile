@@ -6,12 +6,12 @@
 #    By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/29 01:50:06 by tlucille          #+#    #+#              #
-#    Updated: 2020/11/07 10:48:39 by tlucille         ###   ########.fr        #
+#    Updated: 2020/11/08 12:54:45 by tlucille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS		= -Wall -Werror -Wextra #-g -fsanitize=address
 
 EXT_DIR		= externals
 INC_DIR		= includes
@@ -37,7 +37,7 @@ include $(READ_DIR)/module.mk $(LEXER_DIR)/module.mk $(PARSE_DIR)/module.mk $(BU
 all: $(NAME)
 
 $(NAME): build_library $(SRCS)
-	@$(CC) $(CFLAGS) -o $(NAME) main.c $(SRCS) $(LIBFT_NAME) -I$(INC_DIR) -I$(FT_INC_DIR)
+	@$(CC) $(CFLAGS) -o $(NAME) signal_handler.c main.c $(SRCS) $(LIBFT_NAME) -I$(INC_DIR) -I$(FT_INC_DIR)
 
 build_library:
 	@make -C $(LIBFT_DIR)

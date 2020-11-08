@@ -73,6 +73,7 @@ int		eval(t_queue *queue)
 	g_queue = queue;
 //	signal(SIGQUIT, )
 	g_in_eval = 1;
+//	ft_printf("in eval\n");
 	while (g_queue)
 	{
 		if (g_queue->token.type == COMMAND)
@@ -85,6 +86,7 @@ int		eval(t_queue *queue)
 			if (g_queue == NULL)
 			{
 				g_in_eval = 0;
+//				ft_printf("out eval\n");
 				return (0);
 			}
 			if (g_queue->token.type == OPERATOR)
@@ -95,5 +97,6 @@ int		eval(t_queue *queue)
 		}
 	}
 	g_in_eval = 0;
+//	ft_printf("out eval\n");
 	return (0);
 }

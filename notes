@@ -1,5 +1,7 @@
 ça marche pas pcq close oldpipe ferme newpipe
 
+
+
 le close(oldpipe) sert à pouvoir lire output du pipe avant
 il a le meme fdout que le fdout du nouveau pipe donc je peux pas le close car ils font ref au meme fd
 
@@ -23,3 +25,5 @@ dans un des process, pipe utilise un fd déjà utilisé dans un autre process
 debug si j'arrive pas comme ça: forker env et echo
 
 origin erreur possible: dans recursive builtin, j'envoie des données et je lis sur le meme pipe
+
+faut réussir à gérer le quit a la fin d'une ligne
