@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reader.h                                           :+:      :+:    :+:   */
+/*   reader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/30 04:27:38 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 05:16:40 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/09/30 04:28:46 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/09/30 05:16:54 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_READER_H
-# define FT_READER_H
+#include "reader.h"
+#include <fcntl.h>
 
-# include <unistd.h>
-# include <limits.h>
-# include "ft_strings.h"
-# include "ft_stdio.h"
-#include "eval.h"
-
-//extern char		**g_env;
-
-int		reader(char **comand);
-
-#endif
+int		quotes_util(char **next_command, char **str, int *len)
+{
+	ft_printf("> ");
+	get_next_line(0, next_command);
+	*str = ft_join_free_left(str, "\n");
+	*str = ft_join_free_left(str, *next_command);
+	*len = ft_strlen(*str);
+	return (0);
+}

@@ -13,7 +13,6 @@
 #include "reader.h"
 #include <fcntl.h>
 
-/*sert a verifier si on a besoin d'utiliser la fonction de gestion des quotes*/
 int		quote_finder(char *str)
 {
 	if (ft_strchr(str, '\'') == NULL && ft_strchr(str, '\"') == NULL)
@@ -22,18 +21,9 @@ int		quote_finder(char *str)
 		return (1);
 }
 
-/*texte a afficher en fonction de si c'est simple ou double quote*/
-void	print_right_quote(char quote_char)
+int		quotes_util(char **next_command, char **str, int *len)
 {
-		if (quote_char == '\"')
-			ft_printf("> ");
-		else
-			ft_printf("> ");
-}
-
-int		quotes_util(int quote_char, char **next_command, char **str, int *len)
-{
-	print_right_quote(quote_char);
+	ft_printf("> ");
 	get_next_line(0, next_command);
 	*str = ft_join_free_left(str, "\n");
 	*str = ft_join_free_left(str, *next_command);
@@ -41,7 +31,6 @@ int		quotes_util(int quote_char, char **next_command, char **str, int *len)
 	return (0);
 }
 
-/*gestion des quotes */
 char	*handle_quotes(char **str)
 {
 	char	*next_command;
@@ -61,7 +50,7 @@ char	*handle_quotes(char **str)
 			{
 				i++;
 				if (i >= len)
-					quotes_util(quote_char, &next_command, str, &len);
+					quotes_util(&next_command, str, &len);
 			}
 		}
 		i++;
@@ -73,7 +62,7 @@ char	*back_slash_handle(char **command)
 {
 	char	*next_command;
 	int		len;
-	
+
 	len = ft_strlen(*command);
 	while ((*command)[len - 1] == '\\')
 	{
@@ -99,13 +88,11 @@ int		reader(char **command)
 	getcwd(cwd, PATH_MAX);
 	ft_printf("minishell@%s: ", cwd);
 	if ((gnl_return = get_next_line(0, command)) == -1)
-	{
-		ft_printf("gnl_return: %d\n", gnl_return);
-			return (-1);
-	}
+		return (-1);
 	if (gnl_return == 0)
 	{
 		write(1, "exit\n", 5);
+		ft_freetab(&g_env);
 		exit(EXIT_SUCCESS);
 	}
 	if (*command == NULL)

@@ -48,11 +48,7 @@ int		init_child_exec(int inputpipe[2], int newpipe[2], t_command *command)
 	}
 	dup2(newpipe[1], 1);
 	if (execve(command->path, command->args, g_env) == -1)
-	{
-		write_error_nofile(command->value);
-		free_command(command);
-		exit(127);
-	}
+		appropriate_exit_procedure(command);
 	return (0);
 }
 

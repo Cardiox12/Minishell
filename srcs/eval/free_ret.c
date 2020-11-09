@@ -38,7 +38,8 @@ int		appropriate_exit_procedure(t_command *command)
 	else
 		write_error_invalid_command(command->value);
 	free_command(command);
-	exit (127);
+	ft_freetab(&g_env);
+	exit(127);
 }
 
 int		write_error_free_ret(t_command *command)
