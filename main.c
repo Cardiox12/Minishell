@@ -78,7 +78,7 @@ int			run_shell()
 		tokens = lexer(line);
 
 		if (parser(line, tokens) != SUCCESS)
-			ft_printf("Error while parsing\n");
+			continue;
 		else
 		{
 			g_in_eval = 1;

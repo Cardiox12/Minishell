@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 13:16:15 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/12 14:41:38 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/09 02:07:53 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,16 @@ int commands(t_interpret *inter)
 {
     int out;
 
-    // We should verify that the bash grammar is composed of
-    // the following grammar :
-    // pipeline: command (STRING|ARG|OPT|)
-
-    // Check if it begin by any token
     out = eat(inter, g_non_terminal_tokens, ARR_NON_TERM_SIZE);
     if (out != 0)
         return (out);
-    
-    // Check if there are 
     while (is_type(inter->current->token.type, g_non_terminal_tokens, ARR_NON_TERM_SIZE))
     {
         out = eat(inter, g_non_terminal_tokens, ARR_NON_TERM_SIZE);
         if (out != 0)
             return (out);
     }
-    return (0);
+    return (SUCCESS);
 }
 
 int terminals(t_interpret *inter)
@@ -85,30 +78,48 @@ int terminals(t_interpret *inter)
     return (SUCCESS);
 }
 
+int parse_error(t_interpret *inter, int out)
+{
+    int errtok;
+    int index;
+
+    if (out < 0)
+        return (SUCCESS);
+    index = inter->current->token.index;
+    errtok = inter->input[inter->current->token.index];
+
+    ft_putstr_fd(EXE_NAME, STDERR_FILENO);
+    ft_putchar_fd(':', STDERR_FILENO);
+    ft_putchar_fd(' ', STDERR_FILENO);
+    ft_putstr_fd(ERROR_SYNTAX, STDERR_FILENO);
+    ft_putchar_fd(' ', STDERR_FILENO);
+    ft_putchar_fd('`', STDERR_FILENO);
+    ft_putchar_fd(errtok, STDERR_FILENO);
+    if (errtok == inter->input[index + 1])
+        ft_putchar_fd(errtok, STDERR_FILENO);
+    ft_putchar_fd('\'', STDERR_FILENO);
+    ft_putchar_fd('\n', STDERR_FILENO);
+    return (out);
+}
+
 int parser(const char *input, t_queue *head)
 {
     t_interpret inter;
     int         out;
 
-    // Initialization of interpreter
     inter = (t_interpret){.input = (char*)input, .tokens = queue_copy(head)};
-
-    // Dequeue tokens queue to compare to the first item
     inter.current = dequeue(&inter.tokens);
-
     out = commands(&inter);
     if (out != 0)
-        return ((out < 0) ? SUCCESS : out);
-
-    while (1)
+        return (parse_error(&inter, out));
+    while (TRUE)
     {
         out = terminals(&inter);
         if (out != 0)
-            return ((out < 0) ? SUCCESS : out);
-
+            return (parse_error(&inter, out));
         out = commands(&inter);
         if (out != 0)
-            return ((out < 0) ? SUCCESS : out);
+            return (parse_error(&inter, out));
     }
     return (SUCCESS);
 }
