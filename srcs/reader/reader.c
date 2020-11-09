@@ -26,9 +26,19 @@ int		quote_finder(char *str)
 void	print_right_quote(char quote_char)
 {
 		if (quote_char == '\"')
-			ft_printf("dquote> ");
+			ft_printf("> ");
 		else
-			ft_printf("quote> ");
+			ft_printf("> ");
+}
+
+int		quotes_util(int quote_char, char **next_command, char **str, int *len)
+{
+	print_right_quote(quote_char);
+	get_next_line(0, next_command);
+	*str = ft_join_free_left(str, "\n");
+	*str = ft_join_free_left(str, *next_command);
+	*len = ft_strlen(*str);
+	return (0);
 }
 
 /*gestion des quotes */
@@ -51,13 +61,7 @@ char	*handle_quotes(char **str)
 			{
 				i++;
 				if (i >= len)
-				{
-					print_right_quote(quote_char);
-					get_next_line(0, &next_command);
-					*str = ft_join_free_left(str, "\n");
-					*str = ft_join_free_left(str, next_command);
-					len = ft_strlen(*str);
-				}
+					quotes_util(quote_char, &next_command, str, &len);
 			}
 		}
 		i++;
@@ -65,7 +69,6 @@ char	*handle_quotes(char **str)
 	return (*str);
 }
 
-/*gestion des backslash en fin de commande*/
 char	*back_slash_handle(char **command)
 {
 	char	*next_command;
@@ -74,6 +77,7 @@ char	*back_slash_handle(char **command)
 	len = ft_strlen(*command);
 	while ((*command)[len - 1] == '\\')
 	{
+		(*command)[len - 1] = '\0';
 		ft_printf("> ");
 		get_next_line(0, &next_command);
 		*command = ft_join_free_left(command, next_command);
@@ -86,7 +90,6 @@ char	*back_slash_handle(char **command)
 
 int		reader(char **command)
 {
-//	char	*command;
 	char	cwd[PATH_MAX];
 	int		len;
 	int		gnl_return;
@@ -100,10 +103,8 @@ int		reader(char **command)
 		ft_printf("gnl_return: %d\n", gnl_return);
 			return (-1);
 	}
-//	ft_printf("gnl_return: %d\n", gnl_return);
 	if (gnl_return == 0)
 	{
-//		ft_printf("command: %s\n", command);
 		write(1, "exit\n", 5);
 		exit(EXIT_SUCCESS);
 	}
