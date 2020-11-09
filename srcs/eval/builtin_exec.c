@@ -15,13 +15,22 @@
 
 extern t_queue	*g_queue;
 
+int		simple_child_builtin_exec(int newpipe[2], t_command *command)
+{
+	close(newpipe[0]);
+	dup2(newpipe[1], 1);
+	close(newpipe[1]);
+	g_exitstatus = 0;
+	builtins_call(command->args);
+	exit(g_exitstatus);
+	return (0);
+}
+
 int		simple_builtin_exec(t_command *command, int newpipe[2])
 {
 	int		pid;
 	int		status;
-//	int		temp_stdout;
 
-//	temp_stdout = dup(1);
 	if (command->has_output_redirect == 1
 		&& (ft_strncmp(command->value, "env", 3) == 0 
 		|| ft_strncmp(command->value, "echo", 4) == 0
@@ -30,14 +39,7 @@ int		simple_builtin_exec(t_command *command, int newpipe[2])
 	{
 		pid = fork();
 		if (pid == 0)
-		{
-			close(newpipe[0]);
-			dup2(newpipe[1], 1);
-			close(newpipe[1]);
-			g_exitstatus = 0;
-			builtins_call(command->args);
-			exit(g_exitstatus);
-		}
+			simple_child_builtin_exec(newpipe, command);
 		else
 		{
 			waitpid(pid, &status, 0);

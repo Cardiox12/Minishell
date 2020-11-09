@@ -97,7 +97,7 @@ int		reader(char **command)
 	ft_printf("minishell@%s: ", cwd);
 	if ((gnl_return = get_next_line(0, command)) == -1)
 	{
-//		ft_printf("gnl_return: %d\n", gnl_return);
+		ft_printf("gnl_return: %d\n", gnl_return);
 			return (-1);
 	}
 //	ft_printf("gnl_return: %d\n", gnl_return);
