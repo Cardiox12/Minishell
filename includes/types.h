@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 07:24:46 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/07 20:36:37 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/09 21:41:36 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <stddef.h>
 
+typedef char* string;
 typedef struct  s_spair
 {
     char *key;
