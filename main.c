@@ -76,7 +76,6 @@ int			run_shell()
 		if (reader(&line) == -1)
 			return (-1);
 		tokens = lexer(line);
-
 		if (parser(line, tokens) != SUCCESS)
 			continue;
 		else
@@ -85,30 +84,38 @@ int			run_shell()
 			eval(tokens);
 			g_in_eval = 0;
 		}
+		// Free all items of queue
+		queue_delete(&tokens); 
 	}
 }
 
 int		main(int argc, char *argv[], char *envp[])
 {
-	int status;
 
 	(void)argc;
 	(void)argv;
 	if (!(ft_tab_copy(&g_env, envp)))
 		return (-1);
-//	run_shell();
-	signal(SIGQUIT, signal_handler);
-	g_pid_to_kill = fork();
-	if (g_pid_to_kill == 0)
-	{
-		if (run_shell() == -1)
+	
+	#ifdef MEMCHECK
+		run_shell();
+	#endif
+
+	#ifdef EVAL
+		int status;
+		signal(SIGQUIT, signal_handler);
+		g_pid_to_kill = fork();
+		if (g_pid_to_kill == 0)
 		{
-			ft_freetab(&g_env);
-			exit(EXIT_FAILURE);
+			if (run_shell() == -1)
+			{
+				ft_freetab(&g_env);
+				exit(EXIT_FAILURE);
+			}
 		}
-	}
-	else
-		signal(SIGINT, signal_handler);
-	wait(&status);
+		else
+			signal(SIGINT, signal_handler);
+		wait(&status);
+	#endif
 	return (0);
 }
