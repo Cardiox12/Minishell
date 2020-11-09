@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 13:12:28 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/04 19:51:22 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/09 02:01:16 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct  s_error
 
 # define ERROR_NOT_VALID_IDENTIFIER 1
 # define ERROR_NUMERIC_ARG_REQUIRED 2
+
+# define ERROR_SYNTAX "syntax error near unexpected token"
 
 static const t_error g_internal_errors[INTERNAL_ERRORS_SIZE] = {
     {ERROR_NOT_VALID_IDENTIFIER, "not a valid identifier"},

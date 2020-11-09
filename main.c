@@ -78,16 +78,11 @@ int			run_shell()
 		tokens = lexer(line);
 
 		if (parser(line, tokens) != SUCCESS)
-			ft_printf("Error while parsing\n");
+			continue;
 		else
 		{
 			g_in_eval = 1;
 			eval(tokens);
-/*			if (eval(tokens) == -1)
-			{
-				ft_printf("eval exit");
-				return (-1);
-			}*/
 			g_in_eval = 0;
 		}
 	}
