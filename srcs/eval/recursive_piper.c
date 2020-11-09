@@ -13,23 +13,22 @@
 #include "eval.h"
 #include "builtins.h"
 
-int		child_exec(t_command *command, int oldpipe[2], int newpipe[2])
+int		child_input_redirects(t_command *command)
 {
 	int		redirectpipe[2];
-	
+
+	pipe(redirectpipe);
+	read_redirections_pipe(command, redirectpipe);
+	dup2(redirectpipe[0], 0);
+	close(redirectpipe[0]);
+	return (0);
+}
+
+int		child_exec(t_command *command, int oldpipe[2], int newpipe[2])
+{
 	close(oldpipe[1]);
-//	ft_printf("oldpipe[0] %d\n", oldpipe[0]);
-//	ft_printf("oldpipe[1] %d\n", oldpipe[1]);
 	if (command->has_input_redirect)
-	{
-		if (close(oldpipe[1]))
-			perror("close old in child_exec");
-		pipe(redirectpipe);
-//		ft_printf("has input");
-		read_redirections_pipe(command, redirectpipe);
-		dup2(redirectpipe[0], 0);
-		close(redirectpipe[0]);
-	}
+		child_input_redirects(command);
 	else
 	{
 		dup2(oldpipe[0], 0);
@@ -39,16 +38,10 @@ int		child_exec(t_command *command, int oldpipe[2], int newpipe[2])
 	{
 		close(newpipe[0]);
 		dup2(newpipe[1], 1);
-		if (close(newpipe[1]) == -1)
-			perror("close");
+		close(newpipe[1]);
 	}
-//	dup2(newpipe[1], oldpipe[1]);
 	if (execve(command->path, command->args, g_env) == -1)
-	{
-		write_error_nofile(command->value);
-		free_command(command);
-		exit(127);
-	}
+		appropriate_exit_procedure(command);
 	return (0);
 }
 
@@ -56,20 +49,15 @@ int		parent_exec(int oldpipe[2], int newpipe[2], t_command *command)
 {
 	char	*output_buffer;
 
-	if (close(oldpipe[0]) == -1)
-		perror("close old parent");
-	if (close(oldpipe[1]) == -1)
-		perror("close old parent");
+	close(oldpipe[0]);
+	close(oldpipe[1]);
 	if (command->has_output_redirect == 1)
 	{
-		if (close(newpipe[1]) == -1)
-			perror("close in parent exec");
+		close(newpipe[1]);
 		if (!(output_buffer = read_until_eof(newpipe[0])))
 			return (free_command_ret_fail(command));
-//		ft_printf("output_buffer: %s\n", output_buffer);
 		write_redirections(command, output_buffer);
-		if (close(newpipe[0]) == -1)
-			perror("close");
+		close(newpipe[0]);
 		ft_strdel(&output_buffer);
 	}
 	return (0);
@@ -109,7 +97,6 @@ int		recursive_piper(int oldpipe[2])
 		return (0);
 	if (craft_command(&new_command) == -1)
 		return (-1);
-//	print_s_command(&new_command);
 	if (is_builtin(new_command.args))
 		return (recursive_builtin(&new_command));
 	if (new_command.output_type == PIPE || new_command.has_output_redirect == 1)

@@ -21,9 +21,10 @@ char	*read_until_eof(int fd)
 	int		ret;
 
 	if ((ret = read(fd, buffer, BUF_SIZE)) == -1)
-		perror("read");
-//	ft_printf("ret read: %d\n", ret);
-//	write(1, buffer, 4);
+	{
+		perror("minishell");
+		return (NULL);
+	}
 	buffer[ret] = '\0';
 	if (!(total_data = ft_strdup(buffer)))
 		return (NULL);

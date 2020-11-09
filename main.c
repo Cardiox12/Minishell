@@ -82,7 +82,8 @@ int			run_shell()
 		else
 		{
 			g_in_eval = 1;
-			eval(tokens);
+			if (eval(tokens) == -1)
+				return(-1);
 			g_in_eval = 0;
 		}
 	}
@@ -96,7 +97,6 @@ int		main(int argc, char *argv[], char *envp[])
 	(void)argv;
 	if (!(ft_tab_copy(&g_env, envp)))
 		return (-1);
-//	run_shell();
 	signal(SIGQUIT, signal_handler);
 	g_pid_to_kill = fork();
 	if (g_pid_to_kill == 0)

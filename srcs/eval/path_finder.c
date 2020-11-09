@@ -64,7 +64,7 @@ char	*get_path_finalize(char *full_path, char *casted_value, char *value)
 	if (!(*path_tab))
 	{
 		if (!is_builtin(&value))
-			write_error_invalid_command(value);
+			return (ft_strdup("value"));
 		ft_freetab(&tab_temp);
 		return (NULL);
 	}
@@ -80,15 +80,14 @@ char	*get_path(char *value)
 
 	if (value[0] == '/')
 		return (ft_strdup(value));
+	if (value[0] == '.')
+		return (get_relative_path(value));
 	ft_bzero(slashed_value, ft_strlen(value) + 2);
 	slashed_value[0] = '/';
 	casted_value = (char*)slashed_value;
 	ft_allocat(&casted_value, value);
 	if (!(full_path = arraychr(&g_env)))
-	{
-		write_error_invalid_command(value);
-		return (NULL);
-	}
+		return (ft_strdup(value));
 	full_path += 5;
 	return (get_path_finalize(full_path, casted_value, value));
 }

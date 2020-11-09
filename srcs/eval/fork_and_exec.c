@@ -29,11 +29,7 @@ int		fork_child_exec(int pipefd[2], t_command *command)
 		close(inputpipe[1]);
 	}
 	if (execve(command->path, command->args, g_env) == -1)
-	{
-		write_error_nofile(command->value);
-		free_command(command);
-		exit(127);
-	}
+		appropriate_exit_procedure(command);
 	return (1);
 }
 

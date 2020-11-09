@@ -104,7 +104,7 @@ int		reader(char **command)
 	if (gnl_return == 0)
 	{
 //		ft_printf("command: %s\n", command);
-		write(1, "exit", 4);
+		write(1, "exit\n", 5);
 		exit(EXIT_SUCCESS);
 	}
 	if (*command == NULL)

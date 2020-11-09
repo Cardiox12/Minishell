@@ -32,8 +32,9 @@ void	write_error_invalid_command(char *command_value)
 
 	casted_write = (char*)to_write;
 	ft_bzero(casted_write, 32 + ft_strlen(command_value));
-	ft_allocat(&casted_write, "minishell: command not found: ");
+	ft_allocat(&casted_write, "minishell: ");
 	ft_allocat(&casted_write, command_value);
+	ft_allocat(&casted_write, ": command not found");
 	ft_allocat(&casted_write, "\n");
 	write(2, casted_write, ft_strlen(to_write));
 }

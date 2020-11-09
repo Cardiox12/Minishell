@@ -69,34 +69,27 @@ int		launch_adequate_execution(t_command *command)
 int		eval(t_queue *queue)
 {
 	t_command	command;
+	int			craft_ret;
 
 	g_queue = queue;
-//	signal(SIGQUIT, )
 	g_in_eval = 1;
-//	ft_printf("in eval\n");
 	while (g_queue)
 	{
 		if (g_queue->token.type == COMMAND)
 		{
-			if (craft_command(&command) == -1)
+			if ((craft_ret = craft_command(&command)) == -1)
 				return (-1);
-//			print_s_command(&command);
 			if (launch_adequate_execution(&command) == -1)
 				return (-1);
 			if (g_queue == NULL)
 			{
 				g_in_eval = 0;
-//				ft_printf("out eval\n");
 				return (0);
 			}
 			if (g_queue->token.type == OPERATOR)
 				g_queue = g_queue->next;
-//			else
-//				ft_printf("untracked symbol in eval %s\n",
-//					g_queue->token.value);
 		}
 	}
 	g_in_eval = 0;
-//	ft_printf("out eval\n");
 	return (0);
 }
