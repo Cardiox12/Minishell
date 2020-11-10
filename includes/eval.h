@@ -93,5 +93,6 @@ char	*expand(const char *src);
 char	*find_variable(const char *key);
 t_spair	get_items(const char *e_var);
 char    *get_value(const char *key);
+char    *get_key(const char *variable);
 
 #endif

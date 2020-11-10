@@ -5,6 +5,7 @@ ENV_DIR = env
 SRCS += $(EVAL_DIR)/$(ENV_DIR)/find_variable.c
 SRCS += $(EVAL_DIR)/$(ENV_DIR)/get_items.c
 SRCS += $(EVAL_DIR)/$(ENV_DIR)/get_value.c
+SRCS += $(EVAL_DIR)/$(ENV_DIR)/get_key.c
 
 SRCS += $(EVAL_DIR)/$(VAR_DIR)/expand.c
 

@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 13:54:55 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/07 21:02:15 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/10 16:46:42 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,29 +44,37 @@ static char *make_variable(const char *key)
     return (variable);
 }
 
-static void export_key_value(char *variable)
+static int export_key_value(char *variable)
 {
-    t_spair         items;
     t_string_list   *list;
     int             index;
+    char            *key;
 
     list = NULL;
-    items = get_items(variable);
-    if (items.key == NULL && items.value == NULL)
-        return ;
+    key = get_key(variable);
+    if (key == NULL)
+        return (ERR_MALLOC_FAILED);
     string_list_create_from(&list, g_env, string_arr_len(g_env));
-    if ((index = find_key(list, items.key)) != NOT_FOUND)
+    if (list == NULL)
+        return (ERR_MALLOC_FAILED);
+    if ((index = find_key(list, key)) != NOT_FOUND)
     {
-        list->items[index] = ft_strdup(variable);
+        free(key);
+        if ((list->items[index] = ft_strdup(variable)) == NULL)
+            return (ERR_MALLOC_FAILED);
     }
     else
-        string_list_append(list, variable);
+    {
+        free(key);
+        if (string_list_append(list, variable) == ERR_MEM_ALLOC_FAILED)
+            return (ERR_MALLOC_FAILED);
+    }
     g_env = string_list_to_string_array(list);
     string_list_delete(&list);
-    free_spair(items);
+    return (SUCCESS);
 }
 
-static void export_key(char *key)
+static int export_key(char *key)
 {
     t_string_list   *list;
     int             index;
@@ -74,21 +82,28 @@ static void export_key(char *key)
 
     list = NULL;
     string_list_create_from(&list, g_env, string_arr_len(g_env));
+    if (list == NULL)
+        return (ERR_MALLOC_FAILED);
     index = find_key(list, key);
     if (index != NOT_FOUND)
-        return ;
+        return (FAILURE);
     variable = make_variable(key);
     if (variable == NULL)
     {
         string_list_delete(&list);
-        return ;
+        return (ERR_MALLOC_FAILED);
     }
-    string_list_append(list, variable);
+    if (string_list_append(list, variable) == ERR_MEM_ALLOC_FAILED)
+    {
+        string_list_delete(&list);
+        return (ERR_MALLOC_FAILED);
+    }
     g_env = string_list_to_string_array(list);
     string_list_delete(&list);
+    return (SUCCESS);
 }
 
-static void export_none()
+static int export_none()
 {
     t_spair items;
     size_t  index;
@@ -97,10 +112,16 @@ static void export_none()
     while (g_env[index] != NULL)
     {
         items = get_items(g_env[index]);
+        if (items.key == NULL && items.value == NULL)
+        {
+            free_spair(items);
+            return (ERR_MALLOC_FAILED);
+        }
         ft_printf("declare -x %s=\"%s\"\n", items.key, items.value);
         free_spair(items);
         index++;
     }
+    return (SUCCESS);
 }
 
 int export(char **args)
@@ -109,19 +130,14 @@ int export(char **args)
 
     variable = args[1];
     if (variable == NULL)
-        export_none();
+        return (export_none());
     else if (ft_isdigit(*variable))
     {
         print_internal_error("export", variable, ERROR_NOT_VALID_IDENTIFIER, TRUE);
-        return (1);
+        return (FAILURE);
     }
     else if (ft_strchr(variable, SYM_EQUAL) != NULL)
-    {
-        export_key_value(variable);
-    }
+        return (export_key_value(variable));
     else
-    {
-        export_key(variable);
-    }
-    return (SUCCESS);
+        return (export_key(variable));
 }
