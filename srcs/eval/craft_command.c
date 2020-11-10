@@ -29,6 +29,8 @@ int			pre_initialize_command(t_command *command)
 	if (!(command->path = get_path(command->value))
 		&& !(is_builtin(command->args)))
 		return (free_tab_string_ret_fail(&(command->value), &(command->args)));
+//		return (free_tab_string_ret_nocommand(&(command->value),
+//			&(command->args)));
 	g_queue = g_queue->next;
 	if (g_queue == NULL)
 		return (0);
@@ -108,9 +110,15 @@ int			get_args(int *count, t_command *command)
 int			craft_command(t_command *command)
 {
 	int	count;
+	int	initialize_ret;
 
-	if ((pre_initialize_command(command)) == -1)
+	if ((initialize_ret = pre_initialize_command(command)) == -1)
 		return (-1);
+	if (initialize_ret == COMMAND_NOT_FOUND)
+	{
+		ft_printf("command not found in craft");
+		return (0);
+	}
 	count = 0;
 	while (g_queue != NULL && g_queue->token.type != PIPE)
 	{

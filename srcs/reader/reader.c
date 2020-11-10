@@ -13,7 +13,6 @@
 #include "reader.h"
 #include <fcntl.h>
 
-/*sert a verifier si on a besoin d'utiliser la fonction de gestion des quotes*/
 int		quote_finder(char *str)
 {
 	if (ft_strchr(str, '\'') == NULL && ft_strchr(str, '\"') == NULL)
@@ -22,16 +21,16 @@ int		quote_finder(char *str)
 		return (1);
 }
 
-/*texte a afficher en fonction de si c'est simple ou double quote*/
-void	print_right_quote(char quote_char)
+int		quotes_util(char **next_command, char **str, int *len)
 {
-		if (quote_char == '\"')
-			ft_printf("dquote> ");
-		else
-			ft_printf("quote> ");
+	ft_printf("> ");
+	get_next_line(0, next_command);
+	*str = ft_join_free_left(str, "\n");
+	*str = ft_join_free_left(str, *next_command);
+	*len = ft_strlen(*str);
+	return (0);
 }
 
-/*gestion des quotes */
 char	*handle_quotes(char **str)
 {
 	char	*next_command;
@@ -51,13 +50,7 @@ char	*handle_quotes(char **str)
 			{
 				i++;
 				if (i >= len)
-				{
-					print_right_quote(quote_char);
-					get_next_line(0, &next_command);
-					*str = ft_join_free_left(str, "\n");
-					*str = ft_join_free_left(str, next_command);
-					len = ft_strlen(*str);
-				}
+					quotes_util(&next_command, str, &len);
 			}
 		}
 		i++;
@@ -65,15 +58,15 @@ char	*handle_quotes(char **str)
 	return (*str);
 }
 
-/*gestion des backslash en fin de commande*/
 char	*back_slash_handle(char **command)
 {
 	char	*next_command;
 	int		len;
-	
+
 	len = ft_strlen(*command);
 	while ((*command)[len - 1] == '\\')
 	{
+		(*command)[len - 1] = '\0';
 		ft_printf("> ");
 		get_next_line(0, &next_command);
 		*command = ft_join_free_left(command, next_command);
@@ -86,7 +79,6 @@ char	*back_slash_handle(char **command)
 
 int		reader(char **command)
 {
-//	char	*command;
 	char	cwd[PATH_MAX];
 	int		len;
 	int		gnl_return;
@@ -96,15 +88,11 @@ int		reader(char **command)
 	getcwd(cwd, PATH_MAX);
 	ft_printf("minishell@%s: ", cwd);
 	if ((gnl_return = get_next_line(0, command)) == -1)
-	{
-//		ft_printf("gnl_return: %d\n", gnl_return);
-			return (-1);
-	}
-//	ft_printf("gnl_return: %d\n", gnl_return);
+		return (-1);
 	if (gnl_return == 0)
 	{
-//		ft_printf("command: %s\n", command);
-		write(1, "exit", 4);
+		write(1, "exit\n", 5);
+		ft_freetab(&g_env);
 		exit(EXIT_SUCCESS);
 	}
 	if (*command == NULL)

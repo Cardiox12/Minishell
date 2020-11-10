@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.h                                            :+:      :+:    :+:   */
+/*   reader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/27 07:24:46 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/09 21:41:36 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/09/30 04:28:46 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/09/30 05:16:54 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TYPES_H
-# define FT_TYPES_H
+#include "reader.h"
+#include <fcntl.h>
 
-# include <stdlib.h>
-# include <stddef.h>
-
-typedef char* string;
-typedef struct  s_spair
+int		quotes_util(char **next_command, char **str, int *len)
 {
-    char *key;
-    char *value;
-}               t_spair;
-
-typedef struct {
-	size_t begin;
-	size_t end;
-}		t_slice;
-
-void    free_spair(t_spair pair);
-
-#endif
+	ft_printf("> ");
+	get_next_line(0, next_command);
+	*str = ft_join_free_left(str, "\n");
+	*str = ft_join_free_left(str, *next_command);
+	*len = ft_strlen(*str);
+	return (0);
+}

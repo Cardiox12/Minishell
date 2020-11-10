@@ -1,13 +1,12 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 09:21:34 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/09 16:18:32 by tlucille          #+#    #+#             */
+/*   Updated: 2020/11/09 16:19:12 by tlucille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +44,7 @@ void		signal_handler(int sig)
 	if (sig == SIGQUIT)
 		sigquit_handle();
 	else
-	{	
+	{
 		kill(g_pid_to_kill, SIGKILL);
 		g_pid_to_kill = fork();
 		if (g_pid_to_kill == 0)

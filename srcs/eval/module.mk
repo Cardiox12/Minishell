@@ -41,3 +41,4 @@ SRCS += $(EVAL_DIR)/ft_freetab.c
 SRCS += $(EVAL_DIR)/free_first.c
 SRCS += $(EVAL_DIR)/free_ret.c
 SRCS += $(EVAL_DIR)/write_on_error.c
+SRCS += $(EVAL_DIR)/get_relative_path.c

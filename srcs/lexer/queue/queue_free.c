@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:56:12 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/20 11:41:37 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/10 01:13:26 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 void    queue_free(t_queue *node)
 {
-    free(node->token.value);
-    free(node);
+    if (node != NULL)
+    {
+        if (node->token.value != NULL)
+            free(node->token.value);
+        free(node);
+    }
 }

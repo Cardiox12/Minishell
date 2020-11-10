@@ -19,6 +19,8 @@
 /* useful for read_redirections function */
 # define READ_FROM_PIPE 1
 # define IGNORE_PIPE 0
+# define COMMAND_NOT_FOUND 1
+
 
 typedef struct	s_command
 {
@@ -29,13 +31,8 @@ typedef struct	s_command
 	char	*path;
 	int		has_output_redirect;
 	int		has_input_redirect;
-	int		type_output;
 	int		output_type;
-	int		input;
-	int		fd_in;
-	int		fd_out;
 	int		pipefd[2];
-	char	output_char;
 }				t_command;
 
 extern char **g_env;
@@ -44,6 +41,7 @@ extern t_queue	*g_queue;
 extern int		g_in_eval;
 extern int		g_pid_to_kill;
 
+char						*get_relative_path(char *value);
 void						signal_handler(int sig);
 int							run_shell(void);
 char						*ft_str_replace_all(char *string, char *to_find, char *replacement);
@@ -54,6 +52,7 @@ void						write_error_nofile(char *command_value);
 void						write_error_invalid_command(char *command_value);
 int							recursive_piper(int oldpipe[2]);
 int							init_piper(t_command *command);
+int							appropriate_exit_procedure(t_command *command);
 int							free_tab_string_ret_fail(char **string, char ***tab);
 int							free_tab_ret_fail(char ***tab);
 int							free_command_ret_fail(t_command *command);
@@ -75,7 +74,6 @@ int                     	*ft_int_tab_maker(size_t len);
 char						*read_until_eof(int fd);
 int							recursive_piper(int oldpipe[2]);
 int							init_piper(t_command *command);
-//t_queue						*craft_command(t_command *command, t_queue *queue);
 int							fork_and_exec(t_command *command);
 char						**ft_stabmaker(size_t len);
 void     					ft_printtab(char **tab);

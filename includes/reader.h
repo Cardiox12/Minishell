@@ -17,6 +17,9 @@
 # include <limits.h>
 # include "ft_strings.h"
 # include "ft_stdio.h"
+#include "eval.h"
+
+//extern char		**g_env;
 
 int		reader(char **comand);
 

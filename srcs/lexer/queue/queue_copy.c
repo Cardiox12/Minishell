@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 03:39:05 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/07 18:29:02 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/10 02:10:55 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ t_queue *queue_copy(t_queue *origin)
     copy = NULL;
     while (origin != NULL)
     {
-        token = origin->token;
-        token.value = ft_strdup(origin->token.value);
+        token = (t_token){
+            .index = origin->token.index,
+            .type = origin->token.type,
+            .value = ft_strdup(origin->token.value)
+        };
         enqueue(&copy, token);
         origin = origin->next;
     }

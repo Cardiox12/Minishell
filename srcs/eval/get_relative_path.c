@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_until_eof.c                                   :+:      :+:    :+:   */
+/*   get_relative_path.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/03 12:25:08 by tlucille          #+#    #+#             */
-/*   Updated: 2020/11/03 12:25:09 by tlucille         ###   ########.fr       */
+/*   Created: 2020/11/09 15:56:29 by tlucille          #+#    #+#             */
+/*   Updated: 2020/11/09 15:56:30 by tlucille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <limits.h>
+#include <unistd.h>
 #include "eval.h"
 
-#define BUF_SIZE 4
-
-char	*read_until_eof(int fd)
+char	*get_relative_path(char *value)
 {
-	char	*total_data;
-	char	buffer[BUF_SIZE + 1];
-	int		ret;
+	char	cwd[PATH_MAX];
+	char	*cwd_slashed;
+	char	*full_relative_path;
 
-	if ((ret = read(fd, buffer, BUF_SIZE)) == -1)
-	{
-		perror("minishell");
+	getcwd(cwd, PATH_MAX);
+	if (!(cwd_slashed = ft_strjoin(cwd, "/")))
 		return (NULL);
-	}
-	buffer[ret] = '\0';
-	if (!(total_data = ft_strdup(buffer)))
+	if (!(full_relative_path = ft_str_replace(value, ".", cwd_slashed)))
 		return (NULL);
-	while ((ret = read(fd, buffer, BUF_SIZE)) > 0)
-	{
-		buffer[ret] = '\0';
-		if (!(total_data = ft_join_free_left(&total_data, buffer)))
-			return (NULL);
-	}
-	return (total_data);
+	return (full_relative_path);
 }
