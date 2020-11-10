@@ -64,7 +64,7 @@ char	*get_path_finalize(char *full_path, char *casted_value, char *value)
 	if (!(*path_tab))
 	{
 		if (!is_builtin(&value))
-			return (ft_strdup("value"));
+			return (ft_strdup(value));
 		ft_freetab(&tab_temp);
 		return (NULL);
 	}
@@ -80,7 +80,7 @@ char	*get_path(char *value)
 
 	if (value[0] == '/')
 		return (ft_strdup(value));
-	if (value[0] == '.')
+	if (ft_strchr(value, '/') != NULL)
 		return (get_relative_path(value));
 	ft_bzero(slashed_value, ft_strlen(value) + 2);
 	slashed_value[0] = '/';
