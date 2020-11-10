@@ -22,15 +22,13 @@ int			pre_initialize_command(t_command *command)
 	command->has_input_redirect = 0;
 	if (!(command->args = ft_stabmaker(6)))
 		return (-1);
-	if (!(command->value = ft_strdup(g_queue->token.value)))
+	if (!(command->value = expand(g_queue->token.value)))
 		return (free_tab_ret_fail(&(command->args)));
 	if (!(add_to_dynamic_table(&(command->args), command->value)))
 		return (free_tab_string_ret_fail(&(command->value), &(command->args)));
 	if (!(command->path = get_path(command->value))
 		&& !(is_builtin(command->args)))
 		return (free_tab_string_ret_fail(&(command->value), &(command->args)));
-//		return (free_tab_string_ret_nocommand(&(command->value),
-//			&(command->args)));
 	g_queue = g_queue->next;
 	if (g_queue == NULL)
 		return (0);
