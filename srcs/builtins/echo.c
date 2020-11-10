@@ -6,33 +6,41 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 17:11:29 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/17 00:32:27 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/10 15:54:57 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "internal_errors.h"
 #include "builtins.h"
+
+static char *strconcat(char *dst, char *src)
+{
+    char *prev;
+
+    prev = dst;
+    dst = ft_strjoin(dst, src);
+    free(prev);
+    if (dst == NULL)
+        return (NULL);
+    return (dst);
+}
 
 static char *strcjoin(char **strings, char *charset)
 {
     size_t index;
     char *string;
-    char *previous;
 
     index = 0;
-    string = ft_strdup("");
+    if ((string = ft_strdup("")) == NULL)
+        return (NULL);
     while (strings[index] != NULL)
     {
-        previous = string;
-        string = ft_strjoin(string, strings[index]);
-        free(previous);
+        string = strconcat(string, strings[index]);
         if (string == NULL)
             return (NULL);
-
         if (strings[index + 1] != NULL)
         {
-            previous = string;
-            string = ft_strjoin(string, charset);
-            free(previous);
+            string = strconcat(string, charset);
             if (string == NULL)
                 return (NULL);
         }
@@ -66,7 +74,7 @@ int     echo(char **args)
     }
     string = strcjoin(&args[index], " ");
     if (string == NULL)
-        return (FAILURE);
+        return (ERR_MALLOC_FAILED);
     if (endl)
         ft_putendl_fd(string, 1);
     else
