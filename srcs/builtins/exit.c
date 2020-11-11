@@ -18,7 +18,6 @@ int internal_exit(char **args)
 {
     (void)args;
     
-    ft_printf("exit\n");
     if (args[1] == NULL)
         exit(0);
     if (!ft_isnumeric(args[1]))

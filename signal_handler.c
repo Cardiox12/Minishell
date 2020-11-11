@@ -61,6 +61,8 @@ void		signal_handler(int sig)
 		{
 			signal(SIGINT, signal_handler);
 			wait(&status);
+			if (WIFEXITED(status))
+				exit(WEXITSTATUS(status));
 		}
 	}
 }

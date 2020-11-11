@@ -107,7 +107,11 @@ int		main(int argc, char *argv[], char *envp[])
 		}
 	}
 	else
+	{
 		signal(SIGINT, signal_handler);
-	wait(&status);
+		wait(&status);
+		if (WIFEXITED(status))
+			exit(WEXITSTATUS(status));
+	}
 	return (0);
 }
