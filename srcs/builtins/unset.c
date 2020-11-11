@@ -6,10 +6,11 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 16:29:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/30 18:15:43 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/11 01:53:35 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "internal_errors.h"
 #include "internals.h"
 #include "builtins.h"
 
@@ -29,11 +30,6 @@ static int find_variable_by_name(const char *name, t_string_list *sl_env)
     return (NOT_FOUND);
 }
 
-static int putstr(const char *s)
-{
-    return (ft_printf("%s\n", s));
-}
-
 int unset(char **args)
 {
     t_string_list   *copy;
@@ -43,20 +39,21 @@ int unset(char **args)
     copy = NULL;
     string_list_create_from(&copy, g_env, ft_tablen(g_env));
     if (copy == NULL)
-        return (0);
+        return (ERR_MALLOC_FAILED);
     index = 1;
     while (args[index] != NULL)
     {
         found = find_variable_by_name(args[index], copy);
         if (found != NOT_FOUND)
         {
-            string_list_iter(copy, putstr);
-            string_list_pop(copy, found);
+            if (string_list_pop(copy, found) == ERR_MEM_ALLOC_FAILED)
+                return (ERR_MALLOC_FAILED);
         }
         index++;
     }
-    string_list_append(copy, "");
+    if (string_list_append(copy, "") == ERR_MEM_ALLOC_FAILED)
+        return (ERR_MALLOC_FAILED);
     copy->items[copy->length - 1] = NULL;
     g_env = copy->items;
-    return (0);
+    return (SUCCESS);
 }

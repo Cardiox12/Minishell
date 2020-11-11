@@ -70,6 +70,7 @@ SRCS	+= $(STRING_DIR)/ft_skip_whitespaces.c
 SRCS	+= $(STRING_DIR)/ft_skip_alnum.c
 SRCS	+= $(STRING_DIR)/ft_strcpy.c
 SRCS	+= $(STRING_DIR)/ft_isnumeric.c
+SRCS	+= $(STRING_DIR)/ft_skip_charset.c
 
 SRCS	+= $(STDLIB_DIR)/ft_realloc.c
 SRCS	+= $(STDLIB_DIR)/ft_atoi.c

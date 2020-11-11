@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   internals.h                                        :+:      :+:    :+:   */
+/*   get_key.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/15 12:22:07 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/10 17:47:25 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/10 16:32:35 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/10 16:35:52 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_INTERNALS_H
-# define FT_INTERNALS_H
+#include "ft_strings.h"
+#include "eval.h"
 
-# include <stddef.h>
-# include <errno.h>
-# include <string.h>
-# include "ft_stdio.h"
+char    *get_key(const char *variable)
+{
+    char *key;
+    char *equal;
 
-# define PWD "PWD"
-# define PWD_SIZE 3
-
-size_t  string_arr_len(char **array);
-int     cd_perror(char *path, int error);
-int     cd_error(char *str_error, int error);
-void    free_env();
-
-#endif
+    equal = ft_strchr(variable, SYM_EQUAL);
+    if (equal == NULL)
+        key = ft_strdup(variable);
+    else
+        key = ft_strndup(variable, equal - variable);
+    if (key == NULL)
+        return (NULL);
+    return (key);
+}

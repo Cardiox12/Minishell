@@ -11,7 +11,6 @@
 # include <string.h>
 # include <errno.h>
 # include "types.h"
-# include "builtins.h"
 # include "ft_strings.h"
 # include "ft_stdio.h"
 # include "lexer.h"
@@ -94,5 +93,6 @@ char	*expand(const char *src);
 char	*find_variable(const char *key);
 t_spair	get_items(const char *e_var);
 char    *get_value(const char *key);
+char    *get_key(const char *variable);
 
 #endif

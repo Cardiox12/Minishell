@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   recursive_builtin.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 12:26:32 by tlucille          #+#    #+#             */
-/*   Updated: 2020/11/03 12:26:33 by tlucille         ###   ########.fr       */
+/*   Updated: 2020/11/10 14:45:25 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		forked_builtin_child_exec(int newpipe[2], t_command *command)
 			perror("close");
 	}
 	g_exitstatus = 0;
-	builtins_call(command->args);
+	builtins_call(command);
 	exit(g_exitstatus);
 	return (0);
 }

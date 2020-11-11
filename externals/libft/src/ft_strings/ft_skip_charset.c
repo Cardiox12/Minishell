@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   internals.h                                        :+:      :+:    :+:   */
+/*   ft_skip_charset.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/15 12:22:07 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/10 17:47:25 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/11 03:33:12 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/11 03:44:43 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_INTERNALS_H
-# define FT_INTERNALS_H
+#include "ft_strings.h"
 
-# include <stddef.h>
-# include <errno.h>
-# include <string.h>
-# include "ft_stdio.h"
+char    *ft_skip_charset(char *s, const char *charset)
+{
+    int index;
 
-# define PWD "PWD"
-# define PWD_SIZE 3
-
-size_t  string_arr_len(char **array);
-int     cd_perror(char *path, int error);
-int     cd_error(char *str_error, int error);
-void    free_env();
-
-#endif
+    index = 0;
+    while (*s != '\0')
+    {
+        if (ft_strchr(charset, *s) == NULL)
+            return (s);
+        s++;
+    }
+    return (s);
+}
