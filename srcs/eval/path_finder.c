@@ -82,6 +82,8 @@ char	*get_path(char *value)
 		return (ft_strdup(value));
 	if (ft_strchr(value, '/') != NULL)
 		return (get_relative_path(value));
+	if (value[0] == '\0')
+		return (ft_strdup("\b \b"));
 	ft_bzero(slashed_value, ft_strlen(value) + 2);
 	slashed_value[0] = '/';
 	casted_value = (char*)slashed_value;

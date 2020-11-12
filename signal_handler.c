@@ -37,6 +37,24 @@ void		sigquit_handle(void)
 		write(1, "\b \b", 3);
 }
 
+void		do_exit(int status)
+{
+	if (WIFEXITED(status))
+		exit(WEXITSTATUS(status));
+}
+
+void		sigterm_handler(int sig)
+{
+	int			nbr;
+
+	(void)sig;
+	if (g_in_eval)
+		nbr = 130;
+	else
+		nbr = 1;
+	exit(nbr);
+}
+
 void		signal_handler(int sig)
 {
 	int status;
@@ -45,24 +63,23 @@ void		signal_handler(int sig)
 		sigquit_handle();
 	else
 	{
-		kill(g_pid_to_kill, SIGKILL);
+		kill(g_pid_to_kill, SIGTERM);
+		while (wait(&status) == -1)
+			continue;
+		if (WIFEXITED(status))
+			g_exitstatus = (WEXITSTATUS(status));
 		g_pid_to_kill = fork();
 		if (g_pid_to_kill == 0)
 		{
-			if (g_in_eval)
+			signal(SIGTERM, sigterm_handler);
+			if (g_exitstatus == 130)
 				write(1, "\n", 1);
 			else
 				write(1, "\b\b  \n", 5);
-			g_exitstatus = 1;
 			run_shell();
 			exit(1);
 		}
 		else
-		{
 			signal(SIGINT, signal_handler);
-			wait(&status);
-			if (WIFEXITED(status))
-				exit(WEXITSTATUS(status));
-		}
 	}
 }

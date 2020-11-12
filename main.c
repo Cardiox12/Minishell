@@ -65,7 +65,7 @@ void	print_queue(t_queue *head)
 	}
 }
 
-int			run_shell()
+int			run_shell(void)
 {
 	char	*line;
 	t_queue *tokens;
@@ -75,14 +75,13 @@ int			run_shell()
 		if (reader(&line) == -1)
 			return (-1);
 		tokens = lexer(line);
-
 		if (parser(line, tokens) != SUCCESS)
 			continue;
 		else
 		{
 			g_in_eval = 1;
 			if (eval(tokens) == -1)
-				return(-1);
+				return (-1);
 			g_in_eval = 0;
 		}
 	}
@@ -97,9 +96,12 @@ int		main(int argc, char *argv[], char *envp[])
 	if (!(ft_tab_copy(&g_env, envp)))
 		return (-1);
 	signal(SIGQUIT, signal_handler);
+	signal(SIGINT, signal_handler);
+	signal(SIGTERM, SIG_IGN);
 	g_pid_to_kill = fork();
 	if (g_pid_to_kill == 0)
 	{
+		signal(SIGTERM, sigterm_handler);
 		if (run_shell() == -1)
 		{
 			ft_freetab(&g_env);
@@ -107,11 +109,6 @@ int		main(int argc, char *argv[], char *envp[])
 		}
 	}
 	else
-	{
-		signal(SIGINT, signal_handler);
 		wait(&status);
-		if (WIFEXITED(status))
-			exit(WEXITSTATUS(status));
-	}
 	return (0);
 }

@@ -20,6 +20,8 @@ int		is_builtin(char **args)
 
 	index = 0;
 	size = ft_strlen(*args);
+	if (size == 0)
+		return (0);
 	while (index < BUILTINS_SIZE)
 	{
 		if (ft_strncmp(g_builtins[index].func_name, *args, size) == 0)
