@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/11 04:00:53 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/12 02:04:25 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,14 @@ int			run_shell(void)
 		if (reader(&line) == -1)
 			return (-1);
 		tokens = lexer(line);
-		if (parser(line, tokens) != SUCCESS)
-			continue;
-		else
+		if (parser(line, tokens) == SUCCESS)
 		{
 			g_in_eval = 1;
 			if (eval(tokens) == -1)
 				return (-1);
 			g_in_eval = 0;
 		}
+		queue_delete(&tokens);
 	}
 }
 

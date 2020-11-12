@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue_free.c                                       :+:      :+:    :+:   */
+/*   queue_delete.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/08 15:56:12 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/10 01:13:26 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/09 02:24:37 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/12 01:55:52 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-void    queue_free(t_queue *node)
+void    queue_delete(t_queue **head)
 {
-    if (node != NULL)
+    t_queue *current;
+    t_queue *previous;
+
+    current = *head;
+    while (current != NULL)
     {
-        if (node->token.value != NULL)
-            free(node->token.value);
-        free(node);
+        previous = current;
+        current = current->next;
+        queue_free(previous);
     }
+    *head = NULL;
 }
