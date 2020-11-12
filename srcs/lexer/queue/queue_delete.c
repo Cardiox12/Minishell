@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 02:24:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/09 02:28:28 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/12 01:55:52 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,14 @@
 void    queue_delete(t_queue **head)
 {
     t_queue *current;
+    t_queue *previous;
 
-    while ((current = dequeue(head)) != NULL)
+    current = *head;
+    while (current != NULL)
     {
-        queue_free(current);
+        previous = current;
+        current = current->next;
+        queue_free(previous);
     }
     *head = NULL;
 }
