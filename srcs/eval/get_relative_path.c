@@ -14,6 +14,12 @@
 #include <unistd.h>
 #include "eval.h"
 
+char	*free_str_ret_null(char **str)
+{
+	ft_strdel(str);
+	return (NULL);
+}
+
 char	*get_relative_path(char *value)
 {
 	char	cwd[PATH_MAX];
@@ -23,7 +29,16 @@ char	*get_relative_path(char *value)
 	getcwd(cwd, PATH_MAX);
 	if (!(cwd_slashed = ft_strjoin(cwd, "/")))
 		return (NULL);
-	if (!(full_relative_path = ft_str_replace(value, ".", cwd_slashed)))
-		return (NULL);
+	if (value[0] == '.' && value[1] == '/')
+	{
+		if (!(full_relative_path = ft_str_replace(value, ".", cwd)))
+			return (free_str_ret_null(&cwd_slashed));
+	}
+	else
+	{
+		if (!(full_relative_path = ft_strjoin(cwd_slashed, value)))
+			return (free_str_ret_null(&cwd_slashed));
+	}
+	ft_strdel(&cwd_slashed);
 	return (full_relative_path);
 }

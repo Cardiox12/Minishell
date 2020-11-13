@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 09:55:54 by tony              #+#    #+#             */
-/*   Updated: 2020/11/03 22:25:48 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/11 03:44:40 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ char            *skip_alnum(const char *s);
 char            *skip_whitespaces(const char *s);
 char            *ft_strcpy(char *dst, const char *src);
 int             ft_isnumeric(const char *s);
+char            *ft_skip_charset(char *s, const char *charset);
 
 #endif

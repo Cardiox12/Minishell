@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   get_key.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/03 21:57:17 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/04 19:51:33 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/10 16:32:35 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/10 16:35:52 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "internal_errors.h"
-#include "ft_stdlib.h"
-#include "builtins.h"
+#include "ft_strings.h"
+#include "eval.h"
 
-int internal_exit(char **args)
+char    *get_key(const char *variable)
 {
-    (void)args;
-    
-    if (args[1] == NULL)
-        exit(0);
-    if (!ft_isnumeric(args[1]))
-    {
-        print_internal_error(BUILTINS_EXIT, args[1],
-        ERROR_NUMERIC_ARG_REQUIRED, FALSE);
-        exit(EXIT_ERR_NON_NUMERIC_ARG);
-    }
-    exit(ft_atoi(args[1]));
+    char *key;
+    char *equal;
+
+    equal = ft_strchr(variable, SYM_EQUAL);
+    if (equal == NULL)
+        key = ft_strdup(variable);
+    else
+        key = ft_strndup(variable, equal - variable);
+    if (key == NULL)
+        return (NULL);
+    return (key);
 }

@@ -81,7 +81,10 @@ static int	get_line(char *buffer, char **dynamic, char **line)
 int			set_nl_watch(char *dynamic, int *nl_watch, int bytes)
 {
 	if (dynamic && ft_strlen(dynamic) != 0 && locate(dynamic, '\n') == NOT_FOUND)
+	{
+		write(1, "  \b\b", 4);
 		*nl_watch = 0;
+	}
 	else
 		*nl_watch = 1;
 	if (bytes == 0 && *nl_watch == 1)

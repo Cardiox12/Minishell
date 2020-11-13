@@ -33,7 +33,7 @@ int		free_tab_string_ret_fail(char **string, char ***tab)
 
 int		appropriate_exit_procedure(t_command *command)
 {
-	if ((command->value)[0] == '/' || (command->value)[0] == '.')
+	if (ft_strchr(command->value, '/') != NULL)
 		perror("minishell");
 	else
 		write_error_invalid_command(command->value);

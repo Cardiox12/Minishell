@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 12:22:07 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/09 22:17:45 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/10 17:47:25 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@
 size_t  string_arr_len(char **array);
 int     cd_perror(char *path, int error);
 int     cd_error(char *str_error, int error);
+void    free_env();
 
 #endif

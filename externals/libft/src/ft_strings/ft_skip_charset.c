@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_skip_charset.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/03 21:57:17 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/04 19:51:33 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/11 03:33:12 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/11 03:44:43 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "internal_errors.h"
-#include "ft_stdlib.h"
-#include "builtins.h"
+#include "ft_strings.h"
 
-int internal_exit(char **args)
+char    *ft_skip_charset(char *s, const char *charset)
 {
-    (void)args;
-    
-    if (args[1] == NULL)
-        exit(0);
-    if (!ft_isnumeric(args[1]))
+    int index;
+
+    index = 0;
+    while (*s != '\0')
     {
-        print_internal_error(BUILTINS_EXIT, args[1],
-        ERROR_NUMERIC_ARG_REQUIRED, FALSE);
-        exit(EXIT_ERR_NON_NUMERIC_ARG);
+        if (ft_strchr(charset, *s) == NULL)
+            return (s);
+        s++;
     }
-    exit(ft_atoi(args[1]));
+    return (s);
 }

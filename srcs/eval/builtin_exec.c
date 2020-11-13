@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exec.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 19:15:35 by tlucille          #+#    #+#             */
-/*   Updated: 2020/11/02 19:15:38 by tlucille         ###   ########.fr       */
+/*   Updated: 2020/11/10 14:47:09 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		simple_child_builtin_exec(int newpipe[2], t_command *command)
 	dup2(newpipe[1], 1);
 	close(newpipe[1]);
 	g_exitstatus = 0;
-	builtins_call(command->args);
+	builtins_call(command);
 	exit(g_exitstatus);
 	return (0);
 }
@@ -49,7 +49,7 @@ int		simple_builtin_exec(t_command *command, int newpipe[2])
 		}
 	}
 	else
-		builtins_call(command->args);
+		builtins_call(command);
 	return (0);
 }
 

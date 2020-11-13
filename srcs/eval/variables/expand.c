@@ -6,12 +6,13 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 01:10:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/04 01:39:04 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/10 15:01:16 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stdlib.h"
 #include "ft_ctypes.h"
+#include "builtins.h"
 #include "eval.h"
 
 static int  is_var_charset(int c)
