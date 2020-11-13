@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/13 15:16:22 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/13 22:19:05 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int			run_shell(void)
 				return (-1);
 			g_in_eval = 0;
 		}
+		free(line);
 		queue_delete(&tokens);
 	}
 }

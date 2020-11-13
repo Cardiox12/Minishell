@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 13:54:55 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/11 01:52:09 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/13 22:15:50 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static int export_key_value(char *variable)
     if ((index = find_key(list, key)) != NOT_FOUND)
     {
         free(key);
+        free(list->items[index]);
         if ((list->items[index] = ft_strdup(variable)) == NULL)
             return (ERR_MALLOC_FAILED);
     }
@@ -98,6 +99,7 @@ static int export_key(char *key)
         string_list_delete(&list);
         return (ERR_MALLOC_FAILED);
     }
+    free(variable);
     g_env = string_list_to_string_array(list);
     string_list_delete(&list);
     return (SUCCESS);
@@ -113,10 +115,7 @@ static int export_none()
     {
         items = get_items(g_env[index]);
         if (items.key == NULL && items.value == NULL)
-        {
-            free_spair(items);
             return (ERR_MALLOC_FAILED);
-        }
         ft_printf("declare -x %s=\"%s\"\n", items.key, items.value);
         free_spair(items);
         index++;
