@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 13:16:15 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/10 02:46:16 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/13 14:44:02 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int eat(t_interpret *inter, const int *types, size_t size)
             inter->current = dequeue(&inter->tokens);
             if (inter->current == NULL)
                 return (_EOF_);
-            // inter->current->next = NULL;
             return (SUCCESS);
         }
         index++;
@@ -86,7 +85,10 @@ int parse_error(t_interpret *inter, int out)
     int index;
 
     if (out < 0)
+    {
+        queue_delete(&inter->tokens);
         return (SUCCESS);
+    }
     index = inter->current->token.index;
     errtok = inter->input[index];
     ft_putstr_fd(EXE_NAME, STDERR_FILENO);
@@ -100,6 +102,7 @@ int parse_error(t_interpret *inter, int out)
         ft_putchar_fd(errtok, STDERR_FILENO);
     ft_putchar_fd('\'', STDERR_FILENO);
     ft_putchar_fd('\n', STDERR_FILENO);
+    queue_free(inter->current);
     queue_delete(&inter->tokens);
     return (out);
 }
@@ -111,7 +114,6 @@ int parser(const char *input, t_queue *head)
 
     inter = (t_interpret){.input = (char*)input, .tokens = queue_copy(head)};
     inter.current = dequeue(&inter.tokens);
-    // inter.current->next = NULL;
     out = commands(&inter);
     if (out != 0)
         return (parse_error(&inter, out));
