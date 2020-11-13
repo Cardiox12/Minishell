@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 01:10:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/10 15:01:16 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/13 20:13:07 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static char *replace(char **src, t_slice slice)
     previous = *src;
     *src = extract_and_replace(*src, items.value, slice);
     free(previous);
+    free_spair(items);
     return (*src);
 }
 
