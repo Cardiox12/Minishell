@@ -1,37 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   interpret_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/06 13:11:14 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/13 14:49:04 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/13 14:47:13 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/13 14:49:07 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PARSER_H
-# define FT_PARSER_H
+#include "parser.h"
 
-# include "lexer.h"
-# include "internal_errors.h"
-
-typedef struct	s_interpret
+void    interpret_free(t_interpret *interpret)
 {
-	char		*input;
-	t_queue		*tokens;
-	t_queue		*current;
-}				t_interpret;
-
-enum	e_parse_errors
-{
-	ERR_PARSE	= 1,
-	EOF_		= 2
-};
-
-# define _EOF_ -1
-
-int		parser(const char *input, t_queue *head);
-void	interpret_free(t_interpret *interpret);
-
-#endif
+    queue_free(interpret->current);
+    queue_delete(&interpret->tokens);
+}

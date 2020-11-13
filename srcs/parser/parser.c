@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 13:16:15 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/13 14:44:02 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/13 15:03:10 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int parse_error(t_interpret *inter, int out)
 
     if (out < 0)
     {
-        queue_delete(&inter->tokens);
+        interpret_free(inter);
         return (SUCCESS);
     }
     index = inter->current->token.index;
@@ -102,8 +102,7 @@ int parse_error(t_interpret *inter, int out)
         ft_putchar_fd(errtok, STDERR_FILENO);
     ft_putchar_fd('\'', STDERR_FILENO);
     ft_putchar_fd('\n', STDERR_FILENO);
-    queue_free(inter->current);
-    queue_delete(&inter->tokens);
+    interpret_free(inter);
     return (out);
 }
 
@@ -126,6 +125,6 @@ int parser(const char *input, t_queue *head)
         if (out != 0)
             return (parse_error(&inter, out));
     }
-    queue_free(inter.current);
+    interpret_free(&inter);
     return (SUCCESS);
 }
