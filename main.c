@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/13 15:14:37 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/13 15:15:38 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,20 @@ int		main(int argc, char *argv[], char *envp[])
 	(void)argv;
 	if (!(ft_tab_copy(&g_env, envp)))
 		return (-1);
+	signal(SIGQUIT, signal_handler);
+	signal(SIGINT, signal_handler);
+	signal(SIGTERM, SIG_IGN);
 	g_pid_to_kill = fork();
 	if (g_pid_to_kill == 0)
-		run_shell();
+	{
+		signal(SIGTERM, sigterm_handler);
+		if (run_shell() == -1)
+		{
+			ft_freetab(&g_env);
+			exit(EXIT_FAILURE);
+		}
+	}
 	else
-		signal(SIGINT, signal_handler);
-	wait(&status);
+		wait(&status);
 	return (0);
 }
