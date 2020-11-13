@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 15:07:18 by tlucille          #+#    #+#             */
-/*   Updated: 2020/11/13 20:04:25 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/13 22:27:17 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ char						*ft_allocat(char **s1, const char *s2);
 char						*expand(const char *src);
 char						*find_variable(const char *key);
 t_spair						get_items(const char *e_var);
-char						*get_value(const char *key);
+char						*get_value(const char *e_var);
 char						*get_key(const char *variable);
 
 #endif
