@@ -64,7 +64,10 @@ char	*get_path_finalize(char *full_path, char *casted_value, char *value)
 	if (!(*path_tab))
 	{
 		if (!is_builtin(&value))
+		{
+			ft_freetab(&tab_temp);
 			return (ft_strdup(value));
+		}
 		ft_freetab(&tab_temp);
 		return (NULL);
 	}

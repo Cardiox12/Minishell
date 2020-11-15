@@ -62,6 +62,7 @@ int		redirect_handler(int newpipe[2], t_command *command)
 		if (!(output_buffer = read_until_eof(newpipe[0])))
 			return (free_command_ret_fail(command));
 		write_redirections(command, output_buffer);
+		ft_strdel(&output_buffer);
 		close(newpipe[0]);
 	}
 	return (0);

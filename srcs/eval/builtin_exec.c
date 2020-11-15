@@ -66,6 +66,7 @@ int		simple_redirect_handler(int newpipe[2], t_command *command)
 			return (-1);
 		}
 		write_redirections(command, output_buffer);
+		ft_strdel(&output_buffer);
 	}
 	return (0);
 }
@@ -79,5 +80,6 @@ int		simple_builtin(t_command *command)
 	simple_builtin_exec(command, newpipe);
 	if (simple_redirect_handler(newpipe, command) == -1)
 		return (free_command_ret_fail(command));
+	free_command(command);
 	return (0);
 }
