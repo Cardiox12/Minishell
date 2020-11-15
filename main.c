@@ -109,6 +109,11 @@ int		main(int argc, char *argv[], char *envp[])
 		}
 	}
 	else
+	{
 		wait(&status);
+		if (WIFEXITED(status))
+			exit(WEXITSTATUS(status));
+	}
+
 	return (0);
 }
