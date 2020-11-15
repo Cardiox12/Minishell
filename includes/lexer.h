@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/09 02:27:58 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/15 22:18:38 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "ft_math.h"
 # include "ft_strings.h"
+# include "ft_ctypes.h"
 
 typedef struct	s_token
 {
@@ -28,6 +29,14 @@ typedef struct	s_queue
 	struct s_queue	*next;
 	t_token			token;
 }				t_queue;
+
+typedef struct	s_lexer
+{
+	int			state;
+	size_t		index;
+	t_queue		*head;
+	char		*input;
+}				t_lexer;
 
 /*
 **
@@ -106,5 +115,48 @@ t_queue	*dequeue(t_queue **head);
 void    queue_free(t_queue *node);
 void    queue_delete(t_queue **head);
 t_queue *lexer(const char *input);
+
+int		is_bash_charset(int c);
+int		is_redirect(int c);
+int		is_sep(int c);
+char	*quote_extract(const char *input, size_t *index);
+
+int		get_argument(t_queue **head, const char *input, size_t index);
+int		get_command(t_queue **head, const char *input, size_t index);
+int		get_env_variable(t_queue **head, const char *input, size_t index);
+int		get_fd(t_queue **head, const char *input, size_t index);
+int		get_operator(t_queue **head, size_t index);
+int		get_option(t_queue **head, const char *input, size_t index);
+int		get_pipe(t_queue **head, size_t index);
+int		get_redirection(t_queue **head, const char *input, size_t index);
+int		get_string(t_queue **head, const char *input, size_t index);
+
+int		callback_argument(t_lexer *lex);
+int		callback_command(t_lexer *lex);
+int		callback_env_variable(t_lexer *lex);
+int		callback_fd(t_lexer *lex);
+int		callback_operator(t_lexer *lex);
+int		callback_option(t_lexer *lex);
+int		callback_pipe(t_lexer *lex);
+int		callback_redirection(t_lexer *lex);
+int		callback_string(t_lexer *lex);
+int		callback_default(t_lexer *lex);
+
+# define LEXER_CALLBACK_SIZE 10
+
+typedef int (*callback_lexer)(t_lexer*);
+
+static const callback_lexer g_lexer_callbacks[LEXER_CALLBACK_SIZE] = {
+	callback_command,
+	callback_string,
+	callback_option,
+	callback_pipe,
+	callback_operator,
+	callback_env_variable,
+	callback_redirection,
+	callback_argument,
+	callback_fd,
+	callback_default
+};
 
 #endif
