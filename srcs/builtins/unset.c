@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 16:29:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/11 01:53:35 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/15 01:19:51 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,7 @@ int unset(char **args)
         }
         index++;
     }
-    if (string_list_append(copy, "") == ERR_MEM_ALLOC_FAILED)
-        return (ERR_MALLOC_FAILED);
-    copy->items[copy->length - 1] = NULL;
-    g_env = copy->items;
+    g_env = string_list_to_string_array(copy);
+    string_list_delete(&copy);
     return (SUCCESS);
 }
