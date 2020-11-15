@@ -11,11 +11,7 @@
 # **************************************************************************** #
 
 CC			= gcc
-<<<<<<< HEAD
 CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address
-=======
-CFLAGS		= -Wall -Werror -Wextra -g -fsanitize=address
->>>>>>> a1df69ef905ff31a707f4645b91eacf4048e08bc
 
 EXT_DIR		= externals
 INC_DIR		= includes
