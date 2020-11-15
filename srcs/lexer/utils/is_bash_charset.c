@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_option.c                                       :+:      :+:    :+:   */
+/*   is_bash_charset.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/15 20:53:10 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/15 21:04:40 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/15 21:17:21 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/15 21:18:23 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-int	get_option(t_queue **head, const char *input, size_t index)
+int is_bash_charset(int c)
 {
-	const size_t previous = index;
-
-	while (input[index] != '\0' && !is_sep(input[index]))
-		index++;
-	enqueue(head, (t_token){
-		.type = OPTION,
-		.value = ft_strndup(&input[previous], index - previous),
-		.index = previous
-	});
-	return (index);
+	return (ft_isprint(c) && !is_sep(c));
 }

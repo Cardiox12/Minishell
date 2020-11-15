@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_option.c                                       :+:      :+:    :+:   */
+/*   is_redirect.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/15 20:53:10 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/15 21:04:40 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/15 21:18:40 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/15 21:18:49 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-int	get_option(t_queue **head, const char *input, size_t index)
+int	is_redirect(int c)
 {
-	const size_t previous = index;
-
-	while (input[index] != '\0' && !is_sep(input[index]))
-		index++;
-	enqueue(head, (t_token){
-		.type = OPTION,
-		.value = ft_strndup(&input[previous], index - previous),
-		.index = previous
-	});
-	return (index);
+	return (c == SYM_L_REDIR || c == SYM_R_REDIR);
 }

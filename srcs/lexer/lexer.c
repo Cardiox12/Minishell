@@ -6,49 +6,13 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/15 20:55:15 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/15 21:22:09 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ctypes.h"
 #include "lexer.h"
 #include "ft_stdio.h"
-
-static int is_redirect(int c)
-{
-	return (c == SYM_L_REDIR || c == SYM_R_REDIR);
-}
-
-static int is_sep(int c)
-{
-	return (ft_isspace(c) || c == SYM_PIPE || c == SYM_OPERATOR);
-}
-
-static char *quote_extract(const char *input, size_t *index)
-{
-	const int	quote = input[*index];
-	size_t		previous;
-	char		*content;
-
-	previous = *index;
-	while (input[*index] == quote)
-		(*index)++;
-	if ((ft_isspace(input[*index]) || input[*index] == '\0') && (*index - previous) % 2 == 0)
-		return (ft_strdup(""));
-	previous = *index;
-	while (input[*index] != quote)
-		(*index)++;
-	content = ft_strndup(&input[previous], *index - previous);
-	while (input[*index] == quote)
-		(*index)++;
-	return (content);	
-
-}
-
-static int is_bash_charset(int c)
-{
-	return (ft_isprint(c) && !is_sep(c));
-}
 
 t_queue *lexer(const char *input)
 {
