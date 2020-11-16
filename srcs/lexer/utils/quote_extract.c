@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 21:20:38 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/15 21:21:03 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/16 01:21:25 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ char	*quote_extract(const char *input, size_t *index)
 	previous = *index;
 	while (input[*index] == quote)
 		(*index)++;
-	if ((ft_isspace(input[*index]) || input[*index] == '\0') && (*index - previous) % 2 == 0)
+	if ((ft_isspace(input[*index]) || input[*index] == '\0')
+	&& (*index - previous) % 2 == 0)
 		return (ft_strdup(""));
 	previous = *index;
 	while (input[*index] != quote)

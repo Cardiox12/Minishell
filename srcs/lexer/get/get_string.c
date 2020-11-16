@@ -6,14 +6,14 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:53:39 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/15 20:57:03 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/16 01:16:03 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
 int	get_string(t_queue **head, const char *input, size_t index)
-{	
+{
 	size_t	previous;
 	int		type;
 	char	*content;

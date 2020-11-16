@@ -6,13 +6,13 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 21:17:21 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/15 21:18:23 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/16 01:21:43 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-int is_bash_charset(int c)
+int	is_bash_charset(int c)
 {
 	return (ft_isprint(c) && !is_sep(c));
 }
