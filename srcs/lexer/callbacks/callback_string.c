@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue_free.c                                       :+:      :+:    :+:   */
+/*   callback_string.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/08 15:56:12 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/15 16:40:28 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/15 21:36:24 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/16 01:20:25 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-void	queue_free(t_queue *node)
+int		callback_string(t_lexer *lex)
 {
-	if (node != NULL)
+	if (lex->input[lex->index] == '"' || lex->input[lex->index] == '\'')
 	{
-		if (node->token.value != NULL)
-			free(node->token.value);
-		free(node);
+		lex->index = get_string(&lex->head, lex->input, lex->index);
+		return (TRUE);
 	}
+	return (FALSE);
 }

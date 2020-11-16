@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue_free.c                                       :+:      :+:    :+:   */
+/*   get_argument.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/08 15:56:12 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/15 16:40:28 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/15 20:49:44 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/15 20:50:14 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-void	queue_free(t_queue *node)
+int	get_argument(t_queue **head, const char *input, size_t index)
 {
-	if (node != NULL)
-	{
-		if (node->token.value != NULL)
-			free(node->token.value);
-		free(node);
-	}
+	const size_t previous = index;
+
+	while (!is_sep(input[index]) && input[index] != '\0')
+		index++;
+	enqueue(head, (t_token){
+		.type = ARGUMENT,
+		.value = ft_strndup(&input[previous], index - previous),
+		.index = previous
+	});
+	return (index);
 }

@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue_free.c                                       :+:      :+:    :+:   */
+/*   get_string.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/08 15:56:12 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/15 16:40:28 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/15 20:53:39 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/16 01:16:03 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-void	queue_free(t_queue *node)
+int	get_string(t_queue **head, const char *input, size_t index)
 {
-	if (node != NULL)
+	size_t	previous;
+	int		type;
+	char	*content;
+
+	previous = index;
+	if (input[index] == SYM_SIMPLE_QUOTE)
 	{
-		if (node->token.value != NULL)
-			free(node->token.value);
-		free(node);
+		type = RAW_STRING;
 	}
+	else
+	{
+		type = STRING;
+	}
+	content = quote_extract(input, &index);
+	enqueue(head, (t_token){
+		.type = type,
+		.value = content,
+		.index = previous
+	});
+	return (index);
 }

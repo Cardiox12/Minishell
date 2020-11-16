@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue_free.c                                       :+:      :+:    :+:   */
+/*   is_sep.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/08 15:56:12 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/15 16:40:28 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/15 21:19:56 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/16 01:20:52 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-void	queue_free(t_queue *node)
+int	is_sep(int c)
 {
-	if (node != NULL)
-	{
-		if (node->token.value != NULL)
-			free(node->token.value);
-		free(node);
-	}
+	return (ft_isspace(c) || c == SYM_PIPE || c == SYM_OPERATOR);
 }

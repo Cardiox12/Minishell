@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue_free.c                                       :+:      :+:    :+:   */
+/*   get_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/08 15:56:12 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/15 16:40:28 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/15 20:55:02 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/15 20:55:36 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-void	queue_free(t_queue *node)
+int	get_command(t_queue **head, const char *input, size_t index)
 {
-	if (node != NULL)
+	const size_t	previous = index;
+	char			*content;
+
+	if (ft_isquote(input[index]))
 	{
-		if (node->token.value != NULL)
-			free(node->token.value);
-		free(node);
+		content = quote_extract(input, &index);
 	}
+	else
+	{
+		while (input[index] != '\0' && !is_sep(input[index]))
+			index++;
+		content = ft_strndup(&input[previous], index - previous);
+	}
+	enqueue(head, (t_token){
+		.type = COMMAND,
+		.value = content,
+		.index = previous
+	});
+	return (index);
 }

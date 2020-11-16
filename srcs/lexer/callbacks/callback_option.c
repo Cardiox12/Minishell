@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue_free.c                                       :+:      :+:    :+:   */
+/*   callback_option.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/08 15:56:12 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/15 16:40:28 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/15 21:37:03 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/16 01:19:11 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-void	queue_free(t_queue *node)
+int		callback_option(t_lexer *lex)
 {
-	if (node != NULL)
+	if (lex->input[lex->index] == '-' || (lex->input[lex->index] == '-' &&
+	lex->input[lex->index + 1] == '-'))
 	{
-		if (node->token.value != NULL)
-			free(node->token.value);
-		free(node);
+		lex->index = get_option(&lex->head, lex->input, lex->index);
+		return (TRUE);
 	}
+	return (FALSE);
 }

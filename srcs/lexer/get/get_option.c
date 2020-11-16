@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue_free.c                                       :+:      :+:    :+:   */
+/*   get_option.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/08 15:56:12 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/15 16:40:28 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/15 20:53:10 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/15 21:04:40 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-void	queue_free(t_queue *node)
+int	get_option(t_queue **head, const char *input, size_t index)
 {
-	if (node != NULL)
-	{
-		if (node->token.value != NULL)
-			free(node->token.value);
-		free(node);
-	}
+	const size_t previous = index;
+
+	while (input[index] != '\0' && !is_sep(input[index]))
+		index++;
+	enqueue(head, (t_token){
+		.type = OPTION,
+		.value = ft_strndup(&input[previous], index - previous),
+		.index = previous
+	});
+	return (index);
 }
