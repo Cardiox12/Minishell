@@ -28,4 +28,12 @@
 # include <unistd.h>
 # include "ft_strings.h"
 
+int			set_nl_watch(char *dynamic, int *nl_watch, int bytes);
+int			finish_op(char **line, char *buffer, char **dynamic);
+int			locate(char *haystack, char needle);
+int			get_line(char *buffer, char **dynamic, char **line);
+char		*resize(char **dst, size_t start);
+char		*append(char **dst, const char *src);
+int			get_next_line(int fd, char **line);
+
 #endif

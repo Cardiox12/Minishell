@@ -100,7 +100,7 @@ int		reader(char **command)
 	if (quote_finder(*command) == 1)
 		*command = handle_quotes(command);
 	len = ft_strlen(*command);
-	if ((*command)[len - 1] == '\\')
+	if (len > 0 && ((*command)[len - 1] == '\\'))
 		(*command) = back_slash_handle(command);
 	return (1);
 }

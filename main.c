@@ -87,10 +87,17 @@ int			run_shell(void)
 	}
 }
 
-int		main(int argc, char *argv[], char *envp[])
+void	wait_and_exit(void)
 {
 	int status;
 
+	wait(&status);
+	if (WIFEXITED(status))
+		exit(WEXITSTATUS(status));
+}
+
+int		main(int argc, char *argv[], char *envp[])
+{
 	(void)argc;
 	(void)argv;
 	if (!(ft_tab_copy(&g_env, envp)))
@@ -109,11 +116,6 @@ int		main(int argc, char *argv[], char *envp[])
 		}
 	}
 	else
-	{
-		wait(&status);
-		if (WIFEXITED(status))
-			exit(WEXITSTATUS(status));
-	}
-
+		wait_and_exit();
 	return (0);
 }

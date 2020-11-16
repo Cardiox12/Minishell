@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-static int	locate(char *haystack, char needle)
+int		locate(char *haystack, char needle)
 {
 	int index;
 
@@ -26,7 +26,7 @@ static int	locate(char *haystack, char needle)
 	return (-1);
 }
 
-static char	*append(char **dst, const char *src)
+char	*append(char **dst, const char *src)
 {
 	char *old_ptr;
 
@@ -43,7 +43,7 @@ static char	*append(char **dst, const char *src)
 	return (*dst);
 }
 
-static char	*resize(char **dst, size_t start)
+char	*resize(char **dst, size_t start)
 {
 	char *old_ptr;
 
@@ -60,7 +60,7 @@ static char	*resize(char **dst, size_t start)
 	return (*dst);
 }
 
-static int	get_line(char *buffer, char **dynamic, char **line)
+int		get_line(char *buffer, char **dynamic, char **line)
 {
 	int		newline_pos;
 
@@ -78,21 +78,7 @@ static int	get_line(char *buffer, char **dynamic, char **line)
 	return (END_OF_FILE);
 }
 
-int			set_nl_watch(char *dynamic, int *nl_watch, int bytes)
-{
-	if (dynamic && ft_strlen(dynamic) != 0 && locate(dynamic, '\n') == NOT_FOUND)
-	{
-		write(1, "  \b\b", 4);
-		*nl_watch = 0;
-	}
-	else
-		*nl_watch = 1;
-	if (bytes == 0 && *nl_watch == 1)
-		return (-1);
-	return (0);
-}
-
-int			get_next_line(int fd, char **line)
+int		get_next_line(int fd, char **line)
 {
 	char			buffer[BUFFER_SIZE + 1];
 	static char		*dynamic = NULL;
@@ -111,16 +97,10 @@ int			get_next_line(int fd, char **line)
 				|| key_code == SUCCESS)
 			return (key_code);
 		if (set_nl_watch(dynamic, &nl_watch, bytes) == -1)
-			break;
-		
+			break ;
 	}
 	buffer[bytes] = '\0';
-	if ((key_code = get_line(buffer, &dynamic, line)) == SUCCESS
-			|| key_code == ERROR)
+	if ((key_code = finish_op(line, buffer, &dynamic)) != -286)
 		return (key_code);
-	if ((*line = ft_strndup(dynamic, ft_strlen(dynamic))) == NULL)
-		return (ERROR);
-	free(dynamic);
-	dynamic = NULL;
 	return (END_OF_FILE);
 }
