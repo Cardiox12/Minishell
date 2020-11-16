@@ -92,16 +92,16 @@ SRCS	+= $(CTYPES_DIR)/ft_isprint.c
 SRCS	+= $(CTYPES_DIR)/ft_isspace.c
 SRCS	+= $(CTYPES_DIR)/ft_isquote.c
 
-SRCS	+= $(OBJECTS_DIR)/StringList_create.c
-SRCS	+= $(OBJECTS_DIR)/StringList_insert.c
-SRCS	+= $(OBJECTS_DIR)/StringList_append.c
-SRCS	+= $(OBJECTS_DIR)/StringList_pop.c
-SRCS	+= $(OBJECTS_DIR)/StringList_pop_last.c
-SRCS	+= $(OBJECTS_DIR)/StringList_iter.c
-SRCS	+= $(OBJECTS_DIR)/StringList_copy.c
-SRCS	+= $(OBJECTS_DIR)/StringList_delete.c
-SRCS	+= $(OBJECTS_DIR)/StringList_create_from.c
-SRCS	+= $(OBJECTS_DIR)/StringList_to_string_array.c
+SRCS	+= $(OBJECTS_DIR)/stringlist_create.c
+SRCS	+= $(OBJECTS_DIR)/stringlist_insert.c
+SRCS	+= $(OBJECTS_DIR)/stringlist_append.c
+SRCS	+= $(OBJECTS_DIR)/stringlist_pop.c
+SRCS	+= $(OBJECTS_DIR)/stringlist_pop_last.c
+SRCS	+= $(OBJECTS_DIR)/stringlist_iter.c
+SRCS	+= $(OBJECTS_DIR)/stringlist_copy.c
+SRCS	+= $(OBJECTS_DIR)/stringlist_delete.c
+SRCS	+= $(OBJECTS_DIR)/stringlist_create_from.c
+SRCS	+= $(OBJECTS_DIR)/stringlist_to_string_array.c
 
 SRCS	+= $(MATH_DIR)/vec/vec_add.c
 SRCS	+= $(MATH_DIR)/vec/vec_cast.c

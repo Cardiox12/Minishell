@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   StringList_pop_last.c                              :+:      :+:    :+:   */
+/*   stringlist_create_from.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/20 03:43:23 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/06/20 03:45:27 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/10/16 15:27:45 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/16 03:12:19 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_objects.h"
 
-int	string_list_pop_last(t_string_list *list)
+void	string_list_create_from(t_string_list **lst, char **arr, size_t size)
 {
-	if (list->length != 0)
-		return (string_list_pop(list, list->length - 1));
-	return (NO_ERROR);
+	t_string_list *new;
+
+	new = NULL;
+	string_list_create(&new);
+	if (new == NULL)
+		*lst = NULL;
+	else
+	{
+		new->items = arr;
+		new->length = size;
+		*lst = new;
+	}
 }
