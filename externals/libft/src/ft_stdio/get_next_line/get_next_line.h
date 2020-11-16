@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 03:28:32 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 04:16:30 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/16 03:43:46 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 # define NOT_FOUND -1
 # define CONTINUE 2
 
-#include <sys/types.h>
-#include <sys/uio.h>
-#include <unistd.h>
-#include "ft_strings.h"
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
+# include "ft_strings.h"
 
 #endif

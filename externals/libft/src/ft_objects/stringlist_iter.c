@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_cast.c                                         :+:      :+:    :+:   */
+/*   stringlist_iter.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/05 05:23:51 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 03:06:51 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/09/18 10:38:18 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/16 03:39:26 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_math.h"
+#include "ft_strings.h"
 
-t_vec2	vec_to_vec2(t_vec a)
+void	string_list_iter(t_string_list *list, int (*f)(const char*))
 {
-	t_vec2 ret;
+	int index;
 
-	ret.x = (float)a.x;
-	ret.y = (float)a.y;
-	return (ret);
-}
-
-t_vec3	vec_to_vec3(t_vec a)
-{
-	t_vec3 ret;
-
-	ret.x = (double)a.x;
-	ret.y = (double)a.y;
-	return (ret);
+	index = 0;
+	while (index < list->length)
+	{
+		f(list->items[index]);
+		index++;
+	}
 }

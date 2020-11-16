@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   StringList_create_from.c                           :+:      :+:    :+:   */
+/*   terminals.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/16 15:27:45 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/10/20 11:07:34 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/16 02:04:55 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/16 02:05:10 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_objects.h"
+#include "parser.h"
 
-void    string_list_create_from(t_string_list **lst, char **arr, size_t size)
+int	terminals(t_interpret *inter)
 {
-    t_string_list *new;
+	int	out;
 
-    new = NULL;
-    string_list_create(&new);
-    if (new == NULL)
-        *lst = NULL;
-    else
-    {
-        new->items = arr;
-        new->length = size;
-        *lst = new;   
-    }
+	if (is_type(inter->current->token.type, g_terminal_tokens, ARR_TERM_SIZE))
+	{
+		out = eat(inter, g_terminal_tokens, ARR_TERM_SIZE);
+		if (out != 0)
+			return ((out < 0) ? SUCCESS : out);
+	}
+	return (SUCCESS);
 }

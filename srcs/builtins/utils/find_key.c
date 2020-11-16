@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_cast.c                                         :+:      :+:    :+:   */
+/*   find_key.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/05 05:23:51 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 03:06:51 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/16 02:19:33 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/16 02:24:25 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_math.h"
+#include "builtins.h"
 
-t_vec2	vec_to_vec2(t_vec a)
+int	find_key(t_string_list *list, const char *key)
 {
-	t_vec2 ret;
+	const size_t	key_size = ft_strlen(key);
+	size_t			index;
 
-	ret.x = (float)a.x;
-	ret.y = (float)a.y;
-	return (ret);
-}
-
-t_vec3	vec_to_vec3(t_vec a)
-{
-	t_vec3 ret;
-
-	ret.x = (double)a.x;
-	ret.y = (double)a.y;
-	return (ret);
+	index = 0;
+	while (index < list->length)
+	{
+		if (ft_strncmp(list->items[index], key, key_size) == 0)
+			return (index);
+		index++;
+	}
+	return (NOT_FOUND);
 }

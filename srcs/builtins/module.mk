@@ -4,6 +4,7 @@ SRCS += $(UTILS_DIR)/arrlen.c
 SRCS += $(UTILS_DIR)/cd_perror.c
 SRCS += $(UTILS_DIR)/free_spair.c
 SRCS += $(UTILS_DIR)/free_env.c
+SRCS += $(UTILS_DIR)/find_key.c
 
 SRCS += $(BUILTIN_DIR)/echo.c
 SRCS += $(BUILTIN_DIR)/cd.c

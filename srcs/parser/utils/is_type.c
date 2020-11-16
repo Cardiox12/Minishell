@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_cast.c                                         :+:      :+:    :+:   */
+/*   is_type.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/05 05:23:51 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 03:06:51 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/16 02:06:43 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/16 02:06:57 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_math.h"
+#include "parser.h"
 
-t_vec2	vec_to_vec2(t_vec a)
+int	is_type(int cur_type, const int *types, size_t size)
 {
-	t_vec2 ret;
+	size_t index;
 
-	ret.x = (float)a.x;
-	ret.y = (float)a.y;
-	return (ret);
-}
-
-t_vec3	vec_to_vec3(t_vec a)
-{
-	t_vec3 ret;
-
-	ret.x = (double)a.x;
-	ret.y = (double)a.y;
-	return (ret);
+	index = 0;
+	while (index < size)
+	{
+		if (cur_type == types[index])
+			return (TRUE);
+		index++;
+	}
+	return (FALSE);
 }

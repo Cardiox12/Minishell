@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   StringList_pop_last.c                              :+:      :+:    :+:   */
+/*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/20 03:43:23 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/06/20 03:45:27 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/16 02:04:26 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/16 02:12:33 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_objects.h"
+#include "parser.h"
 
-int	string_list_pop_last(t_string_list *list)
+int	commands(t_interpret *inter)
 {
-	if (list->length != 0)
-		return (string_list_pop(list, list->length - 1));
-	return (NO_ERROR);
+	int out;
+
+	out = eat(inter, g_non_terminal_tokens, ARR_NON_TERM_SIZE);
+	if (out != 0)
+		return (out);
+	while (is_type(inter->current->token.type, g_non_terminal_tokens,
+	ARR_NON_TERM_SIZE))
+	{
+		out = eat(inter, g_non_terminal_tokens, ARR_NON_TERM_SIZE);
+		if (out != 0)
+			return (out);
+	}
+	return (SUCCESS);
 }

@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   StringList_iter.c                                  :+:      :+:    :+:   */
+/*   eat.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/18 10:38:18 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/18 10:49:20 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/16 02:05:27 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/16 02:05:49 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_strings.h"
+#include "parser.h"
 
-void	string_list_iter(t_string_list *list, int (*f)(const char*))
+int	eat(t_interpret *inter, const int *types, size_t size)
 {
-	int index;
+	size_t	index;
 
 	index = 0;
-	while (index < list->length)
+	while (index < size)
 	{
-		f(list->items[index]);
+		if (inter->current == NULL)
+			return (_EOF_);
+		if (inter->current->token.type == types[index])
+		{
+			queue_free(inter->current);
+			inter->current = dequeue(&inter->tokens);
+			if (inter->current == NULL)
+				return (_EOF_);
+			return (SUCCESS);
+		}
 		index++;
 	}
+	return (ERR_PARSE);
 }

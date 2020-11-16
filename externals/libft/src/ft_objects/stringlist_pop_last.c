@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_cast.c                                         :+:      :+:    :+:   */
+/*   stringlist_pop_last.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/05 05:23:51 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 03:06:51 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/06/20 03:43:23 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/16 03:39:30 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_math.h"
+#include "ft_objects.h"
 
-t_vec2	vec_to_vec2(t_vec a)
+int	string_list_pop_last(t_string_list *list)
 {
-	t_vec2 ret;
-
-	ret.x = (float)a.x;
-	ret.y = (float)a.y;
-	return (ret);
-}
-
-t_vec3	vec_to_vec3(t_vec a)
-{
-	t_vec3 ret;
-
-	ret.x = (double)a.x;
-	ret.y = (double)a.y;
-	return (ret);
+	if (list->length != 0)
+		return (string_list_pop(list, list->length - 1));
+	return (NO_ERROR);
 }

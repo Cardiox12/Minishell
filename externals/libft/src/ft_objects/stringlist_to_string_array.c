@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_cast.c                                         :+:      :+:    :+:   */
+/*   stringlist_to_string_array.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/05 05:23:51 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 03:06:51 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/03 20:35:24 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/16 03:40:40 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_math.h"
+#include "ft_objects.h"
 
-t_vec2	vec_to_vec2(t_vec a)
+char	**string_list_to_string_array(t_string_list *list)
 {
-	t_vec2 ret;
+	t_string_list	*copy;
+	char			**items;
+	size_t			last;
 
-	ret.x = (float)a.x;
-	ret.y = (float)a.y;
-	return (ret);
-}
-
-t_vec3	vec_to_vec3(t_vec a)
-{
-	t_vec3 ret;
-
-	ret.x = (double)a.x;
-	ret.y = (double)a.y;
-	return (ret);
+	string_list_copy(&copy, list);
+	string_list_append(copy, "");
+	items = copy->items;
+	last = (copy->length == 0) ? 0 : copy->length - 1;
+	free(copy);
+	free(items[last]);
+	items[last] = NULL;
+	return (items);
 }

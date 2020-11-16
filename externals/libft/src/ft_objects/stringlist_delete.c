@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   StringList_to_string_array.c                       :+:      :+:    :+:   */
+/*   stringlist_delete.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/03 20:35:24 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/03 21:08:46 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/03 21:14:30 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/16 03:40:17 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_objects.h"
 
-char    **string_list_to_string_array(t_string_list *list)
+void	string_list_delete(t_string_list **list)
 {
-    t_string_list   *copy;
-    char            **items;
-    size_t          last;
+	t_string_list	*ptr;
+	size_t			index;
+	char			*item;
 
-    string_list_copy(&copy, list);
-    string_list_append(copy, "");
-    items = copy->items;
-    last = (copy->length == 0) ? 0 : copy->length - 1;
-    free(copy);
-    free(items[last]);
-    items[last] = NULL;
-    return (items);
+	index = 0;
+	ptr = *list;
+	while (index < ptr->length)
+	{
+		item = ptr->items[index];
+		free(item);
+		index++;
+	}
+	free(ptr->items);
+	free(ptr);
+	*list = NULL;
 }

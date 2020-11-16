@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   StringList_delete.c                                :+:      :+:    :+:   */
+/*   stringlist_create_from.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/03 21:14:30 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/03 21:18:23 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/10/16 15:27:45 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/16 03:12:19 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_objects.h"
 
-void    string_list_delete(t_string_list **list)
+void	string_list_create_from(t_string_list **lst, char **arr, size_t size)
 {
-    t_string_list   *ptr;
-    size_t          index;
-    char            *item;
+	t_string_list *new;
 
-    index = 0;
-    ptr = *list;
-    while (index < ptr->length)
-    {
-        item = ptr->items[index];
-        free(item);
-        index++;
-    }
-    free(ptr->items);
-    free(ptr);
-    *list = NULL;
+	new = NULL;
+	string_list_create(&new);
+	if (new == NULL)
+		*lst = NULL;
+	else
+	{
+		new->items = arr;
+		new->length = size;
+		*lst = new;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 10:57:51 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/13 22:36:34 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/16 02:32:43 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 #include "internals.h"
 #include "builtins.h"
 
-static char	*get_home()
+typedef char* t_string;
+
+static char	*get_home(void)
 {
 	char *variable;
 	char *home;
@@ -25,9 +27,9 @@ static char	*get_home()
 	return (home);
 }
 
-int		cd(char **args)
+int			cd(char **args)
 {
-	const size_t 	size = string_arr_len(args);
+	const size_t	size = string_arr_len(args);
 	char			cwd[PATH_MAX + PWD_SIZE + 2];
 	char			*path;
 
@@ -46,7 +48,7 @@ int		cd(char **args)
 	ft_strcpy(cwd, PWD);
 	cwd[PWD_SIZE] = '=';
 	getcwd(&cwd[PWD_SIZE + 1], PATH_MAX);
-	export((string[3]){BUILTINS_EXPORT, cwd, NULL});
+	export((t_string[3]){BUILTINS_EXPORT, cwd, NULL});
 	free(path);
 	return (SUCCESS);
 }

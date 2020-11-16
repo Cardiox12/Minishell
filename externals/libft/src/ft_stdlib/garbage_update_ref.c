@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 06:18:41 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/06/09 06:26:22 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/16 02:58:42 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 void	garbage_update_ref(void *pold, void *pnew)
 {
-	t_Ref_List *node;
+	t_ref_list *node;
 
 	node = garbage_find_ref(pold);
 	if (node != NULL)
