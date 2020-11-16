@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 15:39:01 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/18 09:49:05 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/16 03:46:51 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ t_string_list	*ft_split(char const *s, char c)
 	iter = (char*)s;
 	while (*iter != '\0')
 	{
-		if ((found = ft_strchr(iter, c)) != NULL || (found = ft_strchr(iter, '\0')))
+		if ((found = ft_strchr(iter, c)) != NULL ||
+		(found = ft_strchr(iter, '\0')))
 		{
 			string_list_append(list, ft_strndup(iter, found - iter));
 			iter = found;
