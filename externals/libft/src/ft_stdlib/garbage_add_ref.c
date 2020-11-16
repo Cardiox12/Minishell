@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 05:21:46 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/09/30 04:21:11 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/16 02:59:05 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 **	It allocate and add new Ref_List node to the current garbage.
 */
 
-t_Garbage g_garbage = (t_Garbage){0, NULL};
+t_garbage g_garbage = (t_garbage){0, NULL};
 
-t_Ref_List	*garbage_add_ref(void *p)
+t_ref_list	*garbage_add_ref(void *p)
 {
-	t_Ref_List *cur;
-	t_Ref_List *tmp;
+	t_ref_list *cur;
+	t_ref_list *tmp;
 
-	tmp = malloc(sizeof(t_Garbage));
+	tmp = malloc(sizeof(t_garbage));
 	if (tmp == NULL)
 		return (NULL);
 	g_garbage.length++;

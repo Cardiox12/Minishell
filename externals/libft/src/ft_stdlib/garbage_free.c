@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 05:23:42 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/06/09 05:43:27 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/16 02:58:42 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 void	garbage_free(void *p)
 {
-	t_Ref_List *cur;
+	t_ref_list *cur;
 
 	if (g_garbage.refs != NULL)
 	{

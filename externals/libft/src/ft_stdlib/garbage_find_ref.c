@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 06:22:28 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/06/09 06:25:40 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/16 02:58:42 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 **	If no reference is found, Garbage_find_ref returns NULL pointer.
 */
 
-t_Ref_List	*garbage_find_ref(void *p)
+t_ref_list	*garbage_find_ref(void *p)
 {
-	t_Ref_List *cur;
+	t_ref_list *cur;
 
 	if (g_garbage.refs != NULL)
 	{
