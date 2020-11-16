@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   interpret_free.c                                   :+:      :+:    :+:   */
+/*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/13 14:47:13 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 02:12:14 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/16 02:04:26 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/16 02:12:33 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-void	interpret_free(t_interpret *interpret)
+int	commands(t_interpret *inter)
 {
-	queue_free(interpret->current);
-	queue_delete(&interpret->tokens);
+	int out;
+
+	out = eat(inter, g_non_terminal_tokens, ARR_NON_TERM_SIZE);
+	if (out != 0)
+		return (out);
+	while (is_type(inter->current->token.type, g_non_terminal_tokens,
+	ARR_NON_TERM_SIZE))
+	{
+		out = eat(inter, g_non_terminal_tokens, ARR_NON_TERM_SIZE);
+		if (out != 0)
+			return (out);
+	}
+	return (SUCCESS);
 }

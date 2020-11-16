@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   interpret_free.c                                   :+:      :+:    :+:   */
+/*   is_type.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/13 14:47:13 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 02:12:14 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/16 02:06:43 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/16 02:06:57 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-void	interpret_free(t_interpret *interpret)
+int	is_type(int cur_type, const int *types, size_t size)
 {
-	queue_free(interpret->current);
-	queue_delete(&interpret->tokens);
+	size_t index;
+
+	index = 0;
+	while (index < size)
+	{
+		if (cur_type == types[index])
+			return (TRUE);
+		index++;
+	}
+	return (FALSE);
 }
