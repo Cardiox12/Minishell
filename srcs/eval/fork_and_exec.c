@@ -6,7 +6,7 @@
 /*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 19:54:02 by tlucille          #+#    #+#             */
-/*   Updated: 2020/11/02 19:54:03 by tlucille         ###   ########.fr       */
+/*   Updated: 2020/11/18 23:31:56 by tlucille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,13 @@ int		fork_child_exec(int pipefd[2], t_command *command)
 		dup2(inputpipe[0], 0);
 		close(inputpipe[1]);
 	}
-	if (execve(command->path, command->args, g_env) == -1)
-		appropriate_exit_procedure(command);
+	if (g_flawed == 0)
+	{
+		if (execve(command->path, command->args, g_env) == -1)
+			appropriate_exit_procedure(command);
+	}
+	else
+		exit(1);
 	return (1);
 }
 

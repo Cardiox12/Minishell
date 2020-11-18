@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 12:26:32 by tlucille          #+#    #+#             */
-/*   Updated: 2020/11/10 14:45:25 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/18 23:47:09 by tlucille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 int		forked_builtin_child_exec(int newpipe[2], t_command *command)
 {
+	if (g_flawed == 1)
+		return (0);
 	if (command->output_type == PIPE || command->has_output_redirect == 1)
 	{
 		close(newpipe[0]);
@@ -33,6 +35,11 @@ int		builtin_fork_exec(t_command *command, int newpipe[2])
 	int pid;
 	int status;
 
+	if (g_flawed == 1)
+	{
+		return (0);
+		g_exitstatus = 1;
+	}
 	if (ft_strncmp(command->value, "env", 3) == 0
 		|| ft_strncmp(command->value, "echo", 4) == 0
 		|| ft_strncmp(command->value, "pwd", 3) == 0
@@ -56,6 +63,8 @@ int		redirect_handler(int newpipe[2], t_command *command)
 {
 	char	*output_buffer;
 
+	if (g_flawed == 1)
+		return (0);
 	if (command->has_output_redirect == 1)
 	{
 		close(newpipe[1]);

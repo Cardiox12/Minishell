@@ -6,7 +6,7 @@
 /*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 19:55:42 by tlucille          #+#    #+#             */
-/*   Updated: 2020/11/02 19:55:44 by tlucille         ###   ########.fr       */
+/*   Updated: 2020/11/18 23:27:50 by tlucille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,19 @@ int		appropriate_exit_procedure(t_command *command)
 {
 	if (ft_strchr(command->value, '/') != NULL)
 		perror("minishell");
-	else
+	else if (g_flawed == 0)
+	{
 		write_error_invalid_command(command->value);
+		free_command(command);
+		ft_freetab(&g_env);
+		exit(127);
+	}
 	free_command(command);
 	ft_freetab(&g_env);
-	exit(127);
+	if (g_flawed == 1)
+		exit(1);
+	else
+		exit(127);
 }
 
 int		write_error_free_ret(t_command *command)

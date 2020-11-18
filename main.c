@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/18 17:14:08 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/18 22:52:05 by tlucille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		run_shell(void)
 	char	*line;
 	t_queue *tokens;
 
+	g_flawed = 0;
 	while (TRUE)
 	{
 		if (reader(&line) == -1)

@@ -6,11 +6,13 @@
 /*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 19:59:59 by tlucille          #+#    #+#             */
-/*   Updated: 2020/11/02 20:00:01 by tlucille         ###   ########.fr       */
+/*   Updated: 2020/11/18 23:27:32 by tlucille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/eval.h"
+#include "eval.h"
+
+int				g_flawed = 0;
 
 static int		is_simple_redirect(t_queue *queue)
 {
@@ -63,7 +65,10 @@ int				get_input_redirections(t_command *command, t_queue *queue)
 	}
 	fd = open(queue->next->token.value, O_RDONLY, 0666);
 	if (fd == -1)
-		return (write_error_free_ret(command));
+	{
+		write_error_nofile(queue->next->token.value);
+		g_flawed = 1;
+	}
 	else
 	{
 		if (!(add_to_dynamic_int_array(&(command->input_redirection_files),

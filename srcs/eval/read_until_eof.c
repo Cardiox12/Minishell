@@ -6,7 +6,7 @@
 /*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 12:25:08 by tlucille          #+#    #+#             */
-/*   Updated: 2020/11/03 12:25:09 by tlucille         ###   ########.fr       */
+/*   Updated: 2020/11/18 23:11:03 by tlucille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ char	*read_until_eof(int fd)
 	int		ret;
 
 	if ((ret = read(fd, buffer, BUF_SIZE)) == -1)
-	{
-		perror("minishell");
 		return (NULL);
-	}
 	buffer[ret] = '\0';
 	if (!(total_data = ft_strdup(buffer)))
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 19:39:17 by tlucille          #+#    #+#             */
-/*   Updated: 2020/11/03 03:10:24 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/18 23:46:20 by tlucille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,13 @@ int		launch_adequate_execution(t_command *command)
 	{
 		if (is_builtin(command->args))
 		{
-			if (simple_builtin(command) == -1)
-				return (-1);
+			if (g_flawed == 0)
+			{
+				if (simple_builtin(command) == -1)
+					return (-1);
+			}
+			else
+				g_exitstatus = 1;
 		}
 		else
 		{

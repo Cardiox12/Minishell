@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 15:07:18 by tlucille          #+#    #+#             */
-/*   Updated: 2020/11/13 22:27:17 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/18 22:54:16 by tlucille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ extern int					g_exitstatus;
 extern t_queue				*g_queue;
 extern int					g_in_eval;
 extern int					g_pid_to_kill;
+extern int					g_flawed;
 
 void						get_sigint_exit_code(int sig);
 void						do_nothing(int sig);

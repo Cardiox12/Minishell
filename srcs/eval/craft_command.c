@@ -6,7 +6,7 @@
 /*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 19:09:25 by tlucille          #+#    #+#             */
-/*   Updated: 2020/11/02 19:09:27 by tlucille         ###   ########.fr       */
+/*   Updated: 2020/11/18 23:36:35 by tlucille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 int			pre_initialize_command(t_command *command)
 {
+	g_flawed = 0;
 	command->has_output_redirect = 0;
 	command->has_input_redirect = 0;
 	if (!(command->args = ft_stabmaker(6)))
