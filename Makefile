@@ -6,7 +6,7 @@
 #    By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/29 01:50:06 by tlucille          #+#    #+#              #
-#    Updated: 2020/11/13 19:34:45 by bbellavi         ###   ########.fr        #
+#    Updated: 2020/11/18 20:12:41 by bbellavi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,12 +36,10 @@ include $(READ_DIR)/module.mk $(LEXER_DIR)/module.mk $(PARSE_DIR)/module.mk $(BU
 
 all: $(NAME)
 
-$(NAME): build_library $(SRCS)
-	@$(CC) $(CFLAGS) -o $(NAME) signal_handler.c main.c $(SRCS) $(LIBFT_NAME) -I$(INC_DIR) -I$(FT_INC_DIR)
-
-build_library:
+$(NAME): $(SRCS)
 	@make -C $(LIBFT_DIR)
 	@mv $(LIBFT_DIR)/$(LIBFT_NAME) .
+	@$(CC) $(CFLAGS) -o $(NAME) signal_handler.c main.c $(SRCS) $(LIBFT_NAME) -I$(INC_DIR) -I$(FT_INC_DIR)
 	
 clean:
 	@rm -f $(LIBFT_NAME)

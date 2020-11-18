@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 21:57:17 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 02:18:10 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/18 20:22:17 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 int	internal_exit(char **args)
 {
 	(void)args;
+	ft_printf("exit\n");
 	if (args[1] == NULL)
 		exit(0);
 	if (!ft_isnumeric(args[1]))
