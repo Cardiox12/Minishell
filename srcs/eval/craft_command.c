@@ -111,16 +111,27 @@ int			craft_command(t_command *command)
 	int	count;
 	int	initialize_ret;
 
-	if ((initialize_ret = pre_initialize_command(command)) == -1)
-		return (-1);
-	if (initialize_ret == COMMAND_NOT_FOUND)
-	{
-		ft_printf("command not found in craft");
-		return (0);
-	}
+//	if ((initialize_ret = pre_initialize_command(command)) == -1)
+//		return (-1);
+//	if (initialize_ret == COMMAND_NOT_FOUND)
+//	{
+//		ft_printf("command not found in craft");
+//		return (0);
+//	}
 	count = 0;
+	command->value = NULL;
+	command->args = 0;
+	g_flawed = 0;
+	command->has_output_redirect = 0;
+	command->has_input_redirect = 0;
+	command->path = NULL;
 	while (g_queue != NULL && g_queue->token.type != PIPE)
 	{
+		if (g_queue->token.type == COMMAND)
+		{
+			if ((initialize_ret = pre_initialize_command(command)) == -1)
+				return (-1);
+		}
 		if ((get_args(&count, command)) == -1)
 			return (-1);
 		if ((get_redirects(&count, command)) == -1)

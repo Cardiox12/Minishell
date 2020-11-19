@@ -45,6 +45,11 @@ int		is_output(t_queue *queue)
 
 int		launch_adequate_execution(t_command *command)
 {
+	if (command->value == NULL)
+	{
+		free_command(command);
+		return (0);
+	}
 	if (command->output_type == PIPE)
 	{
 		if (init_piper(command) == -1)
@@ -80,8 +85,9 @@ int		eval(t_queue *queue)
 	g_in_eval = 1;
 	while (g_queue)
 	{
-		if (g_queue->token.type == COMMAND)
-		{
+//		if (g_queue->token.type == COMMAND)
+//		{
+			command.value = NULL;
 			if ((craft_ret = craft_command(&command)) == -1)
 				return (-1);
 			if (launch_adequate_execution(&command) == -1)
@@ -93,7 +99,7 @@ int		eval(t_queue *queue)
 			}
 			if (g_queue->token.type == OPERATOR)
 				g_queue = g_queue->next;
-		}
+//		}
 	}
 	g_in_eval = 0;
 	return (0);
