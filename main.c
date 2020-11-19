@@ -26,6 +26,46 @@ t_queue		*g_queue = NULL;
 int			g_pid_to_kill = 0;
 int			g_in_eval = 0;
 
+char	*get_type(int type)
+{
+	switch (type)
+	{
+		case COMMAND:
+			return ("COMMAND");
+		case STRING:
+			return ("STRING");
+		case OPTION:
+			return ("OPTION");
+		case PIPE:
+			return ("PIPE");
+		case OPERATOR:
+			return ("OPERATOR");
+		case ENV_VARIABLE:
+			return ("ENV_VARIABLE");
+		case REDIRECTION:
+			return ("REDIRECTION");
+		case RAW_STRING:
+			return ("RAW_STRING");
+		case FILE_DESCRIPTOR:
+			return ("FILE DESCRIPTOR");
+		case ARGUMENT:
+			return ("ARGUMENT");
+		default:
+			return ("");
+	}
+}
+
+void	print_queue(t_queue *head)
+{
+	ft_printf("=============== TOKENS ===============\n");
+	while (head != NULL)
+	{
+		ft_printf("(.type = %s, .value = %s, .index = %d)\n", get_type(head->token.type), head->token.value, head->token.index);
+		head = head->next;
+	}
+	ft_printf("=======================================\n");
+}
+
 int		run_shell(void)
 {
 	char	*line;
@@ -37,6 +77,7 @@ int		run_shell(void)
 		if (reader(&line) == -1)
 			return (-1);
 		tokens = lexer(line);
+		print_queue(tokens);
 		if (parser(line, tokens) == SUCCESS)
 		{
 			g_in_eval = 1;

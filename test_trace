@@ -340,3 +340,53 @@ minishell exits with success
 [38;5;40msuccess[0m
 ===============
 
+===============
+result test for :     <ezfef
+minishell exits with success
+[38;5;160mfailure[0m
+
+minishell's output:
+
+eval's output:
+
+===============
+
+===============
+result test for :     <zefzef efzef
+minishell exits with success
+[38;5;160mfailure[0m
+
+minishell's output:
+
+eval's output:
+
+===============
+
+===============
+result test for :     <zefzef grep
+minishell exits with success
+[38;5;160mfailure[0m
+
+minishell's output:
+
+eval's output:
+
+===============
+
+===============
+result test for :     <main.c grep includes
+minishell exits with success
+[38;5;160mfailure[0m
+
+minishell's output:
+
+eval's output:
+
+===============
+
+===============
+result test for :      grep < main.c includes
+minishell exits with success
+[38;5;40msuccess[0m
+===============
+

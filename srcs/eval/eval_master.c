@@ -45,6 +45,7 @@ int		is_output(t_queue *queue)
 
 int		launch_adequate_execution(t_command *command)
 {
+	print_s_command(command);
 	if (command->value == NULL)
 	{
 		free_command(command);

@@ -115,6 +115,45 @@ function test_command_output_redirects {
 	rm miniout1 realout1 miniout2 miniout3 realout2 realout3
 }
 
+function test_command_errors_edge {
+	printf "\n\n========================\n"
+	printf "tested command : %s\n" "$1"
+	printf "result test: \n"
+	printf "===============\n" >> test_trace
+	printf "result test for :     %s\n" "$1">> test_trace
+	minicommand=$1
+	minicommand+=" > miniout1"
+	real_command=$1
+	real_command+=" > realout1"
+#	printf "minishell's command: %s\n" "$minicommand"
+#	printf "eval's command: %s\n" "$real_command"
+	if printf "%s\n" "$minicommand" | ./minishell #&> /dev/null
+	then
+		printf "minishell exits with success\n" | tee -a test_trace
+	else
+		printf "minishell crashes\n" | tee -a test_trace
+	fi
+	if printf "%s\n" "$real_command" | bash #&> /dev/null
+	then
+		printf "bash exits correctly\n" 
+	else
+		printf "bash returns an error\n"
+	fi	
+	if diff miniout1 realout1 >> test_trace
+	then
+		printf "\e[38;5;40msuccess\e[0m\n" | tee -a test_trace
+	else
+		printf "\e[38;5;160mfailure\e[0m\n" | tee -a test_trace
+		printf "\nminishell's output:\n" >> test_trace
+		cat miniout1 >> test_trace
+		printf "\neval's output:\n\n" >> test_trace
+		cat realout1 >> test_trace
+	fi
+	printf "===============\n\n" >> test_trace
+	printf "%s\n" '-----------------'
+	rm miniout1 realout1
+}
+
 commands=("cat makefile" \
 "cat makefile | wc -l" \
 "cat makefile < main.c | grep include" \
@@ -126,6 +165,13 @@ commands=("cat makefile" \
 "pwd" \
 "env | grep PATH | grep usr | grep bin | wc -l; echo hello; grep b < test_files/bbb | wc -l" \
 "env | grep PATH | grep usr | grep bin; echo hello; grep b < test_files/bbb | wc -l" \
+)
+
+error_edge_commands=("<ezfef" \
+"<zefzef efzef" \
+"<zefzef grep" \
+"<main.c grep includes" \
+" grep < main.c includes" \
 )
 
 expand_commands=('echo "$USER"' \
@@ -191,4 +237,8 @@ done
 
 for command in "${expand_commands[@]}"
 	do test_command "${command}"
+done
+
+for command in "${error_edge_commands[@]}"
+	do test_command_errors_edge "${command}"
 done
