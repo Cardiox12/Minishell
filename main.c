@@ -76,6 +76,7 @@ int		run_shell(void)
 	{
 		if (reader(&line) == -1)
 			return (-1);
+//		ft_printf("line: %s\n", line);
 		tokens = lexer(line);
 		print_queue(tokens);
 		if (parser(line, tokens) == SUCCESS)

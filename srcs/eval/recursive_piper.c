@@ -102,7 +102,8 @@ int		recursive_piper(int oldpipe[2])
 		return (0);
 	if (craft_command(&new_command) == -1)
 		return (-1);
-//	print_s_command(&new_command);
+	if (g_flawed == 1 || new_command.value == NULL)
+		return (0);
 	if (is_builtin(new_command.args))
 		return (recursive_builtin(&new_command));
 	if (new_command.output_type == PIPE || new_command.has_output_redirect == 1)
@@ -111,10 +112,7 @@ int		recursive_piper(int oldpipe[2])
 			perror("pipe");
 	}
 	if ((pid = fork()) == -1)
-	{
-		perror("fork");
 		return (free_command_ret_fail(&new_command));
-	}
 	else if (pid == 0)
 		return (child_exec(&new_command, oldpipe, newpipe));
 	else

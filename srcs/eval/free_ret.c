@@ -33,8 +33,14 @@ int		free_tab_string_ret_fail(char **string, char ***tab)
 
 int		appropriate_exit_procedure(t_command *command)
 {
+	char *join;
+
 	if (ft_strchr(command->value, '/') != NULL)
-		perror("minishell");
+	{
+		join = ft_strjoin("minishell: ", command->value);
+		perror(join);
+		ft_strdel(&join);
+	}
 	else if (g_flawed == 0)
 	{
 		write_error_invalid_command(command->value);
@@ -46,6 +52,8 @@ int		appropriate_exit_procedure(t_command *command)
 	ft_freetab(&g_env);
 	if (g_flawed == 1)
 		exit(1);
+	else if (errno == 13)
+		exit(126);
 	else
 		exit(127);
 }

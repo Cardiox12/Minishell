@@ -35,11 +35,6 @@ int		builtin_fork_exec(t_command *command, int newpipe[2])
 	int pid;
 	int status;
 
-	if (g_flawed == 1)
-	{
-		return (0);
-		g_exitstatus = 1;
-	}
 	if (ft_strncmp(command->value, "env", 3) == 0
 		|| ft_strncmp(command->value, "echo", 4) == 0
 		|| ft_strncmp(command->value, "pwd", 3) == 0
@@ -56,6 +51,8 @@ int		builtin_fork_exec(t_command *command, int newpipe[2])
 				g_exitstatus = WEXITSTATUS(status);
 		}
 	}
+	else
+		builtins_call(command);
 	return (0);
 }
 

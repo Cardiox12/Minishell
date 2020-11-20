@@ -51,6 +51,7 @@ extern int					g_in_eval;
 extern int					g_pid_to_kill;
 extern int					g_flawed;
 
+void						init_command(t_command *command);
 void						get_sigint_exit_code(int sig);
 void						do_nothing(int sig);
 void						sigterm_handler(int sig);
