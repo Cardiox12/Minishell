@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 01:46:42 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/20 11:03:15 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ enum	e_states
 	IN_STRING = 0x01,
 	IS_COMMAND = 0x01 << 1U,
 	IS_FD = 0x01 << 2U,
-	IS_ARGUMENT = 0x01 << 3U
+	IS_ARGUMENT = 0x01 << 3U,
+	IS_SHIFTED = 0x01 << 4U
 };
 
 # define COMMAND 1
