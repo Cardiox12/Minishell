@@ -18,9 +18,8 @@
 
 int			pre_initialize_command(t_command *command)
 {
-	g_flawed = 0;
-	command->has_output_redirect = 0;
-	command->has_input_redirect = 0;
+//	g_flawed = 0;
+	ft_printf("in initialize\n");
 	if (!(command->args = ft_stabmaker(6)))
 		return (-1);
 	if (!(command->value = expand(g_queue->token.value)))
@@ -125,6 +124,7 @@ int			craft_command(t_command *command)
 	command->has_output_redirect = 0;
 	command->has_input_redirect = 0;
 	command->path = NULL;
+	ft_printf("in craft\n");
 	while (g_queue != NULL && g_queue->token.type != PIPE)
 	{
 		if (g_queue->token.type == COMMAND)

@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/18 22:52:05 by tlucille         ###   ########.fr       */
+/*   Updated: 2020/11/20 12:56:53 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ char	*get_type(int type)
 
 void	print_queue(t_queue *head)
 {
-	ft_printf("=============== TOKENS ===============\n");
+	ft_printf("%-30s| %-30s| %-30s\n", "TYPE", "VALUE", "INDEX");
+	ft_printf("----------------------------------------------------------------------\n");
 	while (head != NULL)
 	{
-		ft_printf("(.type = %s, .value = %s, .index = %d)\n", get_type(head->token.type), head->token.value, head->token.index);
+		ft_printf("%-30s| %-30s| %-30d\n", get_type(head->token.type), head->token.value, head->token.index);
 		head = head->next;
 	}
-	ft_printf("=======================================\n");
 }
 
 int		run_shell(void)

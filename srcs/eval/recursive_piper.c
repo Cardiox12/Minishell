@@ -102,6 +102,7 @@ int		recursive_piper(int oldpipe[2])
 		return (0);
 	if (craft_command(&new_command) == -1)
 		return (-1);
+//	print_s_command(&new_command);
 	if (is_builtin(new_command.args))
 		return (recursive_builtin(&new_command));
 	if (new_command.output_type == PIPE || new_command.has_output_redirect == 1)

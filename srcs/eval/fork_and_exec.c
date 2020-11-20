@@ -26,6 +26,7 @@ int		fork_child_exec(int pipefd[2], t_command *command)
 		pipe(inputpipe);
 		read_redirections_nopipe(command, inputpipe);
 		dup2(inputpipe[0], 0);
+		close(inputpipe[0]);
 		close(inputpipe[1]);
 	}
 	if (g_flawed == 0)

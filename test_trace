@@ -376,12 +376,7 @@ eval's output:
 ===============
 result test for :     <main.c grep includes
 minishell exits with success
-[38;5;160mfailure[0m
-
-minishell's output:
-
-eval's output:
-
+[38;5;40msuccess[0m
 ===============
 
 ===============

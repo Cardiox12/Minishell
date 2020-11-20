@@ -59,7 +59,7 @@ int				get_input_redirections(t_command *command, t_queue *queue)
 		command->has_input_redirect = 1;
 		if (!(command->input_redirection_files = ft_int_tab_maker(6)))
 		{
-			command->has_output_redirect = 0;
+			command->has_input_redirect = 0;
 			return (free_command_ret_fail(command));
 		}
 	}

@@ -46,9 +46,14 @@ int		is_output(t_queue *queue)
 int		launch_adequate_execution(t_command *command)
 {
 	print_s_command(command);
-	if (command->value == NULL)
+//	ft_printf("g_flawed: %d\n", g_flawed);
+	if (command->value == NULL || g_flawed == 1)
 	{
+		ft_printf("here\n");
+		if (g_flawed == 1)
+			g_exitstatus = 1;
 		free_command(command);
+//		g_queue = g_queue->next;
 		return (0);
 	}
 	if (command->output_type == PIPE)
@@ -70,6 +75,8 @@ int		launch_adequate_execution(t_command *command)
 		}
 		else
 		{
+//			if (g_flawed == 0)
+//			{}
 			if (fork_and_exec(command) == -1)
 				return (-1);
 		}
@@ -88,11 +95,15 @@ int		eval(t_queue *queue)
 	{
 //		if (g_queue->token.type == COMMAND)
 //		{
+			ft_printf("boucle");
+			ft_printf("queue value: %s\n", g_queue->token.value);
 			command.value = NULL;
 			if ((craft_ret = craft_command(&command)) == -1)
 				return (-1);
 			if (launch_adequate_execution(&command) == -1)
 				return (-1);
+			ft_printf("post adequate\n");
+			ft_printf("queue value: %s\n", g_queue->token.value);
 			if (g_queue == NULL)
 			{
 				g_in_eval = 0;
