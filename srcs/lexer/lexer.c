@@ -6,12 +6,18 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 01:17:26 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/20 11:12:02 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "ft_stdio.h"
+
+static void	skip(t_lexer *lex)
+{
+	while (ft_isspace(lex->input[lex->index]) && lex->input[lex->index] != '\0')
+		lex->index++;
+}
 
 t_queue	*lexer(const char *input)
 {
@@ -34,6 +40,7 @@ t_queue	*lexer(const char *input)
 				break ;
 			index++;
 		}
+		skip(&lex);
 	}
 	return (lex.head);
 }
