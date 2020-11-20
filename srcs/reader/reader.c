@@ -80,7 +80,6 @@ char	*back_slash_handle(char **command)
 int		reader(char **command)
 {
 	char	cwd[PATH_MAX];
-	int		len;
 	int		gnl_return;
 
 	*command = NULL;
@@ -97,10 +96,5 @@ int		reader(char **command)
 	}
 	if (*command == NULL)
 		return (0);
-	if (quote_finder(*command) == 1)
-		*command = handle_quotes(command);
-	len = ft_strlen(*command);
-	if (len > 0 && ((*command)[len - 1] == '\\'))
-		(*command) = back_slash_handle(command);
 	return (1);
 }
