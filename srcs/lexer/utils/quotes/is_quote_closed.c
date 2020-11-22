@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 17:11:56 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/22 17:26:52 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/22 20:34:36 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int is_quote_closed(const char *s, char quote)
     {
         if (s[index] == quote)
             return (TRUE);
-        if (is_escaped_by(s, ESC_BASE_CHARSET))
+        if (is_escaped_by(&s[index], ESC_CHARSET))
             index++;
         index++;
     }

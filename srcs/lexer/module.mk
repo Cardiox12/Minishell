@@ -9,7 +9,8 @@ SRCS += $(LEXER_DIR)/$(UTL_DIR)/is_redirect.c
 SRCS += $(LEXER_DIR)/$(UTL_DIR)/is_sep.c
 SRCS += $(LEXER_DIR)/$(UTL_DIR)/quote_extract.c
 SRCS += $(LEXER_DIR)/$(UTL_DIR)/is_escaped.c
-SRCS += $(LEXER_DIR)/$(UTL_DIR)/is_quote_closed.c
+SRCS += $(LEXER_DIR)/$(UTL_DIR)/quotes/is_quote_closed.c
+SRCS += $(LEXER_DIR)/$(UTL_DIR)/quotes/remove_quotes.c
 
 SRCS += $(LEXER_DIR)/$(CBK_DIR)/callback_argument.c
 SRCS += $(LEXER_DIR)/$(CBK_DIR)/callback_command.c

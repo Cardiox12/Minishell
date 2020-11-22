@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/22 17:32:13 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/22 20:00:22 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 # include "ft_math.h"
 # include "ft_strings.h"
 # include "ft_ctypes.h"
+# include "types.h"
 
+extern int g_quote_parity_error;
 typedef struct		s_token
 {
 	int				type;
@@ -72,6 +74,7 @@ enum	e_states
 # define SYM_L_REDIR '<'
 # define SYM_EQUAL '='
 # define SYM_ESC '\\'
+# define ESC_CHARSET "$\"\\"
 # define ESC_BASE_CHARSET "\""
 # define ESC_IMPROVED_CHARSET "\\$"
 
@@ -115,6 +118,7 @@ int					is_sep(int c);
 char				*quote_extract(const char *input, size_t *index);
 int					is_escaped_by(const char *s, char *charset);
 int					is_quote_closed(const char *s, char quote);
+char				*remove_quotes(const char *input, size_t *index);
 
 int					get_argument(t_queue **head,
 					const char *input,
@@ -165,7 +169,5 @@ static const t_callback_lexer g_lexer_callbacks[LEXER_CALLBACK_SIZE] = {
 	callback_fd,
 	callback_default
 };
-
-extern int g_quote_parity_error;
 
 #endif
