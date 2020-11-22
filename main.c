@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/22 20:40:05 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/23 00:06:19 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ int		run_shell(void)
 		if (reader(&line) == -1)
 			return (-1);
 		tokens = lexer(line);
-		// print_queue(tokens);
 		if (g_quote_parity_error)
 			ft_putstr_fd("minishell: Error quote is not closed\n", STDERR_FILENO);
 		else if (parser(line, tokens) == SUCCESS)
