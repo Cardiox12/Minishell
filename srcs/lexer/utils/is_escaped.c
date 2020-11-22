@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   callback_string.c                                  :+:      :+:    :+:   */
+/*   is_escaped.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/15 21:36:24 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/22 17:27:22 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/22 17:12:32 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/22 17:17:22 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_strings.h"
 #include "lexer.h"
 
-int		callback_string(t_lexer *lex)
+int is_escaped_by(const char *s, char *charset)
 {
-	if (lex->input[lex->index] == '"' || lex->input[lex->index] == '\'')
-	{
-		lex->index = get_string(&lex->head, lex->input, lex->index);
-		return (TRUE);
-	}
-	return (FALSE);
+    if (*s == '\0')
+        return (FALSE);
+    return (s[0] && !ft_strchr(charset, s[1]));
 }

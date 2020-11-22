@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/20 11:03:15 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/22 17:32:13 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ enum	e_states
 # define SYM_R_REDIR '>'
 # define SYM_L_REDIR '<'
 # define SYM_EQUAL '='
+# define SYM_ESC '\\'
+# define ESC_BASE_CHARSET "\""
+# define ESC_IMPROVED_CHARSET "\\$"
 
 static const int g_all_tokens[ARR_ALL_TOK_SIZE] = {
 	COMMAND,
@@ -110,6 +113,8 @@ int					is_bash_charset(int c);
 int					is_redirect(int c);
 int					is_sep(int c);
 char				*quote_extract(const char *input, size_t *index);
+int					is_escaped_by(const char *s, char *charset);
+int					is_quote_closed(const char *s, char quote);
 
 int					get_argument(t_queue **head,
 					const char *input,
@@ -160,5 +165,7 @@ static const t_callback_lexer g_lexer_callbacks[LEXER_CALLBACK_SIZE] = {
 	callback_fd,
 	callback_default
 };
+
+extern int g_quote_parity_error;
 
 #endif
