@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/22 20:00:22 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/22 23:23:43 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ char				*quote_extract(const char *input, size_t *index);
 int					is_escaped_by(const char *s, char *charset);
 int					is_quote_closed(const char *s, char quote);
 char				*remove_quotes(const char *input, size_t *index);
+char				*removal(char **src, t_slice slice);
 
 int					get_argument(t_queue **head,
 					const char *input,

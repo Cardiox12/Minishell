@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 01:10:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 02:45:29 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/22 23:35:48 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,12 @@ char		*expand(const char *src)
 		return (NULL);
 	while (new[slice.begin] != '\0')
 	{
-		if (new[slice.begin] == SYM_ENV_VAR &&
+		if (is_escaped_by(&new[slice.begin], ESC_IMPROVED_CHARSET))
+		{
+			removal(&new, slice);
+			slice.begin++;
+		}
+		else if (new[slice.begin] == SYM_ENV_VAR &&
 		is_var_charset(new[slice.begin + 1]))
 		{
 			slice.end = slice.begin + 1;
