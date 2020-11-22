@@ -341,6 +341,24 @@ minishell exits with success
 ===============
 
 ===============
+result test for :     echo "\""
+minishell exits with success
+[38;5;40msuccess[0m
+===============
+
+===============
+result test for :     echo "\"" "\"\"\"\""
+minishell exits with success
+[38;5;40msuccess[0m
+===============
+
+===============
+result test for :     echo "\"" "\"\"\"\"" "test" test
+minishell exits with success
+[38;5;40msuccess[0m
+===============
+
+===============
 result test for :     <ezfef
 minishell exits with success
 [38;5;160mfailure[0m

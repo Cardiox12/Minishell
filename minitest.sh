@@ -193,6 +193,9 @@ expand_commands=('echo "$USER"' \
 'echo "$foo, $HOME"' \
 'echo "$HOME, $foo"' \
 'echo "Hello $USER, this variable does not exists $foo"' \
+'echo "\""' \
+'echo "\"" "\"\"\"\""' \
+'echo "\"" "\"\"\"\"" "test" test'
 )
 
 #the commands must include 2 and only 2 output redirections, and they must be named output2 and output3
