@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 10:30:40 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/23 11:29:58 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/23 11:35:23 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ int				parse_by_one(char **args)
 
 int				parse_by_two(char **args)
 {
-	t_spair pair;
+	t_spair	pair;
+	char	*var;
 
 	pair = (t_spair){args[1], args[2]};
 	if (ft_isdigit(*pair.key))
@@ -73,7 +74,13 @@ int				parse_by_two(char **args)
 	}
 	if (ft_strchr(pair.key, SYM_EQUAL) != NULL ||
 	ft_strchr(pair.value, SYM_EQUAL) != NULL)
-		export_key_value(make_key_value_variable(pair));
+	{
+		var = make_key_value_variable(pair);
+		if (var == NULL)
+			return (ERR_MEM_ALLOC_FAILED);
+		export_key_value(var);
+		free(var);
+	}
 	else
 	{
 		export_key(pair.key);
@@ -98,6 +105,7 @@ int				parse_by_three(char **args)
 	{
 		var = make_kv_var_equal(pair);
 		export_key_value(var);
+		free(var);
 	}
 	return (SUCCESS);
 }

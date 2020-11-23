@@ -222,7 +222,7 @@ minishell exits with success
 result test for :     env ; echo hello; export TEST="test"; echo $TEST | grep t | wc -l > output2 > output3 ; cat output2
 minishell's command: env ; echo hello; export TEST="test"; echo $TEST | grep t | wc -l > miniout2 > miniout3 ; cat miniout2 > miniout1
 bash's command: env ; echo hello; export TEST="test"; echo $TEST | grep t | wc -l > realout2 > realout3 ; cat realout2 > realout1
-minishell crashes
+minishell exits with success
 [38;5;40msuccess[0m
 ===============
 
