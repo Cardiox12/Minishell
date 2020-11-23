@@ -73,11 +73,13 @@ int		recur_parent_exec(int oldpipe[2], int newpipe[2],
 {
 	int		status;
 
+	g_exec_pid = pid;
 	if (parent_exec(oldpipe, newpipe, new_command) == -1)
 		return (-1);
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		g_exitstatus = WEXITSTATUS(status);
+	g_exec_pid = -1;
 	if (new_command->has_output_redirect && new_command->output_type == PIPE)
 	{
 		if (pipe(newpipe) == -1)

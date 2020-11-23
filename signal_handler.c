@@ -48,6 +48,8 @@ void		sigterm_handler(int sig)
 	int			nbr;
 
 	(void)sig;
+	if (g_exec_pid > 0)
+		kill(g_exec_pid, SIGKILL);
 	if (g_in_eval)
 		nbr = 130;
 	else

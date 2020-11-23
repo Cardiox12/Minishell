@@ -21,6 +21,7 @@
 #include "builtins.h"
 
 char		**g_env = NULL;
+int			g_exec_pid = -1;
 int			g_exitstatus = 0;
 t_queue		*g_queue = NULL;
 int			g_pid_to_kill = 0;

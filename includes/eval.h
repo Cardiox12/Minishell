@@ -50,6 +50,7 @@ extern t_queue				*g_queue;
 extern int					g_in_eval;
 extern int					g_pid_to_kill;
 extern int					g_flawed;
+extern int					g_exec_pid;
 
 void						init_command(t_command *command);
 void						get_sigint_exit_code(int sig);

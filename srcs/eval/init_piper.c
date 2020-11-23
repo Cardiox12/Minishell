@@ -18,6 +18,7 @@ int		init_return_parent(int newpipe[2], t_command *command, pid_t pid)
 	int		status;
 	char	*output_buffer;
 
+	g_exec_pid = pid;
 	if (command->has_output_redirect == 1)
 	{
 		close(newpipe[1]);
@@ -32,6 +33,7 @@ int		init_return_parent(int newpipe[2], t_command *command, pid_t pid)
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		g_exitstatus = WEXITSTATUS(status);
+	g_exec_pid = -1;
 	if ((recursive_piper(newpipe)) == -1)
 		return (free_command_ret_fail(command));
 	free_command(command);

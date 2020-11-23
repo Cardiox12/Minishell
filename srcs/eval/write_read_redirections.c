@@ -44,6 +44,7 @@ int		*read_redirections_pipe(t_command *command, int redirectpipe[2])
 	write(redirectpipe[1], buffer, ft_strlen(buffer));
 	close(redirectpipe[1]);
 	close(command->input_redirection_files[i]);
+	ft_strdel(&buffer);
 	return ((void*)0);
 }
 
@@ -62,5 +63,6 @@ int		*read_redirections_nopipe(t_command *command, int pipe[2])
 		return ((void*)0);
 	write(pipe[1], buffer, ft_strlen(buffer));
 	close(command->input_redirection_files[i]);
+	ft_strdel(&buffer);
 	return ((void*)0);
 }

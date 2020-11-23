@@ -44,9 +44,11 @@ int		return_fork_parent(t_command *command, int pipefd[2], pid_t pid)
 	int		status;
 	char	*output_buffer;
 
+	g_exec_pid = pid;
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		g_exitstatus = WEXITSTATUS(status);
+	g_exec_pid = -1;
 	if (command->has_output_redirect == 1)
 	{
 		close(pipefd[1]);
