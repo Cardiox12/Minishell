@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:55:02 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/15 20:55:36 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/23 12:11:32 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ int	get_command(t_queue **head, const char *input, size_t index)
 
 	if (ft_isquote(input[index]))
 	{
-		content = quote_extract(input, &index);
+		if (!is_quote_closed(&input[index + 1], input[index]))
+			return (index);
+		content = remove_quotes(input, &index);
 	}
 	else
 	{
