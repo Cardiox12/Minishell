@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/22 23:23:43 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/23 11:45:58 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ t_queue				*lexer(const char *input);
 int					is_bash_charset(int c);
 int					is_redirect(int c);
 int					is_sep(int c);
+int					is_basic_sep(int c);
 char				*quote_extract(const char *input, size_t *index);
 int					is_escaped_by(const char *s, char *charset);
 int					is_quote_closed(const char *s, char quote);
