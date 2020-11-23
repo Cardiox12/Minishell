@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 16:57:24 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 02:37:53 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/23 11:18:49 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,13 @@ int						export(char **args);
 int						unset(char **args);
 int						internal_exit(char **args);
 int						builtins_call(t_command *cmd);
+
+int						export_key_value(char *variable);
+int						export_key(char *key);
+int						export_none(void);
+int						parse_by_one(char **args);
+int						parse_by_two(char **args);
+int						parse_by_three(char **args);
 
 # define EXIT_CODE_SYM "?"
 # define RAW_ARGUMENT "-n"
