@@ -200,7 +200,6 @@ expand_commands=('echo "$USER"' \
 'echo "\\\\\\"' \
 'echo "\\" \\ test' \
 'echo "\\$PWD"' \
-'echo "\\\\$PWD"' \
 )
 
 #the commands must include 2 and only 2 output redirections, and they must be named output2 and output3
