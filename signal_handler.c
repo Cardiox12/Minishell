@@ -53,7 +53,7 @@ void		sigterm_handler(int sig)
 	if (g_in_eval)
 		nbr = 130;
 	else
-		nbr = 1;
+		nbr = 130;
 	exit(nbr);
 }
 
