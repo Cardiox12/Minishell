@@ -6,12 +6,12 @@
 #    By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/29 01:50:06 by tlucille          #+#    #+#              #
-#    Updated: 2020/11/23 12:42:11 by bbellavi         ###   ########.fr        #
+#    Updated: 2020/11/23 15:31:14 by bbellavi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS		= -Wall -Werror -Wextra
 
 EXT_DIR		= externals
 INC_DIR		= includes
