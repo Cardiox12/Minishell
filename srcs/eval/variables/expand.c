@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 01:10:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/23 00:01:37 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/23 03:22:59 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 static int	is_var_charset(int c)
 {
 	return (ft_isalnum(c) || c == '_' || c == '?');
+}
+
+static int	is_bash_var(const char *s, t_slice slice)
+{
+	return (s[slice.begin] == SYM_ENV_VAR &&
+	is_var_charset(s[slice.begin + 1]));
 }
 
 static char	*extract_and_replace(char *src, const char *value, t_slice slice)
@@ -74,8 +80,7 @@ char		*expand(const char *src)
 			removal(&new, slice);
 			slice.begin++;
 		}
-		else if (new[slice.begin] == SYM_ENV_VAR &&
-		is_var_charset(new[slice.begin + 1]))
+		else if (is_bash_var(new, slice))
 		{
 			slice.end = slice.begin + 1;
 			while (is_var_charset(new[slice.end]) && new[slice.end] != '\0')
