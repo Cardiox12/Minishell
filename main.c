@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/23 11:47:12 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/23 12:40:25 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,44 @@ int			g_pid_to_kill = 0;
 int			g_in_eval = 0;
 int			g_quote_parity_error = 0;
 
+char	*get_type(int type)
+{
+	switch (type)
+	{
+		case COMMAND:
+			return ("COMMAND");
+		case STRING:
+			return ("STRING");
+		case OPTION:
+			return ("OPTION");
+		case PIPE:
+			return ("PIPE");
+		case OPERATOR:
+			return ("OPERATOR");
+		case ENV_VARIABLE:
+			return ("ENV_VARIABLE");
+		case REDIRECTION:
+			return ("REDIRECTION");
+		case RAW_STRING:
+			return ("RAW_STRING");
+		case FILE_DESCRIPTOR:
+			return ("FILE DESCRIPTOR");
+		case ARGUMENT:
+			return ("ARGUMENT");
+		default:
+			return ("");
+	}
+}
+void	print_queue(t_queue *head)
+{
+	ft_printf("%-30s| %-30s| %-30s\n", "TYPE", "VALUE", "INDEX");
+	while (head != NULL)
+	{
+		ft_printf("%-30s| %-30s| %-30d\n", get_type(head->token.type), head->token.value, head->token.index);
+		head = head->next;
+	}
+}
+
 int		run_shell(void)
 {
 	char	*line;
@@ -39,6 +77,7 @@ int		run_shell(void)
 		if (reader(&line) == -1)
 			return (-1);
 		tokens = lexer(line);
+		print_queue(tokens);
 		if (g_quote_parity_error)
 			ft_putstr_fd("minishell: Error quote is not closed\n", 2);
 		else if (parser(line, tokens) == SUCCESS)

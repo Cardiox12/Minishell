@@ -6,7 +6,7 @@
 #    By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/29 01:50:06 by tlucille          #+#    #+#              #
-#    Updated: 2020/11/22 23:37:14 by bbellavi         ###   ########.fr        #
+#    Updated: 2020/11/23 12:42:11 by bbellavi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,9 @@ BUILTIN_DIR	= $(SRC_DIR)/builtins
 LIBFT_NAME	= libft.a
 NAME		= minishell
 
+SRCS		= main.c
+SRCS		+= signal_handler.c
+
 include $(READ_DIR)/module.mk $(LEXER_DIR)/module.mk $(PARSE_DIR)/module.mk $(BUILTIN_DIR)/module.mk $(EVAL_DIR)/module.mk $(OUTPUT_DIR)/module.mk
 
 .PHONY: all clean fclean
@@ -39,7 +42,7 @@ all: $(NAME)
 $(NAME): $(SRCS)
 	@make -C $(LIBFT_DIR)
 	@mv $(LIBFT_DIR)/$(LIBFT_NAME) .
-	@$(CC) $(CFLAGS) -o $(NAME) signal_handler.c main.c $(SRCS) $(LIBFT_NAME) -I$(INC_DIR) -I$(FT_INC_DIR)
+	@$(CC) $(CFLAGS) -o $(NAME) $(SRCS) $(LIBFT_NAME) -I$(INC_DIR) -I$(FT_INC_DIR)
 	
 clean:
 	@rm -f $(LIBFT_NAME)

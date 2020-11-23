@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 17:11:56 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/23 03:12:04 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/23 12:41:17 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	is_quote_closed(const char *s, char quote)
 			return (TRUE);
 		if (is_escaped_by(&s[index], ESC_CHARSET))
 			index++;
+		if (s[index] == '\0')
+			break ;
 		index++;
 	}
 	g_quote_parity_error = FAILURE;
