@@ -13,7 +13,7 @@
 #include "eval.h"
 #include "builtins.h"
 
-int		init_return_parent(int outpipe[2], t_command *command, pid_t pid)
+int		init_return_parent(int out_redirect[2], t_command *command, pid_t pid)
 {
 	int		status;
 	char	*output_buffer;
@@ -21,27 +21,23 @@ int		init_return_parent(int outpipe[2], t_command *command, pid_t pid)
 	g_exec_pid = pid;
 	if (command->has_output_redirect == 1)
 	{
-		close(outpipe[1]);
-		if (!(output_buffer = read_until_eof(outpipe[0])))
+		close(out_redirect[1]);
+		if (!(output_buffer = read_until_eof(out_redirect[0])))
 			return (free_command_ret_fail(command));
-		close(outpipe[0]);
+		close(out_redirect[0]);
 		write_redirections(command, output_buffer);
-//		if (pipe(newpipe) == -1)
-//			perror("pipe");
 		ft_strdel(&output_buffer);
 	}
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		g_exitstatus = WEXITSTATUS(status);
 	g_exec_pid = -1;
-//	if ((recursive_piper(newpipe)) == -1)
-//		return (free_command_ret_fail(command));
 	free_command(command);
 	exit(g_exitstatus);
 	return (0);
 }
 
-int		init_child_exec(int inputpipe[2], int outpipe[2], t_command *command)
+int		init_child_exec(int out_redirect[2], int inputpipe[2], int outpipe[2], t_command *command)
 {
 	if (command->has_input_redirect == 1)
 	{
@@ -50,9 +46,19 @@ int		init_child_exec(int inputpipe[2], int outpipe[2], t_command *command)
 		close(inputpipe[0]);
 		close(inputpipe[1]);
 	}
-	dup2(outpipe[1], 1);
-	close(outpipe[1]);
-	close(outpipe[0]);
+	if (command->has_output_redirect)
+	{
+		close_pipe(outpipe);
+		close(out_redirect[0]);
+		dup2(out_redirect[1], 1);
+		close(out_redirect[1]);
+	}
+	else
+	{
+		close(outpipe[0]);
+		dup2(outpipe[1], 1);
+		close(outpipe[1]);
+	}
 	if (g_flawed == 0)
 	{
 		if (execve(command->path, command->args, g_env) == -1)
@@ -67,10 +73,13 @@ int		init_piper(int outpipe[2], t_command *command)
 {
 //	int				redirect_pipe[2];
 	int				inputpipe[2];
+	int				out_redirect[2];
 	pid_t			pid;
 
 	if (is_builtin(command->args))
 		return (recursive_builtin(command, NULL, outpipe));
+	if (command->has_output_redirect == 1)
+		pipe(out_redirect);
 	if ((pid = fork()) == -1)
 	{
 		perror("fork");
@@ -81,10 +90,10 @@ int		init_piper(int outpipe[2], t_command *command)
 //		close(outpipe[0]);
 		if (command->has_input_redirect == 1)
 			pipe(inputpipe);
-		if (init_child_exec(inputpipe, outpipe, command) == -1)
+		if (init_child_exec(out_redirect, inputpipe, outpipe, command) == -1)
 			return (-1);
 	}
 	else
-		return (init_return_parent(outpipe, command, pid));
+		return (init_return_parent(out_redirect, command, pid));
 	return (0);
 }

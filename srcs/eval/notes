@@ -3,3 +3,11 @@ to_do:
 	-builtins
 	-signaux
 	-exitstatus
+
+pas oublier de virer perrors de close et read, notamment dans close_pipe ou reof
+
+out_redirects sur les builtins
+
+faire en sorte de pouvoir quitter le cat | ls en faisant entrée
+
+valeurs de retour

@@ -24,7 +24,7 @@ int		child_input_redirects(t_command *command)
 	return (0);
 }
 
-int		child_exec(t_command *command, int oldpipe[2], int outpipe[2])
+int		child_exec(t_command *command, int out_redirect[2], int oldpipe[2], int outpipe[2])
 {
 //	ft_printf("exec_pid: %d\n", getpid());
 //	ft_printf("%s in exec\n", command->value);
@@ -39,7 +39,14 @@ int		child_exec(t_command *command, int oldpipe[2], int outpipe[2])
 	if (command->output_type == PIPE || command->has_output_redirect == 1)
 	{
 		close(outpipe[0]);
-		dup2(outpipe[1], 1);
+		if (command->has_output_redirect == 1)
+		{
+			close(out_redirect[0]);
+			dup2(out_redirect[1], 1);
+			close(out_redirect[1]);
+		}
+		else if (command->output_type == PIPE)
+			dup2(outpipe[1], 1);
 		close(outpipe[1]);
 	}
 	if (g_flawed == 0)
@@ -52,31 +59,30 @@ int		child_exec(t_command *command, int oldpipe[2], int outpipe[2])
 	return (0);
 }
 
-int		parent_exec(int oldpipe[2], int outpipe[2], t_command *command)
+int		parent_exec(int out_redirect[2], int outpipe[2], t_command *command)
 {
 	char	*output_buffer;
 
-	close(oldpipe[0]);
-	close(oldpipe[1]);
 	if (command->has_output_redirect == 1)
 	{
-		close(outpipe[1]);
-		if (!(output_buffer = read_until_eof(outpipe[0])))
+		close_pipe(outpipe);
+		close(out_redirect[1]);
+		if (!(output_buffer = read_until_eof(out_redirect[0])))
 			return (free_command_ret_fail(command));
 		write_redirections(command, output_buffer);
-		close(outpipe[0]);
+		close(out_redirect[0]);
 		ft_strdel(&output_buffer);
 	}
 	return (0);
 }
 
-int		recur_parent_exec(int oldpipe[2], int outpipe[2],
+int		recur_parent_exec(int out_redirect[2], int outpipe[2],
 			t_command *new_command, pid_t pid)
 {
 	int		status;
 
 	g_exec_pid = pid;
-	if (parent_exec(oldpipe, outpipe, new_command) == -1)
+	if (parent_exec(out_redirect, outpipe, new_command) == -1)
 		return (-1);
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
@@ -101,18 +107,27 @@ int		recursive_piper(t_command *command, int oldpipe[2], int outpipe[2])
 {
 //	t_command		new_command;
 	pid_t			pid;
+	int				out_redirect[2];
 
 //	ft_printf("%s in recursive\n", command->value);
 //	if (g_queue == NULL)
 //		return (0);
 	if (g_flawed == 1 || command->value == NULL)
+	{
+		exit(1);
 		return (0);
+	}
+	if (command->has_output_redirect == 1)
+		pipe(out_redirect);
 	if (is_builtin(command->args))
 		return (recursive_builtin(command, oldpipe, outpipe));
 	if ((pid = fork()) == -1)
 		return (free_command_ret_fail(command));
 	else if (pid == 0)
-		return (child_exec(command, oldpipe, outpipe));
+		return (child_exec(command, out_redirect, oldpipe, outpipe));
 	else
-		return (recur_parent_exec(oldpipe, outpipe, command, pid));
+	{
+		close_pipe(oldpipe);
+		return (recur_parent_exec(out_redirect, outpipe, command, pid));
+	}
 }
