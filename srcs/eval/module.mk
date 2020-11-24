@@ -45,3 +45,5 @@ SRCS += $(EVAL_DIR)/free_ret.c
 SRCS += $(EVAL_DIR)/write_on_error.c
 SRCS += $(EVAL_DIR)/get_relative_path.c
 SRCS += $(EVAL_DIR)/init_command.c
+SRCS += $(EVAL_DIR)/pipe_setup_utils.c
+SRCS += $(EVAL_DIR)/setup_pipeline.c

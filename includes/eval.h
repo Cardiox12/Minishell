@@ -51,7 +51,11 @@ extern int					g_in_eval;
 extern int					g_pid_to_kill;
 extern int					g_flawed;
 extern int					g_exec_pid;
+extern int					**g_pipe_array;
 
+int							initialize_pipeline(t_command *command);
+int							get_pipeline_len(t_queue *queue);
+int							generate_pipe_tab(int size);
 void						init_command(t_command *command);
 void						get_sigint_exit_code(int sig);
 void						do_nothing(int sig);

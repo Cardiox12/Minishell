@@ -53,6 +53,8 @@ int		launch_adequate_execution(t_command *command)
 	}
 	if (command->output_type == PIPE)
 	{
+		initialize_pipeline(command); //commandes de test, a virer
+		exit (0); //commandes de test, a virer
 		if (init_piper(command) == -1)
 			return (-1);
 	}
