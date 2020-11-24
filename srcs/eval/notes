@@ -1,0 +1,5 @@
+ en cas de pb, refaire un pipe pour l'output redirection
+to_do: 
+	-builtins
+	-signaux
+	-exitstatus

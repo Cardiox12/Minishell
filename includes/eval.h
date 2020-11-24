@@ -53,6 +53,7 @@ extern int					g_flawed;
 extern int					g_exec_pid;
 extern int					**g_pipe_array;
 
+int							close_pipe(int pipefd[2]);
 int							initialize_pipeline(t_command *command);
 int							get_pipeline_len(t_queue *queue);
 int							generate_pipe_tab(int size);
@@ -71,8 +72,6 @@ char						*ft_alloncat(char **s1, const char *s2, int len);
 int							write_error_free_ret(t_command *command);
 void						write_error_nofile(char *command_value);
 void						write_error_invalid_command(char *command_value);
-int							recursive_piper(int oldpipe[2]);
-int							init_piper(t_command *command);
 int							appropriate_exit_procedure(t_command *command);
 int							free_tab_string_ret_fail(char **string, char
 								***tab);
@@ -84,7 +83,7 @@ int							is_arg(t_queue *queue);
 int							craft_command(t_command *command);
 int							simple_builtin(t_command *command);
 int							is_builtin(char **args);
-int							recursive_builtin(t_command *command);
+int							recursive_builtin(t_command *command, int oldpipe[2], int newpipe[2]);
 int							*read_redirections_pipe(t_command *command,
 								int redirectpipe[2]);
 int							*read_redirections_nopipe(t_command *command,
@@ -99,8 +98,8 @@ void						ft_print_int_tab(int *tab);
 int							*add_to_dynamic_int_array(int **table, int nbr);
 int							*ft_int_tab_maker(size_t len);
 char						*read_until_eof(int fd);
-int							recursive_piper(int oldpipe[2]);
-int							init_piper(t_command *command);
+int							recursive_piper(t_command *command, int oldpipe[2], int outpipe[2]);
+int							init_piper(int outpipe[2], t_command *command);
 int							fork_and_exec(t_command *command);
 char						**ft_stabmaker(size_t len);
 void						ft_printtab(char **tab);

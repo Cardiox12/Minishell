@@ -22,6 +22,8 @@ char	*read_until_eof(int fd)
 
 	if ((ret = read(fd, buffer, BUF_SIZE)) == -1)
 		return (NULL);
+	if (ret == -1)
+		perror("read");
 	buffer[ret] = '\0';
 	if (!(total_data = ft_strdup(buffer)))
 		return (NULL);
