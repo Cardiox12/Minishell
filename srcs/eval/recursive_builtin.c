@@ -61,6 +61,7 @@ int		builtin_fork_exec(t_command *command, int out_redirect[2], int outpipe[2])
 		forked_builtin_child_exec(out_redirect, outpipe, command);
 	else
 	{
+		close_pipe(outpipe);
 		waitpid(pid, &status, 0);
 		if (WIFEXITED(status))
 			g_exitstatus = WEXITSTATUS(status);

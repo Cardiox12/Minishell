@@ -25,3 +25,5 @@ https://unix.stackexchange.com/questions/265464/process-not-closing-when-stdin-i
 faire un child_input_redirect mais avec le oldpipe et vers le nouveau?
 --> pb: dans le cas de cat | grep u ça marchera pas
 
+
+biene checker tous les closes!!

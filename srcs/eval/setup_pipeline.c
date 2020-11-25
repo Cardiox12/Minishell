@@ -42,7 +42,8 @@ int 	iterative_piper(int pipe_len)
 		pid = fork();
 		if (pid == 0)
 		{
-//			ft_printf("pid %d created\n", getpid());
+//			ft_printf("command %s, [%d] with pid -%d- created\n", command.value, i, getpid());
+			close_useless_pipes(i - 1, i, i);
 			if ((recursive_piper(&command, g_pipe_array[i - 1], g_pipe_array[i])) == -1)
 				ft_printf("recursive_failure\n");
 //			ft_printf("forked %s doesnt exit\n", command.value);
@@ -50,14 +51,14 @@ int 	iterative_piper(int pipe_len)
 		}
 		else
 		{
-			ft_printf("i - 1 :%d\n", (i - 1));
+//			ft_printf("i - 1 :%d\n", (i - 1));
 			close_pipe(g_pipe_array[i - 1]);
 			i++;
 			if (i == pipe_len)
 				last = pid;
 		}
 	}
-	ft_printf("i - 1 :%d\n", (i - 1));
+//	ft_printf("i - 1 :%d\n", (i - 1));
 	close_pipe(g_pipe_array[i - 1]);
 	wait_for_the_kids(last);
 	return (0);
@@ -75,6 +76,8 @@ int		launch_pipeline(t_command *command, int pipe_len)
 		perror("fork");
 	if (pid == 0)
 	{
+//		ft_printf("command %s, [0] with pid %d created\n", command->value, getpid());
+		close_useless_pipes(-1, 0, 0);
 		if ((init_piper(g_pipe_array[0], command)) == -1)
 		{
 			exit(1);
