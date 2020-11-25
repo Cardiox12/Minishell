@@ -49,6 +49,8 @@ int		child_exec(t_command *command, int out_redirect[2], int oldpipe[2], int out
 			dup2(outpipe[1], 1);
 		close(outpipe[1]);
 	}
+	else
+		close_pipe(outpipe);	
 	if (g_flawed == 0)
 	{
 		if (execve(command->path, command->args, g_env) == -1)
