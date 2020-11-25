@@ -50,12 +50,14 @@ int 	iterative_piper(int pipe_len)
 		}
 		else
 		{
+			ft_printf("i - 1 :%d\n", (i - 1));
 			close_pipe(g_pipe_array[i - 1]);
 			i++;
 			if (i == pipe_len)
 				last = pid;
 		}
 	}
+	ft_printf("i - 1 :%d\n", (i - 1));
 	close_pipe(g_pipe_array[i - 1]);
 	wait_for_the_kids(last);
 	return (0);

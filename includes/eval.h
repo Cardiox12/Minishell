@@ -53,6 +53,7 @@ extern int					g_flawed;
 extern int					g_exec_pid;
 extern int					**g_pipe_array;
 
+void						sigpipe_handle(int sig);
 int							close_pipe(int pipefd[2]);
 int							initialize_pipeline(t_command *command);
 int							get_pipeline_len(t_queue *queue);

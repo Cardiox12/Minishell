@@ -11,3 +11,17 @@ out_redirects sur les builtins
 faire en sorte de pouvoir quitter le cat | ls en faisant entrée
 
 valeurs de retour
+idée: mettre un inputpipe a init_piper que je peux fermer de l'extérieur
+
+objectif: close stdin de cat après prmiere entrée
+-quand? après éxécution du 2e process forké
+
+si je veux jouer avec sigpipe, il faut le faire en fermant dans 2e
+
+ou alors, faire en sorte que cat lise via un pipe qui se retrouverait close après
+
+https://unix.stackexchange.com/questions/265464/process-not-closing-when-stdin-is-closed
+
+faire un child_input_redirect mais avec le oldpipe et vers le nouveau?
+--> pb: dans le cas de cat | grep u ça marchera pas
+
