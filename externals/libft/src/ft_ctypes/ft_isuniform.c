@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ctypes.h                                        :+:      :+:    :+:   */
+/*   ft_isuniform.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/30 09:46:42 by tony              #+#    #+#             */
-/*   Updated: 2020/11/25 06:20:55 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/25 06:18:06 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/25 06:20:12 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_CTYPES_H
-# define FT_CTYPES_H
+#include "ft_strings.h"
+#include "ft_ctypes.h"
 
-# define TRUE 1
-# define FALSE 0
-# define SUCCESS 0
-# define FAILURE 1
-# define NO_ERROR 0
-# define NOT_FOUND -1
+int	ft_isuniform(const char *s, int c)
+{
+	size_t index;
 
-int		ft_isalnum(int c);
-int		ft_isalpha(int c);
-int		ft_isascii(int c);
-int		ft_isdigit(int c);
-int		ft_isprint(int c);
-int		ft_isspace(int c);
-int		ft_isquote(int c);
-int		ft_isuniform(const char *s, int c);
-
-#endif
+	index = 0;
+	while (s[index] != '\0')
+	{
+		if (s[index] != (unsigned char)c)
+			return (FALSE);
+		index++;
+	}
+	return (TRUE);
+}

@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 17:11:29 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 02:33:49 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/25 06:29:59 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,13 @@ static char	*strcjoin(char **strings, char *charset)
 	return (string);
 }
 
-static int	is_endl(const char *argument)
+static int	is_newline_opt(const char *argument)
 {
-	if (argument != NULL)
+	if (argument == NULL)
+		return (FALSE);
+	if (ft_strncmp(argument, RAW_ARGUMENT, 2) == 0)
 	{
-		if (ft_strncmp(argument, RAW_ARGUMENT, 2) == 0)
+		if (ft_isuniform(&argument[1], 'n'))
 			return (TRUE);
 	}
 	return (FALSE);
@@ -67,7 +69,7 @@ int			echo(char **args)
 
 	index = 1;
 	endl = TRUE;
-	if (is_endl(args[index]))
+	while (is_newline_opt(args[index]))
 	{
 		endl = FALSE;
 		index++;

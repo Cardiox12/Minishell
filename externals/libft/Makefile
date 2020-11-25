@@ -91,6 +91,7 @@ SRCS	+= $(CTYPES_DIR)/ft_isdigit.c
 SRCS	+= $(CTYPES_DIR)/ft_isprint.c
 SRCS	+= $(CTYPES_DIR)/ft_isspace.c
 SRCS	+= $(CTYPES_DIR)/ft_isquote.c
+SRCS	+= $(CTYPES_DIR)/ft_isuniform.c
 
 SRCS	+= $(OBJECTS_DIR)/stringlist_create.c
 SRCS	+= $(OBJECTS_DIR)/stringlist_insert.c
