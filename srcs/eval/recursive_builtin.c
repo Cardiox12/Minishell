@@ -15,15 +15,6 @@
 
 int		forked_builtin_child_exec(int out_redirect[2], int outpipe[2], t_command *command)
 {
-//	if (g_flawed == 1)
-//		return (0);
-/*	if (command->output_type == PIPE || command->has_output_redirect == 0)
-	{
-		close(outpipe[0]);
-		dup2(outpipe[1], 1);
-		if (close(outpipe[1]) == -1)
-			perror("close");
-	}*/
 	if (command->output_type == PIPE || command->has_output_redirect == 1)
 	{
 		close(outpipe[0]);
@@ -50,12 +41,6 @@ int		builtin_fork_exec(t_command *command, int out_redirect[2], int outpipe[2])
 	int pid;
 	int status;
 
-/*	if (ft_strncmp(command->value, "env", 3) == 0
-		|| ft_strncmp(command->value, "echo", 4) == 0
-		|| ft_strncmp(command->value, "pwd", 3) == 0
-		|| (ft_strncmp(command->value, "export", 6) == 0
-			&& ft_tablen(command->args) == 1))*/
-	
 	pid = fork();
 	if (pid == 0)
 		forked_builtin_child_exec(out_redirect, outpipe, command);
@@ -67,10 +52,6 @@ int		builtin_fork_exec(t_command *command, int out_redirect[2], int outpipe[2])
 			g_exitstatus = WEXITSTATUS(status);
 	}
 	return (0);
-/*}
-	else
-		builtins_call(command);
-	return (0);*/
 }
 
 int		redirect_handler(int out_redirect[2], int outpipe[2], t_command *command)
@@ -94,12 +75,8 @@ int		redirect_handler(int out_redirect[2], int outpipe[2], t_command *command)
 
 int		recursive_builtin(t_command *command, int oldpipe[2], int outpipe[2])
 {
-//	int				newpipe[2];
-//	int				piper_return;
 	int				out_redirect[2];
 
-//	if (command->output_type == PIPE || command->has_output_redirect == 1)
-//		pipe(newpipe);
 	if (command->has_output_redirect == 1)
 		pipe(out_redirect);
 	if (oldpipe != NULL)
@@ -107,20 +84,6 @@ int		recursive_builtin(t_command *command, int oldpipe[2], int outpipe[2])
 	builtin_fork_exec(command, out_redirect, outpipe);
 	if (redirect_handler(out_redirect, outpipe, command) == -1)
 		return (-1);
-/*	if (command->has_output_redirect && command->output_type == PIPE)
-	{
-		close(outpipe[1]);
-		close(outpipe[0]);
-//		if (pipe(newpipe) == -1)
-//			perror("pipe");
-//		close(newpipe[0]);
-//		close(newpipe[1]);
-	}*/
-//	if (command->output_type == PIPE)	
-//	{
-//		if ((piper_return = recursive_piper(newpipe)) == -1)
-//			return (-1);
-//	}
 	free_command(command);
 	exit(g_exitstatus);
 	return (0);

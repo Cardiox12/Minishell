@@ -36,7 +36,6 @@ int		child_exec(t_command *command, int out_redirect[2], int oldpipe[2], int out
 	}
 	else
 	{
-//		close(0);
 		dup2(oldpipe[0], 0);
 		close(oldpipe[0]);
 	}
@@ -94,16 +93,6 @@ int		recur_parent_exec(int out_redirect[2], int outpipe[2],
 	if (WIFEXITED(status))
 		g_exitstatus = WEXITSTATUS(status);
 	g_exec_pid = -1;
-//	if (new_command->has_output_redirect && new_command->output_type == PIPE)
-//	{
-//		if (pipe(newpipe) == -1)
-//			perror("pipe");
-//	}
-//	if (new_command->output_type == PIPE)
-//	{
-//		if ((recursive_piper(newpipe)) == -1)
-//			return (free_command_ret_fail(new_command));
-//	}
 	free_command(new_command);
 	exit(g_exitstatus);
 	return (0);
@@ -111,13 +100,10 @@ int		recur_parent_exec(int out_redirect[2], int outpipe[2],
 
 int		recursive_piper(t_command *command, int oldpipe[2], int outpipe[2])
 {
-//	t_command		new_command;
 	pid_t			pid;
 	int				out_redirect[2];
 
 //	ft_printf("%s in recursive\n", command->value);
-//	if (g_queue == NULL)
-//		return (0);
 	if (g_flawed == 1 || command->value == NULL)
 	{
 		close_pipe(oldpipe); //a check
@@ -125,7 +111,6 @@ int		recursive_piper(t_command *command, int oldpipe[2], int outpipe[2])
 		exit(1);
 		return (0);
 	}
-//	close_pipe(oldpipe); //a virer
 	if (command->has_output_redirect == 1)
 		pipe(out_redirect);
 	if (is_builtin(command->args))

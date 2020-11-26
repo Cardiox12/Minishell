@@ -53,16 +53,8 @@ int		generate_pipe_tab(int size)
 		if (!(g_pipe_array[i] = (int*)malloc(sizeof(int) * 2)))
 			return (-1);
 		pipe(g_pipe_array[i]);
-//		ft_printf("pipe_array[%d]: [%d-%d]\n", i, g_pipe_array[i][0], g_pipe_array[i][1]);
-/*		pipe(pipefd);
-		g_pipe_array[i][0] = pipefd[0];
-		g_pipe_array[i][1] = pipefd[1];
-		pipefd[0] = 0;
-		pipefd[1] = 0;*/
 		i++;	
 	}
-//	pipe(g_pipe_array[i]);
-//	i++;
 	g_pipe_array[i] = NULL;
 	return (i);
 }

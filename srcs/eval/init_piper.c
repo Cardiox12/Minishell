@@ -39,8 +39,6 @@ int		init_return_parent(int out_redirect[2], t_command *command, pid_t pid)
 
 int		init_child_exec(int out_redirect[2], int inputpipe[2], int outpipe[2], t_command *command)
 {
-//	signal(SIGPIPE, sigpipe_handle);
-//	close(0);
 	if (command->has_input_redirect == 1)
 	{
 		read_redirections_nopipe(command, inputpipe);
@@ -73,7 +71,6 @@ int		init_child_exec(int out_redirect[2], int inputpipe[2], int outpipe[2], t_co
 
 int		init_piper(int outpipe[2], t_command *command)
 {
-//	int				redirect_pipe[2];
 	int				inputpipe[2];
 	int				out_redirect[2];
 	pid_t			pid;
@@ -89,7 +86,6 @@ int		init_piper(int outpipe[2], t_command *command)
 	}
 	if (pid == 0)
 	{
-//		close(outpipe[0]);
 		if (command->has_input_redirect == 1)
 			pipe(inputpipe);
 		if (init_child_exec(out_redirect, inputpipe, outpipe, command) == -1)

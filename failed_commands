@@ -1,0 +1,1 @@
+echo test > a ; echo test2 > b ; >a <error b; cat a b
