@@ -6,19 +6,18 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/23 15:31:38 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/27 21:28:43 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
-#include "ft_ctypes.h"
 #include "lexer.h"
 #include "reader.h"
 #include "parser.h"
 #include "ft_stdlib.h"
 #include "ft_stdio.h"
 #include "eval.h"
-#include "builtins.h"
+#include "debug.h"
 
 char		**g_env = NULL;
 int			g_exec_pid = -1;
@@ -40,6 +39,7 @@ int		run_shell(void)
 		if (reader(&line) == -1)
 			return (-1);
 		tokens = lexer(line);
+		print_queue(tokens);
 		if (g_quote_parity_error)
 			ft_putstr_fd("minishell: Error quote is not closed\n", 2);
 		else if (parser(line, tokens) == SUCCESS)

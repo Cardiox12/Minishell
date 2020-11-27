@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 15:07:18 by tlucille          #+#    #+#             */
-/*   Updated: 2020/11/18 22:54:16 by tlucille         ###   ########.fr       */
+/*   Updated: 2020/11/28 00:36:09 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include "ft_strings.h"
 # include "ft_stdio.h"
 # include "lexer.h"
+# include "expand.h"
 
 # define READ_FROM_PIPE 1
 # define IGNORE_PIPE 0
@@ -112,11 +113,6 @@ char						**ft_split_tab(char const *s, char c);
 char						*ft_strnew(size_t size);
 void						ft_strdel(char **as);
 char						*ft_allocat(char **s1, const char *s2);
-
-char						*expand(const char *src);
-char						*find_variable(const char *key);
-t_spair						get_items(const char *e_var);
-char						*get_value(const char *e_var);
-char						*get_key(const char *variable);
+char						*get_home(void);
 
 #endif

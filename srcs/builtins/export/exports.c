@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 10:36:55 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/23 11:30:27 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/25 18:21:52 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@ int		export_none(void)
 	while (g_env[index] != NULL)
 	{
 		items = get_items(g_env[index]);
-		if (items.key == NULL && items.value == NULL)
+		if (items.first == NULL && items.second == NULL)
 			return (ERR_MALLOC_FAILED);
-		ft_printf("declare -x %s=\"%s\"\n", items.key, items.value);
+		ft_printf("declare -x %s=\"%s\"\n", items.first, items.second);
 		free_spair(items);
 		index++;
 	}

@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.h                                            :+:      :+:    :+:   */
+/*   get_home.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/27 07:24:46 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/27 22:59:49 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/28 00:32:42 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/28 00:36:12 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TYPES_H
-# define FT_TYPES_H
+#include "ft_strings.h"
+#include "eval.h"
 
-# include <stdlib.h>
-# include <stddef.h>
-
-typedef struct	s_spair
+char	*get_home(void)
 {
-	char		*first;
-	char		*second;
-}				t_spair;
+	char *variable;
+	char *home;
 
-typedef struct	s_slice
-{
-	size_t		begin;
-	size_t		end;
-}				t_slice;
-
-void			free_spair(t_spair pair);
-
-#endif
+	variable = ft_strdup(find_variable("HOME"));
+	home = get_value(variable);
+	free(variable);
+	return (home);
+}

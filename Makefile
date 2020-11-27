@@ -6,12 +6,12 @@
 #    By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/29 01:50:06 by tlucille          #+#    #+#              #
-#    Updated: 2020/11/23 15:31:14 by bbellavi         ###   ########.fr        #
+#    Updated: 2020/11/25 18:27:12 by bbellavi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra -g -fsanitize=address
 
 EXT_DIR		= externals
 INC_DIR		= includes
@@ -31,6 +31,7 @@ LIBFT_NAME	= libft.a
 NAME		= minishell
 
 SRCS		= main.c
+SRCS		+= debug.c
 SRCS		+= signal_handler.c
 
 include $(READ_DIR)/module.mk $(LEXER_DIR)/module.mk $(PARSE_DIR)/module.mk $(BUILTIN_DIR)/module.mk $(EVAL_DIR)/module.mk $(OUTPUT_DIR)/module.mk

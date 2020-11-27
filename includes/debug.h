@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.h                                            :+:      :+:    :+:   */
+/*   debug.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/27 07:24:46 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/27 22:59:49 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/11/25 06:52:35 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/11/25 06:53:43 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TYPES_H
-# define FT_TYPES_H
+#ifndef FT_DEBUG_H
+# define FT_DEBUG_H
 
-# include <stdlib.h>
-# include <stddef.h>
+#include "lexer.h"
 
-typedef struct	s_spair
-{
-	char		*first;
-	char		*second;
-}				t_spair;
-
-typedef struct	s_slice
-{
-	size_t		begin;
-	size_t		end;
-}				t_slice;
-
-void			free_spair(t_spair pair);
+void	print_queue(t_queue *head);
 
 #endif

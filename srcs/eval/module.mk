@@ -1,5 +1,6 @@
 STR_DIR = string
 VAR_DIR = variables
+VAR_UTILS_DIR = utils
 ENV_DIR = env
 
 SRCS += $(EVAL_DIR)/$(ENV_DIR)/find_variable.c
@@ -9,6 +10,8 @@ SRCS += $(EVAL_DIR)/$(ENV_DIR)/get_key.c
 
 SRCS += $(EVAL_DIR)/$(VAR_DIR)/expand.c
 SRCS += $(EVAL_DIR)/$(VAR_DIR)/removal.c
+SRCS += $(EVAL_DIR)/$(VAR_DIR)/$(VAR_UTILS_DIR)/utils1.c
+SRCS += $(EVAL_DIR)/$(VAR_DIR)/$(VAR_UTILS_DIR)/replace.c
 
 SRCS += $(EVAL_DIR)/dynamic_table.c
 SRCS += $(EVAL_DIR)/eval_master.c
@@ -45,3 +48,4 @@ SRCS += $(EVAL_DIR)/free_ret.c
 SRCS += $(EVAL_DIR)/write_on_error.c
 SRCS += $(EVAL_DIR)/get_relative_path.c
 SRCS += $(EVAL_DIR)/init_command.c
+SRCS += $(EVAL_DIR)/get_home.c

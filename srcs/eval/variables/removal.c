@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 22:23:54 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/23 03:24:20 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/25 18:21:30 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 static t_vec	get_pair_size(t_spair pair)
 {
 	return ((t_vec){
-		ft_strlen(pair.key),
-		ft_strlen(pair.value)
+		ft_strlen(pair.first),
+		ft_strlen(pair.second)
 	});
 }
 

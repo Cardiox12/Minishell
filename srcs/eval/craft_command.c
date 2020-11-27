@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   craft_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 19:09:25 by tlucille          #+#    #+#             */
-/*   Updated: 2020/11/18 23:36:35 by tlucille         ###   ########.fr       */
+/*   Updated: 2020/11/25 06:58:55 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			pre_initialize_command(t_command *command)
 {
 	if (!(command->args = ft_stabmaker(6)))
 		return (-1);
-	if (!(command->value = expand(g_queue->token.value)))
+	if (!(command->value = expand(g_queue->token.value, g_queue->token.type)))
 		return (free_tab_ret_fail(&(command->args)));
 	if (!(add_to_dynamic_table(&(command->args), command->value)))
 		return (free_tab_string_ret_fail(&(command->value), &(command->args)));
@@ -86,7 +86,7 @@ int			get_args(int *count, t_command *command)
 		if (g_queue->token.type == STRING || g_queue->token.type == ARGUMENT
 			|| g_queue->token.type == ENV_VARIABLE)
 		{
-			if (!(expanded = expand(g_queue->token.value)))
+			if (!(expanded = expand(g_queue->token.value, g_queue->token.type)))
 				return (free_command_ret_fail(command));
 			if (!(add_to_dynamic_table(&(command->args), expanded)))
 				return (free_command_ret_fail(command));

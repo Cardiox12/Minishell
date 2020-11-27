@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 12:24:01 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 02:16:42 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/28 00:40:08 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int	cd_perror(char *path, int error)
 	ft_putstr_fd(": ", STDERR_FILENO);
 	ft_putstr_fd(strerror(errno), STDERR_FILENO);
 	ft_putchar_fd('\n', STDERR_FILENO);
+	free(path);
 	return (error);
 }

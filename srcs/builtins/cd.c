@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 10:57:51 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/18 21:01:45 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/28 00:38:47 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,6 @@
 #include "builtins.h"
 
 typedef char* t_string;
-
-static char	*get_home(void)
-{
-	char *variable;
-	char *home;
-
-	variable = ft_strdup(find_variable("HOME"));
-	home = get_value(variable);
-	free(variable);
-	return (home);
-}
 
 int			cd(char **args)
 {
@@ -44,7 +33,10 @@ int			cd(char **args)
 		return (cd_error("too many argument", FAILURE));
 	}
 	if (chdir(path) == -1)
+	{
+		free(path);
 		return (cd_perror(path, FAILURE));
+	}
 	ft_strcpy(cwd, PWD);
 	cwd[PWD_SIZE] = '=';
 	getcwd(&cwd[PWD_SIZE + 1], PATH_MAX);
