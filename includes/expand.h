@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 07:15:05 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/28 00:34:02 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/28 01:51:48 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # include "types.h"
 
 # define SYM_TILDE '~'
-# define TILDE "~/"
+# define TILDE "~"
+# define TILDE_SLASH "~/"
 
 char	*expand(const char *src, int tok_type);
 char	*find_variable(const char *key);

@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 01:10:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/28 00:40:41 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/28 01:54:48 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ static char	*tilde_expand(char **src)
 {
 	char *home;
 
-	if (ft_strncmp(*src, TILDE, 2) == 0)
+	if (ft_strncmp(*src, TILDE_SLASH, 2) == 0 || ft_strcmp(*src, TILDE) == 0)
 	{
 		home = get_home();
 		if (home == NULL)
 			return (NULL);
-		str_replace(src, "~", home);
+		str_replace(src, TILDE, home);
 		free(home);
 	}
 	return (*src);
