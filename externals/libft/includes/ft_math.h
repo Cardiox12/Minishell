@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 04:14:21 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 02:59:37 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/28 08:39:33 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct	s_vec3
 
 # define CLOCKWISE 1
 # define ANTI_CLOCKWISE 0
+# define TRUE 1
+# define FALSE 0
 
 t_vec2			rotate_vec2(t_vec2 u, double theta, char clockwise);
 t_vec3			rotate_vec3(t_vec3 u, double theta, char clockwise);

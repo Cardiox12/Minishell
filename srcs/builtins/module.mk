@@ -8,7 +8,9 @@ SRCS += $(UTILS_DIR)/free_env.c
 SRCS += $(UTILS_DIR)/find_key.c
 
 SRCS += $(EXPO_DIR)/export_parse.c
-SRCS += $(EXPO_DIR)/exports.c
+SRCS += $(EXPO_DIR)/export_none.c
+SRCS += $(EXPO_DIR)/export_key.c
+SRCS += $(EXPO_DIR)/export_key_value.c
 
 SRCS += $(BUILTIN_DIR)/echo.c
 SRCS += $(BUILTIN_DIR)/cd.c

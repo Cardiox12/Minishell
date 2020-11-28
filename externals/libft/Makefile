@@ -104,6 +104,7 @@ SRCS	+= $(OBJECTS_DIR)/stringlist_copy.c
 SRCS	+= $(OBJECTS_DIR)/stringlist_delete.c
 SRCS	+= $(OBJECTS_DIR)/stringlist_create_from.c
 SRCS	+= $(OBJECTS_DIR)/stringlist_to_string_array.c
+SRCS	+= $(OBJECTS_DIR)/stringlist_sort.c
 
 SRCS	+= $(MATH_DIR)/vec/vec_add.c
 SRCS	+= $(MATH_DIR)/vec/vec_cast.c
