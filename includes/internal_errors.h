@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 13:12:28 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/23 11:12:09 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/28 02:27:46 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct	s_error
 # define ERROR_NOT_VALID_IDENTIFIER 1
 # define ERROR_NUMERIC_ARG_REQUIRED 2
 
+# define ERROR_TOO_MANY_ARGUMENTS "too many arguments"
 # define ERROR_SYNTAX "syntax error near unexpected token"
 
 static const t_error g_internal_errors[INTERNAL_ERRORS_SIZE] = {
@@ -42,5 +43,6 @@ enum	e_internals_errors
 };
 
 void			print_internal_error(char *bin, char *arg, int error, int str);
+void			print_error_no_param(char *bin, char *error);
 
 #endif

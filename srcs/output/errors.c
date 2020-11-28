@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 18:30:11 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 01:58:21 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/28 02:26:28 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@ static void	print_error(char *bin, char *arg, char *error, int is_str)
 	ft_putstr_fd(arg, STDERR_FILENO);
 	if (is_str)
 		ft_putchar_fd('\'', STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putstr_fd(error, STDERR_FILENO);
+	ft_putchar_fd('\n', STDERR_FILENO);
+}
+
+void		print_error_no_param(char *bin, char *error)
+{
+	ft_putstr_fd(EXE_NAME, STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putstr_fd(bin, STDERR_FILENO);
 	ft_putstr_fd(": ", STDERR_FILENO);
 	ft_putstr_fd(error, STDERR_FILENO);
 	ft_putchar_fd('\n', STDERR_FILENO);
