@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 10:30:40 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/29 07:00:05 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/29 07:08:05 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int				parse_by_one(char **args)
 	if (ft_strchr(var, SYM_EQUAL) != NULL)
 		export_key_value(var);
 	else
-		export_none();
+		export_key(var);
 	return (SUCCESS);
 }
 

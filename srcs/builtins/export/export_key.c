@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 07:54:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/28 07:55:28 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/29 07:19:41 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@ char	*make_variable(const char *key)
 	char	*variable;
 
 	key_size = ft_strlen(key);
-	variable = malloc(sizeof(char) * (key_size + 1 + 1));
+	variable = malloc(sizeof(char) * (key_size + 1));
 	if (variable == NULL)
 		return (NULL);
 	ft_strcpy(variable, key);
-	variable[key_size] = '=';
-	variable[key_size + 1] = '\0';
+	variable[key_size] = '\0';
 	return (variable);
 }
 

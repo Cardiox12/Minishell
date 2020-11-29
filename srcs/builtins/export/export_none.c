@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 07:54:08 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/29 02:30:53 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/29 07:35:30 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ char	**sorted(char **src)
 		while (indices.x < size - indices.y - 1)
 		{
 			if (*copy[indices.x] > *copy[indices.x + 1])
-			{
 				swap_strings(&copy[indices.x], &copy[indices.x + 1]);
-			}
 			indices.x++;
 		}
 		indices.y++;
@@ -49,9 +47,32 @@ char	**sorted(char **src)
 	return (copy);
 }
 
+int		print_export(char **variables, size_t index)
+{
+	t_spair	items;
+	char	*variable;
+
+	variable = variables[index];
+	if (ft_strchr(variable, SYM_EQUAL) == NULL)
+	{
+		ft_printf("declare -x %s\n", variable);
+	}
+	else
+	{
+		items = get_items(variable);
+		if (items.first == NULL && items.second == NULL)
+		{
+			ft_freetab(&variables);
+			return (ERR_MALLOC_FAILED);
+		}
+		ft_printf("declare -x %s=\"%s\"\n", items.first, items.second);
+		free_spair(items);
+	}
+	return (SUCCESS);
+}
+
 int		export_none(void)
 {
-	t_spair			items;
 	size_t			index;
 	char			**copy;
 
@@ -59,14 +80,8 @@ int		export_none(void)
 	copy = sorted(g_env);
 	while (copy[index] != NULL)
 	{
-		items = get_items(copy[index]);
-		if (items.first == NULL && items.second == NULL)
-		{
-			ft_freetab(&copy);
+		if (print_export(copy, index))
 			return (ERR_MALLOC_FAILED);
-		}
-		ft_printf("declare -x %s=\"%s\"\n", items.first, items.second);
-		free_spair(items);
 		index++;
 	}
 	ft_freetab(&copy);

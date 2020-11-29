@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 13:31:18 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 02:18:49 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/29 07:22:46 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ int	env(char **args)
 	(void)args;
 	index = 0;
 	while (g_env[index] != NULL)
-		ft_printf("%s\n", g_env[index++]);
+	{
+		if (ft_strchr(g_env[index], SYM_EQUAL) != NULL)
+			ft_printf("%s\n", g_env[index]);
+		index++;
+	}
 	return (0);
 }
