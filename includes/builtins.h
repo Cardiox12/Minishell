@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 16:57:24 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/23 11:18:49 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/29 06:55:00 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,12 @@ int						export_none(void);
 int						parse_by_one(char **args);
 int						parse_by_two(char **args);
 int						parse_by_three(char **args);
+int						is_valid_variable(const char *variable);
 
 # define EXIT_CODE_SYM "?"
 # define RAW_ARGUMENT "-n"
 # define HOME "~"
+# define UNDERSCORE '_'
 
 # define BUILTINS_SIZE		7
 # define BUILTINS_ECHO		"echo"

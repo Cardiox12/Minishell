@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 10:30:40 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/25 18:22:00 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/29 07:00:05 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int				parse_by_one(char **args)
 	char *var;
 
 	var = args[1];
-	if (ft_isdigit(*var))
+	if (!is_valid_variable(var))
 	{
 		print_internal_error("export", var, ERROR_NOT_VALID_IDENTIFIER,
 		TRUE);
@@ -66,7 +66,7 @@ int				parse_by_two(char **args)
 	char	*var;
 
 	pair = (t_spair){args[1], args[2]};
-	if (ft_isdigit(*pair.first))
+	if (!is_valid_variable(pair.first))
 	{
 		print_internal_error("export", pair.first, ERROR_NOT_VALID_IDENTIFIER,
 		TRUE);
@@ -95,7 +95,7 @@ int				parse_by_three(char **args)
 	char	*var;
 
 	pair = (t_spair){args[1], args[3]};
-	if (ft_isdigit(*pair.first))
+	if (!is_valid_variable(pair.first))
 	{
 		print_internal_error("export", pair.first, ERROR_NOT_VALID_IDENTIFIER,
 		TRUE);

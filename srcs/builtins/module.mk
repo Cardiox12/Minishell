@@ -7,6 +7,7 @@ SRCS += $(UTILS_DIR)/free_spair.c
 SRCS += $(UTILS_DIR)/free_env.c
 SRCS += $(UTILS_DIR)/find_key.c
 
+SRCS += $(EXPO_DIR)/export_utils.c
 SRCS += $(EXPO_DIR)/export_parse.c
 SRCS += $(EXPO_DIR)/export_none.c
 SRCS += $(EXPO_DIR)/export_key.c
