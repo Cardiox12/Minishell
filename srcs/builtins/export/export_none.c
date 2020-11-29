@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 07:54:08 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/28 09:04:23 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/29 02:30:53 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,26 @@ void	swap_strings(char **s1, char **s2)
 
 char	**sorted(char **src)
 {
-	size_t	size;
-	size_t	index;
+	int		size;
+	t_vec	indices;
 	char	**copy;
 
 	copy = NULL;
 	ft_tab_copy(&copy, src);
-	index = 0;
+	indices.y = 0;
 	size = ft_tablen(copy);
-	while (index < size - 1)
+	while (indices.y < size)
 	{
-		if (*copy[index] > *copy[index + 1])
+		indices.x = 0;
+		while (indices.x < size - indices.y - 1)
 		{
-			swap_strings(&copy[index], &copy[index + 1]);
-			index = 0;
+			if (*copy[indices.x] > *copy[indices.x + 1])
+			{
+				swap_strings(&copy[indices.x], &copy[indices.x + 1]);
+			}
+			indices.x++;
 		}
-		index++;
+		indices.y++;
 	}
 	return (copy);
 }
