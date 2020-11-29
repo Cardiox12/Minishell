@@ -49,3 +49,4 @@ SRCS += $(EVAL_DIR)/write_on_error.c
 SRCS += $(EVAL_DIR)/get_relative_path.c
 SRCS += $(EVAL_DIR)/init_command.c
 SRCS += $(EVAL_DIR)/get_home.c
+SRCS += $(EVAL_DIR)/inc_shlvl.c

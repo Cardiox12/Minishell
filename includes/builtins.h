@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 16:57:24 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/29 06:55:00 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/29 08:20:06 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int						is_valid_variable(const char *variable);
 # define RAW_ARGUMENT "-n"
 # define HOME "~"
 # define UNDERSCORE '_'
+# define SHLVL_NAME "SHLVL"
 
 # define BUILTINS_SIZE		7
 # define BUILTINS_ECHO		"echo"

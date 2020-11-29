@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 15:07:18 by tlucille          #+#    #+#             */
-/*   Updated: 2020/11/28 00:36:09 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/29 08:30:27 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,6 @@ char						*ft_strnew(size_t size);
 void						ft_strdel(char **as);
 char						*ft_allocat(char **s1, const char *s2);
 char						*get_home(void);
+void						inc_shlvl(void);
 
 #endif

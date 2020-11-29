@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/27 21:28:43 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/29 08:52:26 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int		run_shell(void)
 	t_queue *tokens;
 
 	g_flawed = 0;
+	inc_shlvl();
 	while (TRUE)
 	{
 		g_quote_parity_error = 0;
