@@ -63,10 +63,8 @@ int 	iterative_piper(int pipe_len)
 int		launch_pipeline(t_command *command, int pipe_len)
 {
 	pid_t pid;
-	int i;
 //	t_command	command;
 
-	i = 1;
 //	ft_printf("in launch\n");
 	if ((pid = fork()) == -1)
 		perror("fork");
