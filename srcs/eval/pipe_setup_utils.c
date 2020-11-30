@@ -16,10 +16,8 @@ int		close_useless_pipes(int pipe_index_1, int pipe_index_2, int index)
 
 int		close_pipe(int pipefd[2])
 {
-	if (close(pipefd[0]) == -1)
-		perror("close");
-	if (close(pipefd[1]) == -1)
-		perror("close");
+	close(pipefd[0]);
+	close(pipefd[1]);
 	return (0);
 }
 
