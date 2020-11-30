@@ -41,7 +41,7 @@ int		run_shell(void)
 		if (reader(&line) == -1)
 			return (-1);
 		tokens = lexer(line);
-		print_queue(tokens);
+//		print_queue(tokens);
 		if (g_quote_parity_error)
 			ft_putstr_fd("minishell: Error quote is not closed\n", 2);
 		else if (parser(line, tokens) == SUCCESS)
