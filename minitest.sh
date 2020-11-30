@@ -26,13 +26,13 @@ function test_command {
 	real_command+=" > realout1"
 #	printf "minishell's command: %s\n" "$minicommand"
 #	printf "eval's command: %s\n" "$real_command"
-	if printf "%s\n" "$minicommand" | ./minishell &> /dev/null
+	if printf "%s\n" "$minicommand" | ./minishell #&> /dev/null
 	then
 		printf "minishell exits with success\n" | tee -a test_trace
 	else
 		printf "minishell crashes\n" | tee -a test_trace
 	fi
-	if printf "%s\n" "$real_command" | bash &> /dev/null
+	if printf "%s\n" "$real_command" | bash #&> /dev/null
 	then
 		printf "bash exits correctly\n" 
 	else
@@ -68,13 +68,13 @@ function test_command_output_redirects {
 	real_command+=" > realout1"
 	printf "minishell's command: %s\n" "$minicommand" | tee -a test_trace
 	printf "bash's command: %s\n" "$real_command" | tee -a test_trace
-	if printf "%s\n" "$minicommand" | ./minishell &> /dev/null
+	if printf "%s\n" "$minicommand" | ./minishell #&> /dev/null
 	then
 		printf "minishell exits with success\n" | tee -a test_trace
 	else
 		printf "minishell crashes\n" | tee -a test_trace
 	fi
-	if printf "%s\n" "$real_command" | bash &> /dev/null
+	if printf "%s\n" "$real_command" | bash #&> /dev/null
 	then
 		printf "bash exits correctly\n" 
 	else

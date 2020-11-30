@@ -37,15 +37,20 @@ int		init_return_parent(int out_redirect[2], t_command *command, pid_t pid)
 	return (0);
 }
 
-int		init_child_exec(int out_redirect[2], int inputpipe[2], int outpipe[2], t_command *command)
+int		handle_input_redirections(t_command *command, int inputpipe[2])
+{
+	read_redirections_nopipe(command, inputpipe);
+	dup2(inputpipe[0], 0);
+	close(inputpipe[0]);
+	close(inputpipe[1]);
+	return (0);
+}
+
+int		init_child_exec(int out_redirect[2], int inputpipe[2],
+			int outpipe[2], t_command *command)
 {
 	if (command->has_input_redirect == 1)
-	{
-		read_redirections_nopipe(command, inputpipe);
-		dup2(inputpipe[0], 0);
-		close(inputpipe[0]);
-		close(inputpipe[1]);
-	}
+		handle_input_redirections(command, inputpipe);
 	if (command->has_output_redirect)
 	{
 		close_pipe(outpipe);
@@ -80,10 +85,7 @@ int		init_piper(int outpipe[2], t_command *command)
 	if (command->has_output_redirect == 1)
 		pipe(out_redirect);
 	if ((pid = fork()) == -1)
-	{
-		perror("fork");
 		return (free_command_ret_fail(command));
-	}
 	if (pid == 0)
 	{
 		if (command->has_input_redirect == 1)

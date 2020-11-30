@@ -1,5 +1,20 @@
 #include "eval.h"
 
+int		free_pipe_tab(void)
+{
+	int		i;
+
+	i = 0;
+	while (g_pipe_array[i])
+	{
+		free(g_pipe_array[i]);
+		g_pipe_array[i] = NULL;
+		i++;
+	}
+	free(g_pipe_array);
+	return (0);
+}
+
 int		close_useless_pipes(int pipe_index_1, int pipe_index_2, int index)
 {
 	int i;
@@ -16,10 +31,8 @@ int		close_useless_pipes(int pipe_index_1, int pipe_index_2, int index)
 
 int		close_pipe(int pipefd[2])
 {
-	if (close(pipefd[0]) == -1)
-		perror("close");
-	if (close(pipefd[1]) == -1)
-		perror("close");
+	close(pipefd[0]);
+	close(pipefd[1]);
 	return (0);
 }
 
@@ -35,14 +48,12 @@ int		get_pipeline_len(t_queue *queue)
 		queue = queue->next;
 	}
 	counter++;
-//	ft_printf("nbr of pipes: %d\n", counter);
 	return (counter);
 }
 
 int		generate_pipe_tab(int size)
 {
 	int		i;
-//	int		pipefd[2];
 
 	i = 0;
 	size++;
@@ -53,7 +64,7 @@ int		generate_pipe_tab(int size)
 		if (!(g_pipe_array[i] = (int*)malloc(sizeof(int) * 2)))
 			return (-1);
 		pipe(g_pipe_array[i]);
-		i++;	
+		i++;
 	}
 	g_pipe_array[i] = NULL;
 	return (i);
