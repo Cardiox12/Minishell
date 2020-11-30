@@ -27,6 +27,7 @@ t_queue		*g_queue = NULL;
 int			g_pid_to_kill = 0;
 int			g_in_eval = 0;
 int			g_quote_parity_error = 0;
+int			**g_pipe_array;
 
 int		run_shell(void)
 {

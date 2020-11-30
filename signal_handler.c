@@ -20,6 +20,12 @@
 #include "eval.h"
 #include "builtins.h"
 
+void		sigpipe_handle(int sig)
+{
+	(void)sig;
+	write_error_nofile("sigpipe here\n");
+}
+
 void		sigquit_handle(void)
 {
 	static int i;

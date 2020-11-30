@@ -50,3 +50,5 @@ SRCS += $(EVAL_DIR)/get_relative_path.c
 SRCS += $(EVAL_DIR)/init_command.c
 SRCS += $(EVAL_DIR)/get_home.c
 SRCS += $(EVAL_DIR)/inc_shlvl.c
+SRCS += $(EVAL_DIR)/pipe_setup_utils.c
+SRCS += $(EVAL_DIR)/setup_pipeline.c
