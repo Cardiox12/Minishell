@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 01:10:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/28 01:54:48 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/30 08:11:37 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ char		*basic_expand(char **src)
 			while (is_var_charset(new[slice.end]) && new[slice.end] != '\0')
 				slice.end++;
 			variable_replace(&new, slice);
-			slice.begin = 0;
 		}
 		else
 			slice.begin++;
