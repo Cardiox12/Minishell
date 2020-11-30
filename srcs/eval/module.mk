@@ -52,3 +52,4 @@ SRCS += $(EVAL_DIR)/get_home.c
 SRCS += $(EVAL_DIR)/inc_shlvl.c
 SRCS += $(EVAL_DIR)/pipe_setup_utils.c
 SRCS += $(EVAL_DIR)/setup_pipeline.c
+SRCS += $(EVAL_DIR)/pipeline_utils.c

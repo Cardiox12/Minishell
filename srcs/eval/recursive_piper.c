@@ -24,10 +24,9 @@ int		child_input_redirects(t_command *command)
 	return (0);
 }
 
-int		child_exec(t_command *command, int out_redirect[2], int oldpipe[2], int outpipe[2])
+int		child_exec(t_command *command, int out_redirect[2],
+			int oldpipe[2], int outpipe[2])
 {
-//	ft_printf("exec_pid: %d\n", getpid());
-//	ft_printf("%s in exec\n", command->value);
 	close(oldpipe[1]);
 	if (command->has_input_redirect)
 	{
@@ -40,20 +39,9 @@ int		child_exec(t_command *command, int out_redirect[2], int oldpipe[2], int out
 		close(oldpipe[0]);
 	}
 	if (command->output_type == PIPE || command->has_output_redirect == 1)
-	{
-		close(outpipe[0]);
-		if (command->has_output_redirect == 1)
-		{
-			close(out_redirect[0]);
-			dup2(out_redirect[1], 1);
-			close(out_redirect[1]);
-		}
-		else if (command->output_type == PIPE)
-			dup2(outpipe[1], 1);
-		close(outpipe[1]);
-	}
+		setup_out_redirects(command, out_redirect, outpipe);
 	else
-		close_pipe(outpipe);	
+		close_pipe(outpipe);
 	if (g_flawed == 0)
 	{
 		if (execve(command->path, command->args, g_env) == -1)
@@ -103,10 +91,9 @@ int		recursive_piper(t_command *command, int oldpipe[2], int outpipe[2])
 	pid_t			pid;
 	int				out_redirect[2];
 
-//	ft_printf("%s in recursive\n", command->value);
 	if (g_flawed == 1 || command->value == NULL)
 	{
-		close_pipe(oldpipe); //a check
+		close_pipe(oldpipe);
 		close_pipe(outpipe);
 		exit(1);
 		return (0);

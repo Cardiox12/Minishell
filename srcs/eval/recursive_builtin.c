@@ -13,7 +13,8 @@
 #include "../../includes/eval.h"
 #include "builtins.h"
 
-int		forked_builtin_child_exec(int out_redirect[2], int outpipe[2], t_command *command)
+int		forked_builtin_child_exec(int out_redirect[2],
+			int outpipe[2], t_command *command)
 {
 	if (command->output_type == PIPE || command->has_output_redirect == 1)
 	{
@@ -36,7 +37,8 @@ int		forked_builtin_child_exec(int out_redirect[2], int outpipe[2], t_command *c
 	return (0);
 }
 
-int		builtin_fork_exec(t_command *command, int out_redirect[2], int outpipe[2])
+int		builtin_fork_exec(t_command *command,
+			int out_redirect[2], int outpipe[2])
 {
 	int pid;
 	int status;
@@ -54,7 +56,8 @@ int		builtin_fork_exec(t_command *command, int out_redirect[2], int outpipe[2])
 	return (0);
 }
 
-int		redirect_handler(int out_redirect[2], int outpipe[2], t_command *command)
+int		redirect_handler(int out_redirect[2],
+			int outpipe[2], t_command *command)
 {
 	char	*output_buffer;
 
