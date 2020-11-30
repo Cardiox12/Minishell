@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/29 08:52:26 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/11/30 07:32:17 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "ft_stdio.h"
 #include "eval.h"
 #include "debug.h"
+#include "environ.h"
 
 char		**g_env = NULL;
 int			g_exec_pid = -1;
@@ -33,7 +34,6 @@ int		run_shell(void)
 	t_queue *tokens;
 
 	g_flawed = 0;
-	inc_shlvl();
 	while (TRUE)
 	{
 		g_quote_parity_error = 0;
@@ -70,6 +70,10 @@ int		main(int argc, char *argv[], char *envp[])
 	(void)argv;
 	if (!(ft_tab_copy(&g_env, envp)))
 		return (-1);
+	if (*envp == NULL)
+		export_basic_environ();
+	else
+		inc_shlvl();
 	signal(SIGQUIT, signal_handler);
 	signal(SIGINT, signal_handler);
 	signal(SIGTERM, SIG_IGN);
