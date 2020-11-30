@@ -6,19 +6,19 @@ minishell exits with success
 
 ===============
 result test for :     cat makefile | wc -l
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
 ===============
 result test for :     cat makefile < main.c | grep include
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
 ===============
 result test for :     cat makefile < main.c | grep include | grep inc < includes/eval.h
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
@@ -30,13 +30,13 @@ minishell exits with success
 
 ===============
 result test for :     cat makefile < main.c | grep include | grep inc < includes/eval.h | wc -l
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
 ===============
 result test for :     env | grep E | wc -l
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
@@ -48,13 +48,13 @@ minishell exits with success
 
 ===============
 result test for :     env | grep PATH | grep usr | grep bin | wc -l; echo hello; grep b < test_files/bbb | wc -l
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
 ===============
 result test for :     env | grep PATH | grep usr | grep bin; echo hello; grep b < test_files/bbb | wc -l
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
@@ -70,7 +70,7 @@ minishell exits with success
 result test for :     cat makefile > output2 > output3 | grep include
 minishell's command: cat makefile > miniout2 > miniout3 | grep include > miniout1
 bash's command: cat makefile > realout2 > realout3 | grep include > realout1
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
@@ -78,7 +78,7 @@ minishell exits with success
 result test for :     cat makefile > output2 > output3 < main.c | grep include
 minishell's command: cat makefile > miniout2 > miniout3 < main.c | grep include > miniout1
 bash's command: cat makefile > realout2 > realout3 < main.c | grep include > realout1
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
@@ -86,7 +86,7 @@ minishell exits with success
 result test for :     cat makefile > output2 > output3 < main.c | grep include < main.c
 minishell's command: cat makefile > miniout2 > miniout3 < main.c | grep include < main.c > miniout1
 bash's command: cat makefile > realout2 > realout3 < main.c | grep include < main.c > realout1
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
@@ -94,7 +94,7 @@ minishell exits with success
 result test for :     cat makefile > output2 < main.c | grep include > output3
 minishell's command: cat makefile > miniout2 < main.c | grep include > miniout3 > miniout1
 bash's command: cat makefile > realout2 < main.c | grep include > realout3 > realout1
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
@@ -102,7 +102,7 @@ minishell exits with success
 result test for :     cat makefile > output2 < main.c | grep include | grep inc < main.c > output3
 minishell's command: cat makefile > miniout2 < main.c | grep include | grep inc < main.c > miniout3 > miniout1
 bash's command: cat makefile > realout2 < main.c | grep include | grep inc < main.c > realout3 > realout1
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
@@ -110,7 +110,7 @@ minishell exits with success
 result test for :     cat makefile < main.c | grep include > output2 | grep inc < main.c > output3
 minishell's command: cat makefile < main.c | grep include > miniout2 | grep inc < main.c > miniout3 > miniout1
 bash's command: cat makefile < main.c | grep include > realout2 | grep inc < main.c > realout3 > realout1
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
@@ -118,7 +118,7 @@ minishell exits with success
 result test for :     cat makefile < main.c | grep include | grep inc < main.c > output3 > output2
 minishell's command: cat makefile < main.c | grep include | grep inc < main.c > miniout3 > miniout2 > miniout1
 bash's command: cat makefile < main.c | grep include | grep inc < main.c > realout3 > realout2 > realout1
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
@@ -126,7 +126,7 @@ minishell exits with success
 result test for :     cat test_files/aaa | grep a | grep b < test_files/ccc > output3 > output2
 minishell's command: cat test_files/aaa | grep a | grep b < test_files/ccc > miniout3 > miniout2 > miniout1
 bash's command: cat test_files/aaa | grep a | grep b < test_files/ccc > realout3 > realout2 > realout1
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
@@ -134,7 +134,7 @@ minishell exits with success
 result test for :     cat test_files/aaa | grep a > output3 | grep b < test_files/ccc | grep a < test_files/aaa > output2
 minishell's command: cat test_files/aaa | grep a > miniout3 | grep b < test_files/ccc | grep a < test_files/aaa > miniout2 > miniout1
 bash's command: cat test_files/aaa | grep a > realout3 | grep b < test_files/ccc | grep a < test_files/aaa > realout2 > realout1
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
@@ -142,7 +142,7 @@ minishell exits with success
 result test for :     cat test_files/aaa | grep a > output3 | grep b < test_files/ccc > output2 | grep a < test_files/aaa < test_files/bbb
 minishell's command: cat test_files/aaa | grep a > miniout3 | grep b < test_files/ccc > miniout2 | grep a < test_files/aaa < test_files/bbb > miniout1
 bash's command: cat test_files/aaa | grep a > realout3 | grep b < test_files/ccc > realout2 | grep a < test_files/aaa < test_files/bbb > realout1
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
@@ -150,7 +150,7 @@ minishell exits with success
 result test for :     grep b < test_files/ccc| grep a < test_files/aaa < test_files/bbb > output2 > output3
 minishell's command: grep b < test_files/ccc| grep a < test_files/aaa < test_files/bbb > miniout2 > miniout3 > miniout1
 bash's command: grep b < test_files/ccc| grep a < test_files/aaa < test_files/bbb > realout2 > realout3 > realout1
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
@@ -158,7 +158,7 @@ minishell exits with success
 result test for :     echo hello > output2 | grep a < test_files/aaa > output3
 minishell's command: echo hello > miniout2 | grep a < test_files/aaa > miniout3 > miniout1
 bash's command: echo hello > realout2 | grep a < test_files/aaa > realout3 > realout1
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
@@ -190,7 +190,7 @@ minishell exits with success
 result test for :     pwd > output2 | echo gno > output3
 minishell's command: pwd > miniout2 | echo gno > miniout3 > miniout1
 bash's command: pwd > realout2 | echo gno > realout3 > realout1
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
@@ -198,7 +198,7 @@ minishell exits with success
 result test for :     env | grep PATH > output2 | echo bababa > output3
 minishell's command: env | grep PATH > miniout2 | echo bababa > miniout3 > miniout1
 bash's command: env | grep PATH > realout2 | echo bababa > realout3 > realout1
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
@@ -206,7 +206,7 @@ minishell exits with success
 result test for :     echo "berniesanders" | grep aaa < test_files/aaa > output2 | echo bababa > output3
 minishell's command: echo "berniesanders" | grep aaa < test_files/aaa > miniout2 | echo bababa > miniout3 > miniout1
 bash's command: echo "berniesanders" | grep aaa < test_files/aaa > realout2 | echo bababa > realout3 > realout1
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
@@ -214,7 +214,7 @@ minishell exits with success
 result test for :     echo "berniesanders" | grep aaa < test_files/aaa > output2 | echo hello > output3
 minishell's command: echo "berniesanders" | grep aaa < test_files/aaa > miniout2 | echo hello > miniout3 > miniout1
 bash's command: echo "berniesanders" | grep aaa < test_files/aaa > realout2 | echo hello > realout3 > realout1
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
@@ -222,7 +222,7 @@ minishell exits with success
 result test for :     env ; echo hello; export TEST="test"; echo $TEST | grep t | wc -l > output2 > output3 ; cat output2
 minishell's command: env ; echo hello; export TEST="test"; echo $TEST | grep t | wc -l > miniout2 > miniout3 ; cat miniout2 > miniout1
 bash's command: env ; echo hello; export TEST="test"; echo $TEST | grep t | wc -l > realout2 > realout3 ; cat realout2 > realout1
-minishell exits with success
+minishell crashes
 [38;5;40msuccess[0m
 ===============
 
