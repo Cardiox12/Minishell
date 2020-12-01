@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 09:55:54 by tony              #+#    #+#             */
-/*   Updated: 2020/11/28 01:51:07 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/01 21:57:15 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ char			*ft_strcpy(char *dst, const char *src);
 int				ft_isnumeric(const char *s);
 char			*ft_skip_charset(char *s, const char *charset);
 int				ft_strcmp(const char *s1, const char *s2);
+char			*ft_strstr(const char *haystack, const char *needle);
 
 #endif

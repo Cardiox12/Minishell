@@ -60,6 +60,7 @@ SRCS	+= $(STRING_DIR)/ft_strlen.c
 SRCS	+= $(STRING_DIR)/ft_strmapi.c
 SRCS	+= $(STRING_DIR)/ft_strncmp.c
 SRCS	+= $(STRING_DIR)/ft_strnstr.c
+SRCS	+= $(STRING_DIR)/ft_strstr.c
 SRCS	+= $(STRING_DIR)/ft_strrchr.c
 SRCS	+= $(STRING_DIR)/ft_strtrim.c
 SRCS	+= $(STRING_DIR)/ft_substr.c

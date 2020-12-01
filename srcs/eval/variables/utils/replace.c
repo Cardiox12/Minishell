@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 07:21:56 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/01 21:52:56 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/01 21:59:22 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,11 @@ static char	*substitute(char **src, t_slice slice, t_spair pair)
 	chunks = get_chunks(*src, slice);
 	size = ft_strlen(chunks.first) + ft_strlen(pair.second) + ft_strlen(chunks.second);
 	subs = ft_strnew(sizeof(char) * size);
-
 	if (subs == NULL)
 	{
 		free_spair(chunks);
 		return (NULL);
 	}
-
 	ft_strlcat(subs, chunks.first, size + 1);
 	ft_strlcat(subs, pair.second, size + 1);
 	ft_strlcat(subs, chunks.second, size + 1);
@@ -69,16 +67,16 @@ static char	*substitute(char **src, t_slice slice, t_spair pair)
 
 char		*str_replace(char **src, const char *key, const char *value)
 {
-	const size_t	srclen = ft_strlen(*src);
 	char			*found;
 	char			*str;
 	t_slice			slice;
 	t_vec			sizes;
+	int				offset;
 
 	str = *src;
 	sizes = spair_length((t_spair){(char*)key, (char*)value});
-	int offset = 0;
-	while ((found = ft_strnstr(str + offset, key, srclen)) != NULL)
+	offset = 0;
+	while ((found = ft_strstr(str + offset, key)) != NULL)
 	{
 		slice.begin = found - str;
 		slice.end = slice.begin + sizes.x;
