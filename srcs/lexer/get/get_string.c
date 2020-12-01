@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:53:39 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/30 22:31:40 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/01 20:40:50 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ char		*strjoin(char **dst, const char *src)
 
 static char	*escape(char **content)
 {
-	str_replace(content, "$", "\\$");
 	str_replace(content, "\\", "\\\\");
+	str_replace(content, "$", "\\$");
 
 	return (*content);
 }

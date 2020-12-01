@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 07:21:56 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/30 23:36:46 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/01 21:52:56 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,60 +26,68 @@ t_vec		spair_length(t_spair pair)
 	return (length);
 }
 
-t_spair		get_chunks(char *src, char *tok, t_spair pair)
+t_spair		get_chunks(char *src, t_slice slice)
 {
 	t_spair chunks;
-	t_vec	lengths;
-	size_t	src_len;
-	size_t	beg_index;
 
-	lengths = spair_length(pair);
-	src_len = ft_strlen(src);
-	beg_index = tok - src;
-	chunks.first = ft_substr(src, 0, beg_index);
-	chunks.second = ft_substr(
-		src,
-		beg_index + lengths.x, src_len - (beg_index + lengths.x));
+	chunks.first = ft_strndup(src, slice.begin);
+	if (chunks.first == NULL)
+		return ((t_spair){NULL, NULL});
+	chunks.second = ft_strdup(src + slice.end);
+	if (chunks.second == NULL)
+	{
+		free(chunks.first);
+		return ((t_spair){NULL, NULL});
+	}
 	return (chunks);
 }
 
-static char	*substitute(char **src, char *tok, t_spair pair)
+static char	*substitute(char **src, t_slice slice, t_spair pair)
 {
 	t_spair chunks;
 	size_t	size;
-	char	*str;
+	char	*subs;
 
-	chunks = get_chunks(*src, tok, pair);
-	if (chunks.first == NULL || chunks.second == NULL)
-		free_spair(chunks);
-	size = ft_strlen(chunks.first) + ft_strlen(pair.second)
-	+ ft_strlen(chunks.second) + 1;
-	str = ft_strnew(size);
-	if (str == NULL)
+	chunks = get_chunks(*src, slice);
+	size = ft_strlen(chunks.first) + ft_strlen(pair.second) + ft_strlen(chunks.second);
+	subs = ft_strnew(sizeof(char) * size);
+
+	if (subs == NULL)
 	{
 		free_spair(chunks);
 		return (NULL);
 	}
-	ft_strlcat(str, chunks.first, size + 1);
-	ft_strlcat(str, pair.second, size + 1);
-	ft_strlcat(str, chunks.second, size + 1);
+
+	ft_strlcat(subs, chunks.first, size + 1);
+	ft_strlcat(subs, pair.second, size + 1);
+	ft_strlcat(subs, chunks.second, size + 1);
 	free(*src);
-	*src = str;
+	*src = subs;
 	free_spair(chunks);
 	return (*src);
 }
 
 char		*str_replace(char **src, const char *key, const char *value)
 {
-	char	*tok;
-	char	*str;
-	size_t	srclen;
+	const size_t	srclen = ft_strlen(*src);
+	char			*found;
+	char			*str;
+	t_slice			slice;
+	t_vec			sizes;
 
 	str = *src;
-	srclen = ft_strlen(str);
-	while ((tok = ft_strnstr(str, key, srclen)) != NULL)
+	sizes = spair_length((t_spair){(char*)key, (char*)value});
+	int offset = 0;
+	while ((found = ft_strnstr(str + offset, key, srclen)) != NULL)
 	{
-		substitute(src, tok, (t_spair){(char*)key, (char*)value});
+		slice.begin = found - str;
+		slice.end = slice.begin + sizes.x;
+		str = substitute(src, slice, 
+			(t_spair){
+				(char*)key,
+				(char*)value
+		});
+		offset = slice.begin + sizes.y;
 	}
 	return (*src);
 }

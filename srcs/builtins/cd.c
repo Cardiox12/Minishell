@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 10:57:51 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/28 00:38:47 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/01 21:09:27 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int			cd(char **args)
 	}
 	if (chdir(path) == -1)
 	{
-		free(path);
 		return (cd_perror(path, FAILURE));
 	}
 	ft_strcpy(cwd, PWD);
