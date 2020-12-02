@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:53:39 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/01 20:40:50 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/02 11:15:14 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "ft_stdlib.h"
 #include <stdio.h>
 
-char		*strjoin(char **dst, const char *src)
+static char	*strjoin(char **dst, const char *src)
 {
 	size_t size;
 	size_t dstsize;
@@ -65,7 +65,13 @@ int	get_string(t_queue **head, const char *input, size_t index)
 	content = remove_quotes(input, &index);
 	while (ft_isquote(input[index]))
 	{
+		type = STRING;
 		int escape_mode = input[index] == SYM_SIMPLE_QUOTE;
+		if (!is_quote_closed(&input[index + 1], input[index]))
+		{
+			free(content);
+			return (index);
+		}
 		next = remove_quotes(input, &index);
 		if (escape_mode)
 			escape(&next);
