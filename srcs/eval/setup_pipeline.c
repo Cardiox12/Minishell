@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   setup_pipeline.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlucille <tlucille@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/30 19:20:32 by tlucille          #+#    #+#             */
+/*   Updated: 2020/11/30 19:20:33 by tlucille         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "eval.h"
 
 int		wait_for_the_kids(pid_t last_pid)
@@ -5,20 +17,27 @@ int		wait_for_the_kids(pid_t last_pid)
 	int		status;
 	pid_t	pid;
 
+	free_pipe_tab();
 	while ((pid = wait(&status)) != -1)
 	{
-//		ft_printf("waited pid: %d\n", pid);
 		if (pid == last_pid)
 		{
 			if (WIFEXITED(status))
 				g_exitstatus = WEXITSTATUS(status);
 		}
-
 	}
 	return (0);
 }
 
-int 	iterative_piper(int pipe_len)
+int		iterative_child_exec(int i, t_command *command)
+{
+	close_useless_pipes(i - 1, i, i);
+	if ((recursive_piper(command, g_pipe_array[i - 1], g_pipe_array[i])) == -1)
+		ft_printf("recursive_failure\n");
+	exit(1);
+}
+
+int		iterative_piper(int pipeline_len)
 {
 	int			i;
 	t_command	command;
@@ -26,35 +45,22 @@ int 	iterative_piper(int pipe_len)
 	pid_t		last;
 
 	i = 1;
-	pipe_len++;
-//	ft_printf("pipe_len: %d\n", pipe_len);
-	while (g_queue && i < pipe_len)
+	while (g_queue && i < pipeline_len)
 	{
 		if (craft_command(&command) == -1)
 			return (-1);
-//		print_s_command(&command);
-//		i++;
-//		ft_printf("i %d\n", i);
 		pid = fork();
 		if (pid == 0)
-		{
-//			ft_printf("command %s, [%d] with pid -%d- created\n", command.value, i, getpid());
-			close_useless_pipes(i - 1, i, i);
-			if ((recursive_piper(&command, g_pipe_array[i - 1], g_pipe_array[i])) == -1)
-				ft_printf("recursive_failure\n");
-//			ft_printf("forked %s doesnt exit\n", command.value);
-			exit (1);
-		}
+			iterative_child_exec(i, &command);
 		else
 		{
-//			ft_printf("i - 1 :%d\n", (i - 1));
+			free_command(&command);
 			close_pipe(g_pipe_array[i - 1]);
 			i++;
-			if (i == pipe_len)
+			if (i == pipeline_len)
 				last = pid;
 		}
 	}
-//	ft_printf("i - 1 :%d\n", (i - 1));
 	close_pipe(g_pipe_array[i - 1]);
 	wait_for_the_kids(last);
 	return (0);
@@ -63,14 +69,11 @@ int 	iterative_piper(int pipe_len)
 int		launch_pipeline(t_command *command, int pipe_len)
 {
 	pid_t pid;
-//	t_command	command;
 
-//	ft_printf("in launch\n");
 	if ((pid = fork()) == -1)
 		perror("fork");
 	if (pid == 0)
 	{
-//		ft_printf("command %s, [0] with pid %d created\n", command->value, getpid());
 		close_useless_pipes(-1, 0, 0);
 		if ((init_piper(g_pipe_array[0], command)) == -1)
 		{
@@ -79,7 +82,10 @@ int		launch_pipeline(t_command *command, int pipe_len)
 		}
 	}
 	else
-		iterative_piper(pipe_len);
+	{
+		free_command(command);
+		iterative_piper(pipe_len + 1);
+	}
 	return (0);
 }
 
