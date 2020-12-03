@@ -35,6 +35,7 @@ SRCS += $(LEXER_DIR)/$(GET_DIR)/get_string.c
 
 SRCS	+= $(LEXER_DIR)/$(TOK_DIR)/queue_enqueue.c
 SRCS	+= $(LEXER_DIR)/$(TOK_DIR)/queue_dequeue.c
+SRCS	+= $(LEXER_DIR)/$(TOK_DIR)/queue_pop_last.c
 SRCS	+= $(LEXER_DIR)/$(TOK_DIR)/queue_init.c
 SRCS	+= $(LEXER_DIR)/$(TOK_DIR)/queue_copy.c
 SRCS	+= $(LEXER_DIR)/$(TOK_DIR)/queue_free.c

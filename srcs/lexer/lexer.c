@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/03 10:58:16 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/03 21:23:32 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,11 @@ t_queue		*get_next_tokens(t_lexer *lexer)
 		if (last != NULL)
 		{
 			if (last->token.type == OPERATOR)
+			{
+				last = queue_pop_last(lexer->head);
+				free(last);
 				return (lexer->head);
+			}
 		}
 		skip(lexer);
 	}
