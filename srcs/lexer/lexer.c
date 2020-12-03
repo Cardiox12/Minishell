@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/23 03:15:37 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/03 08:39:19 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	skip(t_lexer *lex)
 		lex->index++;
 }
 
-t_queue		*lexer(const char *input)
+t_queue		*get_tokens(const char *input)
 {
 	const size_t	length = ft_strlen(input);
 	t_lexer			lex;

@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/30 08:13:46 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/03 08:40:08 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,8 @@ t_queue				*enqueue(t_queue **head, t_token token);
 t_queue				*dequeue(t_queue **head);
 void				queue_free(t_queue *node);
 void				queue_delete(t_queue **head);
-t_queue				*lexer(const char *input);
+t_queue				*get_tokens(const char *input);
+t_queue				*get_next_tokens(const char *input);
 
 int					is_bash_charset(int c);
 int					is_redirect(int c);

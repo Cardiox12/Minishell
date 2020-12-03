@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/01 21:53:15 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/03 09:10:54 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,25 @@ int			g_in_eval = 0;
 int			g_quote_parity_error = 0;
 int			**g_pipe_array;
 
+int		run(const char *line)
+{
+	t_queue	*tokens;
+
+	tokens = NULL;
+	if (parser(line) == FAILURE)
+		return (FAILURE);
+	tokens = get_tokens(line);
+	g_in_eval = 1;
+	if (eval(tokens) == -1)
+		return (-1);
+	g_in_eval = 0;
+	queue_delete(&tokens);
+	return (0);
+}
+
 int		run_shell(void)
 {
 	char	*line;
-	t_queue *tokens;
 
 	g_flawed = 0;
 	while (TRUE)
@@ -40,19 +55,8 @@ int		run_shell(void)
 		g_quote_parity_error = 0;
 		if (reader(&line) == -1)
 			return (-1);
-		tokens = lexer(line);
-//		print_queue(tokens);
-		if (g_quote_parity_error)
-			ft_putstr_fd("minishell: Error quote is not closed\n", 2);
-		else if (parser(line, tokens) == SUCCESS)
-		{
-			g_in_eval = 1;
-			if (eval(tokens) == -1)
-				return (-1);
-			g_in_eval = 0;
-		}
+		run(line);
 		free(line);
-		queue_delete(&tokens);
 	}
 }
 

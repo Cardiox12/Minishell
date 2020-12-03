@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 13:11:14 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 02:13:54 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/03 09:07:34 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ enum	e_parse_errors
 
 # define _EOF_ -1
 
-int				parser(const char *input, t_queue *head);
+int				parser(const char *line);
 void			interpret_free(t_interpret *interpret);
 int				commands(t_interpret *inter);
 int				terminals(t_interpret *inter);
