@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/03 08:40:08 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/03 10:50:54 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,13 @@ static const int g_terminal_tokens[ARR_TERM_SIZE] = {OPERATOR, PIPE};
 
 t_queue				*queue_init(t_token token);
 t_queue				*queue_copy(t_queue *origin);
+t_queue				*queue_last(t_queue *queue);
 t_queue				*enqueue(t_queue **head, t_token token);
 t_queue				*dequeue(t_queue **head);
 void				queue_free(t_queue *node);
 void				queue_delete(t_queue **head);
 t_queue				*get_tokens(const char *input);
-t_queue				*get_next_tokens(const char *input);
+t_queue				*get_next_tokens(t_lexer *lexer);
 
 int					is_bash_charset(int c);
 int					is_redirect(int c);

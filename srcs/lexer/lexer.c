@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/03 08:39:19 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/03 10:58:16 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,30 @@ t_queue		*get_tokens(const char *input)
 		skip(&lex);
 	}
 	return (lex.head);
+}
+
+t_queue		*get_next_tokens(t_lexer *lexer)
+{
+	const size_t	length = ft_strlen(lexer->input);
+	t_queue			*last;
+	size_t			index;
+
+	while (lexer->index < length)
+	{
+		index = 0;
+		while (index < LEXER_CALLBACK_SIZE)
+		{
+			if (g_lexer_callbacks[index](lexer))
+				break ;
+			index++;
+		}
+		last = queue_last(lexer->head);
+		if (last != NULL)
+		{
+			if (last->token.type == OPERATOR)
+				return (lexer->head);
+		}
+		skip(lexer);
+	}
+	return (lexer->head);
 }

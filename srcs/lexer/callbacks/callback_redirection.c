@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 21:44:40 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/02 12:02:27 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/03 10:35:09 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ int		callback_redirection(t_lexer *lex)
 		lex->state |= IS_FD;
 		return (TRUE);
 	}
-	return (FALSE);
+	return (FALSE);	
 }

@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/03 09:10:54 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/03 11:04:31 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,22 @@ int			**g_pipe_array;
 
 int		run(const char *line)
 {
-	t_queue	*tokens;
+	t_lexer	lexer;
 
-	tokens = NULL;
 	if (parser(line) == FAILURE)
 		return (FAILURE);
-	tokens = get_tokens(line);
-	g_in_eval = 1;
-	if (eval(tokens) == -1)
-		return (-1);
-	g_in_eval = 0;
-	queue_delete(&tokens);
+	lexer = (t_lexer){IS_COMMAND, 0, NULL, (char*)line};
+	while (TRUE)
+	{
+		get_next_tokens(&lexer);
+		if (lexer.head == NULL)
+			return (SUCCESS);
+		g_in_eval = 1;
+		if (eval(lexer.head) == -1)
+			return (-1);
+		g_in_eval = 0;
+		queue_delete(&lexer.head);
+	}
 	return (0);
 }
 

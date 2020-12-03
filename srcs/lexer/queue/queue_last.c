@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue_init.c                                       :+:      :+:    :+:   */
+/*   queue_last.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/29 05:13:59 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/03 10:51:03 by bbellavi         ###   ########.fr       */
+/*   Created: 2020/12/03 10:41:34 by bbellavi          #+#    #+#             */
+/*   Updated: 2020/12/03 10:56:25 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-t_queue	*queue_init(t_token token)
+t_queue	*queue_last(t_queue *queue)
 {
-	t_queue *new;
-
-	new = malloc(sizeof(t_queue));
-	if (new == NULL)
+	if (queue == NULL)
 		return (NULL);
-	new->next = NULL;
-	new->token = token;
-	return (new);
+	while (queue->next != NULL)
+		queue = queue->next;
+	return (queue);
 }
