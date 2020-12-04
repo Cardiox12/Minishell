@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:53:39 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/02 11:15:14 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/04 00:00:41 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int	get_string(t_queue **head, const char *input, size_t index)
 	if (!is_quote_closed(&input[index + 1], input[index]))
 		return (index);
 	content = remove_quotes(input, &index);
+	if (type == STRING)
+		content = expand(content, type);
 	while (ft_isquote(input[index]))
 	{
 		type = STRING;
@@ -75,6 +77,8 @@ int	get_string(t_queue **head, const char *input, size_t index)
 		next = remove_quotes(input, &index);
 		if (escape_mode)
 			escape(&next);
+		else
+			next = expand(next, STRING);
 		strjoin(&content, next);
 		free(next);
 	}
