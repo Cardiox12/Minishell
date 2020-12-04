@@ -79,11 +79,11 @@ int			get_redirects(int *count, t_command *command)
 
 int			get_args(int *count, t_command *command)
 {
-	char	*expanded;
+//	char	*expanded;
 
 	while (g_queue && is_arg(g_queue))
 	{
-		if (g_queue->token.type == STRING || g_queue->token.type == ARGUMENT
+/*		if (g_queue->token.type == STRING || g_queue->token.type == ARGUMENT
 			|| g_queue->token.type == ENV_VARIABLE)
 		{
 			if (!(expanded = expand(g_queue->token.value, g_queue->token.type)))
@@ -93,10 +93,10 @@ int			get_args(int *count, t_command *command)
 			ft_strdel(&expanded);
 		}
 		else
-		{
-			if (!(add_to_dynamic_table(&(command->args), g_queue->token.value)))
-				return (free_command_ret_fail(command));
-		}
+		{*/
+		if (!(add_to_dynamic_table(&(command->args), g_queue->token.value)))
+			return (free_command_ret_fail(command));
+//		}
 		g_queue = g_queue->next;
 		(*count)++;
 	}
