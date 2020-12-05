@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 01:10:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/04 00:05:52 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/05 08:50:21 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,14 @@ char		*expand(const char *src, int tok_type)
 		tilde_expand(&new);
 	basic_expand(&new);
 	return (new);
+}
+
+char		*str_expand(char **src, int tok_type)
+{
+	char *old;
+
+	old = *src;
+	*src = expand(*src, tok_type);
+	free(old);
+	return (*src);
 }

@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:54:16 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/03 23:46:11 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/05 08:51:15 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	get_env_variable(t_queue **head, const char *input, size_t index)
 	while (input[index] != '\0' && !is_sep(input[index]))
 		index++;
 	value = ft_strndup(&input[previous], index - previous);
-	value = expand(value, ENV_VARIABLE);
+	value = str_expand(&value, ENV_VARIABLE);
 	enqueue(head, (t_token){
 		.type = ENV_VARIABLE,
 		.value = value,

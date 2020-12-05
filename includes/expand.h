@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 07:15:05 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/30 22:19:48 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/05 08:50:34 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define TILDE_SLASH "~/"
 
 char	*expand(const char *src, int tok_type);
+char	*str_expand(char **src, int tok_type);
 char	*find_variable(const char *key);
 t_spair	get_items(const char *e_var);
 char	*get_value(const char *e_var);
