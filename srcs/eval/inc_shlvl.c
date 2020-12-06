@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 07:48:57 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/29 08:51:49 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/07 00:38:22 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "builtins.h"
 #include "eval.h"
 #include "types.h"
+
+typedef char* t_string;
 
 static char	*make_key_val(t_spair pair)
 {
@@ -28,6 +30,14 @@ static char	*make_key_val(t_spair pair)
 	ft_strlcat(variable, "=", size + 1);
 	ft_strlcat(variable, pair.second, size + 1);
 	return (variable);
+}
+
+static void	export_and_free(char *variable, t_spair exp, t_spair items)
+{
+	export((t_string[3]){BUILTINS_EXPORT, variable, NULL});
+	free_spair(exp);
+	free_spair(items);
+	free(variable);
 }
 
 static void	inc_shlvl_(const char *variable)
@@ -54,10 +64,7 @@ static void	inc_shlvl_(const char *variable)
 		free(final);
 		return ;
 	}
-	export((t_string[3]){BUILTINS_EXPORT, final, NULL});
-	free_spair(exp_items);
-	free_spair(items);
-	free(final);
+	export_and_free(final, exp_items, items);
 }
 
 void		inc_shlvl(void)

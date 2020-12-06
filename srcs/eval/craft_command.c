@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 19:09:25 by tlucille          #+#    #+#             */
-/*   Updated: 2020/12/05 08:50:17 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/07 00:29:43 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,24 +79,10 @@ int			get_redirects(int *count, t_command *command)
 
 int			get_args(int *count, t_command *command)
 {
-//	char	*expanded;
-
 	while (g_queue && is_arg(g_queue))
 	{
-/*		if (g_queue->token.type == STRING || g_queue->token.type == ARGUMENT
-			|| g_queue->token.type == ENV_VARIABLE)
-		{
-			if (!(expanded = expand(g_queue->token.value, g_queue->token.type)))
-				return (free_command_ret_fail(command));
-			if (!(add_to_dynamic_table(&(command->args), expanded)))
-				return (free_command_ret_fail(command));
-			ft_strdel(&expanded);
-		}
-		else
-		{*/
 		if (!(add_to_dynamic_table(&(command->args), g_queue->token.value)))
 			return (free_command_ret_fail(command));
-//		}
 		g_queue = g_queue->next;
 		(*count)++;
 	}

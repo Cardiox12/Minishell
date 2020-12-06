@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 07:21:56 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/01 21:59:22 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/07 00:30:32 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static char	*substitute(char **src, t_slice slice, t_spair pair)
 	char	*subs;
 
 	chunks = get_chunks(*src, slice);
-	size = ft_strlen(chunks.first) + ft_strlen(pair.second) + ft_strlen(chunks.second);
+	size = ft_strlen(chunks.first) + ft_strlen(pair.second) +
+	ft_strlen(chunks.second);
 	subs = ft_strnew(sizeof(char) * size);
 	if (subs == NULL)
 	{
@@ -80,7 +81,7 @@ char		*str_replace(char **src, const char *key, const char *value)
 	{
 		slice.begin = found - str;
 		slice.end = slice.begin + sizes.x;
-		str = substitute(src, slice, 
+		str = substitute(src, slice,
 			(t_spair){
 				(char*)key,
 				(char*)value
