@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 21:57:17 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/28 02:40:14 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/07 00:39:34 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_stdlib.h"
 #include "builtins.h"
 
-static int is_valid_argument(char *arg)
+static int	is_valid_argument(char *arg)
 {
 	if (*arg == '+' || *arg == '-')
 	{
@@ -24,7 +24,7 @@ static int is_valid_argument(char *arg)
 	return (ft_isnumeric(&arg[1]));
 }
 
-int	internal_exit(char **args)
+int			internal_exit(char **args)
 {
 	ft_printf("exit\n");
 	if (args[1] == NULL)
