@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 08:00:54 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/28 08:48:08 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/07 00:41:39 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	bubble_sort__(t_string_list *list)
 	}
 }
 
-void	string_list_sort(t_string_list *list)
+void		string_list_sort(t_string_list *list)
 {
 	if (list->length > 1)
 	{
