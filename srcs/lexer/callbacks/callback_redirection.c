@@ -6,12 +6,12 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 21:44:40 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/03 10:35:09 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/06 20:34:49 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
-#include <stdio.h>
+
 int		callback_redirection(t_lexer *lex)
 {
 	if (is_redirect(lex->input[lex->index]))
@@ -28,5 +28,5 @@ int		callback_redirection(t_lexer *lex)
 		lex->state |= IS_FD;
 		return (TRUE);
 	}
-	return (FALSE);	
+	return (FALSE);
 }

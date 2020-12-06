@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/05 09:01:05 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/06 23:57:08 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		run(const char *line)
 		get_next_tokens(&lexer);
 		if (lexer.head == NULL)
 			return (SUCCESS);
-		// print_queue(lexer.head);
+		print_queue(lexer.head);
 		g_in_eval = 1;
 		if (eval(lexer.head) == -1)
 			return (-1);
