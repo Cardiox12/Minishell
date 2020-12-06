@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:43:48 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/05 08:57:16 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/07 00:21:12 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,8 @@ t_queue		*get_tokens(const char *input)
 	t_lexer			lex;
 	size_t			index;
 
-	lex = (t_lexer){
-		.head = NULL,
-		.index = 0,
-		.state = IS_COMMAND,
-		.input = (char*)input
-	};
+	lex = (t_lexer){.head = NULL, .index = 0,
+	.state = IS_COMMAND, .input = (char*)input};
 	while (lex.index < length)
 	{
 		index = 0;
@@ -62,8 +58,7 @@ t_queue		*get_next_tokens(t_lexer *lexer)
 				break ;
 			index++;
 		}
-		last = queue_last(lexer->head);
-		if (last != NULL)
+		if ((last = queue_last(lexer->head)) != NULL)
 		{
 			if (last->token.type == OPERATOR)
 			{
