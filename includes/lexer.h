@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/08 21:33:53 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/08 22:06:18 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ enum	e_states
 # define SYM_L_REDIR '<'
 # define SYM_EQUAL '='
 # define SYM_ESC '\\'
-# define ESC_CHARSET "$\"\\'|;"
+# define ESC_CHARSET "$\"\\'|;n"
 # define ESC_BASE_CHARSET "\""
 # define ESC_IMPROVED_CHARSET "\\$\""
 
