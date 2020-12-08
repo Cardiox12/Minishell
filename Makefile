@@ -6,7 +6,7 @@
 #    By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/29 01:50:06 by tlucille          #+#    #+#              #
-#    Updated: 2020/11/30 16:01:23 by bbellavi         ###   ########.fr        #
+#    Updated: 2020/12/08 20:29:15 by bbellavi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,11 +31,8 @@ LIBFT_NAME	= libft.a
 NAME		= minishell
 
 SRCS		= main.c
-SRCS		+= debug.c
-SRCS		+= environ.c
-SRCS		+= signal_handler.c
 
-include $(READ_DIR)/module.mk $(LEXER_DIR)/module.mk $(PARSE_DIR)/module.mk $(BUILTIN_DIR)/module.mk $(EVAL_DIR)/module.mk $(OUTPUT_DIR)/module.mk
+include $(SRC_DIR)/module.mk $(READ_DIR)/module.mk $(LEXER_DIR)/module.mk $(PARSE_DIR)/module.mk $(BUILTIN_DIR)/module.mk $(EVAL_DIR)/module.mk $(OUTPUT_DIR)/module.mk
 
 .PHONY: all clean fclean
 

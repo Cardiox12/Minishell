@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 01:10:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/07 00:30:42 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/08 20:59:25 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ char		*basic_expand(char **src)
 		if (is_escaped_by(&new[slice.begin], ESC_IMPROVED_CHARSET))
 		{
 			removal(&new, slice);
-			slice.begin++;
 		}
 		else if (is_bash_var(new, slice))
 		{
