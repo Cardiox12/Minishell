@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 12:22:07 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 02:38:15 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/08 23:48:11 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "ft_stdio.h"
 
 # define PWD "PWD"
+# define OLDPWD "OLDPWD"
 # define PWD_SIZE 3
 
 size_t	string_arr_len(char **array);
