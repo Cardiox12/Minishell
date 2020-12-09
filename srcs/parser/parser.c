@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 13:16:15 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/09 01:15:06 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/10 00:09:56 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_syntax(const char *input, t_queue *head)
 	interpret_free(&inter);
 	return (SUCCESS);
 }
-#include "debug.h"
+
 int	parser(const char *line)
 {
 	t_queue	*tokens;
@@ -51,7 +51,7 @@ int	parser(const char *line)
 		ft_putstr_fd("minishell: Error quote is not closed\n", 2);
 		status = FAILURE;
 	}
-	else if (check_syntax(line, tokens) == FAILURE)
+	else if (check_syntax(line, tokens) > 0)
 	{
 		g_exitstatus = 2;
 		status = FAILURE;

@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 13:12:28 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/08 23:30:04 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/09 23:55:52 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct	s_error
 # define EXE_NAME "minishell"
 # define EXIT_ERR_NON_NUMERIC_ARG 2
 # define ENV_ERR_FILE_NOT_FOUND 127
+# define SYNTAX_ERROR_NEWLINE 2
 
 # define INTERNAL_ERRORS_SIZE 2
 
