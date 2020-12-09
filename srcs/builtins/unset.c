@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 16:29:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 02:30:02 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/09 02:51:21 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ static int	find_variable_by_name(const char *name, t_string_list *sl_env)
 	return (NOT_FOUND);
 }
 
+static int	unset_variable_error(char *arg, t_string_list *copy)
+{
+	g_env = string_list_to_string_array(copy);
+	string_list_delete(&copy);
+	print_internal_error("unset", arg, ERROR_NOT_VALID_IDENTIFIER, TRUE);
+	return (ERROR_NOT_VALID_IDENTIFIER);
+}
+
 int			unset(char **args)
 {
 	t_string_list	*copy;
@@ -43,6 +51,8 @@ int			unset(char **args)
 	index = 1;
 	while (args[index] != NULL)
 	{
+		if (!is_valid_variable(args[index]))
+			return (unset_variable_error(args[index], copy));
 		found = find_variable_by_name(args[index], copy);
 		if (found != NOT_FOUND)
 		{
