@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:52:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/15 20:52:54 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/09 00:22:02 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	get_pipe(t_queue **head, size_t index)
 	enqueue(head, (t_token){
 		.type = PIPE,
 		.value = ft_strdup("|"),
-		.index = index
+		.index = index,
+		.prefixed = FALSE
 	});
 	return (++index);
 }

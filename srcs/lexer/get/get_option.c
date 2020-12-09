@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:53:10 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/15 21:04:40 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/09 00:21:24 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	get_option(t_queue **head, const char *input, size_t index)
 	enqueue(head, (t_token){
 		.type = OPTION,
 		.value = ft_strndup(&input[previous], index - previous),
-		.index = previous
+		.index = previous,
+		.prefixed = FALSE
 	});
 	return (index);
 }

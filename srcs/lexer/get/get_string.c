@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:53:39 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/08 20:46:06 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/09 00:41:12 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,6 @@
 #include "expand.h"
 #include "ft_strings.h"
 #include "ft_stdlib.h"
-#include <stdio.h>
-
-static char	*strjoin(char **dst, const char *src)
-{
-	size_t size;
-	size_t dstsize;
-
-	if (*dst == NULL)
-		*dst = ft_strdup(src);
-	else
-	{
-		dstsize = ft_strlen(*dst);
-		size = dstsize + ft_strlen(src);
-		*dst = ft_realloc(*dst, sizeof(char) * (size + 1), sizeof(char)
-		* (dstsize + 1));
-		if (*dst == NULL)
-			return (NULL);
-		ft_strlcat(*dst, src, size + 1);
-		(*dst)[size] = '\0';
-	}
-	return (*dst);
-}
 
 static char	*join(char **content, const char *input, size_t *index)
 {
@@ -82,7 +60,8 @@ int			get_string(t_queue **head, const char *input, size_t index)
 	enqueue(head, (t_token){
 		.type = type,
 		.value = content,
-		.index = previous
+		.index = previous,
+		.prefixed = is_bash_charset(input[index])
 	});
 	return (index);
 }

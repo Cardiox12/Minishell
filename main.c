@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/08 21:43:23 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/09 01:58:55 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int		run(const char *line)
 		get_next_tokens(&lexer);
 		if (lexer.head == NULL)
 			return (SUCCESS);
+		lexer.head = queue_join(lexer.head);
 		g_in_eval = 1;
 		if (eval(lexer.head) == -1)
 			return (-1);
@@ -84,20 +85,21 @@ int		main(int argc, char *argv[], char *envp[])
 		export_basic_environ();
 	else
 		inc_shlvl();
-	signal(SIGQUIT, signal_handler);
-	signal(SIGINT, signal_handler);
-	signal(SIGTERM, SIG_IGN);
-	g_pid_to_kill = fork();
-	if (g_pid_to_kill == 0)
-	{
-		signal(SIGTERM, sigterm_handler);
-		if (run_shell() == -1)
-		{
-			ft_freetab(&g_env);
-			exit(EXIT_FAILURE);
-		}
-	}
-	else
-		wait_and_exit();
+	run_shell();
+	// signal(SIGQUIT, signal_handler);
+	// signal(SIGINT, signal_handler);
+	// signal(SIGTERM, SIG_IGN);
+	// g_pid_to_kill = fork();
+	// if (g_pid_to_kill == 0)
+	// {
+	// 	signal(SIGTERM, sigterm_handler);
+	// 	if (run_shell() == -1)
+	// 	{
+	// 		ft_freetab(&g_env);
+	// 		exit(EXIT_FAILURE);
+	// 	}
+	// }
+	// else
+	// 	wait_and_exit();
 	return (0);
 }

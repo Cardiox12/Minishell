@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:50:56 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/16 01:19:37 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/09 00:23:04 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	get_redirection(t_queue **head, const char *input, size_t index)
 	enqueue(head, (t_token){
 		.type = REDIRECTION,
 		.value = ft_strndup(&input[previous], index - previous),
-		.index = index
+		.index = index,
+		.prefixed = FALSE
 	});
 	return (index);
 }

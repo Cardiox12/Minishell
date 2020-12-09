@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 01:10:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/08 22:06:28 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/09 02:34:52 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,35 @@ char		*basic_expand(char **src, char *charset)
 	return (new);
 }
 
+char		*medium_expand(char **src)
+{
+	char	*new;
+	t_slice	slice;
+
+	slice.begin = 0;
+	new = *src;
+	while (new[slice.begin] != '\0')
+	{
+		if (is_escaped(&new[slice.begin]))
+		{
+			removal(&new, slice);
+			if (new[slice.begin] != '\0')
+				slice.begin++;
+		}
+		else if (is_bash_var(new, slice))
+		{
+			slice.end = slice.begin + 1;
+			while (is_var_charset(new[slice.end]) && new[slice.end] != '\0')
+				slice.end++;
+			variable_replace(&new, slice);
+		}
+		else
+			slice.begin++;
+	}
+	*src = new;
+	return (new);
+}
+
 char		*expand(const char *src, int tok_type)
 {
 	char *new;
@@ -68,7 +97,7 @@ char		*expand(const char *src, int tok_type)
 	if (tok_type == ARGUMENT)
 	{
 		tilde_expand(&new);
-		basic_expand(&new, ESC_CHARSET);
+		medium_expand(&new);
 	}
 	else
 	{

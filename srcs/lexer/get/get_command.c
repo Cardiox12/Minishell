@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:55:02 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/23 12:11:32 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/09 01:17:03 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	get_command(t_queue **head, const char *input, size_t index)
 	enqueue(head, (t_token){
 		.type = COMMAND,
 		.value = content,
-		.index = previous
+		.index = previous,
+		.prefixed = FALSE
 	});
 	return (index);
 }

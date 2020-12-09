@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:18:37 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/08 22:06:18 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/09 02:32:39 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct		s_token
 	int				type;
 	char			*value;
 	size_t			index;
+	int				prefixed;
 }					t_token;
 
 typedef struct		s_queue
@@ -74,7 +75,7 @@ enum	e_states
 # define SYM_L_REDIR '<'
 # define SYM_EQUAL '='
 # define SYM_ESC '\\'
-# define ESC_CHARSET "$\"\\'|;n"
+# define ESC_CHARSET "$\"\\'|;n+_()*&%#@!^<>:=?[]`a"
 # define ESC_BASE_CHARSET "\""
 # define ESC_IMPROVED_CHARSET "\\$\""
 
@@ -105,13 +106,16 @@ static const int g_non_terminal_tokens[ARR_NON_TERM_SIZE] = {
 static const int g_terminal_tokens[ARR_TERM_SIZE] = {OPERATOR, PIPE};
 
 t_queue				*queue_init(t_token token);
-t_queue				*queue_copy(t_queue *origin);
+t_queue				*queue_copy_all(t_queue *origin);
 t_queue				*queue_last(t_queue *queue);
 t_queue				*queue_pop_last(t_queue *head);
+t_queue				*queue_join(t_queue *head);
 t_queue				*enqueue(t_queue **head, t_token token);
 t_queue				*dequeue(t_queue **head);
 void				queue_free(t_queue *node);
 void				queue_delete(t_queue **head);
+t_queue				*queue_copy(t_queue *origin);
+t_token				token_copy(t_token token);
 t_queue				*get_tokens(const char *input);
 t_queue				*get_next_tokens(t_lexer *lexer);
 
@@ -121,9 +125,11 @@ int					is_sep(int c);
 int					is_basic_sep(int c);
 char				*quote_extract(const char *input, size_t *index);
 int					is_escaped_by(const char *s, char *charset);
+int					is_escaped(const char *s);
 int					is_quote_closed(const char *s, char quote);
 char				*remove_quotes(const char *input, size_t *index);
 char				*removal(char **src, t_slice slice);
+char				*strjoin(char **dst, const char *src);
 
 int					get_argument(t_queue **head,
 					const char *input,

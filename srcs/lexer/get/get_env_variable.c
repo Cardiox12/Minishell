@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:54:16 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/05 08:51:15 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/09 00:22:47 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	get_env_variable(t_queue **head, const char *input, size_t index)
 	enqueue(head, (t_token){
 		.type = ENV_VARIABLE,
 		.value = value,
-		.index = previous
+		.index = previous,
+		.prefixed = FALSE
 	});
 	return (index);
 }

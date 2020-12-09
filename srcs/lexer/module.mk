@@ -9,6 +9,7 @@ SRCS += $(LEXER_DIR)/$(UTL_DIR)/is_redirect.c
 SRCS += $(LEXER_DIR)/$(UTL_DIR)/is_sep.c
 SRCS += $(LEXER_DIR)/$(UTL_DIR)/quote_extract.c
 SRCS += $(LEXER_DIR)/$(UTL_DIR)/is_escaped.c
+SRCS += $(LEXER_DIR)/$(UTL_DIR)/strjoin.c
 SRCS += $(LEXER_DIR)/$(UTL_DIR)/quotes/is_quote_closed.c
 SRCS += $(LEXER_DIR)/$(UTL_DIR)/quotes/remove_quotes.c
 
@@ -40,6 +41,7 @@ SRCS	+= $(LEXER_DIR)/$(TOK_DIR)/queue_init.c
 SRCS	+= $(LEXER_DIR)/$(TOK_DIR)/queue_copy.c
 SRCS	+= $(LEXER_DIR)/$(TOK_DIR)/queue_free.c
 SRCS	+= $(LEXER_DIR)/$(TOK_DIR)/queue_last.c
+SRCS	+= $(LEXER_DIR)/$(TOK_DIR)/queue_join.c
 SRCS	+= $(LEXER_DIR)/$(TOK_DIR)/queue_delete.c
 
 SRCS	+= $(LEXER_DIR)/lexer.c
