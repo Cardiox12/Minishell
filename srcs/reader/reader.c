@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 04:28:46 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/08 22:05:27 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/09 02:39:37 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ int		reader(char **command)
 	*command = NULL;
 	ft_bzero(cwd, PATH_MAX);
 	getcwd(cwd, PATH_MAX);
-	// ft_printf("minishell@%s: ", cwd);
+	ft_printf("minishell@%s: ", cwd);
 	if ((gnl_return = get_next_line(0, command)) == -1)
 		return (-1);
 	if (gnl_return == 0)
 	{
-		// write(1, "exit\n", 5);
+		write(1, "exit\n", 5);
 		ft_freetab(&g_env);
 		exit(EXIT_SUCCESS);
 	}
