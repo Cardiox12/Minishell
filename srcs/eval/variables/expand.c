@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 01:10:43 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/09 02:34:52 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/11 00:39:10 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,17 @@ char		*basic_expand(char **src, char *charset)
 	return (new);
 }
 
+static void	slice_advance(char *new, t_slice *slice)
+{
+	if (ft_isdigit(new[slice->end]))
+		slice->end++;
+	else
+	{
+		while (is_var_charset(new[slice->end]) && new[slice->end] != '\0')
+			slice->end++;
+	}
+}
+
 char		*medium_expand(char **src)
 {
 	char	*new;
@@ -77,8 +88,7 @@ char		*medium_expand(char **src)
 		else if (is_bash_var(new, slice))
 		{
 			slice.end = slice.begin + 1;
-			while (is_var_charset(new[slice.end]) && new[slice.end] != '\0')
-				slice.end++;
+			slice_advance(new, &slice);
 			variable_replace(&new, slice);
 		}
 		else
@@ -104,14 +114,4 @@ char		*expand(const char *src, int tok_type)
 		basic_expand(&new, ESC_IMPROVED_CHARSET);
 	}
 	return (new);
-}
-
-char		*str_expand(char **src, int tok_type)
-{
-	char *old;
-
-	old = *src;
-	*src = expand(*src, tok_type);
-	free(old);
-	return (*src);
 }

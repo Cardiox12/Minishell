@@ -9,6 +9,7 @@ SRCS += $(EVAL_DIR)/$(ENV_DIR)/get_value.c
 SRCS += $(EVAL_DIR)/$(ENV_DIR)/get_key.c
 
 SRCS += $(EVAL_DIR)/$(VAR_DIR)/expand.c
+SRCS += $(EVAL_DIR)/$(VAR_DIR)/expand2.c
 SRCS += $(EVAL_DIR)/$(VAR_DIR)/removal.c
 SRCS += $(EVAL_DIR)/$(VAR_DIR)/$(VAR_UTILS_DIR)/utils1.c
 SRCS += $(EVAL_DIR)/$(VAR_DIR)/$(VAR_UTILS_DIR)/replace.c
