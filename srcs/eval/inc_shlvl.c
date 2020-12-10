@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 07:48:57 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/10 13:32:25 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/10 13:35:30 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ static int	get_shlvl(const char *variable)
 	int shlvl;
 
 	shlvl = ft_atoi(variable);
-	ft_printf("shlvl : %s\n", variable);
-	ft_printf("shlvl : %i\n", shlvl);
 	if (shlvl < 0)
 		shlvl = 0;
 	else
