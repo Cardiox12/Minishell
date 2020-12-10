@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 02:00:27 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/10 11:59:10 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/10 13:04:29 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "ft_stdlib.h"
 #include "ft_stdio.h"
 #include "eval.h"
-#include "debug.h"
 #include "environ.h"
 
 char		**g_env = NULL;
