@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 16:57:24 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/29 08:20:06 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/10 12:02:12 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,15 @@ int						parse_by_one(char **args);
 int						parse_by_two(char **args);
 int						parse_by_three(char **args);
 int						is_valid_variable(const char *variable);
+long long				ft_atoll(const char *str);
+unsigned long long		ft_atoull(const char *str);
 
 # define EXIT_CODE_SYM "?"
 # define RAW_ARGUMENT "-n"
 # define HOME "~"
 # define UNDERSCORE '_'
 # define SHLVL_NAME "SHLVL"
+# define EXIT_TRUNC_CODE 19
 
 # define BUILTINS_SIZE		7
 # define BUILTINS_ECHO		"echo"

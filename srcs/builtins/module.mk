@@ -1,5 +1,8 @@
 UTILS_DIR = $(BUILTIN_DIR)/utils
 EXPO_DIR  = $(BUILTIN_DIR)/export
+EXIT_DIR	= $(BUILTIN_DIR)/exit
+
+SRCS += $(EXIT_DIR)/convert.c
 
 SRCS += $(UTILS_DIR)/arrlen.c
 SRCS += $(UTILS_DIR)/cd_perror.c

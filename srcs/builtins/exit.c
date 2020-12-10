@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 21:57:17 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/10 10:08:18 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/10 12:13:57 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,59 @@
 #include "ft_stdlib.h"
 #include "builtins.h"
 
+static int	check_signed_argument(char *arg)
+{
+	unsigned long long	ull;
+	long long			ll;
+
+	if (ft_strlen(arg + 1) > EXIT_TRUNC_CODE)
+		return (FALSE);
+	ull = ft_atoull(arg + 1);
+	ll = ft_atoll(arg);
+	if (ull > LLONG_MAX && ll != LLONG_MIN)
+		return (FALSE);
+	if (ll == LLONG_MIN)
+		return (TRUE);
+	return (ll >= LLONG_MIN || ull <= LLONG_MAX);
+}
+
+static int	check_unsigned_argument(char *arg)
+{
+	unsigned long long	ull;
+	long long			ll;
+
+	if (ft_strlen(arg) > EXIT_TRUNC_CODE)
+		return (FALSE);
+	ull = ft_atoull(arg);
+	ll = ft_atoll(arg);
+	if (ull > LLONG_MAX)
+		return (FALSE);
+	if (ll == LLONG_MIN)
+		return (TRUE);
+	return (ll >= LLONG_MIN || ull <= LLONG_MAX);
+}
+
 static int	is_valid_argument(char *arg)
 {
 	if (*arg == '+' || *arg == '-')
 	{
 		if (ft_isnumeric(arg + 1))
-			return (TRUE);
+		{
+			return (check_signed_argument(arg));
+		}
 	}
-	return (ft_isnumeric(&arg[1]));
+	if (ft_isnumeric(arg))
+	{
+		return (check_unsigned_argument(arg));
+	}
+	return (FALSE);
 }
 
 int			internal_exit(char **args)
 {
 	ft_printf("exit\n");
 	if (args[1] == NULL)
-		exit(0);
+		exit(g_exitstatus);
 	if (!is_valid_argument(args[1]))
 	{
 		print_internal_error(BUILTINS_EXIT, args[1],
