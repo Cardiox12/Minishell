@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 07:48:57 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/07 00:38:22 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/10 13:32:25 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,20 @@ static void	export_and_free(char *variable, t_spair exp, t_spair items)
 	free(variable);
 }
 
+static int	get_shlvl(const char *variable)
+{
+	int shlvl;
+
+	shlvl = ft_atoi(variable);
+	ft_printf("shlvl : %s\n", variable);
+	ft_printf("shlvl : %i\n", shlvl);
+	if (shlvl < 0)
+		shlvl = 0;
+	else
+		shlvl++;
+	return (shlvl);
+}
+
 static void	inc_shlvl_(const char *variable)
 {
 	t_spair	items;
@@ -50,7 +64,7 @@ static void	inc_shlvl_(const char *variable)
 	items = get_items(variable);
 	if (items.first == NULL && items.second == NULL)
 		return ;
-	shlvl = ft_atoi(items.second) + 1;
+	shlvl = get_shlvl(items.second);
 	exp_items = (t_spair){ft_strdup(items.first), ft_itoa(shlvl)};
 	if (exp_items.second == NULL)
 	{
