@@ -6,14 +6,14 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 00:27:10 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/09 02:18:37 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/10 01:29:44 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include <stdio.h>
 
-t_queue *queue_join(t_queue *head)
+t_queue	*queue_join(t_queue *head)
 {
 	t_queue *final;
 	t_queue *cur;

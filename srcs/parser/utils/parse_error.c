@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 02:07:07 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/10 00:44:23 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/10 01:31:56 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	print_parse_error(t_interpret *inter, int out)
 	ft_putstr_fd(ERROR_SYNTAX, STDERR_FILENO);
 	ft_putchar_fd(' ', STDERR_FILENO);
 	ft_putchar_fd('`', STDERR_FILENO);
-if (out == SYNTAX_ERROR_NEWLINE)
+	if (out == SYNTAX_ERROR_NEWLINE)
 		ft_putstr_fd("newline", STDERR_FILENO);
 	else
 	{
@@ -38,7 +38,7 @@ if (out == SYNTAX_ERROR_NEWLINE)
 	interpret_free(inter);
 }
 
-int	parse_error(t_interpret *inter, int out)
+int			parse_error(t_interpret *inter, int out)
 {
 	if (out < 0)
 	{

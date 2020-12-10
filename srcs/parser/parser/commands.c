@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 02:04:26 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/10 01:04:41 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/10 01:30:13 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	check_redirection(t_interpret *inter)
 	return (SUCCESS);
 }
 
-int	commands(t_interpret *inter)
+int			commands(t_interpret *inter)
 {
 	int out;
 

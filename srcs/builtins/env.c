@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 13:31:18 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/08 23:31:23 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/10 01:31:03 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	print_env_error(char *arg)
 	return (ENV_ERR_FILE_NOT_FOUND);
 }
 
-int	env(char **args)
+int			env(char **args)
 {
 	size_t index;
 

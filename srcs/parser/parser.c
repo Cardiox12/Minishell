@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 13:16:15 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/12/10 00:09:56 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/10 01:30:43 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	check_syntax(const char *input, t_queue *head)
 	t_interpret	inter;
 	int			out;
 
-	inter = (t_interpret){.input = (char*)input, .tokens = queue_copy_all(head)};
+	inter = (t_interpret){.input = (char*)input,
+	.tokens = queue_copy_all(head)};
 	inter.current = dequeue(&inter.tokens);
 	out = commands(&inter);
 	if (out != 0)

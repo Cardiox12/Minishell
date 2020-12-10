@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 15:07:18 by tlucille          #+#    #+#             */
-/*   Updated: 2020/11/29 08:30:27 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/10 01:34:16 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,11 @@ extern int					g_flawed;
 extern int					g_exec_pid;
 extern int					**g_pipe_array;
 
-int							setup_out_redirects(t_command *command, int out_redirect[2], int outpipe[2]);
+int							setup_out_redirects(t_command *command,
+							int out_redirect[2], int outpipe[2]);
 int							free_pipe_tab(void);
-int							close_useless_pipes(int pipe_index_1, int pipe_index_2, int index);
+int							close_useless_pipes(int pipe_index_1,
+							int pipe_index_2, int index);
 void						sigpipe_handle(int sig);
 int							close_pipe(int pipefd[2]);
 int							initialize_pipeline(t_command *command);
@@ -88,7 +90,8 @@ int							is_arg(t_queue *queue);
 int							craft_command(t_command *command);
 int							simple_builtin(t_command *command);
 int							is_builtin(char **args);
-int							recursive_builtin(t_command *command, int oldpipe[2], int newpipe[2]);
+int							recursive_builtin(t_command *command,
+							int oldpipe[2], int newpipe[2]);
 int							*read_redirections_pipe(t_command *command,
 								int redirectpipe[2]);
 int							*read_redirections_nopipe(t_command *command,
@@ -103,7 +106,8 @@ void						ft_print_int_tab(int *tab);
 int							*add_to_dynamic_int_array(int **table, int nbr);
 int							*ft_int_tab_maker(size_t len);
 char						*read_until_eof(int fd);
-int							recursive_piper(t_command *command, int oldpipe[2], int outpipe[2]);
+int							recursive_piper(t_command *command,
+							int oldpipe[2], int outpipe[2]);
 int							init_piper(int outpipe[2], t_command *command);
 int							fork_and_exec(t_command *command);
 char						**ft_stabmaker(size_t len);
