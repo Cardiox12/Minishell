@@ -6,7 +6,7 @@
 /*   By: bbellavi <bbellavi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 18:45:51 by bbellavi          #+#    #+#             */
-/*   Updated: 2020/11/30 20:02:42 by bbellavi         ###   ########.fr       */
+/*   Updated: 2020/12/10 01:17:49 by bbellavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static size_t	strlen_without_quotes(const char *input, int quote)
 		}
 		else
 			size++;
+		if (input[index] == '\0')
+			break ;
 		index++;
 	}
 	return (size);
